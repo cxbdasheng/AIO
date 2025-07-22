@@ -1,0 +1,53 @@
+{#-
+This file was automatically generated - do not edit
+-#}
+{% extends "main.html" %}
+{% block tabs %}
+{{ super() }}
+<style>.md-header {
+    position: initial
+}
+
+.md-main__inner {
+    margin: 0
+}
+
+.md-content {
+    display: none
+}
+
+@media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+        display: none
+    }
+}
+
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        display: none
+    }
+}</style>
+<section class="mdx-container">
+    <div class="md-grid md-typeset">
+        <div class="mdx-hero">
+            <div class="mdx-hero__image">
+                <img src="../assets/images/banner.png" alt="banner图" width="1550" height="1200"
+                     draggable="false">
+            </div>
+            <div class="mdx-hero__content">
+                <h1>家庭 AIO 服务器 ESXi 系统搭建记录</h1>
+<!--                <p>陈大剩的家庭 AIO 服务器搭建记录，涉及到硬件选购、显卡直通、软路由以及常见的 Linux 发行版的琐碎细节。</p>-->
+                <p>1. 全家公共存储网盘</p>
+                <p>2. 全屋 2.5G 内网覆盖</p>
+                <p>3. 公网开发/生产服务器</p>
+                <p>4. 公网 IPv6 转 公网 IPv4 实现任意服务远程访问</p>
+                <a href="{{ '/1/1/' | url }}" title="Material for MkDocs Insiders" class="md-button">
+                    快速开始
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}

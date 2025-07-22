@@ -1,0 +1,120 @@
+site_name: 家庭 AIO 服务器搭建教程
+site_url: https://esxi.it927.com
+site_author: 陈大剩
+site_description: "家庭 AIO 服务器 ESXi 环境搭建教程"
+repo_name: cxbdasheng/ESXi
+repo_url: https://github.com/cxbdasheng/ESXi
+copyright: Copyright &copy; 2024 esxi.it927.com 陈大剩
+theme:
+  name: material
+  font: false
+  language: zh
+  custom_dir: overrides
+  favicon: https://www.it927.com/favicon.ico
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换深色模式
+    # Toggle dark mode
+    - scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: 切换浅色模式
+  icon:
+    logo: material/home
+    repo: fontawesome/brands/git-alt
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.annotate
+    - navigation.tabs      # 启用标签导航
+    - navigation.top        # 启用顶部导航
+    - navigation.next_prev
+    - navigation.prev_next_buttons
+  markdown_extensions:
+    - pymdownx.highlight:
+        use_pygments: true
+        auto_title: true
+        anchor_linenums: true
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - attr_list
+    - pymdownx.tabbed:
+        alternate_style: true
+    - md_in_html
+    - def_list
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - toc:
+        permalink: true
+plugins:
+  - glightbox
+  - git-revision-date
+  - search:
+      lang:
+        - zh
+extra:
+  generator: false
+nav:
+  - 首页: "index.md"
+  - 前言介绍:
+      - All-in-One 环境的概念: "1/1.md"
+      - 什么是 ESXi: "1/2.md"
+      - 陈大剩写在前面的话: "1/3.md"
+      - 本教程的目标和适用对象: "1/4.md"
+  - 准备工作:
+      - 硬件配置: "2/1.md"
+      - BIOS 设置: "2/2.md"
+      - 安装 ESXi: "2/3.md"
+      - 基础设置: "2/4.md"
+  - 网络架构:
+      - ESXi 网络概述: "3/1.md"
+      - 网络拓扑设计: "3/2.md"
+      - 网络拓扑实战: "3/3.md"
+      - 跳板机使用: "3/4.md"
+      - 故障排查与优化: "3/5.md"
+  - 进阶操作:
+      - 虚拟机自启动: "4/1.md"
+      - 虚拟机克隆: "4/2.md"
+      - 硬件直通: "4/3.md"
+      - SSL 证书配置: "4/4.md"
+      - 镜像转换: "4/5.md"
+      - 功耗节能: "4/6.md"
+  - 软路由:
+      - 系统安装: "5/1.md"
+      - 硬盘扩容: "5/2.md"
+      - OpenClash: "5/3.md"
+      - 开启 IPv6: "5/4.md"
+  - 黑群晖:
+      - 系统安装: "6/1.md"
+      - 存储设计: "6/2.md"
+      - CPU修正: "6/3.md"
+      - 添加证书: "6/4.md"
+      - 远程访问: "6/5.md"
+  - 家庭工作区:
+      - 家庭 PC: "7/1.md"
+      - 全家影视中心: "7/2.md"
+      - 全屋网络覆盖: "7/3.md"
+      - 开发系统: "7/4.md"
+      - k8s 集群: "7/5.md"
+  - 远程穿透:
+      - 前言: "8/1.md"
+      - IPv6 DDNS: "8/2.md"
+      - 公网 NAT: "8/3.md"
+      - IPv6 转 IPv4: "8/4.md"
+      - Frp 转发: "8/5.md"
+      - 家庭 PC（W10）远程桌面访问: "8/6.md"
+  - 常见 Q&A:
+      - 问题列表: "6/2.md"
+
