@@ -1,5 +1,5 @@
 site_name: 家庭 AIO 服务器搭建教程
-site_url: https://esxi.it927.com
+site_url: http://esxi.it927.com
 site_author: 陈大剩
 site_description: "家庭 AIO 服务器 ESXi 环境搭建教程"
 repo_name: cxbdasheng/ESXi
@@ -7,10 +7,24 @@ repo_url: https://github.com/cxbdasheng/ESXi
 copyright: Copyright &copy; 2024 esxi.it927.com 陈大剩
 theme:
   name: material
+  custom_dir: overrides
   font: false
   language: zh
-  custom_dir: overrides
+  icon:
+    logo: material/home
+    repo: fontawesome/brands/git-alt
   favicon: https://www.it927.com/favicon.ico
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.annotate
+    - navigation.tabs      # 启用标签导航
+    - navigation.top        # 启用顶部导航
+    - navigation.next_prev
+    - navigation.prev_next_buttons
   palette:
     - scheme: default
       primary: indigo
@@ -25,47 +39,40 @@ theme:
       toggle:
         icon: material/brightness-4
         name: 切换浅色模式
-  icon:
-    logo: material/home
-    repo: fontawesome/brands/git-alt
-  features:
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - search.suggest
-    - search.highlight
-    - search.share
-    - content.code.annotate
-    - navigation.tabs      # 启用标签导航
-    - navigation.top        # 启用顶部导航
-    - navigation.next_prev
-    - navigation.prev_next_buttons
-  markdown_extensions:
-    - pymdownx.highlight:
-        use_pygments: true
-        auto_title: true
-        anchor_linenums: true
-    - admonition
-    - pymdownx.details
-    - pymdownx.superfences
-    - pymdownx.inlinehilite
-    - pymdownx.snippets
-    - attr_list
-    - pymdownx.tabbed:
-        alternate_style: true
-    - md_in_html
-    - def_list
-    - pymdownx.tasklist:
-        custom_checkbox: true
-    - toc:
-        permalink: true
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      auto_title: true
+      anchor_linenums: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - pymdownx.tabbed:
+      alternate_style: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
 plugins:
   - glightbox
   - git-revision-date
   - search:
       lang:
-        - zh
+        - en
+        - ja
+edit_uri: edit/main/docs/
 extra:
   generator: false
+  social:
+    - icon: fontawesome/brands/redhat
+      link: https://www.it927.com
+      name: 陈大剩
 nav:
   - 首页: "index.md"
   - 前言介绍:
