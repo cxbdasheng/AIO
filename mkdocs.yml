@@ -61,7 +61,9 @@ markdown_extensions:
 
 plugins:
   - glightbox
-  - git-revision-date
+  - git-revision-date-localized:
+      enable_creation_date: true
+      locale: "zh_CN"
   - search:
       lang:
         - en
@@ -70,7 +72,7 @@ edit_uri: edit/main/docs/
 extra:
   generator: false
   social:
-    - icon: fontawesome/brands/redhat
+    - icon: fontawesome/brands/fort-awesome
       link: https://www.it927.com
       name: 陈大剩
 nav:
