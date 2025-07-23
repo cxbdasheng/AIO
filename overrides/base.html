@@ -43,6 +43,9 @@
         <title>{{ config.site_name }}</title>
       {% endif %}
     {% endblock %}
+    {% if page.meta and page.meta.keywords %}
+    <meta name="keywords" content="{{ page.meta.keywords | join(',') }}">
+    {% endif %}
     {% block styles %}
       <link rel="stylesheet" href="{{ 'assets/stylesheets/main.6f8fc17f.min.css' | url }}">
       {% if config.theme.palette %}
