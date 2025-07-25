@@ -1,6 +1,6 @@
 ---
 title: 什么是 ESXi
-slug: What-is-ESXi?
+slug: what-is-esxi
 keywords: 
   - 什么是ESXi
   - ESXi的特点
