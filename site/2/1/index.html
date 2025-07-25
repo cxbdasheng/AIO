@@ -2149,7 +2149,17 @@
 </div>
 <p>这款主板PCIe 插槽非常多，配备双 RJ45 网卡（2.5G），提供 3 个 NVMe 接口，内存最大支持 64GB x 8 = 512GB。美中不足的是，3 个 NVMe 接口中有一个仅支持 PCIe 2.0 速率。</p>
 <h3 id="_4">显卡<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>如果没有特殊需求，亮机卡已经足够。但考虑到需要 vGPU 方案，建议选择 英伟达显卡，有生产力需求的用户可根据需要选择。我选择了一张 GTX 1070 和 RX 560，其中 RX 560 用于直通给黑苹果（黑苹果支持大部分 A 卡），GTX 1070 既可以用于 vGPU，也可以用于打游戏，性价比非常高。</p>
+<p>如果没有特殊需求，亮机卡已经足够。但考虑到需要 vGPU 方案，建议选择 <strong>英伟达显卡</strong>，有生产力需求的用户可根据需要选择。陈大剩我选择了一张 GTX 1070 和 RX 560，其中 RX 560 用于直通给黑苹果（黑苹果支持大部分 A 卡），GTX 1070 既可以用于 vGPU，也可以用于打游戏，性价比非常高。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">显卡图一</label><label for="__tabbed_3_2">显卡图二</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="显卡图一" src="https://img.it927.com/aio/19.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/20.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="显卡图二" src="https://img.it927.com/aio/20.png" /></a></p>
+</div>
+</div>
+</div>
 <h3 id="_5">内存<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>服务器内存现在价格相对较低，有条件的话建议越大越好。内存建议优先选择 <strong>三星品牌</strong>，其他品牌容易出现兼容性问题。颗粒排序方面，2R×4 的兼容性据说比 4R×4 更好。我选择了 32GB 2400 DDR4 x 8 条三星 4R×4 内存条（之前 2R×4 比 4R×4 贵 ￥50）。对于虚拟机多开场景，内存容量不会成为瓶颈。</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存" src="https://img.it927.com/aio/5.png" /></a></p>
@@ -2159,7 +2169,7 @@
 <h3 id="_7">网卡<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>网卡是整个搭建过程中的 <strong>重中之重</strong>。由于 <strong>ESXi 的限制，必须选择一块 ESXi 支持的网卡</strong>。支持的网卡型号可查阅 <a href="https://compatibilityguide.broadcom.com/search?program=io&amp;persona=live&amp;column=brandName&amp;order=asc">Broadcom Compatibility Guide</a> 兼容性指南。</p>
 <p>陈大剩我选择了 INTEL I350T4V2 四口千兆网卡，如果需要内网 2.5G 全覆盖，我们还需要一个双网口 2.5G 路由器，如果要突出运营商千兆速率，还需要买一个 2.5G 光猫，我会在后续的文章展开说说。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">网卡一</label><label for="__tabbed_3_2">网卡二</label><label for="__tabbed_3_3">网卡三</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">网卡一</label><label for="__tabbed_4_2">网卡二</label><label for="__tabbed_4_3">网卡三</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><a class="glightbox" href="https://img.it927.com/aio/13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网卡一" src="https://img.it927.com/aio/13.png" /></a></p>
@@ -2175,7 +2185,7 @@
 <h3 id="_8">机箱<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>机箱的选择相对简单，越大越好，毕竟需要容纳多个 PCIe 设备。如果你还希望容纳更多的小姐姐，那就需要更大的空间（有容乃大）。
 陈大剩我选择了 追风者 PK620 机箱，不仅空间充足，而且外观豪华，性价比也非常高。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">机箱</label><label for="__tabbed_4_2">机箱接线</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">机箱</label><label for="__tabbed_5_2">机箱接线</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><a class="glightbox" href="https://img.it927.com/aio/12.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="机箱" src="https://img.it927.com/aio/12.jpg" /></a></p>
@@ -2207,7 +2217,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月23日 15:53:35 UTC">2025年7月23日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月24日 04:44:47 UTC">2025年7月24日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
