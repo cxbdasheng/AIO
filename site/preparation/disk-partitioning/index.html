@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="由于需要多开虚拟机使用，如果几十个虚拟机同时运行的话，对硬盘的负担也是不小的，所以选择如下的方案">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>硬盘划分 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="硬盘划分,家庭AIO硬盘划分,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -80,6 +82,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -696,6 +703,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    硬盘划分
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -705,6 +723,56 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬盘划分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      设计思路
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="设计思路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nas" class="md-nav__link">
+    <span class="md-ellipsis">
+      黑群晖 NAS 存储策略
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1765,6 +1833,47 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬盘划分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      设计思路
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="设计思路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nas" class="md-nav__link">
+    <span class="md-ellipsis">
+      黑群晖 NAS 存储策略
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1789,15 +1898,87 @@
 
   <h1>硬盘划分</h1>
 
-<hr />
-<p>slug: disk-partitioning
-keywords: 
-  - 硬盘划分
-  - 家庭AIO硬盘划分
-  - 家庭AIO搭建教程
-  - 家庭All-in-One搭建教程
-description: 1。</p>
-<hr />
+<h2 id="_1">硬盘划分<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在构建家庭 All-in-One 服务器时，合理规划硬盘资源对于性能和稳定性至关重要。尤其是当多个虚拟机同时运行时，硬盘的读写压力会显著增加。为此，我们制定了如下硬盘分配方案：</p>
+<table>
+<thead>
+<tr>
+<th>硬盘</th>
+<th>型号</th>
+<th>插槽</th>
+<th>速率</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NVME-SSD-1</strong></td>
+<td>西数 SN570 NVEM 协议 SSD 1TB</td>
+<td>M.2 插槽</td>
+<td>PCIe 3.0 × 4</td>
+<td>存放运行虚拟机</td>
+</tr>
+<tr>
+<td><strong>NVME-SSD-2</strong></td>
+<td>三星 980 512 GB</td>
+<td>M.2 插槽</td>
+<td>PCIe 3.0 × 4</td>
+<td>直通给黑苹果（或其他操作系统）</td>
+</tr>
+<tr>
+<td><strong>NVME-SSD-3</strong></td>
+<td>未知硬盘 1TB（购买的路上）</td>
+<td>M.2 插槽</td>
+<td>PCIe 2.0 × 4</td>
+<td>ESXi 系统盘（镜像）</td>
+</tr>
+<tr>
+<td><strong>NVME-SSD-4</strong></td>
+<td>小海豚 6536 3.2T AIC 刀卡</td>
+<td>PCIe 插槽</td>
+<td>PCIe 3.0 × 4</td>
+<td>直通给黑群晖（存储池1）</td>
+</tr>
+<tr>
+<td><strong>NVME-SSD-5</strong></td>
+<td>未知固态硬盘</td>
+<td>PCIe 插槽</td>
+<td>PCIe 3.0 × 4</td>
+<td>存放运行虚拟机</td>
+</tr>
+<tr>
+<td><strong>HDD-1</strong></td>
+<td>希捷 ST2000VX008 4TB</td>
+<td>SATA 接口</td>
+<td>SATA 3.0</td>
+<td>直通给黑群晖（存储池2）</td>
+</tr>
+<tr>
+<td><strong>HDD-2</strong></td>
+<td>西数   1TB</td>
+<td>SATA 接口</td>
+<td>SATA 3.0</td>
+<td>直通给黑群晖</td>
+</tr>
+<tr>
+<td><strong>HDD-3</strong></td>
+<td>未知硬盘 4TB（购买的路上）</td>
+<td>SATA 接口</td>
+<td>SATA 3.0</td>
+<td>直通给黑群晖（给存储池1做备份）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">设计思路<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="nas">黑群晖 NAS 存储策略<a class="headerlink" href="#nas" title="Permanent link">&para;</a></h3>
+<p>考虑到内网已升级至 2.5Gbps 网络环境，传统机械硬盘的性能瓶颈（约 <code>250 MB/s</code>）已无法满足高速传输需求。因此我们采用以下方案：</p>
+<ul>
+<li><strong>SSD 存储池</strong>：选用一块 3.2TB 的 NVMe 固态硬盘直通给黑群晖，用于高速读写任务（如迅雷下载、视频缓存等），充分发挥 2.5G 网络带宽优势。</li>
+<li><strong>HDD 存储池</strong>：配备一块或多块大容量机械硬盘（如 4TB），用于长期数据归档与冷存储。</li>
+<li><strong>冗余备份机制</strong>：未来计划引入第三块硬盘作为关键数据备份，进一步保障数据安全。</li>
+</ul>
+<p>该设计不仅能满足当前家庭 NAS 的高性能需求，也为后续升级至万兆网络环境打下良好基础。</p>
+<p><a class="glightbox" href="https://img.it927.com/aio/25.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="硬盘槽位图" src="https://img.it927.com/aio/25.png" /></a></p>
 
   
 
@@ -1818,7 +1999,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月25日 16:07:07 UTC">2025年7月25日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月25日 16:52:52 UTC">2025年7月25日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
