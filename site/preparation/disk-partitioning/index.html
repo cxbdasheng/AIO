@@ -740,15 +740,6 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      硬盘划分
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
       设计思路
     </span>
   </a>
@@ -757,9 +748,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#nas" class="md-nav__link">
     <span class="md-ellipsis">
-      黑群晖 NAS 存储策略
+      公共盘 NAS 存储
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机系统盘
     </span>
   </a>
   
@@ -1842,15 +1860,6 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      硬盘划分
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
       设计思路
     </span>
   </a>
@@ -1859,9 +1868,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#nas" class="md-nav__link">
     <span class="md-ellipsis">
-      黑群晖 NAS 存储策略
+      公共盘 NAS 存储
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机系统盘
     </span>
   </a>
   
@@ -1898,8 +1934,7 @@
 
   <h1>硬盘划分</h1>
 
-<h2 id="_1">硬盘划分<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>在构建家庭 All-in-One 服务器时，合理规划硬盘资源对于性能和稳定性至关重要。尤其是当多个虚拟机同时运行时，硬盘的读写压力会显著增加。为此，我们制定了如下硬盘分配方案：</p>
+<p>在构建家庭 All-in-One 服务器时，合理规划硬盘资源对于性能和稳定性至关重要。尤其是当多个虚拟机同时运行时，硬盘的读写压力会显著增加，不能将所有的压力放到一个盘中。为此，陈大剩制定了如下硬盘分配方案：</p>
 <table>
 <thead>
 <tr>
@@ -1920,45 +1955,45 @@
 </tr>
 <tr>
 <td><strong>NVME-SSD-2</strong></td>
-<td>三星 980 512 GB</td>
+<td>西数 SN770 NVEM 协议 SSD 500 GB</td>
 <td>M.2 插槽</td>
 <td>PCIe 3.0 × 4</td>
 <td>直通给黑苹果（或其他操作系统）</td>
 </tr>
 <tr>
 <td><strong>NVME-SSD-3</strong></td>
-<td>未知硬盘 1TB（购买的路上）</td>
+<td>三星 980 NVEM 协议 SSD 512 GB</td>
 <td>M.2 插槽</td>
 <td>PCIe 2.0 × 4</td>
-<td>ESXi 系统盘（镜像）</td>
+<td><strong>ESXi 系统盘（镜像）</strong></td>
 </tr>
 <tr>
 <td><strong>NVME-SSD-4</strong></td>
 <td>小海豚 6536 3.2T AIC 刀卡</td>
 <td>PCIe 插槽</td>
 <td>PCIe 3.0 × 4</td>
-<td>直通给黑群晖（存储池1）</td>
+<td>存放运行虚拟机</td>
 </tr>
 <tr>
 <td><strong>NVME-SSD-5</strong></td>
-<td>未知固态硬盘</td>
+<td>未知固态硬盘（购买的路上）</td>
 <td>PCIe 插槽</td>
 <td>PCIe 3.0 × 4</td>
-<td>存放运行虚拟机</td>
+<td>虚拟机不够时拓展</td>
 </tr>
 <tr>
 <td><strong>HDD-1</strong></td>
 <td>希捷 ST2000VX008 4TB</td>
 <td>SATA 接口</td>
 <td>SATA 3.0</td>
-<td>直通给黑群晖（存储池2）</td>
+<td>直通给黑群晖（存储池1）</td>
 </tr>
 <tr>
 <td><strong>HDD-2</strong></td>
 <td>西数   1TB</td>
 <td>SATA 接口</td>
 <td>SATA 3.0</td>
-<td>直通给黑群晖</td>
+<td>直通给黑群晖（存储池2）</td>
 </tr>
 <tr>
 <td><strong>HDD-3</strong></td>
@@ -1969,16 +2004,28 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_2">设计思路<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="nas">黑群晖 NAS 存储策略<a class="headerlink" href="#nas" title="Permanent link">&para;</a></h3>
-<p>考虑到内网已升级至 2.5Gbps 网络环境，传统机械硬盘的性能瓶颈（约 <code>250 MB/s</code>）已无法满足高速传输需求。因此我们采用以下方案：</p>
-<ul>
-<li><strong>SSD 存储池</strong>：选用一块 3.2TB 的 NVMe 固态硬盘直通给黑群晖，用于高速读写任务（如迅雷下载、视频缓存等），充分发挥 2.5G 网络带宽优势。</li>
-<li><strong>HDD 存储池</strong>：配备一块或多块大容量机械硬盘（如 4TB），用于长期数据归档与冷存储。</li>
-<li><strong>冗余备份机制</strong>：未来计划引入第三块硬盘作为关键数据备份，进一步保障数据安全。</li>
-</ul>
-<p>该设计不仅能满足当前家庭 NAS 的高性能需求，也为后续升级至万兆网络环境打下良好基础。</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/25.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="硬盘槽位图" src="https://img.it927.com/aio/25.png" /></a></p>
+<h2 id="_1">设计思路<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">系统盘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>前面也多次说过，因为主板的第三个 M.2 接口只有 PCIe 2.0 × 4 速率，所以 <strong>NVME-SSD-3</strong> 接口上的硬盘用于安装 ESXi 操作系统。该硬盘 <strong>适合安装对读写要求不高的系统</strong>，如：软路由、DNS 服务器 、广告过滤器等，同时可以作为系统镜像盘，存储这些操作系统的镜像文件。</p>
+<h3 id="_3">直通盘<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>细心的网友肯定会发现，陈大剩的 <strong>NVME-SSD-2</strong> 是 PCIe 4.0 × 4 速率的硬盘，这块虽然是PCIe 4.0 × 4 但插在 PCIe 3.0 × 4 插槽上，速率任然只有 PCIe 3.0 × 4 的速度。这块硬盘打算用来直通某个操作系统，以达到最优的速度，比如 黑苹果 或 W10 。</p>
+<p>这样设计的优势：</p>
+<ol>
+<li>后续有转移操作系统需求时，可直接更换硬盘；</li>
+<li>即使整个 AIO 系统崩溃，只要硬盘完好，资源仍可继续使用；</li>
+</ol>
+<h3 id="nas">公共盘 NAS 存储<a class="headerlink" href="#nas" title="Permanent link">&para;</a></h3>
+<p>考虑到内网已升级至 2.5 Gbps 网络环境，我本算 3.2TB 的 NVMe 固态硬盘直通给黑群晖做 <strong>SSD 存储池</strong>，但发现 <strong>SSD 存储池</strong> 2.5G 压根就跑不满，后续升级至万兆网络环境可以考虑用 <strong>SSD 存储池</strong> 方案。因此采用以下方案：</p>
+<ul>
+<li><del><strong>SSD 存储池</strong>：选用一块 3.2TB 的 NVMe 固态硬盘直通给黑群晖，用于高速读写任务（如迅雷下载、视频缓存等），充分发挥 2.5G 网络带宽优势。</del></li>
+<li><strong>HDD 存储池1</strong>：配备一块或多块大容量机械硬盘（如 4TB），用来存储私有化的关键数据，如影音、文件、重要资源；</li>
+<li><strong>HDD 存储池2</strong>： 1TB 机械存储池，用于存储一些公共服务相关数据，可以对外提供展示，如 WEB 服务资源等；</li>
+<li><strong>冗余备份机制</strong>：未来计划引入第三块硬盘作为关键数据备份，进一步保障数据安全；</li>
+</ul>
+<p><strong>HDD 存储池1</strong> 和 <strong>HDD 存储池2</strong> 主要是考虑敏感数据问题，其次可以将公共盘 NAS 存储以虚拟盘的形式分给各个 AIO 中的操作系统，这样设计不仅能满足当前家庭 NAS 的性能需求，也为后续升级至万兆网络环境打下良好基础。</p>
+<h3 id="_4">虚拟机系统盘<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>这个盘就没有太多要讲的了，主要用于分给各个操作系统做系统盘，然后通过上面的公共盘 NAS 存储虚拟盘做数据共享，主要的硬盘是 <strong>NVME-SSD-1</strong> 和 <strong>NVME-SSD-4</strong> ，这两个盘基本能满足多个虚拟机同时运行了，后续不够可以考虑再添加。</p>
 
   
 
@@ -1999,7 +2046,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月25日 16:54:34 UTC">2025年7月25日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月26日 15:58:59 UTC">2025年7月26日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
