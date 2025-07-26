@@ -13,7 +13,10 @@ description: 什么是 All-in-One 环境？All-in-One 环境，又称“一体�
 
 All-in-One 环境，又称“一体化环境”，是指在一个物理设备上通过虚拟化技术，整合多种功能和服务，实现多个系统的统一运行和管理。它特别适合家庭用户、技术爱好者或小型办公场景，可以替代多台物理设备，节省电力、空间和维护成本。
 
-> 通俗理解：一台机器，多个用途，集中管理。
+???+ info
+
+    通俗理解：一台机器，多个用途，集中管理。
+
 ## All-in-One 能做什么？
 
 以下是我目前在 All-in-One 环境中已实现的功能。如果你也有类似的需求或想法，可以跟着我动手实践！
@@ -52,7 +55,11 @@ All-in-One 环境，又称“一体化环境”，是指在一个物理设备上
 | 容器平台       | 运行 Docker + Portainer，部署各类容器化应用（如 Nextcloud、AdGuardHome） |
 
 ## 硬件要求
-推荐配置：至少 8GB 内存、双核 CPU、120GB SSD（系统盘）、额外硬盘用于数据存储。网络：建议千兆网卡，支持 VLAN 配置更佳。值得注意的是 ESXi 有网卡限制，请查阅：[Broadcom Compatibility Guide](https://compatibilityguide.broadcom.com/search?program=io&persona=live&column=brandName&order=asc)。
+推荐配置：至少 8GB 内存、双核 CPU、120GB SSD（系统盘）、额外硬盘用于数据存储。网络：建议千兆网卡，支持 VLAN 配置更佳。
+???+ info
+
+    需注意的是 ESXi 有网卡限制，请查阅：[Broadcom Compatibility Guide](https://compatibilityguide.broadcom.com/search?program=io&persona=live&column=brandName&order=asc)。
+
 ## All-in-One 环境的优势总结
 
 | 优势类别   | 说明                                            |
