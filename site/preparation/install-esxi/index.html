@@ -6,15 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="在安装系统前，需要设置 BIOS。由于不同主板的 BIOS 设置大同小异，很难详细展开说明，因此我们主要关注以下几个相关选项。">
       
       
         <meta name="author" content="陈大剩">
       
       
-        <link rel="canonical" href="http://esxi.it927.com/preparation/5/">
+        <link rel="canonical" href="http://esxi.it927.com/preparation/install-esxi/">
       
       
+        <link rel="prev" href="../disk-partitioning/">
+      
+      
+        <link rel="next" href="../4/">
       
       
       <link rel="icon" href="https://www.it927.com/favicon.ico">
@@ -22,9 +26,11 @@
     
     
       
-        <title>5 - 家庭 AIO 服务器搭建教程</title>
+        <title>安装 ESXi - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi安装,家庭ESXi安装,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -77,6 +83,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -109,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5
+              安装 ESXi
             
           </span>
         </div>
@@ -250,10 +261,12 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../hardware-details/" class="md-tabs__link">
           
   
@@ -595,23 +608,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -622,7 +640,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             准备工作
@@ -696,10 +714,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    安装 ESXi
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -708,6 +744,153 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    <span class="md-ellipsis">
+      制作引导 U盘
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载镜像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ventoy 引导进入镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改ESXi的默认空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装完成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置管理网卡 IP 地址
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="设置管理网卡 IP 地址">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      进入自定义系统页面
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看网络适配器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置管理网卡 IP 地址
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装结束
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1746,6 +1929,143 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    <span class="md-ellipsis">
+      制作引导 U盘
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载镜像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ventoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ventoy 引导进入镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改ESXi的默认空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装完成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置管理网卡 IP 地址
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="设置管理网卡 IP 地址">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      进入自定义系统页面
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看网络适配器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置管理网卡 IP 地址
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装结束
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1760,17 +2080,173 @@
 
   
   
-  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/5.md" title="edit.link.title" class="md-content__button md-icon">
+  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/install-esxi.md" title="edit.link.title" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
   </a>
-  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/5.md" title="View source of this page" class="md-content__button md-icon">
+  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/install-esxi.md" title="View source of this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
   </a>
 
 
-  <h1>5</h1>
+  <h1>安装 ESXi</h1>
 
-
+<h2 id="_1">准备工作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>大于 8G 的硬盘</li>
+<li>一台可联网的电脑（需要带 RJ45 网口）</li>
+</ul>
+<h2 id="u">制作引导 U盘<a class="headerlink" href="#u" title="Permanent link">&para;</a></h2>
+<p>引导使用 <a href="https://www.ventoy.net/cn/">Ventoy</a>，目前使用的 1.0.99 版本，下载 <a href="https://github.com/ventoy/Ventoy/releases">ventoy-1.0.99-windows.zip</a> 解压到桌面，打开后按照以下步骤制作引导 U 盘。
+<a class="glightbox" href="https://img.it927.com/aio/27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="制作引导 U盘" src="https://img.it927.com/aio/27.png" /></a></p>
+<h2 id="_2">下载镜像<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>下载镜像需要在官方网站注册账号才能下载，如果不想这么麻烦，可以直接使用我已经下载好的 <a href="https://pan.baidu.com/s/15MNW2IN8_5aEz45bFuE0SA?pwd=sjc7">镜像</a>，当然也可以去第三方地址下载。</p>
+<details class="warning" open="open">
+<summary>注意</summary>
+<p>第三方下载时，可以根据需要对比哈希值，如果一致则为官方正版 ISO 文件，否则需要仔细甄别。</p>
+</details>
+<p>下面介绍官网下载的方法：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">步骤一</label><label for="__tabbed_1_2">步骤二</label><label for="__tabbed_1_3">步骤三</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>访问 <a href="https://customerconnect.vmware.com/zh/evalcEnter?p=vsphere-eval-8">官方下载地址</a>，先注册一个 VMWare 的账号，注册登录完毕后，会进入仪表盘，点击【My Downloads】 能看到如下页面
+<a class="glightbox" href="https://img.it927.com/aio/28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="登录官网" src="https://img.it927.com/aio/28.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>再点击上方的 <a href="https://support.broadcom.com/group/ecx/free-downloads">HERE</a> 然后选择 【VMware vSphere Hypervisor】点击下拉选择最新版本即可。
+<a class="glightbox" href="https://img.it927.com/aio/29.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Hypervisor" src="https://img.it927.com/aio/29.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>按照下面操作即可愉快的下载了，点击下载时还会要求填一些信息，随便填即可。
+<a class="glightbox" href="https://img.it927.com/aio/30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Hypervisor" src="https://img.it927.com/aio/30.png" /></a>
+下载后记得将镜像移动到上一步的 <strong>引导 U盘</strong> 中。</p>
+</div>
+</div>
+</div>
+<details class="info" open="open">
+<summary>Info</summary>
+<p>找不到具体哈希值值时可去官网查历史: <a href="https://knowledge.broadcom.com/external/article">版本记录</a>。同时我们要注意一下，我们的硬件是否支持 ：<a href="https://compatibilityguide.broadcom.com/">VMware兼容性指南</a>，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。</p>
+</details>
+<h2 id="_3">安装<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="ventoy">Ventoy  引导进入镜像<a class="headerlink" href="#ventoy" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤一</label><label for="__tabbed_2_2">步骤二</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>开启家庭 AIO 服务器，选择 U 盘启动，并进入 Ventoy 界面，选择 ESXi 镜像回车再回车。
+<a class="glightbox" href="https://img.it927.com/aio/31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入 Ventoy 界面" src="https://img.it927.com/aio/31.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入后选择第一个选项：Boot in normal mode（以正常模式启动）
+<a class="glightbox" href="https://img.it927.com/aio/32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Boot in normal mode" src="https://img.it927.com/aio/32.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="esxi">修改ESXi的默认空间<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h3>
+<p>在读秒阶段，快速按下 <code>Shift+O</code>，调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：<code>autoPartotionOSDataSize=20480</code>。命令注意区分大小写，将默认空间设置为 20GB。硬盘空间不足的话推荐设置 8192(8GB) 即可
+<a class="glightbox" href="https://img.it927.com/aio/33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="修改ESXi的默认空间" src="https://img.it927.com/aio/33.png" /></a></p>
+<h3 id="_4">安装系统<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:9"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><input id="__tabbed_3_6" name="__tabbed_3" type="radio" /><input id="__tabbed_3_7" name="__tabbed_3" type="radio" /><input id="__tabbed_3_8" name="__tabbed_3" type="radio" /><input id="__tabbed_3_9" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">步骤一</label><label for="__tabbed_3_2">步骤二</label><label for="__tabbed_3_3">步骤三</label><label for="__tabbed_3_4">步骤四</label><label for="__tabbed_3_5">步骤五</label><label for="__tabbed_3_6">步骤六</label><label for="__tabbed_3_7">步骤七</label><label for="__tabbed_3_8">步骤八</label><label for="__tabbed_3_9">步骤九</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>U盘启动后，等待系统文件自动加载
+<a class="glightbox" href="https://img.it927.com/aio/35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="系统加载" src="https://img.it927.com/aio/35.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>当出现欢迎弹窗时，按下键盘 <code>Enter</code> 继续
+<a class="glightbox" href="https://img.it927.com/aio/36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="欢迎弹窗" src="https://img.it927.com/aio/36.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>弹出协议窗口时，按下键盘 <code>F11</code>，接受协议
+<a class="glightbox" href="https://img.it927.com/aio/37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="接受协议" src="https://img.it927.com/aio/37.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择安装硬盘，这里我选择三星的 890 硬盘选择后，按下键盘 <code>Enter</code> 继续
+<a class="glightbox" href="https://img.it927.com/aio/40.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择安装硬盘" src="https://img.it927.com/aio/40.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>保持默认，按下键盘 <code>Enter</code> 继续
+<a class="glightbox" href="https://img.it927.com/aio/43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="保持默认" src="https://img.it927.com/aio/43.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>设置访问密码 ，密码设置要求：字母大小写+数字+特殊符号 8位以上
+<a class="glightbox" href="https://img.it927.com/aio/45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置访问密码" src="https://img.it927.com/aio/45.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>CPU 警告不用管（是说下个版本不支持了），继续：
+<a class="glightbox" href="https://img.it927.com/aio/46.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU 警告" src="https://img.it927.com/aio/46.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>按下键盘 <code>F11</code>，开始安装
+<a class="glightbox" href="https://img.it927.com/aio/47.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开始安装" src="https://img.it927.com/aio/47.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>等待系统安装完成。
+<a class="glightbox" href="https://img.it927.com/aio/48.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开始安装" src="https://img.it927.com/aio/48.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="_5">安装完成<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">步骤一</label><label for="__tabbed_4_2">步骤二</label><label for="__tabbed_4_3">步骤三</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>系统安装完成后，按下键盘 <code>Enter</code> 重启，等待重启
+<a class="glightbox" href="https://img.it927.com/aio/49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装完成" src="https://img.it927.com/aio/49.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>重启过程中下面会有进度条：
+<a class="glightbox" href="https://img.it927.com/aio/52.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="重启过程" src="https://img.it927.com/aio/52.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>系统安装重启完成，显示了 IP 地址，就已经安装完成了，因为我们没有插网线，所以地址显示是 0.0.0.0。
+<a class="glightbox" href="https://img.it927.com/aio/54.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装完成" src="https://img.it927.com/aio/54.png" /></a></p>
+</div>
+</div>
+</div>
+<p>这一个步骤就是安装完成，接下来就是设置网口 IP 地址了。</p>
+<h3 id="ip">设置管理网卡 IP 地址<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
+<h4 id="_6">进入自定义系统页面<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>在设置网卡前，我们需要进入自定义系统页面。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">步骤一</label><label for="__tabbed_5_2">步骤二</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>这时候我们还没有连网线呢？ESXi 启动后，按键盘 <code>F2</code>，输入前面安装时设置的密码，进行网络设置
+<a class="glightbox" href="https://img.it927.com/aio/55.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入配置" src="https://img.it927.com/aio/55.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>键盘上下方向键移动到 【configure managenment netweork】选项，按下键盘 <code>Enter</code> 继续
+<a class="glightbox" href="https://img.it927.com/aio/38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置网络" src="https://img.it927.com/aio/38.png" /></a></p>
+</div>
+</div>
+</div>
+<h4 id="_7">查看网络适配器<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>选择第一个 【Netweork Adapter】选项，按下键盘 <code>Enter</code> 查看网络适配器：
+<a class="glightbox" href="https://img.it927.com/aio/39.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网卡列表" src="https://img.it927.com/aio/39.png" /></a>
+我这里只显示 INTEL I350T4V2 四口网卡，只是我并没有插网线，还有两个板载的 2.5G 网口，因为 ESXi 不支持，所以没有显示网络适配器中。</p>
+<details class="warning" open="open">
+<summary>注意</summary>
+<p>如果你没有找到网卡，恭喜你，大概率是 ESXi 不支持你的网卡，可以在 <a href="https://compatibilityguide.broadcom.com/search?program=io&amp;persona=live&amp;column=brandName&amp;order=asc">Broadcom Compatibility Guide</a> 查询你的网卡是否在兼容表中，不存在则需要购买一款支持的网卡。</p>
+</details>
+<h4 id="ip_1">设置管理网卡 IP 地址<a class="headerlink" href="#ip_1" title="Permanent link">&para;</a></h4>
+<p>这个环节中，如果你上游有路由器，不需要软路由，只需要在路由器下使用，则只需从路由器上接一根网线到 ESXi 上即可，等待路由器自动设置 IP 地址即可，无需下面的 IP 设置。</p>
+<p>陈大剩只是想把管理网口当管理用，所以设计一个死 IP 即可，后续可通过网线和跳板机直接访问管理 ESXi，如果你想和陈大剩一样，跟着设计就行，后续文章会介绍使用流程。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">步骤一</label><label for="__tabbed_6_2">步骤二</label><label for="__tabbed_6_3">步骤三</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>键盘上下方向键移动到 【set static ipv4 address and network configuration】 按键盘空格选择，方向键向下移动 设置 IP 地址
+<a class="glightbox" href="https://img.it927.com/aio/56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置 IP 地址" src="https://img.it927.com/aio/56.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入，关闭 IPv6 登录，没有必要 IPv6 登录
+<a class="glightbox" href="https://img.it927.com/aio/57.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="关闭 IPv6 登录" src="https://img.it927.com/aio/57.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>设置完成后按 <code>Enter</code> 确定，然后按键盘 <code>esc</code> 退出，弹窗按键盘<code>Y</code> 键，确定更改。
+<a class="glightbox" href="https://img.it927.com/aio/44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入配置" src="https://img.it927.com/aio/44.png" /></a></p>
+</div>
+</div>
+</div>
+<h2 id="_8">安装结束<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>安装和设计结束后，会回到 ESXi 的首页，能看到这里，恭喜安装顺利结束。
+<a class="glightbox" href="https://img.it927.com/aio/50.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ESXi 主页" src="https://img.it927.com/aio/50.png" /></a></p>
 
   
 
@@ -1786,12 +2262,12 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
         <span class="md-source-file__fact">
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月25日 14:59:06 UTC">2025年2月25日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 10:31:29 UTC">2025年7月27日</span>
         </span>
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月25日 16:07:07 UTC">2025年7月25日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 10:31:29 UTC">2025年7月27日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

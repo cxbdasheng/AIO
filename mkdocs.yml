@@ -89,7 +89,7 @@ nav:
       - 硬件配置: "preparation/hardware-details.md"
       - BIOS 设置: "preparation/bios-settings.md"
       - 硬盘划分: "preparation/disk-partitioning.md"
-      - 安装 ESXi: "preparation/3.md"
+      - 安装 ESXi: "preparation/install-esxi.md"
       - 基础设置: "preparation/4.md"
   - 网络架构:
       - ESXi 网络概述: "3/1.md"
