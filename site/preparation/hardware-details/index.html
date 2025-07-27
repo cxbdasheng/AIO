@@ -2200,7 +2200,7 @@
 <p>服务器内存现在价格相对较低，有条件的话建议越大越好。内存建议优先选择 <strong>三星品牌</strong>，其他品牌容易出现兼容性问题。颗粒排序方面，2R×4 的兼容性据说比 4R×4 更好。我选择了 32GB 2400 DDR4 x 8 条三星 4R×4 内存条（之前 2R×4 比 4R×4 贵 ￥50）。对于虚拟机多开场景，内存容量不会成为瓶颈。</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存" src="https://img.it927.com/aio/5.png" /></a></p>
 <h3 id="_6">硬盘<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>硬盘选择因个人需求而异。由于 ESXi 的特性，<strong>无法单独直通某块硬盘</strong>，只能<strong>直通 SATA 控制器</strong>，因此机械硬盘只能直通给一个操作系统（如果有多个 SATA 控制器则另当别论）。</p>
+<p>硬盘选择因个人需求而异。由于 ESXi 的特性，<strong>无法单独直通某块硬盘</strong>，只能 <strong>直通 SATA 控制器</strong>，因此机械硬盘只能直通给一个操作系统（如果有多个 SATA 控制器则另当别论）。</p>
 <p>陈大剩建议将所有机械硬盘留作直通给黑群晖。SSD 方面当然是越多越好，由于这款主板仅只能装 2 个 PCIe 3.0 NVMe SSD，我额外购买了一块 小海豚 6536 3.2T 刀卡硬盘，确保读写性能和容量不会成为短板。</p>
 <h3 id="_7">网卡<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>网卡是整个搭建过程中的 <strong>重中之重</strong>。由于 <strong>ESXi 的限制，必须选择一块 ESXi 支持的网卡</strong>。支持的网卡型号可查阅 <a href="https://compatibilityguide.broadcom.com/search?program=io&amp;persona=live&amp;column=brandName&amp;order=asc">Broadcom Compatibility Guide</a> 兼容性指南。</p>

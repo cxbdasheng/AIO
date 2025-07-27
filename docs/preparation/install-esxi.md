@@ -22,7 +22,7 @@ description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS
 下载镜像需要在官方网站注册账号才能下载，如果不想这么麻烦，可以直接使用我已经下载好的 [镜像](https://pan.baidu.com/s/15MNW2IN8_5aEz45bFuE0SA?pwd=sjc7)，当然也可以去第三方地址下载。
 ???+ warning "注意"
 
-    第三方下载时，可以根据需要对比哈希值，如果一致则为官方正版 ISO 文件，否则需要仔细甄别。
+    第三方下载时，可以需要对比镜像文件哈希值，如果一致则为官方正版 ISO 文件，否则需要仔细甄别。
 
 
 下面介绍官网下载的方法：
@@ -58,9 +58,15 @@ description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS
     进入后选择第一个选项：Boot in normal mode（以正常模式启动）
     ![Boot in normal mode](https://img.it927.com/aio/32.png)
 
-### 修改ESXi的默认空间
-在读秒阶段，快速按下 `Shift+O`，调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：`autoPartotionOSDataSize=20480`。命令注意区分大小写，将默认空间设置为 20GB。硬盘空间不足的话推荐设置 8192(8GB) 即可
+### 修改 ESXi 的默认空间
+如果空间不足，则可以修改 ESXi 的默认空间，在读秒阶段，快速按下 `Shift+o`（英文字母 o），调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：`autoPartotionOSDataSize=20480`。
 ![修改ESXi的默认空间](https://img.it927.com/aio/33.png)
+
+???+ info
+
+    注意命令区分大小写，将默认空间设置为 20GB。硬盘空间不足的话推荐设置 8192(8GB) 即可
+
+
 ### 安装系统
 === "步骤一"
 
