@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="在安装系统前，需要设置 BIOS。由于不同主板的 BIOS 设置大同小异，很难详细展开说明，因此我们主要关注以下几个相关选项。">
+        <meta name="description" content="安装 ESXi，准备工作：大于 8G 的硬盘、一台可联网的电脑（需要带 RJ45 网口），引导使用 Ventoy 目前使用的 1.0.99 版本。">
       
       
         <meta name="author" content="陈大剩">
@@ -18,7 +18,7 @@
         <link rel="prev" href="../disk-partitioning/">
       
       
-        <link rel="next" href="../4/">
+        <link rel="next" href="../base-settings/">
       
       
       <link rel="icon" href="https://www.it927.com/favicon.ico">
@@ -247,7 +247,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../preface-introduction/all-in-one-env/" class="md-tabs__link">
+        <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
           
   
   前言介绍
@@ -285,7 +285,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../3/1/" class="md-tabs__link">
+        <a href="../../network/overview/" class="md-tabs__link">
           
   
   网络架构
@@ -303,10 +303,10 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../4/1/" class="md-tabs__link">
+        <a href="../../esxi/self-starting/" class="md-tabs__link">
           
   
-  进阶操作
+  ESXi 进阶操作
 
         </a>
       </li>
@@ -321,7 +321,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../5/1/" class="md-tabs__link">
+        <a href="../../route/install/" class="md-tabs__link">
           
   
   软路由
@@ -339,7 +339,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../6/1/" class="md-tabs__link">
+        <a href="../../synology/install/" class="md-tabs__link">
           
   
   黑群晖
@@ -357,7 +357,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../7/1/" class="md-tabs__link">
+        <a href="../../home/pc/" class="md-tabs__link">
           
   
   家庭工作区
@@ -375,7 +375,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../8/1/" class="md-tabs__link">
+        <a href="../../remote/overview/" class="md-tabs__link">
           
   
   远程穿透
@@ -393,7 +393,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../6/2/" class="md-tabs__link">
+        <a href="../../qa/" class="md-tabs__link">
           
   
   常见 Q&A
@@ -520,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preface-introduction/all-in-one-env/" class="md-nav__link">
+      <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -541,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preface-introduction/what-is-esxi/" class="md-nav__link">
+      <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -562,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preface-introduction/words-written-earlier/" class="md-nav__link">
+      <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -583,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preface-introduction/for-the-crowd/" class="md-nav__link">
+      <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -903,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../4/" class="md-nav__link">
+      <a href="../base-settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -969,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3/1/" class="md-nav__link">
+      <a href="../../network/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -990,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3/2/" class="md-nav__link">
+      <a href="../../network/settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1011,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3/3/" class="md-nav__link">
+      <a href="../../network/fight/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1032,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3/4/" class="md-nav__link">
+      <a href="../../network/jumper/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1053,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3/5/" class="md-nav__link">
+      <a href="../../network/qa/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1098,7 +1098,7 @@
             
   
   <span class="md-ellipsis">
-    进阶操作
+    ESXi 进阶操作
   </span>
   
 
@@ -1108,7 +1108,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            进阶操作
+            ESXi 进阶操作
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1119,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4/1/" class="md-nav__link">
+      <a href="../../esxi/self-starting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1140,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4/2/" class="md-nav__link">
+      <a href="../../esxi/clone/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1161,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4/3/" class="md-nav__link">
+      <a href="../../esxi/passthrough/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1182,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4/4/" class="md-nav__link">
+      <a href="../../esxi/ssl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1203,7 +1203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4/5/" class="md-nav__link">
+      <a href="../../esxi/convert/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1224,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4/6/" class="md-nav__link">
+      <a href="../../esxi/energy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1290,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5/1/" class="md-nav__link">
+      <a href="../../route/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1311,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5/2/" class="md-nav__link">
+      <a href="../../route/expansion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1332,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5/3/" class="md-nav__link">
+      <a href="../../route/open-clash/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1353,7 +1353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5/4/" class="md-nav__link">
+      <a href="../../route/ipv6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1419,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6/1/" class="md-nav__link">
+      <a href="../../synology/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1440,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6/2/" class="md-nav__link">
+      <a href="../../synology/design/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1461,7 +1461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6/3/" class="md-nav__link">
+      <a href="../../synology/cpu/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1482,7 +1482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6/4/" class="md-nav__link">
+      <a href="../../synology/ssl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1503,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6/5/" class="md-nav__link">
+      <a href="../../synology/remote/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1569,7 +1569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../7/1/" class="md-nav__link">
+      <a href="../../home/pc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1590,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../7/2/" class="md-nav__link">
+      <a href="../../home/video/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1611,7 +1611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../7/3/" class="md-nav__link">
+      <a href="../../home/network/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1632,7 +1632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../7/4/" class="md-nav__link">
+      <a href="../../home/develop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1653,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../7/5/" class="md-nav__link">
+      <a href="../../home/k8s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1719,7 +1719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8/1/" class="md-nav__link">
+      <a href="../../remote/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1740,7 +1740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8/2/" class="md-nav__link">
+      <a href="../../remote/ipv6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1761,7 +1761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8/3/" class="md-nav__link">
+      <a href="../../remote/nat/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1782,7 +1782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8/4/" class="md-nav__link">
+      <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1803,32 +1803,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8/5/" class="md-nav__link">
+      <a href="../../remote/frp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Frp 转发
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../8/6/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    家庭 PC（W10）远程桌面访问
   </span>
   
 
@@ -1890,11 +1869,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6/2/" class="md-nav__link">
+      <a href="../../qa/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    存储设计
+    问题列表
   </span>
   
 
@@ -2124,14 +2103,14 @@
 </div>
 <details class="info" open="open">
 <summary>Info</summary>
-<p>找不到具体哈希值值时可去官网查历史: <a href="https://knowledge.broadcom.com/external/article">版本记录</a>。同时我们要注意一下，我们的硬件是否支持 ：<a href="https://compatibilityguide.broadcom.com/">VMware兼容性指南</a>，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。</p>
+<p>找不到具体哈希值值时可去官网查历史: <a href="https://knowledge.broadcom.com/external/article">版本记录</a>。同时需要注意一下，硬件是否支持 ：<a href="https://compatibilityguide.broadcom.com/">VMware兼容性指南</a>，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。</p>
 </details>
 <h2 id="_3">安装<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="ventoy">Ventoy  引导进入镜像<a class="headerlink" href="#ventoy" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤一</label><label for="__tabbed_2_2">步骤二</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>开启家庭 AIO 服务器，选择 U 盘启动，并进入 Ventoy 界面，选择 ESXi 镜像回车再回车。
+<p>开启家庭 AIO 服务器，选择 U 盘启动，并进入 Ventoy 界面，选择 ESXi 镜像按下键盘 <code>Enter</code>。
 <a class="glightbox" href="https://img.it927.com/aio/31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入 Ventoy 界面" src="https://img.it927.com/aio/31.png" /></a></p>
 </div>
 <div class="tabbed-block">
@@ -2141,7 +2120,7 @@
 </div>
 </div>
 <h3 id="esxi">修改 ESXi 的默认空间<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h3>
-<p>如果空间不足，则可以修改 ESXi 的默认空间，在读秒阶段，快速按下 <code>Shift+o</code>（英文字母 o），调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：<code>autoPartotionOSDataSize=20480</code>。
+<p>如果空间不足，可修改 ESXi 的默认空间，在读秒阶段，快速按下 <code>Shift+o</code>（英文字母 o），调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：<code>autoPartotionOSDataSize=20480</code>。
 <a class="glightbox" href="https://img.it927.com/aio/33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="修改ESXi的默认空间" src="https://img.it927.com/aio/33.png" /></a></p>
 <details class="info" open="open">
 <summary>Info</summary>
@@ -2271,7 +2250,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 10:33:18 UTC">2025年7月27日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 13:15:39 UTC">2025年7月27日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

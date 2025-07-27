@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="在安装系统前，需要设置 BIOS。由于不同主板的 BIOS 设置大同小异，很难详细展开说明，因此我们主要关注以下几个相关选项。">
+        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
       
       
         <meta name="author" content="陈大剩">
       
       
-        <link rel="canonical" href="http://esxi.it927.com/preparation/bios-settings/">
+        <link rel="canonical" href="http://esxi.it927.com/route/expansion/">
       
       
-        <link rel="prev" href="../hardware-details/">
+        <link rel="prev" href="../install/">
       
       
-        <link rel="next" href="../disk-partitioning/">
+        <link rel="next" href="../open-clash/">
       
       
       <link rel="icon" href="https://www.it927.com/favicon.ico">
@@ -26,11 +26,9 @@
     
     
       
-        <title>BIOS 设置 - 家庭 AIO 服务器搭建教程</title>
+        <title>硬盘扩容 - 家庭 AIO 服务器搭建教程</title>
       
     
-    
-    <meta name="keywords" content="家庭AIO BIOS 设置指南,家庭AIO设置指南,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -84,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bios" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -120,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BIOS 设置
+              硬盘扩容
             
           </span>
         </div>
@@ -261,13 +259,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../hardware-details/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../preparation/hardware-details/" class="md-tabs__link">
           
   
   准备工作
@@ -317,11 +313,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../route/install/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../install/" class="md-tabs__link">
           
   
   软路由
@@ -608,28 +606,23 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -640,7 +633,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             准备工作
@@ -654,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware-details/" class="md-nav__link">
+      <a href="../../preparation/hardware-details/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -672,28 +665,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    BIOS 设置
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../preparation/bios-settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -702,69 +677,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#bios" class="md-nav__link">
-    <span class="md-ellipsis">
-      BIOS 设置指南
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#above-4g-decoding" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启 Above 4G Decoding
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sr-iov" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启 SR-IOV
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#x2apic" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启 x2APIC
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启来电启动
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -777,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../disk-partitioning/" class="md-nav__link">
+      <a href="../../preparation/disk-partitioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -798,7 +710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install-esxi/" class="md-nav__link">
+      <a href="../../preparation/install-esxi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -819,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../base-settings/" class="md-nav__link">
+      <a href="../../preparation/base-settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1165,23 +1077,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1192,7 +1109,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             软路由
@@ -1206,7 +1123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../route/install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1224,10 +1141,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../route/expansion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    硬盘扩容
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1236,6 +1171,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      在写的路上
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1248,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../route/open-clash/" class="md-nav__link">
+      <a href="../open-clash/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1269,7 +1231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../route/ipv6/" class="md-nav__link">
+      <a href="../ipv6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1831,45 +1793,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bios" class="md-nav__link">
-    <span class="md-ellipsis">
-      BIOS 设置指南
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#above-4g-decoding" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启 Above 4G Decoding
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sr-iov" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启 SR-IOV
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#x2apic" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启 x2APIC
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      开启来电启动
+      在写的路上
     </span>
   </a>
   
@@ -1891,59 +1817,17 @@
 
   
   
-  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/bios-settings.md" title="edit.link.title" class="md-content__button md-icon">
+  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/route/expansion.md" title="edit.link.title" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
   </a>
-  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/bios-settings.md" title="View source of this page" class="md-content__button md-icon">
+  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/route/expansion.md" title="View source of this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
   </a>
 
 
-  <h1>BIOS 设置</h1>
+  <h1>硬盘扩容</h1>
 
-<h2 id="bios">BIOS 设置指南<a class="headerlink" href="#bios" title="Permanent link">&para;</a></h2>
-<p>在安装系统前，需要设置 BIOS。由于不同主板的 BIOS 设置大同小异，很难详细展开说明，因此我们主要关注以下几个相关选项：</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> Intel VMX 虚拟化技术（PCIe 件直通必须）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> VT-d （PCIe 件直通必须）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> SR-IOV 网卡虚拟化技术 （高效先进的虚拟机网卡技术）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> Above 4G  Decoding（vGPU 方案需要开启这个选项）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> Numa （多路 CPU 建议开启，提高多路 CPU 运行效率，合理分配负载）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> x2APIC（PCIe 硬件直通需要）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>开启</strong> 来电启动（远程开机需要）</li>
-</ul>
-<p>以华南主板为例，<strong>首先恢复出厂设置</strong> 后，<code>VMX</code>、<code>VT-d</code> 和 <code>Numa</code> 都是满足要求的，我只需要设置其他选项即可，如果你的也是华南主板，请按照以下步骤进行设置：</p>
-<details class="info" open="open">
-<summary>Info</summary>
-<p>华南金牌主板的操作手册可在：<a href="http://www.huananzhi.com/download1.php?lm=13">下载中心-华南金牌官网</a> 处下载，BIOS 说明书可在：<a href="http://www.huananzhi.com/sc.php?lm=18">服务支持-华南金牌官网</a> 处下载。</p>
-</details>
-<h2 id="above-4g-decoding">开启 Above 4G  Decoding<a class="headerlink" href="#above-4g-decoding" title="Permanent link">&para;</a></h2>
-<p>vGPU 方案需要开启 4G 以上解码，没有 vGPU 的使用需求不打开也是没问题的。以我的华南主板为例，在【Advenced】-【PCI Subsustem Settings】里面可以打开 <strong>Above 4G Decoding</strong> 选项。
-<a class="glightbox" href="https://img.it927.com/aio/16.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Above 4G Decoding" src="https://img.it927.com/aio/16.png" /></a></p>
-<h2 id="sr-iov">开启 SR-IOV<a class="headerlink" href="#sr-iov" title="Permanent link">&para;</a></h2>
-<p>以华南主板为例，在【Advenced】-【PCI Subsustem Settings】里面可以打开 <strong>SR-IOV</strong> 选项：</p>
-<p><a class="glightbox" href="https://img.it927.com/aio/17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启 SR-IOV" src="https://img.it927.com/aio/17.png" /></a></p>
-<details class="info" open="open">
-<summary>Info</summary>
-<p>全称是 <code>Single Root IO Virtualization Support</code> 是一种高效先进的虚拟网卡技术。一个物理网卡可以虚拟出来多个轻量化的PCI-e 物理设备，从而可以分配给虚拟机使用。启用 SR-IOV 的这个功能，将大大减轻宿主机的CPU负荷，提高网络性能，降低网络时延等。</p>
-</details>
-<h2 id="x2apic">开启 x2APIC<a class="headerlink" href="#x2apic" title="Permanent link">&para;</a></h2>
-<p>华南主板为例，在 【InterRCSetup】 - 【Processor Configuration】 里面可以打开 <strong>X2APIC</strong> 选项：</p>
-<p><a class="glightbox" href="https://img.it927.com/aio/18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启 x2APIC" src="https://img.it927.com/aio/18.png" /></a></p>
-<details class="info" open="open">
-<summary>Info</summary>
-<p>x2APIC 是 x86 平台处理中断的机制，是之前 xAPIC 的替代品，再之前是 Intel® 82489DX external APIC。x2APIC 支持帮助操作系统以较高的内核数配置更高效地运行，并优化虚拟化环境中的中断分配。</p>
-</details>
-<div class="admonition warning">
-<p class="admonition-title">如果开启后，通过命令检测如果依然没有工作在 X2APIC 模式的情况下，请尝试<strong>关掉</strong>下面的「X2APIC_OPT_OUT_Flag」选项</p>
-</div>
-<h2 id="_1">开启来电启动<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>设置好来电启动后，只要电源通电主机就会自动开机，这个能配合后面的小米智能插座进行远程开机。华南主板为例，在 【InterRCSetup】 - 【PCH Configuration】-【PCH Devices】-【Restore AC after Power Loss】 里面可以选择 <strong>Power On</strong> （来电启动）选项：
-<a class="glightbox" href="https://img.it927.com/aio/24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启来电启动" src="https://img.it927.com/aio/24.png" /></a></p>
-<details class="info" open="open">
-<summary>Info</summary>
-<p>“来电启动”（也称为 PWRON After PWR-Fail 或 AC Power Recovery）是指在计算机意外断电后，当电源恢复时，计算机自动开机的功能。</p>
-</details>
+<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 
   
 
@@ -1964,7 +1848,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月25日 16:07:07 UTC">2025年7月25日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 14:03:19 UTC">2025年7月27日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
