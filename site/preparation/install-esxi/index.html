@@ -907,7 +907,7 @@
         
   
   <span class="md-ellipsis">
-    基础设置
+    ESXi 基础设置
   </span>
   
 
@@ -2069,6 +2069,7 @@
 
   <h1>安装 ESXi</h1>
 
+<p>截止到 2025年07月27日，ESXi 最新版本为 8.0 Update 3e，本教程所有文档都是基于 8.0 Update 3e 版本进行描述。</p>
 <h2 id="_1">准备工作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>大于 8G 的硬盘</li>
@@ -2103,7 +2104,7 @@
 </div>
 <details class="info" open="open">
 <summary>Info</summary>
-<p>找不到具体哈希值值时可去官网查历史: <a href="https://knowledge.broadcom.com/external/article">版本记录</a>。同时需要注意一下，硬件是否支持 ：<a href="https://compatibilityguide.broadcom.com/">VMware兼容性指南</a>，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。</p>
+<p>找不到具体哈希值值时可去官网查历史: <a href="https://knowledge.broadcom.com/external/article?legacyId=2143832">版本记录</a>。同时需要注意一下，硬件是否支持 ：<a href="https://compatibilityguide.broadcom.com/">VMware兼容性指南</a>，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。</p>
 </details>
 <h2 id="_3">安装<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="ventoy">Ventoy  引导进入镜像<a class="headerlink" href="#ventoy" title="Permanent link">&para;</a></h3>
@@ -2210,11 +2211,12 @@
 </details>
 <h4 id="ip_1">设置管理网卡 IP 地址<a class="headerlink" href="#ip_1" title="Permanent link">&para;</a></h4>
 <p>这个环节中，如果你上游有路由器，不需要软路由，只需要在路由器下使用，则只需从路由器上接一根网线到 ESXi 上即可，等待路由器自动设置 IP 地址即可，无需下面的 IP 设置。</p>
-<p>陈大剩只是想把管理网口当管理用，所以设计一个死 IP 即可，后续可通过网线和跳板机直接访问管理 ESXi，如果你想和陈大剩一样，跟着设计就行，后续文章会介绍使用流程。</p>
+<p>陈大剩只是想把管理网口当管理用，所以设计一个死 IP 即可（<strong>不要和 IP 段冲突</strong>），后续可通过网线和跳板机直接访问管理 ESXi，如果你想和陈大剩一样，跟着设计就行，后续文章会介绍使用流程。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">步骤一</label><label for="__tabbed_6_2">步骤二</label><label for="__tabbed_6_3">步骤三</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>键盘上下方向键移动到 【set static ipv4 address and network configuration】 按键盘空格选择，方向键向下移动 设置 IP 地址
+<p>键盘上下方向键移动到 【set static ipv4 address and network configuration】 按键盘空格选择，方向键向下移动设置 IP 地址。<br />
+陈大剩设置 IPv4为：192.168.188.1，子网掩码设置为：255.255.255.0。
 <a class="glightbox" href="https://img.it927.com/aio/56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置 IP 地址" src="https://img.it927.com/aio/56.png" /></a></p>
 </div>
 <div class="tabbed-block">

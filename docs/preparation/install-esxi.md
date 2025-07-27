@@ -7,6 +7,7 @@ keywords:
   - 家庭All-in-One搭建教程
 description: 安装 ESXi，准备工作：大于 8G 的硬盘、一台可联网的电脑（需要带 RJ45 网口），引导使用 Ventoy 目前使用的 1.0.99 版本。
 ---
+截止到 2025年07月27日，ESXi 最新版本为 8.0 Update 3e，本教程所有文档都是基于 8.0 Update 3e 版本进行描述。
 ## 准备工作
 - 大于 8G 的硬盘
 - 一台可联网的电脑（需要带 RJ45 网口）
@@ -44,7 +45,7 @@ description: 安装 ESXi，准备工作：大于 8G 的硬盘、一台可联网�
 
 ???+ info
 
-    找不到具体哈希值值时可去官网查历史: [版本记录](https://knowledge.broadcom.com/external/article)。同时需要注意一下，硬件是否支持 ：[VMware兼容性指南](https://compatibilityguide.broadcom.com/)，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。
+    找不到具体哈希值值时可去官网查历史: [版本记录](https://knowledge.broadcom.com/external/article?legacyId=2143832)。同时需要注意一下，硬件是否支持 ：[VMware兼容性指南](https://compatibilityguide.broadcom.com/)，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。
 
 ## 安装
 ### Ventoy  引导进入镜像
@@ -155,10 +156,11 @@ description: 安装 ESXi，准备工作：大于 8G 的硬盘、一台可联网�
 #### 设置管理网卡 IP 地址
 这个环节中，如果你上游有路由器，不需要软路由，只需要在路由器下使用，则只需从路由器上接一根网线到 ESXi 上即可，等待路由器自动设置 IP 地址即可，无需下面的 IP 设置。
 
-陈大剩只是想把管理网口当管理用，所以设计一个死 IP 即可，后续可通过网线和跳板机直接访问管理 ESXi，如果你想和陈大剩一样，跟着设计就行，后续文章会介绍使用流程。
+陈大剩只是想把管理网口当管理用，所以设计一个死 IP 即可（**不要和 IP 段冲突**），后续可通过网线和跳板机直接访问管理 ESXi，如果你想和陈大剩一样，跟着设计就行，后续文章会介绍使用流程。
 === "步骤一"
 
-    键盘上下方向键移动到 【set static ipv4 address and network configuration】 按键盘空格选择，方向键向下移动 设置 IP 地址
+    键盘上下方向键移动到 【set static ipv4 address and network configuration】 按键盘空格选择，方向键向下移动设置 IP 地址。  
+    陈大剩设置 IPv4为：192.168.188.1，子网掩码设置为：255.255.255.0。
     ![设置 IP 地址](https://img.it927.com/aio/56.png)
 
 === "步骤二"

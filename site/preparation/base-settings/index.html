@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="在成功安装ESXi系统后，还需要进行一系列基础配置，以便通过Web界面管理虚拟化环境。">
       
       
         <meta name="author" content="陈大剩">
@@ -26,9 +26,11 @@
     
     
       
-        <title>基础设置 - 家庭 AIO 服务器搭建教程</title>
+        <title>ESXi 基础设置 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi基础设置,家庭ESXi基础设置,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -81,6 +83,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#web" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -113,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              基础设置
+              ESXi 基础设置
             
           </span>
         </div>
@@ -738,15 +745,136 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ESXi 基础设置
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    基础设置
+    ESXi 基础设置
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过 Web 浏览器进入管理后台
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="通过 Web 浏览器进入管理后台">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置活动的网络适配器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置控制电脑 IP 段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      访问 ESXi 管理后台
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      激活系统
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 SSH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开启 SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证 SSH 连接
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      禁用 ESXi 显卡占用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sata" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载 SATA 控制器
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1744,6 +1872,107 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过 Web 浏览器进入管理后台
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="通过 Web 浏览器进入管理后台">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置活动的网络适配器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置控制电脑 IP 段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      访问 ESXi 管理后台
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      激活系统
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 SSH
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开启 SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证 SSH 连接
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      禁用 ESXi 显卡占用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sata" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载 SATA 控制器
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1766,17 +1995,86 @@
   </a>
 
 
-  <h1>基础设置</h1>
+  <h1>ESXi 基础设置</h1>
 
-<hr />
-<p>slug: base-settings
-keywords: 
-  - ESXi安装
-  - 家庭ESXi安装
-  - 家庭AIO搭建教程
-  - 家庭All-in-One搭建教程
-description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS 设置大同小异，很难详细展开说明，因此我们主要关注以下几个相关选项。</p>
-<hr />
+<p>在成功安装ESXi系统后，还需要进行一系列基础配置，以便通过Web界面管理虚拟化环境。</p>
+<h2 id="web">通过 Web 浏览器进入管理后台<a class="headerlink" href="#web" title="Permanent link">&para;</a></h2>
+<p>通过上节的 <a href="../install-esxi/#ip_1">设置管理网卡 IP 地址</a> 设置了一个 IP 地址，现在可以通过浏览器访问该 IP 地址，进入管理后台。</p>
+<h3 id="_1">设置活动的网络适配器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>是不是忘记干什么了？对插网线，连接物理网络。需一根拿网线，插到 AIO 主机的网卡槽中（ESXi 支持的网卡），另一头再插入另一台电脑网口中。继续上节的 <a href="../install-esxi/#_7">查看网络适配器</a> 看看活动的网口是哪个，并通过空格键打上 <code>X</code>，保存即可。
+<a class="glightbox" href="https://img.it927.com/aio/59.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="活动的网口" src="https://img.it927.com/aio/59.png" /></a></p>
+<details class="warning" open="open">
+<summary>注意</summary>
+<p>选择适配器时需要选择状态为：<strong>Connected</strong>（活动的），并禁用之前处于 Disconnected 状态的适配器。</p>
+</details>
+<h3 id="ip">配置控制电脑 IP 段<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
+<p>设置完后，另一台电脑（控制电脑），还需要将网段设置和 AIO 主机网段一致才可访问管理后台。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">MacOS 设置</label><label for="__tabbed_1_2">Win 设置</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>如果另一台电脑（控制电脑）是 MacOS 操作系统，则在【网络】-【选择网卡】-【详细信息】-【TCP/IP】-【配置IPv4】，将 IPv4 设置为：192.168.188.2（不能和 <strong>192.168.188.1</strong> 相同），子网掩码设置为：255.255.255.0。
+<a class="glightbox" href="https://img.it927.com/aio/58.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置IPv4" src="https://img.it927.com/aio/58.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>如果另一台电脑（控制电脑）是 Windows 操作系统，则在【控制面板】-【网络和共享中心】-【属性】-【Internet协议版本4(TCP/IPv4)属性】，选择手动配置，将 IPv4 设置为：192.168.188.3，子网掩码设置为：255.255.255.0。
+<a class="glightbox" href="https://img.it927.com/aio/64.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置IPv4" src="https://img.it927.com/aio/64.png" /></a></p>
+</div>
+</div>
+</div>
+<details class="warning" open="open">
+<summary>注意</summary>
+<p><strong>IPv4</strong> 地址不能和 AIO 主机（<strong>192.168.188.1</strong>）相同，子网掩码必须和 AIO 主机（<strong>255.255.255.0</strong>）一致。</p>
+</details>
+<h3 id="esxi">访问 ESXi 管理后台<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h3>
+<p>完成网络配置后，即可通过Web浏览器访问 ESXi 管理界面：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤一</label><label for="__tabbed_2_2">步骤二</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在另一台电脑（控制电脑）浏览器中输入 AIO 主机的 IP 地址（192.168.188.1），按照图片中的操作，进入管理后台。
+<a class="glightbox" href="https://img.it927.com/aio/61.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入管理后台" src="https://img.it927.com/aio/61.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>用户名输入：root，密码输入 <a href="../install-esxi/#__tabbed_3_6">安装系统</a> 时的密码，点击登入即可。
+<a class="glightbox" href="https://img.it927.com/aio/60.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入管理后台" src="https://img.it927.com/aio/60.png" /></a></p>
+</div>
+</div>
+</div>
+<p>成功登录后，将看到ESXi管理界面，可以查看硬件状态和进行后续配置。
+<a class="glightbox" href="https://img.it927.com/aio/62.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="管理后台" src="https://img.it927.com/aio/62.png" /></a></p>
+<h2 id="_2">激活系统<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>有激活码可通过【管理】-【许可】-【分配许可证】可激活 ESXi 系统，无激活码有 30 天的试用版。
+<a class="glightbox" href="https://img.it927.com/aio/63.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="管理后台" src="https://img.it927.com/aio/63.png" /></a></p>
+<h2 id="ssh">开启 SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h2>
+<p>为了方便后续的高级配置，建议启用 SSH 服务开启，SSH 方便后续直通做准备。通过【管理】-【服务】-【搜索】ssh，找到 <code>TSM-SSH</code> 启动服务。
+<a class="glightbox" href="https://img.it927.com/aio/65.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="管理后台" src="https://img.it927.com/aio/65.png" /></a></p>
+<h3 id="ssh_1">验证 SSH 连接<a class="headerlink" href="#ssh_1" title="Permanent link">&para;</a></h3>
+<p>通过 <code>ssh</code> 命令测试，密码为登入密码，如果能进入的话，证明虚拟机已开通 SSH 服务。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>root@192.168.188.1
+</code></pre></div></p>
+<h2 id="esxi_1">禁用 ESXi 显卡占用<a class="headerlink" href="#esxi_1" title="Permanent link">&para;</a></h2>
+<p>如果 AIO 只有一张显卡的话，大概率这张显卡无法直通，因为被 ESXi 系统占用了，这时可以关闭 ESXi 占用。</p>
+<p>通过上一步的 <a href="./#ssh_1">验证 SSH 连接</a> 进入 SSH 后，执行关闭命令。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 关闭</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>FALSE
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 开启</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>TRUE
+</code></pre></div></p>
+<details class="note" open="open">
+<summary>注意事项</summary>
+<p>禁用显卡占用后将无法通过显示器查看 ESXi 控制台信息，只能通过 SSH 进行管理操作，也就是无法使用 <code>F2</code> 进行系统设置（其实很少用到，除了开始设置网络外）。</p>
+</details>
+<h2 id="sata">直通板载 SATA 控制器<a class="headerlink" href="#sata" title="Permanent link">&para;</a></h2>
+<p>ESXi 中板载 SATA 控制器默认是无法进行直通（灰色按钮），需要通过命令开启，通过 <a href="./#ssh_1">验证 SSH 连接</a> 进入 SSH 后，查找板载 SATA 控制器信息。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lspci<span class="w"> </span>-v<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Class 0106&quot;</span><span class="w"> </span>-B<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+然后再修改 passthru.map 文件，
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vi<span class="w"> </span>/etc/vmware/passthru.map
+</code></pre></div>
+添加相应的设备 ID 配置
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Intel Corporation Lynx Point AHCI Controller</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 供应商ID PCLE_ID</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="m">8086</span><span class="w">  </span>8d62<span class="w">   </span>d3d0<span class="w">    </span><span class="nb">false</span>
+</code></pre></div></p>
 
   
 
