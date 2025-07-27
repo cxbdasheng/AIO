@@ -5,7 +5,7 @@ keywords:
   - 家庭ESXi安装
   - 家庭AIO搭建教程
   - 家庭All-in-One搭建教程
-description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS 设置大同小异，很难详细展开说明，因此我们主要关注以下几个相关选项。
+description: 安装 ESXi，准备工作：大于 8G 的硬盘、一台可联网的电脑（需要带 RJ45 网口），引导使用 Ventoy 目前使用的 1.0.99 版本。
 ---
 ## 准备工作
 - 大于 8G 的硬盘
@@ -44,13 +44,13 @@ description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS
 
 ???+ info
 
-    找不到具体哈希值值时可去官网查历史: [版本记录](https://knowledge.broadcom.com/external/article)。同时我们要注意一下，我们的硬件是否支持 ：[VMware兼容性指南](https://compatibilityguide.broadcom.com/)，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。
+    找不到具体哈希值值时可去官网查历史: [版本记录](https://knowledge.broadcom.com/external/article)。同时需要注意一下，硬件是否支持 ：[VMware兼容性指南](https://compatibilityguide.broadcom.com/)，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。
 
 ## 安装
 ### Ventoy  引导进入镜像
 === "步骤一"
 
-    开启家庭 AIO 服务器，选择 U 盘启动，并进入 Ventoy 界面，选择 ESXi 镜像回车再回车。
+    开启家庭 AIO 服务器，选择 U 盘启动，并进入 Ventoy 界面，选择 ESXi 镜像按下键盘 `Enter`。
     ![进入 Ventoy 界面](https://img.it927.com/aio/31.png)
 
 === "步骤二"
@@ -59,7 +59,7 @@ description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS
     ![Boot in normal mode](https://img.it927.com/aio/32.png)
 
 ### 修改 ESXi 的默认空间
-如果空间不足，则可以修改 ESXi 的默认空间，在读秒阶段，快速按下 `Shift+o`（英文字母 o），调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：`autoPartotionOSDataSize=20480`。
+如果空间不足，可修改 ESXi 的默认空间，在读秒阶段，快速按下 `Shift+o`（英文字母 o），调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：`autoPartotionOSDataSize=20480`。
 ![修改ESXi的默认空间](https://img.it927.com/aio/33.png)
 
 ???+ info
