@@ -14,6 +14,7 @@ description: 在安装系统前，需要设置 BIOS。由于不同主板的 BIOS
 ## 制作引导 U盘
 
 引导使用 [Ventoy](https://www.ventoy.net/cn/)，目前使用的 1.0.99 版本，下载 [ventoy-1.0.99-windows.zip](https://github.com/ventoy/Ventoy/releases) 解压到桌面，打开后按照以下步骤制作引导 U 盘。
+
 ![制作引导 U盘](https://img.it927.com/aio/27.png)
 
 ## 下载镜像
