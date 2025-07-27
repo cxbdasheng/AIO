@@ -1,5 +1,5 @@
 ---
-slug: install-esxi
+slug: base-settings
 keywords: 
   - ESXi安装
   - 家庭ESXi安装
