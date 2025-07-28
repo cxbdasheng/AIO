@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="由于需要多开虚拟机使用，如果几十个虚拟机同时运行的话，对硬盘的负担也是不小的，所以选择如下的方案">
+        <meta name="description" content="家庭All-in-One服务器硬盘划分方案详解，包含系统盘、虚拟机存储、直通硬盘和NAS存储的合理配置，确保多虚拟机环境下的性能与稳定性。">
       
       
         <meta name="author" content="陈大剩">
@@ -30,7 +30,7 @@
       
     
     
-    <meta name="keywords" content="硬盘划分,家庭AIO硬盘划分,家庭AIO搭建教程,家庭All-in-One搭建教程">
+    <meta name="keywords" content="硬盘划分,家庭AIO硬盘划分,家庭AIO搭建教程,家庭All-in-One搭建教程,ESXi硬盘规划,虚拟化存储方案">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -524,7 +524,7 @@
         
   
   <span class="md-ellipsis">
-    All-in-One 环境的概念
+    All-in-One 环境概念
   </span>
   
 
@@ -587,7 +587,7 @@
         
   
   <span class="md-ellipsis">
-    本教程的目标和适用对象
+    本教程目标与适用对象
   </span>
   
 
@@ -785,6 +785,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
   
 </li>
       
@@ -1516,7 +1525,7 @@
         
   
   <span class="md-ellipsis">
-    全家影视中心
+    影视媒体中心
   </span>
   
 
@@ -1579,7 +1588,7 @@
         
   
   <span class="md-ellipsis">
-    k8s 集群
+    Kubernetes 集群
   </span>
   
 
@@ -1729,7 +1738,7 @@
         
   
   <span class="md-ellipsis">
-    Frp 转发
+    Frp 内网穿透
   </span>
   
 
@@ -1887,6 +1896,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1902,18 +1920,17 @@
                   
 
   
+    <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/disk-partitioning.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
   
-  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/disk-partitioning.md" title="edit.link.title" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
-  </a>
-  <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/preparation/disk-partitioning.md" title="View source of this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
-  </a>
+  
 
 
   <h1>硬盘划分</h1>
 
-<p>在构建家庭 All-in-One 服务器时，合理规划硬盘资源对于性能和稳定性至关重要。尤其是当多个虚拟机同时运行时，硬盘的读写压力会显著增加，不能将所有的压力放到一个盘中。为此，陈大剩制定了如下硬盘分配方案：</p>
+<p>在构建家庭 All-in-One 服务器时，合理的硬盘规划是确保系统性能和稳定性的关键。当多个虚拟机同时运行时，硬盘的读写压力会显著增加，因此需要采用 <strong>分层存储策略</strong>，避免将所有负载集中在 <strong>单一硬盘上</strong>。 为此，陈大剩制定了如下硬盘分配方案：</p>
 <table>
 <thead>
 <tr>
@@ -1995,7 +2012,7 @@
 <li>即使整个 AIO 系统崩溃，只要硬盘完好，资源仍可继续使用；</li>
 </ol>
 <h3 id="nas">公共盘 NAS 存储<a class="headerlink" href="#nas" title="Permanent link">&para;</a></h3>
-<p>考虑到内网已升级至 2.5 Gbps 网络环境，我本算 3.2TB 的 NVMe 固态硬盘直通给黑群晖做 <strong>SSD 存储池</strong>，但发现 <strong>SSD 存储池</strong> 2.5G 压根就跑不满，后续升级至万兆网络环境可以考虑用 <strong>SSD 存储池</strong> 方案。因此采用以下方案：</p>
+<p>考虑到内网已升级至 2.5 Gbps 网络环境，本打算 3.2TB 的 NVMe 固态硬盘直通给黑群晖做 <strong>SSD 存储池</strong>，但发现 <strong>SSD 存储池</strong> 2.5G 压根就跑不满，后续升级至万兆网络环境可以考虑用 <strong>SSD 存储池</strong> 方案。因此采用以下方案：</p>
 <ul>
 <li><del><strong>SSD 存储池</strong>：选用一块 3.2TB 的 NVMe 固态硬盘直通给黑群晖，用于高速读写任务（如迅雷下载、视频缓存等），充分发挥 2.5G 网络带宽优势。</del></li>
 <li><strong>HDD 存储池1</strong>：配备一块或多块大容量机械硬盘（如 4TB），用来存储私有化的关键数据，如影音、文件、重要资源；</li>
@@ -2005,6 +2022,8 @@
 <p><strong>HDD 存储池1</strong> 和 <strong>HDD 存储池2</strong> 主要是考虑敏感数据问题，其次可以将公共盘 NAS 存储以虚拟盘的形式分给各个 AIO 中的操作系统，这样设计不仅能满足当前家庭 NAS 的性能需求，也为后续升级至万兆网络环境打下良好基础。</p>
 <h3 id="_4">虚拟机系统盘<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>这个盘就没有太多要讲的了，主要用于分给各个操作系统做系统盘，然后通过上面的公共盘 NAS 存储虚拟盘做数据共享，主要的硬盘是 <strong>NVME-SSD-1</strong> 和 <strong>NVME-SSD-4</strong> ，这两个盘基本能满足多个虚拟机同时运行了，后续不够可以考虑再添加。</p>
+<h2 id="_5">总结<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>通过以上硬盘划分方案，可以在保证系统稳定性的前提下，最大化发挥各类存储设备的性能优势，为家庭 All-in-One 服务器提供可靠的存储基础。</p>
 
   
 
@@ -2053,6 +2072,46 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../bios-settings/" class="md-footer__link md-footer__link--prev" aria-label="上一页: BIOS 设置">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                BIOS 设置
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../install-esxi/" class="md-footer__link md-footer__link--next" aria-label="下一页: 安装 ESXi">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                安装 ESXi
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -2086,7 +2145,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "navigation.tabs", "navigation.top", "navigation.next_prev", "navigation.prev_next_buttons"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>

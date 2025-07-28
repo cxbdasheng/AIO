@@ -17,14 +17,13 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.top
+    - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
     - content.code.annotate
-    - navigation.tabs      # 启用标签导航
-    - navigation.top        # 启用顶部导航
-    - navigation.next_prev
-    - navigation.prev_next_buttons
+    - content.action.edit
   palette:
     - scheme: default
       primary: indigo
@@ -81,10 +80,10 @@ extra:
 nav:
   - 首页: "index.md"
   - 前言介绍:
-      - All-in-One 环境的概念: "prefaces/all-in-one-env.md"
+      - All-in-One 环境概念: "prefaces/all-in-one-env.md"
       - 什么是 ESXi: "prefaces/what-is-esxi.md"
       - 陈大剩写在前面的话: "prefaces/words-written-earlier.md"
-      - 本教程的目标和适用对象: "prefaces/for-the-crowd.md"
+      - 本教程目标与适用对象: "prefaces/for-the-crowd.md"
   - 准备工作:
       - 硬件配置: "preparation/hardware-details.md"
       - BIOS 设置: "preparation/bios-settings.md"
@@ -117,16 +116,16 @@ nav:
       - 远程访问: "synology/remote.md"
   - 家庭工作区:
       - 家庭 PC: "home/pc.md"
-      - 全家影视中心: "home/video.md"
+      - 影视媒体中心: "home/video.md"
       - 全屋网络覆盖: "home/network.md"
       - 开发系统: "home/develop.md"
-      - k8s 集群: "home/k8s.md"
+      - Kubernetes 集群: "home/k8s.md"
   - 远程穿透:
       - 前言: "remote/overview.md"
       - IPv6 DDNS: "remote/ipv6.md"
       - 公网 NAT: "remote/nat.md"
       - IPv6 转 IPv4: "remote/ipv6-ipv4.md"
-      - Frp 转发: "remote/frp.md"
+      - Frp 内网穿透: "remote/frp.md"
   - 常见 Q&A:
       - 问题列表: "qa.md"
 
