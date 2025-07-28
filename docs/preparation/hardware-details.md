@@ -2,7 +2,7 @@
 slug: hardware-details
 keywords: 
   - 家庭AIO硬件详情
-  - 家庭AIO应简明配置
+  - 家庭AIO硬件配置
   - 家庭AIO搭建教程
   - 家庭All-in-One搭建教程
 description: 本次搭建所用硬件总价约为 ￥8286，以下是我所选用的具体硬件配置及对应价格，均为个人购买时的实际开销，仅供参考，实际价格请以当前市场行情为准。

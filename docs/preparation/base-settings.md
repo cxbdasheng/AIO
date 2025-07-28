@@ -48,7 +48,9 @@ description: 在成功安装ESXi系统后，还需要进行一系列基础配置
 
 成功登录后，将看到ESXi管理界面，可以查看硬件状态和进行后续配置。
 ![管理后台](https://img.it927.com/aio/62.png)
-
+## 设置主机名
+导航到 【管理】- 【系统】- 【高级设置】，搜索 `System.hostname`，设置有意义的主机名，如 `all-in-one-pc`。
+![进入管理后台](https://img.it927.com/aio/66.png)
 ## 激活系统
 有激活码可通过【管理】-【许可】-【分配许可证】可激活 ESXi 系统，无激活码有 30 天的试用版。
 ![管理后台](https://img.it927.com/aio/63.png)
