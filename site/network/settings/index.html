@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍家庭AIO ESXi环境的网络拓扑设计方案，包括虚拟交换机配置、VLAN划分、网络隔离等关键技术，帮助用户构建稳定高效的家庭虚拟化网络环境。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>网络拓扑设计 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi网络拓扑设计,家庭ESXi网络拓扑图,家庭AIO搭建教程,家庭All-in-One搭建教程,ESXi虚拟化网络配置,家庭实验室网络架构,ESXi网络规划方案,家庭服务器网络设计,ESXi vSwitch配置,家庭云服务器搭建,ESXi网络隔离设计,家庭虚拟化环境部署,ESXi端口组配置,家庭NAS网络拓扑,ESXi VLAN配置教程,家庭网络虚拟化方案">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -867,7 +869,34 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      网络拓扑图解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      结合硬件的网络拓扑图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件网络拓扑
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -1795,7 +1824,34 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      网络拓扑图解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      结合硬件的网络拓扑图
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件网络拓扑
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -1826,7 +1882,118 @@
 
   <h1>网络拓扑设计</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>考虑到家庭网络环境，陈大剩设计两个网络拓扑方案：24 小时开机、随时开机方案，网络拓扑图分别为：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">24 小时开机方案</label><label for="__tabbed_1_2">随时开机方案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/77.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="24小时开机方案" src="https://img.it927.com/aio/77.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/78.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="随时开机方案" src="https://img.it927.com/aio/78.png" /></a></p>
+</div>
+</div>
+</div>
+<p><strong>24 小时开机方案</strong> 和 <strong>随时开机方案</strong>，唯一区别主路由是路由器还是软路由（openWRT），随时开机方案主要兼顾耗电和家庭网络的稳定，所以肯定没有软路由那么多功能。</p>
+<details class="note" open="open">
+<summary>方案选择建议</summary>
+<ul>
+<li><strong>24小时开机方案</strong>：适合对网络功能要求较高，不在意功耗的用户;</li>
+<li><strong>随时开机方案</strong>：适合注重节能和稳定性，对高级功能需求不大的用户;</li>
+</ul>
+</details>
+<h2 id="_1">网络拓扑图解释<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>AIO服务器采用三网段隔离设计，确保不同用途的设备网络安全：</p>
+<table>
+<thead>
+<tr>
+<th>网段</th>
+<th>IP范围</th>
+<th>用途</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>192.168.8.x</code></td>
+<td>192.168.8.1-254</td>
+<td>家庭终端设备网段</td>
+<td>生产环境，高稳定性要求</td>
+</tr>
+<tr>
+<td><code>10.10.10.x</code></td>
+<td>10.10.10.1-254</td>
+<td>家庭实验室网段</td>
+<td>开发测试环境</td>
+</tr>
+<tr>
+<td><code>10.10.1.x</code></td>
+<td>10.10.1.1-254</td>
+<td>待定主机池网段</td>
+<td>预留扩展空间</td>
+</tr>
+<tr>
+<td><code>192.168.188.x</code></td>
+<td>192.168.188.1-254</td>
+<td>ESXi 管理网段</td>
+<td>基础设施管理</td>
+</tr>
+</tbody>
+</table>
+<p>具体架构解释如下： </p>
+<ol>
+<li><code>192.168.8.x</code> 家庭终端设备网段，由一个 2.5G 网口的主路由控制，可放重要的虚拟机，如：NAS、生产 AI 服务器、W10、黑苹果等。并配置无线 AP，支持全屋 2.5G 网络访问。</li>
+<li>主路由默认开启 IPv6 访问，可为所有的网段提供公网 IPv6 地址，方便访问。</li>
+<li><code>10.10.10.x</code> 网段主要是家庭实验室网段，用于各种开发，测试，构建部署，Kubernetes集群。<code>10.10.1.x</code> 网段为待定主机池网段，还没有想好放什么，所以没有配置。</li>
+<li>跳板机拥有 <strong>所有的网段</strong>，可通过跳板机访问所有的虚拟机，跳板机可以公网中转，如 DDNS、FRP、端口转发等，保护其他虚拟机安全的同时实现远程访问。</li>
+<li>ESXi 管理网口默认为一个网段（192.168.188.x），跳板机也绑定带此网段，最终可同跳板机跨网段访问 ESXi 管理网口。</li>
+</ol>
+<h2 id="_2">结合硬件的网络拓扑图<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>上面的两个方案是纯虚拟机的网络拓扑，没有硬件，以下是结合硬件的拓扑图：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">24 小时开机方案</label><label for="__tabbed_2_2">随时开机方案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/80.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="24小时开机方案" src="https://img.it927.com/aio/80.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/79.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="随时开机方案" src="https://img.it927.com/aio/79.png" /></a></p>
+</div>
+</div>
+</div>
+<h2 id="_3">硬件网络拓扑<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本节主要将如何将物理网卡分给所有的网段，目前有 2 个板载的 2.5G 螃蟹网口 和 4 个 Intel I350-T4V2 千兆网口，总共 10 个网口，目前已分配 3 个，主要规划如下：</p>
+<table>
+<thead>
+<tr>
+<th>网口类型</th>
+<th>数量</th>
+<th>分配用途</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.5G 网口</td>
+<td>2个</td>
+<td>主路由专用</td>
+<td>1 个 WAN口(光猫连接)，1个 LAN口(AP中继)</td>
+</tr>
+<tr>
+<td>千兆网口</td>
+<td>1个</td>
+<td>ESXi管理</td>
+<td>专用管理网口，支持带外管理</td>
+</tr>
+<tr>
+<td>千兆网口</td>
+<td>3个</td>
+<td>虚拟机分配</td>
+<td>根据需求灵活分配给虚拟机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>本网络拓扑设计方案通过合理的网段划分和设备配置，实现了家庭网络的高效管理和安全隔离。两套方案分别适应不同的使用场景，可根据实际需求选择合适的部署方案。</p>
+<p>通过跳板机的统一管理和网络隔离设计，既保证了网络安全性，又提供了灵活的扩展能力，为家庭虚拟化环境提供了稳定可靠的网络基础。</p>
 
   
 
