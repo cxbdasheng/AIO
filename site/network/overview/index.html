@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="在成功安装ESXi系统后，还需要进行一系列基础配置，以便通过Web界面管理虚拟化环境。">
+        <meta name="description" content="详细介绍ESXi网络架构的三大核心组件：物理网卡、虚拟交换机、端口组的关系和配置方法，包括网络隔离、VLAN配置、安全策略等关键技术，为家庭虚拟化环境提供完整的网络管理指南。">
       
       
         <meta name="author" content="陈大剩">
@@ -21,7 +21,7 @@
         <link rel="next" href="../settings/">
       
       
-      <link rel="icon" href="https://www.it927.com/favicon.ico">
+      <link rel="icon" href="../../assets/images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
@@ -30,7 +30,7 @@
       
     
     
-    <meta name="keywords" content="ESXi网络概述,家庭ESXi网络概述,家庭AIO搭建教程,家庭All-in-One搭建教程">
+    <meta name="keywords" content="ESXi网络概述,ESXi网络架构详解,家庭ESXi网络概述,家庭AIO搭建教程,家庭All-in-One搭建教程,ESXi物理网卡配置,ESXi虚拟交换机vSwitch,ESXi端口组配置,ESXi网络组件关系,ESXi网络管理基础,ESXi网络安全策略,ESXi网络流量转发,ESXi网络冗余配置,ESXi网络拓扑结构">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -2162,7 +2162,7 @@
 端口组在 ESXi 中相当于路由器的 LAN 子接口，它负责在虚拟机和虚拟交换机之间转发网络流量，可以理解为它才是 <strong>底层打工人</strong>。</p>
 <h2 id="_12">总结<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>ESXi 网络网络流转流程是：<code>物理网卡 -&gt; 虚拟交换机 -&gt; 端口组 -&gt; 某虚拟机</code>，可以用一张图总结，如下：
-<a class="glightbox" href="https://img.it927.com/aio/75.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络的关系" src="https://img.it927.com/aio/75.png" /></a></p>
+<a class="glightbox" href="https://img.it927.com/aio/76.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络的关系" src="https://img.it927.com/aio/76.png" /></a></p>
 <details class="info" open="open">
 <summary>名词解释</summary>
 <p>在本节中只有 <strong>物理网卡</strong> 是真实存在的设备，端口组和虚拟交换机是 <strong>虚拟设备</strong>，由 ESXi 虚拟出来的（非真实设备）。</p>
@@ -2188,7 +2188,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月28日 17:03:39 UTC">2025年7月28日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月29日 04:55:20 UTC">2025年7月29日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
