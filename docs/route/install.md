@@ -88,7 +88,9 @@ LEDE 已经和 OpenWrt 合并了，所以现在的 OpenWrt 就是以前的 LEDE�
 ```bash
 # 查看网络接口
 ip addr show
-
+```
+![查看网络接口](https://img.it927.com/aio/125.png)
+```bash
 # 查看当前网络配置
 cat /etc/config/network
 ```
@@ -120,6 +122,7 @@ cat /etc/config/network
 - **默认用户名**：root
 - **密码**：首次登录时设置
 
+![OpenWrt](https://img.it927.com/aio/126.png)
 ???+ warning "警告"
 
     插完网线后，控制电脑需要将原来的 ESXi 管理网口的静态 IP ，必须改为自动获取【DHCP】，才能访问 OpenWrt 管理界面。访问 ESXi 管理网口时必须再改回原来的静态 IP。

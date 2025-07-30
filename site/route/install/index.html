@@ -2064,9 +2064,10 @@
 <strong>查看当前网络状态</strong>：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 查看网络接口</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ip<span class="w"> </span>addr<span class="w"> </span>show
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 查看当前网络配置</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>cat<span class="w"> </span>/etc/config/network
+</code></pre></div>
+<a class="glightbox" href="https://img.it927.com/aio/125.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看网络接口" src="https://img.it927.com/aio/125.png" /></a>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 查看当前网络配置</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cat<span class="w"> </span>/etc/config/network
 </code></pre></div>
 <a class="glightbox" href="https://img.it927.com/aio/124.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看网络" src="https://img.it927.com/aio/124.png" /></a>
 可以看到 <strong>默认配置信息</strong>：</p>
@@ -2077,14 +2078,14 @@
 </ul>
 <details class="info" open="open">
 <summary>提示</summary>
-</details>
 <p>如果默认的 <code>192.168.1.1</code> 与其他网段冲突，可以进行修改：
-    <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 编辑网络配置文件</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>vi<span class="w"> </span>/etc/config/network
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 重启网络服务</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/etc/init.d/network<span class="w"> </span>restart
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 编辑网络配置文件</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>vi<span class="w"> </span>/etc/config/network
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 重启网络服务</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>/etc/init.d/network<span class="w"> </span>restart
 </code></pre></div></p>
+</details>
 <h3 id="web"><strong>Web 管理界面访问</strong><a class="headerlink" href="#web" title="Permanent link">&para;</a></h3>
 <p>因为直通的两个网口都没有插网线，所以现在默认是空，我们需要按如下的步骤访问。</p>
 <p><strong>访问步骤</strong>：将连接 ESXi 管理网口的网线插到直通的网卡，将控制电脑的网络设置改为自动获取（DHCP），通过浏览器访问 OpenWrt 管理界面。</p>
@@ -2094,6 +2095,7 @@
 <li><strong>默认用户名</strong>：root</li>
 <li><strong>密码</strong>：首次登录时设置</li>
 </ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/126.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="OpenWrt" src="https://img.it927.com/aio/126.png" /></a></p>
 <details class="warning" open="open">
 <summary>警告</summary>
 <p>插完网线后，控制电脑需要将原来的 ESXi 管理网口的静态 IP ，必须改为自动获取【DHCP】，才能访问 OpenWrt 管理界面。访问 ESXi 管理网口时必须再改回原来的静态 IP。</p>
@@ -2118,7 +2120,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 14:03:19 UTC">2025年7月27日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月30日 16:47:35 UTC">2025年7月30日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
