@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍如何使用StarWind V2V Converter将IMG等格式的镜像文件转换为ESXi支持的VMDK格式，包含完整的操作步骤和注意事项。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>镜像转换 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi镜像转换教程,IMG转VMDK格式,StarWind V2V Converter使用,ESXi虚拟机镜像转换,虚拟机格式转换工具,VMDK镜像制作,ESXi镜像部署,虚拟化镜像转换,ESXi磁盘格式转换,虚拟机镜像格式支持,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -1080,9 +1082,144 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      准备工作
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      工具准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="工具准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starwind-v2v-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 StarWind V2V Converter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像转换操作步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="镜像转换操作步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一步：启动转换向导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二步：选择源镜像位置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三步：选择目标存储位置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四步：选择目标格式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五步：配置镜像属性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六步：选择磁盘分配模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七步：执行转换过程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      转换后处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      上传至 ESXi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="上传至 ESXi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证转换结果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1795,9 +1932,144 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      准备工作
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      工具准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="工具准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starwind-v2v-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 StarWind V2V Converter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像转换操作步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="镜像转换操作步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一步：启动转换向导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二步：选择源镜像位置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三步：选择目标存储位置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四步：选择目标格式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五步：配置镜像属性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六步：选择磁盘分配模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七步：执行转换过程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      转换后处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      上传至 ESXi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="上传至 ESXi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证转换结果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1826,7 +2098,177 @@
 
   <h1>镜像转换</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在 ESXi 环境中部署虚拟机时，经常需要将各种格式的镜像文件（如 IMG、VHD、VHDX）转换为 ESXi 原生支持的 VMDK 格式。我们一般用 <strong>StarWind V2V Converter</strong> 来做镜像转换，它一款免费的虚拟机镜像转换工具，专门用于在不同虚拟化平台之间 <strong>转换磁盘镜像格式</strong>。</p>
+<h2 id="_1">准备工作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>一台联网的 Windows 电脑；</li>
+<li>需要转换的镜像文件（IMG、VHD、VHDX后缀）；</li>
+</ul>
+<h2 id="_2">工具准备<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="starwind-v2v-converter">下载 StarWind V2V Converter<a class="headerlink" href="#starwind-v2v-converter" title="Permanent link">&para;</a></h3>
+<ol>
+<li>访问官方下载页面：<a href="https://www.starwindsoftware.com/starwind-v2v-converter">StarWind V2V Converter</a>；</li>
+<li>填写注册信息获取下载链接；</li>
+<li>检查邮箱获取下载链接并完成软件安装；</li>
+</ol>
+<details class="warning" open="open">
+<summary>注册信息填写注意事项</summary>
+<ul>
+<li><strong>邮箱地址</strong>：必须填写真实有效的邮箱，下载链接将发送至此邮箱</li>
+<li><strong>其他信息</strong>：公司名称、电话等信息可以随意填写</li>
+<li><strong>用途说明</strong>：建议选择"Personal Use"个人使用</li>
+</ul>
+<p>如果不想这么麻烦的下载，可直接用我下载好的包：<a href="https://pan.baidu.com/s/1L4de1QMPDZ3yxRXOVStiQQ?pwd=vms2">StarWind V2V Converter</a>；</p>
+</details>
+<p><a class="glightbox" href="https://img.it927.com/aio/81.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="下载 StarWind V2V Converter" src="https://img.it927.com/aio/81.png" /></a></p>
+<h2 id="_3">镜像转换操作步骤<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">第一步：启动转换向导<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>双击运行 StarWind V2V Converter，进入转换向导界面：
+<a class="glightbox" href="https://img.it927.com/aio/82.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="启动转换向导" src="https://img.it927.com/aio/82.png" /></a></p>
+<details class="info" open="open">
+<summary>提示</summary>
+<p><strong>本地文件</strong>：镜像文件存储在本地计算机，选择 【Local File】 选项；<br/>
+<strong>远程服务器</strong>：镜像文件存储在 ESXi 或 Hyper-V 服务器，选择相应的远程选项，需要提供服务器连接凭据；</p>
+</details>
+<h3 id="_5">第二步：选择源镜像位置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>陈大剩这里是选择本地源，并选择了本地文件：
+<a class="glightbox" href="https://img.it927.com/aio/83.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择本地源" src="https://img.it927.com/aio/83.png" /></a></p>
+<p>选择源文件后，软件会自动识别并显示：镜像文件类型、镜像文件大小、磁盘分区信息。</p>
+<h3 id="_6">第三步：选择目标存储位置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>根据转换后镜像的存储需求选择目标位置：
+<a class="glightbox" href="https://img.it927.com/aio/84.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择目标存储位置" src="https://img.it927.com/aio/84.png" /></a></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>适用场景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local File</td>
+<td>本地存储</td>
+<td>转换后的 VMDK 文件保存在本地</td>
+</tr>
+<tr>
+<td>ESXi Server</td>
+<td>直接部署</td>
+<td>转换后直接上传到 ESXi 服务器</td>
+</tr>
+<tr>
+<td>Hyper-V Server</td>
+<td>跨平台迁移</td>
+<td>转换为 Hyper-V 格式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">第四步：选择目标格式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>选择目标格式，文章演示镜像为 ESXI 使用，所以选择 VMDK 格式。
+<a class="glightbox" href="https://img.it927.com/aio/85.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择目标格式" src="https://img.it927.com/aio/85.png" /></a></p>
+<details class="tip" open="open">
+<summary>格式选择建议</summary>
+<ul>
+<li><strong>ESXi 环境</strong>：选择 VMDK 格式；</li>
+<li><strong>Hyper-V 环境</strong>：选择 VHD/VHDX 格式；</li>
+<li><strong>通用格式</strong>：选择 IMG 格式；</li>
+</ul>
+</details>
+<h3 id="_8">第五步：配置镜像属性<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>根据目标虚拟化平台选择合适的镜像属性：
+<a class="glightbox" href="https://img.it927.com/aio/86.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置镜像属性" src="https://img.it927.com/aio/86.png" /></a></p>
+<p>选择镜像属性，根据镜像应用需求选择 “ESXi Server image”</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>适用平台</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Workstation growable image（自增长镜像）</td>
+<td>VMware Workstation</td>
+<td>动态增长，节省空间，适用于桌面虚拟化</td>
+</tr>
+<tr>
+<td>VMware Workstation pre-allocated image（预分配镜像）</td>
+<td>VMware Workstation</td>
+<td>预分配空间，性能更好，适用于桌面虚拟化</td>
+</tr>
+<tr>
+<td>Stream-optimized image（流优化镜像）</td>
+<td>OVF包/网络传输</td>
+<td>压缩格式，适合流传输</td>
+</tr>
+<tr>
+<td>ESXi Server image</td>
+<td>ESXi 6.0+</td>
+<td><strong>针对 ESXi 优化，性能最佳</strong></td>
+</tr>
+</tbody>
+</table>
+<details class="warning" open="open">
+<summary>重要提醒</summary>
+<p>VMware Workstation 和 ESXi Server 的 VMDK 格式略有差异，可能无法相互通用。错误的格式选择可能导致： 文件系统损坏、系统无法启动、性能异常。</p>
+</details>
+<h3 id="_9">第六步：选择磁盘分配模式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>根据存储需求和性能要求选择磁盘模式：</p>
+<p><a class="glightbox" href="https://img.it927.com/aio/87.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择磁盘分配模式" src="https://img.it927.com/aio/87.png" /></a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Growable（自增长）</label><label for="__tabbed_1_2">Pre-allocated（预分配）</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>特点</strong>：初始占用空间小、随数据增长动态扩展、适合存储空间有限的环境；</p>
+<p><strong>限制</strong>：仅在目标为远程服务器时可用、性能略低于预分配模式；</p>
+</div>
+<div class="tabbed-block">
+<p><strong>特点</strong>：立即分配全部磁盘空间、性能最佳、适合生产环境；</p>
+<p><strong>要求</strong>：需要足够的存储空间、本地转换时的唯一选项；</p>
+</div>
+</div>
+</div>
+<h3 id="_10">第七步：执行转换过程<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>检查所有配置参数，确认无误后开始转换，点击"Convert"开始转换过程：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">转换进度</label><label for="__tabbed_2_2">转换完成</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>转换过程中会显示：转换进度百分比、剩余时间估算、当前处理速度。
+<a class="glightbox" href="https://img.it927.com/aio/89.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="转换进度" src="https://img.it927.com/aio/89.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>等待一小会就成功了~
+<a class="glightbox" href="https://img.it927.com/aio/90.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="转换完成" src="https://img.it927.com/aio/90.png" /></a></p>
+</div>
+</div>
+</div>
+<h2 id="_11">转换后处理<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>转换完后会得到两个文件分别为: <code>xxx.vmdk</code> 和一个 <code>xxx-flat.vmdk</code> 的两个文件，这两个文件是配套使用的。
+<a class="glightbox" href="https://img.it927.com/aio/91.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="转换后成功" src="https://img.it927.com/aio/91.png" /></a>
+<code>xxx.vmdk</code> 文件告诉 ESXi 如何解释和访问虚拟磁盘，<code>xxx-flat.vmdk</code> 文件包含实际的磁盘数据，<strong>两个文件必须同时存在</strong>，虚拟机才能正常使用该虚拟磁盘。</p>
+<h2 id="esxi">上传至 ESXi<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<p>进入 ESXi 管理后台后，依次从【存储】-【数据存储】-【数据存储浏览器】中创建一个放镜像文件的目录，我这里命名为 <code>os</code> 。
+<a class="glightbox" href="https://img.it927.com/aio/100.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="创建镜像文件目录" src="https://img.it927.com/aio/100.png" /></a>
+创建目录后点击【上载】按钮，依次上传 <code>xxx.vmdk</code> 和 <code>xxx-flat.vmdk</code> 的两个文件。
+<a class="glightbox" href="https://img.it927.com/aio/101.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="上传文件" src="https://img.it927.com/aio/101.png" /></a></p>
+<details class="info" open="open">
+<summary>提示</summary>
+<p>因【上载】按钮每次只能上传一个文件，必须依次上传 <code>xxx.vmdk</code> 和 <code>xxx-flat.vmdk</code> 的两个文件，否则镜像会破坏。</p>
+</details>
+<p>上传完成后会可看到：
+<a class="glightbox" href="https://img.it927.com/aio/102.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="成功上传" src="https://img.it927.com/aio/102.png" /></a></p>
+<h3 id="_12">验证转换结果<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>转换完成后，可通过 SSH 登入 ESXi 服务器,进行以下验证：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 检查VMDK文件完整性</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vmkfstools<span class="w"> </span>-e<span class="w"> </span>/vmfs/volumes/datastore1/os/xx.vmdk
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 查看VMDK文件信息</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>vmkfstools<span class="w"> </span>-q<span class="w"> </span>/vmfs/volumes/datastore1/os/xxx.vmdk
+</code></pre></div>
+输出：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>vmkfstools<span class="w"> </span>-e<span class="w"> </span>openwrt-24.10.2-x86-64-generic-squashfs-combined.vmdk<span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Disk<span class="w"> </span>chain<span class="w"> </span>is<span class="w"> </span>consistent.
+</code></pre></div></p>
 
   
 
@@ -1847,7 +2289,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 14:03:19 UTC">2025年7月27日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月30日 15:52:22 UTC">2025年7月30日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

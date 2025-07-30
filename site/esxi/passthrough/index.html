@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍ESXi硬件直通配置方法，包括网卡、显卡等PCI设备的直通操作步骤，让虚拟机获得更好的硬件性能。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>硬件直通 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi硬件直通教程,ESXi PCI设备直通,ESXi网卡直通,ESXi显卡直通,ESXi直通配置,虚拟化硬件直通,ESXi设备管理,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器,RTL8125网卡直通">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -1038,7 +1040,31 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      直通配置入口
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直通配置入口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见设备识别
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载网卡
     </span>
   </a>
   
@@ -1795,7 +1821,31 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      直通配置入口
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直通配置入口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见设备识别
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载网卡
     </span>
   </a>
   
@@ -1826,7 +1876,70 @@
 
   <h1>硬件直通</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>ESXi 的硬件直通功能相比 PVE 更加简洁易用，通过将物理硬件设备直接分配给虚拟机，可以获得接近原生的硬件性能。</p>
+<h2 id="_1">直通配置入口<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>通过以下路径进入硬件直通配置页面：
+<strong>导航路径</strong>：【主机】→【管理】→【硬件】→【PCI 设备】
+<a class="glightbox" href="https://img.it927.com/aio/103.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ESXi 直通" src="https://img.it927.com/aio/103.png" /></a>
+在此页面可以查看所有可用的 PCI 设备列表，包括网卡、显卡、声卡等硬件设备。</p>
+<details class="info" open="open">
+<summary>提示</summary>
+<p>设备查找技巧：</p>
+<ul>
+<li><strong>已知型号</strong>：点击右上角搜索框，输入具体硬件型号</li>
+<li><strong>未知型号</strong>：通过设备类型和厂商信息逐一筛选。</li>
+</ul>
+</details>
+<h3 id="_2"><strong>常见设备识别</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>设备类型</th>
+<th>常见标识</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网卡</td>
+<td>Network Controller</td>
+<td>RTL8125、INTEL I350</td>
+</tr>
+<tr>
+<td>显卡</td>
+<td>Display Controller</td>
+<td>NVIDIA、AMD</td>
+</tr>
+<tr>
+<td>声卡</td>
+<td>Audio Device</td>
+<td>Realtek Audio</td>
+</tr>
+<tr>
+<td>USB控制器</td>
+<td>USB Controller</td>
+<td>xHCI、EHCI</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">直通板载网卡<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>以 RTL8125 千兆网卡为例，演示直通配置过程：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：搜索设备</label><label for="__tabbed_1_2">步骤 2：启用直通</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在搜索框中输入 <code>RTL8125</code>，找到目标设备后，点击左上角的【切换直通】按钮。
+<a class="glightbox" href="https://img.it927.com/aio/104.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="直通板载网卡" src="https://img.it927.com/aio/104.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>配置成功后，直通状态会显示为【活动】，表示该设备已可用于虚拟机分配。
+<a class="glightbox" href="https://img.it927.com/aio/105.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="成功直通网卡" src="https://img.it927.com/aio/105.png" /></a></p>
+</div>
+</div>
+</div>
+<details class="warning" open="open">
+<summary>警告</summary>
+<p>如果直通管理网卡，可能导致无法远程管理 ESXi，所以至少保留一个网卡用于 ESXi 管理。</p>
+</details>
 
   
 

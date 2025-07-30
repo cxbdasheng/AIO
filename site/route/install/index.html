@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍如何使用StarWind V2V Converter将IMG等格式的镜像文件转换为ESXi支持的VMDK格式，包含完整的操作步骤和注意事项。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>系统安装 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="软路由安装,openWrt安装,openWrt设置,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -80,6 +82,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1125,6 +1132,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    系统安装
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1134,6 +1152,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="镜像准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openwrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 OpenWrt 镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像格式转换
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 部署步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 部署步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 1：创建存储目录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 2：创建虚拟机
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web 管理界面访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1744,6 +1869,104 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="镜像准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openwrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 OpenWrt 镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      镜像格式转换
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 部署步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 部署步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 1：创建存储目录
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 2：创建虚拟机
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web 管理界面访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1767,7 +1990,114 @@
 
   <h1>系统安装</h1>
 
-
+<h2 id="_1">镜像准备<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="openwrt"><strong>下载 OpenWrt 镜像</strong><a class="headerlink" href="#openwrt" title="Permanent link">&para;</a></h3>
+<p>LEDE 已经和 OpenWrt 合并了，所以现在的 OpenWrt 就是以前的 LEDE，OpenWrt 官方下载地址为：<a href="https://downloads.openwrt.org/releases/">OpenWrt</a>，<strong>推荐版本</strong>（截止2025年07月30日）：<a href="https://downloads.openwrt.org/releases/24.10.2/targets/x86/64/openwrt-24.10.2-x86-64-generic-squashfs-combined.img.gz">24.10.2</a>。</p>
+<h3 id="_2"><strong>镜像格式转换</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>解压镜像</strong>：将下载的 <code>.img.gz</code> 文件解压为 <code>.img</code> 格式；</li>
+<li><strong>格式转换</strong>：使用前面章节中的 <a href="../../esxi/convert/">StarWind V2V Converter</a> 将 IMG 转换为 VMDK 格式；</li>
+<li><strong>获得文件</strong>：转换完成后会得到 <code>xxx.vmdk</code> 和 <code>xxx-flat.vmdk</code> 两个文件，上传至 ESXi 镜像文件夹中；</li>
+</ol>
+<h2 id="esxi">ESXi 部署步骤<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<h3 id="1"><strong>步骤 1：创建存储目录</strong><a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>通过 ESXi 管理界面创建专用目录：</p>
+<p><strong>导航路径</strong>：【存储】→【数据存储】→【数据存储浏览器】</p>
+<p><a class="glightbox" href="https://img.it927.com/aio/106.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="创建目录" src="https://img.it927.com/aio/106.png" /></a></p>
+<ol>
+<li>创建软路由专用目录，陈大剩这里教程为主路由，所以名字设置为<code>main-route</code>。 </li>
+<li>从镜像存储目录 <code>os</code> 中复制转换后的 VMDK 文件到 <code>main-route</code> 目录</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/107.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="复制到文件夹" src="https://img.it927.com/aio/107.png" /></a></p>
+<h3 id="2"><strong>步骤 2：创建虚拟机</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p><strong>导航路径</strong>：【虚拟机】→【创建/注册虚拟机】，首先是简单的三个步骤。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：选择创建类型</label><label for="__tabbed_1_2">步骤 2：选择名称和操作系统</label><label for="__tabbed_1_3">步骤 3：选择储存</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/108.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/109.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/109.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/110.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/110.png" /></a></p>
+</div>
+</div>
+</div>
+<p>三个步骤完成后接下来是自定设置，由于陈大剩配置的是主路由，所以硬件分配会稍微高一点，大家可以根据自己的需求分配。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:7"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><input id="__tabbed_2_6" name="__tabbed_2" type="radio" /><input id="__tabbed_2_7" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">自定设置 1：CPU</label><label for="__tabbed_2_2">自定设置 2：内存</label><label for="__tabbed_2_3">自定设置 3：删除不必要的配置</label><label for="__tabbed_2_4">自定设置 4：添加硬盘</label><label for="__tabbed_2_5">自定设置 5：添加镜像</label><label for="__tabbed_2_6">自定设置 6：直通网卡</label><label for="__tabbed_2_7">自定设置 7：选择直通网卡</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/111.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU" src="https://img.it927.com/aio/111.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>如果需要直通 PCI 设备，必须勾选 <strong>预留客户机内存(全部锁定)</strong>。
+<a class="glightbox" href="https://img.it927.com/aio/112.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU" src="https://img.it927.com/aio/112.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>删除默认的硬盘、CD/DVD 驱动器等不需要的设备，保留必要的网络适配器（非必须）。
+<a class="glightbox" href="https://img.it927.com/aio/113.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="删除不必要的配置" src="https://img.it927.com/aio/113.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>添加硬盘为镜像做准备，选择添加现有硬盘。
+<a class="glightbox" href="https://img.it927.com/aio/114.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加硬盘" src="https://img.it927.com/aio/114.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/115.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加镜像" src="https://img.it927.com/aio/115.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>如需要直通网卡或其他设备，请选择【添加其他设备】-【PCI】设备，如非直通请忽略本步骤。
+<a class="glightbox" href="https://img.it927.com/aio/118.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="直通网卡" src="https://img.it927.com/aio/118.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/119.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择直通网卡" src="https://img.it927.com/aio/119.png" /></a></p>
+</div>
+</div>
+</div>
+<p>自定义设置完了，还需要需要将【虚拟机选项设】固件选择为【BIOS】。
+<a class="glightbox" href="https://img.it927.com/aio/121.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="固件选择" src="https://img.it927.com/aio/121.png" /></a>
+最后，所有配置完成后，检查一遍，点完成。
+<a class="glightbox" href="https://img.it927.com/aio/117.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="启用 UEFI 安全引导" src="https://img.it927.com/aio/117.png" /></a></p>
+<h2 id="_3">配置网络<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>点击【打开电源】启动 OpenWrt，系统启动完成后不会自动进入 Shell，需要手动按回车键，进入 Shell 控制台开始配置。
+<a class="glightbox" href="https://img.it927.com/aio/122.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="进入 Shell" src="https://img.it927.com/aio/122.png" /></a>
+<strong>查看当前网络状态</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 查看网络接口</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ip<span class="w"> </span>addr<span class="w"> </span>show
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 查看当前网络配置</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>cat<span class="w"> </span>/etc/config/network
+</code></pre></div>
+<a class="glightbox" href="https://img.it927.com/aio/124.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看网络" src="https://img.it927.com/aio/124.png" /></a>
+可以看到 <strong>默认配置信息</strong>：</p>
+<ul>
+<li><strong>LAN IP</strong>：192.168.1.1</li>
+<li><strong>用户名</strong>：root</li>
+<li><strong>密码</strong>：无（首次登录需设置）</li>
+</ul>
+<details class="info" open="open">
+<summary>提示</summary>
+</details>
+<p>如果默认的 <code>192.168.1.1</code> 与其他网段冲突，可以进行修改：
+    <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 编辑网络配置文件</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>vi<span class="w"> </span>/etc/config/network
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 重启网络服务</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/etc/init.d/network<span class="w"> </span>restart
+</code></pre></div></p>
+<h3 id="web"><strong>Web 管理界面访问</strong><a class="headerlink" href="#web" title="Permanent link">&para;</a></h3>
+<p>因为直通的两个网口都没有插网线，所以现在默认是空，我们需要按如下的步骤访问。</p>
+<p><strong>访问步骤</strong>：将连接 ESXi 管理网口的网线插到直通的网卡，将控制电脑的网络设置改为自动获取（DHCP），通过浏览器访问 OpenWrt 管理界面。</p>
+<p><strong>访问信息</strong>：</p>
+<ul>
+<li><strong>访问地址</strong>：http://192.168.1.1</li>
+<li><strong>默认用户名</strong>：root</li>
+<li><strong>密码</strong>：首次登录时设置</li>
+</ul>
+<details class="warning" open="open">
+<summary>警告</summary>
+<p>插完网线后，控制电脑需要将原来的 ESXi 管理网口的静态 IP ，必须改为自动获取【DHCP】，才能访问 OpenWrt 管理界面。访问 ESXi 管理网口时必须再改回原来的静态 IP。</p>
+</details>
 
   
 

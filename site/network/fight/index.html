@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="基于家庭AIO网络拓扑设计的ESXi网络配置实战教程，详细介绍虚拟交换机创建、端口组配置、VLAN划分等具体实施步骤。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>网络拓扑实战 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi网络拓扑实战,ESXi虚拟交换机配置,ESXi网络实施教程,ESXi VLAN配置实战,ESXi端口组配置,ESXi网络隔离实现,ESXi多网段配置,ESXi网络管理实战,ESXi虚拟化网络部署,ESXi网络安全配置">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -888,9 +890,60 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      网段规划回顾
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      登入 ESXi 管理后台
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置网段
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      主路由设置（家庭终端网段）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="主路由设置（家庭终端网段）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载网卡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装软路由
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1795,9 +1848,60 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      网段规划回顾
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      登入 ESXi 管理后台
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置网段
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      主路由设置（家庭终端网段）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="主路由设置（家庭终端网段）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载网卡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装软路由
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1826,7 +1930,89 @@
 
   <h1>网络拓扑实战</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>前面已经介绍了家庭 AIO 网络拓扑设计，本节开始 ESXi 网络配置实战教程。</p>
+<h2 id="_1">网段规划回顾<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>网段名称</th>
+<th>IP范围</th>
+<th>VLAN ID</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>家庭终端网段</td>
+<td>192.168.8.0/24</td>
+<td>8</td>
+<td>生产环境虚拟机</td>
+</tr>
+<tr>
+<td>实验室网段</td>
+<td>10.10.10.0/24</td>
+<td>10</td>
+<td>开发测试环境</td>
+</tr>
+<tr>
+<td>预留网段</td>
+<td>10.10.1.0/24</td>
+<td>1</td>
+<td>扩展预留</td>
+</tr>
+<tr>
+<td>ESXi 管理网段</td>
+<td>192.168.188.0/24</td>
+<td>188</td>
+<td>基础设施管理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="esxi">登入 ESXi 管理后台<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<p>按照 <a href="../../preparation/base-settings/#web">ESXi 基础设置</a> 中通过 Web 浏览器进入 ESXi 管理后台，进入后台后导航到【网络】-【虚拟交换机页面】。</p>
+<h2 id="_2">配置网段<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>按照网络规划，我们需配置好：家庭终端网段、实验室网段、预留网段三个网段，我们分别添加这几个网段。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">家庭终端网段虚拟交换机</label><label for="__tabbed_1_2">家庭终端网段端口组</label><label for="__tabbed_1_3">实验室网段虚拟交换机</label><label for="__tabbed_1_4">实验室网段端口组</label><label for="__tabbed_1_5">预留网段虚拟交换机</label><label for="__tabbed_1_6">预留网段端口组</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>因为是直通网卡，所以不需要 ESXi 中的上行链路，<strong>请将上行链路关闭掉</strong>。
+<a class="glightbox" href="https://img.it927.com/aio/92.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置家庭终端网段" src="https://img.it927.com/aio/92.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/93.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置家庭终端网段端口组" src="https://img.it927.com/aio/93.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>因为是软路由进行流量中转，所以也不需要 ESXi 中的上行链路，<strong>请将上行链路关闭掉</strong>。
+<a class="glightbox" href="https://img.it927.com/aio/94.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置实验室网段虚拟交换机" src="https://img.it927.com/aio/94.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/95.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置实验室网段端口组" src="https://img.it927.com/aio/95.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>因为是软路由进行流量中转，所以也不需要 ESXi 中的上行链路，<strong>请将上行链路关闭掉</strong>。
+<a class="glightbox" href="https://img.it927.com/aio/96.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="预留网段虚拟交换机" src="https://img.it927.com/aio/96.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/97.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="预留网段端口组" src="https://img.it927.com/aio/97.png" /></a></p>
+</div>
+</div>
+</div>
+<p>配置好后，得到虚拟交换机和端口组如下：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">虚拟交换机</label><label for="__tabbed_2_2">端口组</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/98.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/98.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/99.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/99.png" /></a></p>
+</div>
+</div>
+</div>
+<h2 id="_3">主路由设置（家庭终端网段）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>网段已经设置好了，接下来是安装软路由，因为我们要将两个板载的 2.5G 螃蟹网卡直通给软路由，所以先要进行直通。</p>
+<h3 id="_4">直通板载网卡<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>其实这部分后面的文章有详细讲解，按照 <a href="../../esxi/passthrough/#_3">直通板载网卡</a> 章节直通即可，需注意的是不要直通错了网卡。</p>
+<h3 id="_5">安装软路由<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 
   
 
