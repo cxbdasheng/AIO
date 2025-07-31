@@ -942,6 +942,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      24 小时开机网络配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      随时开机方案网络配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 IPv6
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1900,6 +1942,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      24 小时开机网络配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      随时开机方案网络配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 IPv6
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2011,8 +2095,49 @@
 <h2 id="_3">主路由设置（家庭终端网段）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>网段已经设置好了，接下来是安装软路由，因为我们要将两个板载的 2.5G 螃蟹网卡直通给软路由，所以先要进行直通。</p>
 <h3 id="_4">直通板载网卡<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>其实这部分后面的文章有详细讲解，按照 <a href="../../esxi/passthrough/#_3">直通板载网卡</a> 章节直通即可，需注意的是不要直通错了网卡。</p>
+<p>其实这部分后面的文章有详细讲解，按照 <a href="../../esxi/passthrough/#_3">ESXi 进阶操作 - 硬件直通</a> 章节直通即可，需注意的是：不要直通错了网卡。</p>
 <h3 id="_5">安装软路由<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>这部分在后面 <a href="../../route/install/">软路由 - 系统安装</a> 章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可，需要注意的是直通网卡和 WAN/LAN 设置。</p>
+<h3 id="_6">网络配置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>网络配置阶段需要看是：24 小时开机、随时开机方案，24 小时开机由软路由进行拨号，随时开机方案则是中继上级路由器网段。</p>
+<h4 id="24">24 小时开机网络配置<a class="headerlink" href="#24" title="Permanent link">&para;</a></h4>
+<p>24 小时开机主路由网络架构如下：
+<a class="glightbox" href="https://img.it927.com/aio/140.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="24 小时开机主路由网络架" src="https://img.it927.com/aio/140.png" /></a>
+首先，将光猫改为桥接，然后再将光猫的 LAN 直接接入主路由的 WAN 口。</p>
+<h4 id="_7">随时开机方案网络配置<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>随时开机方案网络架构如下：
+<a class="glightbox" href="https://img.it927.com/aio/139.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="随时开机网络架构" src="https://img.it927.com/aio/139.png" /></a></p>
+<details class="info" open="open">
+<summary>提示</summary>
+<p>因随时开机方案中继的特性，主路由相当于一个傻瓜交换机，主路由做不了任何功能，如去广告、代理等，如果随时开机方案需要其他功能，建议下一个网段（实验室网段、预留网段）上使用，当然也可使用旁路由技术，旁路由技术有些玄学，且必须要 AIO 开机才能走，不如直接选 24 小时开机方案。如果选择随时开机方案，建议 <strong>上级路由器使用一个带软路由路由器</strong>。</p>
+</details>
+<p>首先，将路由器的 LAN 直接接入主路由的 WAN 口，然后开始设置中继流程，设置中继流程比较简单，只需要把 WAN 变成 LAN 口就是行，此时主路由相当于一个傻瓜交换机。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">lan 设置静态 IP</label><label for="__tabbed_3_2">删除 WAN 口</label><label for="__tabbed_3_3">所有网口桥接</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>导航【网络】-【接口】，将 lan 口协议改为和上一级路由器同一个网段的静态 IP ，按照规划，上一级属于 <code>192.168.8.x</code> 网段，这里设置为 <code>192.168.8.10</code>，并设置网关。
+<a class="glightbox" href="https://img.it927.com/aio/145.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="lan 设置静态 IP" src="https://img.it927.com/aio/145.png" /></a>  </p>
+<details class="warning" open="open">
+<summary>IP 地址冲突检查</summary>
+<p>设置为 <code>192.168.8.10</code> 需查看和上级路由中有没有设备已经占用 <code>192.168.8.10</code>，否则会设置不成功。</p>
+</details>
+</div>
+<div class="tabbed-block">
+<p>导航【网络】-【接口】，将 WAN 和 WAN6 删除
+<a class="glightbox" href="https://img.it927.com/aio/141.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="删除 WAN 口" src="https://img.it927.com/aio/141.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>导航【网络】-【设备】-【br-lan】，将所有网口设为桥接
+<a class="glightbox" href="https://img.it927.com/aio/142.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="所有网口桥接" src="https://img.it927.com/aio/142.png" /></a></p>
+</div>
+</div>
+</div>
+<p>点击【保存并应用】后，系统会提示连接更改，也就是说：保存后，需要再 90 秒内，手动访问新的 <code>192.168.8.10</code>，否则，系统将恢复到之前的配置状态。
+<a class="glightbox" href="https://img.it927.com/aio/144.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="保存并应用" src="https://img.it927.com/aio/144.png" /></a>
+立即访问 <code>http://192.168.8.10</code>，看到"配置已应用"提示即表示配置成功：
+<a class="glightbox" href="https://img.it927.com/aio/146.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="点击后需要立马访问" src="https://img.it927.com/aio/146.png" /></a>
+至此，随时开机方案网络架构配置完毕。</p>
+<h3 id="ipv6">开启 IPv6<a class="headerlink" href="#ipv6" title="Permanent link">&para;</a></h3>
 
   
 
