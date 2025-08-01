@@ -2356,7 +2356,7 @@
 <p>进入管理页面后第一件事情，是设置密码，导航【System】-【Administration】输入两次密码后点击【Save】
 <a class="glightbox" href="https://img.it927.com/aio/129.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置密码" src="https://img.it927.com/aio/129.png" /></a></p>
 <h3 id="wan-lan">确定 WAN 和 LAN 口<a class="headerlink" href="#wan-lan" title="Permanent link">&para;</a></h3>
-<p>可以通过网卡的活跃度判断，插的那个网口，陈大剩这里 <code>eth1</code> 是现在插网线的网口（2.5G 网口），<code>eth2</code> 是直通的第二个 2.5G 网口，<code>eth0</code> 是虚拟交换机网口。 
+<p>因配置 <a href="#_4">网口配置桥接</a> 将全部接口配置为 LAN 口，还需确认具体的 WAN，可以通过网卡的活跃度判断，插的那个网口。陈大剩这里 <code>eth1</code> 是现在插网线的网口（2.5G 网口），<code>eth2</code> 是直通的第二个 2.5G 网口，<code>eth0</code> 是虚拟交换机网口。 
 <a class="glightbox" href="https://img.it927.com/aio/130.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="基础设置" src="https://img.it927.com/aio/130.png" /></a>
 根据网络规划，<code>eth2</code> 配置为 WAN 口（连接上游网络），将 <code>eth0</code> 和 <code>eth1</code> 配置为 LAN 口。其中，<code>eth0</code> 和 <code>eth1</code> 通过桥接方式连接到 br-lan 接口，共同充当 LAN 接口。</p>
 <p>接下来需要分别配置 WAN 和 LAN 接口：</p>
