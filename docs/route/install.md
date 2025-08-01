@@ -1,8 +1,8 @@
 ---
 keywords:
   - 软路由安装
-  - openWrt安装
-  - openWrt设置
+  - OpenWrt安装
+  - OpenWrt设置
   - 家庭All-in-One
   - ESXi环境搭建教程
   - 陈大剩的家庭AIO服务器
@@ -10,8 +10,8 @@ keywords:
 description: 详细介绍如何使用StarWind V2V Converter将IMG等格式的镜像文件转换为ESXi支持的VMDK格式，包含完整的操作步骤和注意事项。
 ---
 ## 镜像准备
-### **下载 openWrt 镜像**
-LEDE 已经和 openWrt 合并了，所以现在的 openWrt 就是以前的 LEDE，openWrt 官方下载地址为：[openWrt](https://downloads.openWrt.org/releases/)，**推荐版本**（截止2025年07月30日）：[24.10.2](https://downloads.openWrt.org/releases/24.10.2/targets/x86/64/openWrt-24.10.2-x86-64-generic-squashfs-combined.img.gz)。
+### **下载 OpenWrt 镜像**
+LEDE 已经和 OpenWrt 合并了，所以现在的 OpenWrt 就是以前的 LEDE，OpenWrt 官方下载地址为：[OpenWrt](https://downloads.OpenWrt.org/releases/)，**推荐版本**（截止2025年07月30日）：[24.10.2](https://downloads.OpenWrt.org/releases/24.10.2/targets/x86/64/OpenWrt-24.10.2-x86-64-generic-squashfs-combined.img.gz)。
 
 ### **镜像格式转换**
 1. **解压镜像**：将下载的 `.img.gz` 文件解压为 `.img` 格式；
@@ -86,7 +86,7 @@ LEDE 已经和 openWrt 合并了，所以现在的 openWrt 就是以前的 LEDE�
 ![启用 UEFI 安全引导](https://img.it927.com/aio/117.png)
 
 ## 配置网络
-点击【打开电源】启动 openWrt，系统启动完成后不会自动进入 Shell，需要手动按回车键，进入 Shell 控制台开始配置。
+点击【打开电源】启动 OpenWrt，系统启动完成后不会自动进入 Shell，需要手动按回车键，进入 Shell 控制台开始配置。
 ![进入 Shell](https://img.it927.com/aio/122.png)
 **查看当前网络状态**：
 ```bash
@@ -94,7 +94,7 @@ LEDE 已经和 openWrt 合并了，所以现在的 openWrt 就是以前的 LEDE�
 ip addr show
 ```
 ![查看网络接口](https://img.it927.com/aio/125.png)
-如果像陈大剩上图的网络配置一样，**当前 br-lan 桥接接口中仅包含 `eth0` 网口**，直通的网卡未加入 br-lan 桥接接口，建议先将所有接口添加到桥接中，便于后续网线插任何网卡都能管理 openWrt。
+如果像陈大剩上图的网络配置一样，**当前 br-lan 桥接接口中仅包含 `eth0` 网口**，直通的网卡未加入 br-lan 桥接接口，建议先将所有接口添加到桥接中，便于后续网线插任何网卡都能管理 OpenWrt。
 ```bash
 # 查看当前网络配置
 cat /etc/config/network
@@ -102,7 +102,7 @@ cat /etc/config/network
 ![查看网络](https://img.it927.com/aio/124.png)
 这里问可以看到 br-lan 中只有 `eth0`。
 ### 网口配置桥接
-如果我们将所有网口配置桥接 `br-lan` 上，那我们随便插哪个网口都能访问 openWrt 管理后台了,编辑 `/etc/config/network` 文件。
+如果我们将所有网口配置桥接 `br-lan` 上，那我们随便插哪个网口都能访问 OpenWrt 管理后台了,编辑 `/etc/config/network` 文件。
 ```bash
 # 查看当前网络配置
 vim /etc/config/network
@@ -144,7 +144,7 @@ config device
 ### **Web 管理界面访问**
 因为直通的两个网口都没有插网线，所以现在默认是空，我们需要按如下的步骤访问。
 
-**访问步骤**：将连接 ESXi 管理网口的网线插到直通的网卡，将控制电脑的网络设置改为自动获取（DHCP），通过浏览器访问 openWrt 管理界面。
+**访问步骤**：将连接 ESXi 管理网口的网线插到直通的网卡，将控制电脑的网络设置改为自动获取（DHCP），通过浏览器访问 OpenWrt 管理界面。
 
 **访问信息**：
 
@@ -152,10 +152,10 @@ config device
 - **默认用户名**：root
 - **密码**：首次登录时设置
 
-![openWrt](https://img.it927.com/aio/126.png)
+![OpenWrt](https://img.it927.com/aio/126.png)
 ???+ warning "警告"
 
-    插完网线后，控制电脑需要将原来的 ESXi 管理网口的静态 IP ，必须改为自动获取【DHCP】，才能访问 openWrt 管理界面。访问 ESXi 管理网口时必须再改回原来的静态 IP。
+    插完网线后，控制电脑需要将原来的 ESXi 管理网口的静态 IP ，必须改为自动获取【DHCP】，才能访问 OpenWrt 管理界面。访问 ESXi 管理网口时必须再改回原来的静态 IP。
 
 ## 基础设置
 进入 Web 管理界面后，可以看到直通的网口和虚拟交换机网口（10GbE），我们还要做一些基础设置。
@@ -184,7 +184,7 @@ config device
 
 点击【Save & Apply】后，系统会显示倒计时读秒。如果在读秒期间配置成功，页面将自动刷新；如果配置失败，系统将恢复到之前的配置状态。
 
-不出意外的话，将一根联网的网线插入 WAN 口（`eth2`），openWrt 即可正常联网。
+不出意外的话，将一根联网的网线插入 WAN 口（`eth2`），OpenWrt 即可正常联网。
 
 ???+ info "配置建议"
     
@@ -197,25 +197,25 @@ config device
 #### 界面换源
 导航 【System】-【Software】点击【Configure opkg】将【/etc/opkg/distfeeds.conf】框内容换成如下：
 ```shell
-src/gz openWrt_core https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/targets/x86/64/packages
-src/gz openWrt_base https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/packages/x86_64/base
-src/gz openWrt_kmods https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/targets/x86/64/kmods/6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6
-src/gz openWrt_luci https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/packages/x86_64/luci
-src/gz openWrt_packages https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/packages/x86_64/packages
-src/gz openWrt_routing https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/packages/x86_64/routing
-src/gz openWrt_telephony https://mirrors.ustc.edu.cn/openWrt/releases/24.10.2/packages/x86_64/telephony
+src/gz OpenWrt_core https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/targets/x86/64/packages
+src/gz OpenWrt_base https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/base
+src/gz OpenWrt_kmods https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/targets/x86/64/kmods/6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6
+src/gz OpenWrt_luci https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/luci
+src/gz OpenWrt_packages https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/packages
+src/gz OpenWrt_routing https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/routing
+src/gz OpenWrt_telephony https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/telephony
 ```
 ![换源](https://img.it927.com/aio/134.png)
 ???+ info "注意"
 
     手动替换时一定要注意 CPU 架构一搬分为：x86、arm、mips、....，其中 x86 占据 90% 的市场。换源时一定要清楚 CPU 架构，不知道可直接百度查 CPU 型号。
 #### 自动替换
-自动替换需要 SSH 连接 openWrt，执行如下命令自动替换：
+自动替换需要 SSH 连接 OpenWrt，执行如下命令自动替换：
 ```shell
-sed -i 's_downloads.openWrt.org_mirrors.tuna.tsinghua.edu.cn/openWrt_' /etc/opkg/distfeeds.conf
+sed -i 's_downloads.OpenWrt.org_mirrors.tuna.tsinghua.edu.cn/OpenWrt_' /etc/opkg/distfeeds.conf
 ```
 #### 手工替换
-需要 SSH 连接 openWrt，并编辑 `/etc/opkg/distfeeds.conf` 文件，将其中的 `downloads.openWrt.org` 替换为 `mirrors.tuna.tsinghua.edu.cn/openWrt` 即可。
+需要 SSH 连接 OpenWrt，并编辑 `/etc/opkg/distfeeds.conf` 文件，将其中的 `downloads.OpenWrt.org` 替换为 `mirrors.tuna.tsinghua.edu.cn/OpenWrt` 即可。
 ### 语言设置
 如果此时 WAN 口已经连接了网线，可以将界面换为中文， 安装中文语言包，导航【System】-【Software】-【Filter】。
 
@@ -227,9 +227,9 @@ sed -i 's_downloads.openWrt.org_mirrors.tuna.tsinghua.edu.cn/openWrt_' /etc/opkg
 ### ttyd
 如果不想每次通过 SSH 去连接软路由，则可以安装 ttyd 插件。
 ![ttyd](https://img.it927.com/aio/137.png)
-安装完成后，直接导航【服务】-【终端】连接 openWrt。
+安装完成后，直接导航【服务】-【终端】连接 OpenWrt。
 ![ttyd](https://img.it927.com/aio/138.png)
 登录账号为：root；密码为之前 [软路由 - 设置密码](install.md#_6) 设置的密码。
 
 ## 网络实战
-至此 openWrt 的安装全部结束，如只想看安装就到此结束了，有家庭网络需求，可以继续看前面的 [网络架构 - 网络拓扑实战](../network/fight.md)。
+至此 OpenWrt 的安装全部结束，如只想看安装就到此结束了，有家庭网络需求，可以继续看前面的 [网络架构 - 网络拓扑实战](../network/fight.md)。

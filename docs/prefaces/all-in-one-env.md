@@ -54,7 +54,7 @@ All-in-One 环境，又称“一体化环境”，是指在一个物理设备上
 | NAS 存储服务器 | 使用 黑群晖、OpenMediaVault、FreeNAS、Unraid 等系统搭建家庭存储中心 |
 | 媒体服务器     | 搭建 Plex、Jellyfin、Emby 等媒体服务器，实现家庭影音播放     |
 | 开发测试平台   | 创建多个 Linux/Windows 虚拟机，用于学习、开发、测试          |
-| 网络服务网关   | 部署 Pi-hole（广告过滤）、openWrt（软路由）、OPNsense（防火墙）等 |
+| 网络服务网关   | 部署 Pi-hole（广告过滤）、OpenWrt（软路由）、OPNsense（防火墙）等 |
 | 容器平台       | 运行 Docker + Portainer，部署各类容器化应用（如 Nextcloud、AdGuardHome） |
 
 ## 硬件要求

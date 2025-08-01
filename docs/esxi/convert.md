@@ -145,6 +145,6 @@ vmkfstools -q /vmfs/volumes/datastore1/os/xxx.vmdk
 ```
 输出：
 ```bash
-$ vmkfstools -e openWrt-24.10.2-x86-64-generic-squashfs-combined.vmdk 
+$ vmkfstools -e OpenWrt-24.10.2-x86-64-generic-squashfs-combined.vmdk 
 Disk chain is consistent.
 ```

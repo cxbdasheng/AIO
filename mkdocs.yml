@@ -106,9 +106,9 @@ nav:
       - 功耗节能: "esxi/energy.md"
   - 软路由:
       - 系统安装: "route/install.md"
+      - 开启 IPv6: "route/ipv6.md"
       - 硬盘扩容: "route/expansion.md"
       - OpenClash: "route/open-clash.md"
-      - 开启 IPv6: "route/ipv6.md"
   - 黑群晖:
       - 系统安装: "synology/install.md"
       - 存储设计: "synology/design.md"
