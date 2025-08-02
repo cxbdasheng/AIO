@@ -143,24 +143,30 @@ OpenWrt 已经设置好了 IPv6 地址，接下来是验证客户端的连接，
 上级路由器/光猫(PPPoE拨号) → OpenWrt(软路由-中继模式) → 客户端设备
 ```
 ### 配置步骤
-#### 1. 配置 wan6 接口
-导航【网络】-【接口】-【wan6 编辑】，修改 `wan6` 为中继模式。
-???+ info "提示"
-    没有 `wan6` 接口，可按照 [场景二：软路由路由模式获取 IPv6（下级路由方案）- 1. 创建 DHCPv6 接口](#1-dhcpv6) 创建 `wan6` 接口。
+#### 1. 关闭 LAN 接口 DHCP IPv6 功能
+导航【网络】-【接口】-【lan 编辑】-【DHCP 服务器】-【IPv6 设置】，将【RA 服务】、【DHCPv6 服务】、【NDP 代理】设置为禁用
+![关闭 LAN 接口 DHCP IPv6 功能](https://img.it927.com/aio/167.png)
 
-![配置 wan6 接口](https://img.it927.com/aio/161.png)
+#### 2. 新增 LAN6 接口
+=== "新增 LAN6 接口"
+    导航【网络】-【接口】新增一个接口，名称填写：lan6；协议选择：DHCPv6 客户端；设备选择：br-lan。
+    ![新增 LAN6 接口](https://img.it927.com/aio/168.png)
 
-???+info "提示"
-    1. **主接口** 在多接口环境中，主接口是系统默认使用的接口，用于发送和接收 IPv6 路由器通告（RA）和其他 IPv6 流量。
-    2. **RA 服务**（Router Advertisement Service）是指路由器通过发送路由器通告（RA）消息来广播网络参数和配置信息的功能。
-    3. **NDP 代理**（Neighbor Discovery Protocol Proxy）是指在 IPv6 网络中，一种允许路由器充当中介，帮助主机在不同子网之间发现邻居设备的功能。
+=== "LAN6 常规设置"
+    常规设置不用动
+    ![LAN6 常规设置](https://img.it927.com/aio/169.png)
 
-#### 2. 配置 LAN 接口
-导航【网络】-【接口】-【lan 编辑】-【DHCP 服务器】-【IPv6 设置】，设置 lan 口 DHCP 服务器 设计为中继模式
-![配置 LAN 接口](https://img.it927.com/aio/162.png)
+=== "LAN6 开启 DHCP"
+    导航【网络】-【接口】-【lan 编辑】-【DHCP 服务器】-【IPv6 设置】，设置 lan 口 DHCP 服务器 设计为中继模式
+    ![新增 LAN6 接口](https://img.it927.com/aio/170.png)
 #### 3. 应用配置
-点击保存并应用（可重启），重启电脑网络接口，查看是否拥有 IPv6。
+点击保存并应用（可重启），不出意外会出现 IPv6 地址。
+![新增 LAN6 接口](https://img.it927.com/aio/171.png)
+重启控制电脑网络接口，查看是否拥有 IPv6。
 ![应用配置](https://img.it927.com/aio/163.png)
 
+## 验证 IPv6 
+获取 IPv6 地址后，我们可以通过网址验证 IPv6 ，浏览器输入 [https://test-ipv6.com/](https://test-ipv6.com/) 进行连接测试，看到如图，证明成功了：
+![验证 IPv6 ](https://img.it927.com/aio/164.png)
 ## 总结
 IPv6 配置的成功很大程度上取决于网络环境和上级设备的支持情况。PPPoE 拨号模式提供最佳的控制能力和稳定性，应作为首选方案。在实际部署时，建议根据具体环境选择合适的配置方案，并做好充分的测试验证。

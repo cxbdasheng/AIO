@@ -197,13 +197,13 @@ config device
 #### 界面换源
 导航 【System】-【Software】点击【Configure opkg】将【/etc/opkg/distfeeds.conf】框内容换成如下：
 ```shell
-src/gz OpenWrt_core https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/targets/x86/64/packages
-src/gz OpenWrt_base https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/base
-src/gz OpenWrt_kmods https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/targets/x86/64/kmods/6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6
-src/gz OpenWrt_luci https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/luci
-src/gz OpenWrt_packages https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/packages
-src/gz OpenWrt_routing https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/routing
-src/gz OpenWrt_telephony https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/telephony
+src/gz openwrt_core https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/targets/x86/64/packages
+src/gz openwrt_base https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/base
+src/gz openwrt_kmods https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/targets/x86/64/kmods/6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6
+src/gz openwrt_luci https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/luci
+src/gz openwrt_packages https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/packages
+src/gz openwrt_routing https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/routing
+src/gz openwrt_telephony https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/telephony
 ```
 ![换源](https://img.it927.com/aio/134.png)
 ???+ info "注意"
