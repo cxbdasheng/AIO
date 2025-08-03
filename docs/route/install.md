@@ -104,7 +104,7 @@ cat /etc/config/network
 ### 网口配置桥接
 如果我们将所有网口配置桥接 `br-lan` 上，那我们随便插哪个网口都能访问 OpenWrt 管理后台了,编辑 `/etc/config/network` 文件。
 ```bash
-# 查看当前网络配置
+# 编辑当前网络配置
 vim /etc/config/network
 ```
 在 config device 下面添加两行，将两个直通端口加上

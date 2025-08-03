@@ -1400,18 +1400,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-wan6" class="md-nav__link">
+  <a href="#1-lan-dhcp-ipv6" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 配置 wan6 接口
+      1. 关闭 LAN 接口 DHCP IPv6 功能
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-lan_1" class="md-nav__link">
+  <a href="#2-lan6" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 配置 LAN 接口
+      2. 新增 LAN6 接口
     </span>
   </a>
   
@@ -1433,6 +1433,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipv6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证 IPv6
+    </span>
+  </a>
   
 </li>
       
@@ -2256,18 +2265,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-wan6" class="md-nav__link">
+  <a href="#1-lan-dhcp-ipv6" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 配置 wan6 接口
+      1. 关闭 LAN 接口 DHCP IPv6 功能
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-lan_1" class="md-nav__link">
+  <a href="#2-lan6" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 配置 LAN 接口
+      2. 新增 LAN6 接口
     </span>
   </a>
   
@@ -2289,6 +2298,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipv6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证 IPv6
+    </span>
+  </a>
   
 </li>
       
@@ -2448,27 +2466,34 @@
 <div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>上级路由器/光猫(PPPoE拨号) → OpenWrt(软路由-中继模式) → 客户端设备
 </code></pre></div>
 <h3 id="_7">配置步骤<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<h4 id="1-wan6">1. 配置 wan6 接口<a class="headerlink" href="#1-wan6" title="Permanent link">&para;</a></h4>
-<p>导航【网络】-【接口】-【wan6 编辑】，修改 <code>wan6</code> 为中继模式。</p>
-<details class="info" open="open">
-<summary>提示</summary>
-<p>没有 <code>wan6</code> 接口，可按照 <a href="#1-dhcpv6">场景二：软路由路由模式获取 IPv6（下级路由方案）- 1. 创建 DHCPv6 接口</a> 创建 <code>wan6</code> 接口。</p>
-</details>
-<p><a class="glightbox" href="https://img.it927.com/aio/161.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置 wan6 接口" src="https://img.it927.com/aio/161.png" /></a></p>
-<details class="info" open="open">
-<summary>提示</summary>
-<ol>
-<li><strong>主接口</strong> 在多接口环境中，主接口是系统默认使用的接口，用于发送和接收 IPv6 路由器通告（RA）和其他 IPv6 流量。</li>
-<li><strong>RA 服务</strong>（Router Advertisement Service）是指路由器通过发送路由器通告（RA）消息来广播网络参数和配置信息的功能。</li>
-<li><strong>NDP 代理</strong>（Neighbor Discovery Protocol Proxy）是指在 IPv6 网络中，一种允许路由器充当中介，帮助主机在不同子网之间发现邻居设备的功能。</li>
-</ol>
-</details>
-<h4 id="2-lan_1">2. 配置 LAN 接口<a class="headerlink" href="#2-lan_1" title="Permanent link">&para;</a></h4>
+<h4 id="1-lan-dhcp-ipv6">1. 关闭 LAN 接口 DHCP IPv6 功能<a class="headerlink" href="#1-lan-dhcp-ipv6" title="Permanent link">&para;</a></h4>
+<p>导航【网络】-【接口】-【lan 编辑】-【DHCP 服务器】-【IPv6 设置】，将【RA 服务】、【DHCPv6 服务】、【NDP 代理】设置为禁用
+<a class="glightbox" href="https://img.it927.com/aio/167.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="关闭 LAN 接口 DHCP IPv6 功能" src="https://img.it927.com/aio/167.png" /></a></p>
+<h4 id="2-lan6">2. 新增 LAN6 接口<a class="headerlink" href="#2-lan6" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">新增 LAN6 接口</label><label for="__tabbed_1_2">LAN6 常规设置</label><label for="__tabbed_1_3">LAN6 开启 DHCP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>导航【网络】-【接口】新增一个接口，名称填写：lan6；协议选择：DHCPv6 客户端；设备选择：br-lan。
+<a class="glightbox" href="https://img.it927.com/aio/168.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="新增 LAN6 接口" src="https://img.it927.com/aio/168.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>常规设置不用动
+<a class="glightbox" href="https://img.it927.com/aio/169.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="LAN6 常规设置" src="https://img.it927.com/aio/169.png" /></a></p>
+</div>
+<div class="tabbed-block">
 <p>导航【网络】-【接口】-【lan 编辑】-【DHCP 服务器】-【IPv6 设置】，设置 lan 口 DHCP 服务器 设计为中继模式
-<a class="glightbox" href="https://img.it927.com/aio/162.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置 LAN 接口" src="https://img.it927.com/aio/162.png" /></a></p>
+<a class="glightbox" href="https://img.it927.com/aio/170.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="新增 LAN6 接口" src="https://img.it927.com/aio/170.png" /></a></p>
+</div>
+</div>
+</div>
 <h4 id="3">3. 应用配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
-<p>点击保存并应用（可重启），重启电脑网络接口，查看是否拥有 IPv6。
+<p>点击保存并应用（可重启），不出意外会出现 IPv6 地址。
+<a class="glightbox" href="https://img.it927.com/aio/171.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="新增 LAN6 接口" src="https://img.it927.com/aio/171.png" /></a>
+重启控制电脑网络接口，查看是否拥有 IPv6。
 <a class="glightbox" href="https://img.it927.com/aio/163.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="应用配置" src="https://img.it927.com/aio/163.png" /></a></p>
+<h2 id="ipv6_1">验证 IPv6<a class="headerlink" href="#ipv6_1" title="Permanent link">&para;</a></h2>
+<p>获取 IPv6 地址后，我们可以通过网址验证 IPv6 ，浏览器输入 <a href="https://test-ipv6.com/">https://test-ipv6.com/</a> 进行连接测试，看到如图，证明成功了：
+<a class="glightbox" href="https://img.it927.com/aio/164.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="验证 IPv6 " src="https://img.it927.com/aio/164.png" /></a></p>
 <h2 id="_8">总结<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>IPv6 配置的成功很大程度上取决于网络环境和上级设备的支持情况。PPPoE 拨号模式提供最佳的控制能力和稳定性，应作为首选方案。在实际部署时，建议根据具体环境选择合适的配置方案，并做好充分的测试验证。</p>
 
@@ -2491,7 +2516,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月1日 16:09:00 UTC">2025年8月1日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月2日 11:03:08 UTC">2025年8月2日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

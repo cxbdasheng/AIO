@@ -2300,7 +2300,7 @@
 这里问可以看到 br-lan 中只有 <code>eth0</code>。</p>
 <h3 id="_4">网口配置桥接<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>如果我们将所有网口配置桥接 <code>br-lan</code> 上，那我们随便插哪个网口都能访问 OpenWrt 管理后台了,编辑 <code>/etc/config/network</code> 文件。
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 查看当前网络配置</span>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 编辑当前网络配置</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>vim<span class="w"> </span>/etc/config/network
 </code></pre></div>
 在 config device 下面添加两行，将两个直通端口加上
@@ -2390,13 +2390,13 @@
 <p>安装是默认使用的是国外源，导致有些镜像无法下载，需换国内源。 本教程使用清华源，换源方式可通过：界面换源、自动替换、手工替换这三种中随机一种换源，替换完后有网的情况下，可以 <strong>更新一下软件包</strong>。</p>
 <h4 id="_8">界面换源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
 <p>导航 【System】-【Software】点击【Configure opkg】将【/etc/opkg/distfeeds.conf】框内容换成如下：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>src/gz<span class="w"> </span>OpenWrt_core<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/targets/x86/64/packages
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>src/gz<span class="w"> </span>OpenWrt_base<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/base
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>src/gz<span class="w"> </span>OpenWrt_kmods<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/targets/x86/64/kmods/6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>src/gz<span class="w"> </span>OpenWrt_luci<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/luci
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>src/gz<span class="w"> </span>OpenWrt_packages<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/packages
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>src/gz<span class="w"> </span>OpenWrt_routing<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/routing
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>src/gz<span class="w"> </span>OpenWrt_telephony<span class="w"> </span>https://mirrors.ustc.edu.cn/OpenWrt/releases/24.10.2/packages/x86_64/telephony
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>src/gz<span class="w"> </span>openwrt_core<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/targets/x86/64/packages
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>src/gz<span class="w"> </span>openwrt_base<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/base
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>src/gz<span class="w"> </span>openwrt_kmods<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/targets/x86/64/kmods/6.6.93-1-1745ebad77278f5cdc8330d17a3f43d6
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>src/gz<span class="w"> </span>openwrt_luci<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/luci
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>src/gz<span class="w"> </span>openwrt_packages<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/packages
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>src/gz<span class="w"> </span>openwrt_routing<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/routing
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>src/gz<span class="w"> </span>openwrt_telephony<span class="w"> </span>https://mirrors.ustc.edu.cn/openwrt/releases/24.10.2/packages/x86_64/telephony
 </code></pre></div>
 <a class="glightbox" href="https://img.it927.com/aio/134.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="换源" src="https://img.it927.com/aio/134.png" /></a></p>
 <details class="info" open="open">
@@ -2443,7 +2443,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月1日 16:09:00 UTC">2025年8月1日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月2日 11:03:08 UTC">2025年8月2日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
