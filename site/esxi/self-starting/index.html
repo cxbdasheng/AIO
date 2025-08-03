@@ -2282,34 +2282,14 @@
 <li>配置全局启动参数</li>
 </ol>
 <p><a class="glightbox" href="https://img.it927.com/aio/188.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="启用自动启动功能" src="https://img.it927.com/aio/188.png" /></a></p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>推荐值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>默认启动延迟</td>
-<td>120秒</td>
-<td>虚拟机之间的启动间隔</td>
-</tr>
-<tr>
-<td>默认停止延迟</td>
-<td>120秒</td>
-<td>虚拟机关机等待时间</td>
-</tr>
-<tr>
-<td>停止操作</td>
-<td>关闭电源</td>
-<td>虚拟机关机方式</td>
-</tr>
-</tbody>
-</table>
+<details class="info" open="open">
+<summary>提示</summary>
+<p><strong>启动延迟</strong>：启动延迟   启动 ESXi 主机后，将开始打开配置为自动启动的虚拟机的电源。ESXi 主机打开第一个虚拟机的电源后，该主机会等待指定的延迟时间，然后打开下一个虚拟机的电源。</p>
+<p><strong>停止延迟</strong>：停止延迟是指 ESXi 主机等待关机命令完成的最长时间。关闭这些虚拟机的顺序与其启动顺序相反。当 ESXi 主机在您指定的时间内关闭第一个虚拟机后，它将关闭下一个虚拟机。如果某个虚拟机未在指定的延迟时间内关闭，则主机将运行关闭电源命令，然后开始关闭下一个虚拟机。在所有虚拟机都关闭后，ESXi 主机才会关闭。</p>
+<p><strong>等待检测信号</strong>：选择 <strong>是</strong> 以启用 <strong>等待检测信号</strong> 选项。如果虚拟机的客户机操作系统安装了 <strong>VMware Tools</strong>，则可以使用此选项。ESXi 主机打开第一个虚拟机的电源后，会立即打开下一个虚拟机的电源。虚拟机收到第一个检测信号后，虚拟机打开电源的顺序继续。</p>
+</details>
 <h3 id="3">3. 配置虚拟机启动策略<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>为每个需要自动启动的虚拟机配置启动策略，其中启动顺序越小越先开，陈大剩以三个软路由为例：</p>
+<p>为每个需要自动启动的虚拟机配置启动策略，其中 <strong>启动顺序数值越小越先开机</strong>，陈大剩以三个软路由为例：</p>
 <h4 id="_3">家庭终端网段（主路由配置）配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <p>软路由作为网络基础设施，应该最先启动：</p>
 <table>
@@ -2333,7 +2313,7 @@
 </tr>
 <tr>
 <td>启动延迟</td>
-<td>0秒</td>
+<td>0 秒</td>
 <td>立即启动</td>
 </tr>
 <tr>
@@ -2343,7 +2323,7 @@
 </tr>
 <tr>
 <td>停止延迟</td>
-<td>120秒</td>
+<td>60 秒</td>
 <td>等待关机完成</td>
 </tr>
 </tbody>
@@ -2375,7 +2355,7 @@
 </tr>
 <tr>
 <td>启动延迟</td>
-<td>60秒</td>
+<td>60 秒</td>
 <td>等待主路由完全启动</td>
 </tr>
 <tr>
@@ -2385,7 +2365,7 @@
 </tr>
 <tr>
 <td>停止延迟</td>
-<td>120秒</td>
+<td>60 秒</td>
 <td>等待关机完成</td>
 </tr>
 </tbody>
@@ -2413,7 +2393,7 @@
 </tr>
 <tr>
 <td>启动延迟</td>
-<td>60秒</td>
+<td>60 秒</td>
 <td>等待上级路由启动</td>
 </tr>
 <tr>
@@ -2423,7 +2403,7 @@
 </tr>
 <tr>
 <td>停止延迟</td>
-<td>120秒</td>
+<td>60 秒</td>
 <td>等待关机完成</td>
 </tr>
 </tbody>
@@ -2455,7 +2435,7 @@
 </tr>
 <tr>
 <td>启动延迟</td>
-<td>120秒</td>
+<td>120 秒</td>
 <td>确保网络服务可用</td>
 </tr>
 <tr>
@@ -2465,7 +2445,7 @@
 </tr>
 <tr>
 <td>停止延迟</td>
-<td>180秒</td>
+<td>60 秒</td>
 <td>等待应用关闭</td>
 </tr>
 </tbody>
@@ -2548,22 +2528,22 @@
 <tbody>
 <tr>
 <td>软路由</td>
-<td>120-180秒</td>
+<td>60-120 秒</td>
 <td>需要保存配置和连接状态</td>
 </tr>
 <tr>
 <td>数据库服务</td>
-<td>300-600秒</td>
+<td>120-300 秒</td>
 <td>需要完成事务和数据同步</td>
 </tr>
 <tr>
 <td>Web服务</td>
-<td>60-120秒</td>
+<td>60-120 秒</td>
 <td>需要处理现有连接</td>
 </tr>
 <tr>
 <td>文件服务</td>
-<td>180-300秒</td>
+<td>180-300 秒</td>
 <td>需要同步文件缓存</td>
 </tr>
 </tbody>
@@ -2584,22 +2564,22 @@
 <tbody>
 <tr>
 <td>软路由</td>
-<td>0-30秒</td>
+<td>0-30 秒</td>
 <td>网络服务启动较快</td>
 </tr>
 <tr>
 <td>数据库服务</td>
-<td>60-120秒</td>
+<td>60-120 秒</td>
 <td>需要完整初始化</td>
 </tr>
 <tr>
 <td>Web服务</td>
-<td>30-60秒</td>
+<td>30-60 秒</td>
 <td>依赖数据库服务</td>
 </tr>
 <tr>
 <td>监控服务</td>
-<td>120-180秒</td>
+<td>120-180 秒</td>
 <td>需要其他服务就绪</td>
 </tr>
 </tbody>
@@ -2699,7 +2679,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月3日 14:44:22 UTC">2025年8月3日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月3日 14:45:31 UTC">2025年8月3日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
