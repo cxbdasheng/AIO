@@ -2593,7 +2593,7 @@
 <p><code>socat</code> 是一个多功能的网络工具，可以用于端口转发，比如我们可以将 <strong>ESXi</strong> 管理 Web 端口转发至 跳板机的端口，<strong>ESXi</strong> 管理 Web 页面就不需要再插网线了。</p>
 <h3 id="socat">安装 socat<a class="headerlink" href="#socat" title="Permanent link">&para;</a></h3>
 <p>通过 apt 安装
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo apt install socat 
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>socat<span class="w"> </span>
 </code></pre></div></p>
 <h3 id="_10">代理测试<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>安装成功后输入 Ubuntu 如下代理 <strong>ESXi</strong> 管理 Web 端口
@@ -2628,7 +2628,6 @@
 <ul>
 <li><strong>Restart=always</strong>：确保服务在退出时自动重启；</li>
 <li><strong>RestartSec=5</strong>：在重启之前等待 5 秒；</li>
-<li><strong>User=nobody</strong>：以 <code>nobody</code> 用户身份运行服务，确保安全性。你可以根据需要更改为其他用户；</li>
 <li><strong>StandardOutput=syslog</strong> 和 <strong>StandardError=syslog</strong>：将输出和错误记录到系统日志中，方便后续查看；</li>
 </ul>
 <h3 id="systemd_1">重新加载 systemd<a class="headerlink" href="#systemd_1" title="Permanent link">&para;</a></h3>
@@ -2668,7 +2667,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月31日 16:48:10 UTC">2025年7月31日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月4日 14:58:15 UTC">2025年8月4日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

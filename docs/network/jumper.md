@@ -196,7 +196,7 @@ sudo systemctl restart ssh
 `socat` 是一个多功能的网络工具，可以用于端口转发，比如我们可以将 **ESXi** 管理 Web 端口转发至 跳板机的端口，**ESXi** 管理 Web 页面就不需要再插网线了。
 ### 安装 socat
 通过 apt 安装
-```
+```shell
 sudo apt install socat 
 ```
 ### 代理测试
@@ -235,7 +235,6 @@ WantedBy=multi-user.target
 
 - **Restart=always**：确保服务在退出时自动重启；
 - **RestartSec=5**：在重启之前等待 5 秒；
-- **User=nobody**：以 `nobody` 用户身份运行服务，确保安全性。你可以根据需要更改为其他用户；
 - **StandardOutput=syslog** 和 **StandardError=syslog**：将输出和错误记录到系统日志中，方便后续查看；
 
 ### 重新加载 systemd
