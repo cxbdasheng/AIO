@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="详细介绍家庭AIO ESXi环境的网络拓扑设计方案，包括虚拟交换机配置、VLAN划分、网络隔离等关键技术，帮助用户构建稳定高效的家庭虚拟化网络环境。">
+        <meta name="description" content="详细介绍在ESXi环境中创建和安装Ubuntu跳板机的完整教程，包含虚拟机配置、系统安装、VMware Tools安装和网络配置等步骤。">
       
       
         <meta name="author" content="陈大剩">
       
       
-        <link rel="canonical" href="http://esxi.it927.com/network/jumper/">
+        <link rel="canonical" href="https://esxi.it927.com/network/jumper/">
       
       
         <link rel="prev" href="../fight/">
@@ -30,7 +30,7 @@
       
     
     
-    <meta name="keywords" content="ESXi网络拓扑设计,家庭ESXi网络拓扑图,家庭AIO搭建教程,家庭All-in-One搭建教程,ESXi虚拟化网络配置,家庭实验室网络架构,ESXi网络规划方案,家庭服务器网络设计,ESXi vSwitch配置,家庭云服务器搭建,ESXi网络隔离设计,家庭虚拟化环境部署,ESXi端口组配置,家庭NAS网络拓扑,ESXi VLAN配置教程,家庭网络虚拟化方案">
+    <meta name="keywords" content="ESXi安装Ubuntu,Ubuntu虚拟机创建,ESXi Ubuntu教程,虚拟化Ubuntu部署,ESXi Linux安装,Ubuntu Server安装,VMware Ubuntu配置,家庭AIO Ubuntu,跳板机,Ubuntu系统优化,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -82,6 +82,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -869,6 +874,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    跳板机使用
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -878,6 +894,323 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择跳板机操作系统
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Ubuntu
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装 Ubuntu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="准备工作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ubuntu-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 下载Ubuntu ISO镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-isoesxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 上传ISO到ESXi数据存储
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="创建虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 新建虚拟机向导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 存储和硬件配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      开始安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      完成安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sshd" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 sshd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 root 登入
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开启 root 登入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      先设置 root 密码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 root 访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      跳板机网络配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="跳板机网络配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 管理网段设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他网段设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装端口转发工具
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装端口转发工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#socat" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 socat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理 ESXi 管理网口
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代理 ESXi 管理网口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建一个 systemd 服务文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加服务配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      重新加载 systemd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      检查服务状态
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      后续规划
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1746,6 +2079,314 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择跳板机操作系统
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Ubuntu
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装 Ubuntu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="准备工作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ubuntu-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 下载Ubuntu ISO镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-isoesxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 上传ISO到ESXi数据存储
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="创建虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 新建虚拟机向导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 存储和硬件配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      开始安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      完成安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sshd" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 sshd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 root 登入
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开启 root 登入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      先设置 root 密码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 root 访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      跳板机网络配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="跳板机网络配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 管理网段设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他网段设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装端口转发工具
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装端口转发工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#socat" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 socat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理 ESXi 管理网口
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代理 ESXi 管理网口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建一个 systemd 服务文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加服务配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      重新加载 systemd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      检查服务状态
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      后续规划
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1769,7 +2410,244 @@
 
   <h1>跳板机使用</h1>
 
-<p>还在写的路上</p>
+<p>根据网络拓扑设计的规范，需安装一个跳板机，跳板机需要支持的功能如下：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>代理</strong> ESXi 管理网口，使不需要插网线即可访问 ESXi Web 管理页面；</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>代理</strong> 所有网络，可以通过跳板机找到每一台网络拓扑下的主机；</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>隔离</strong> 网络，实现内外网物理隔离，避免直接暴露内部系统；</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>转发</strong> 端口，可以提供安全的端口映射和转发服务；</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>统一</strong> 入口管理，作为访问内部网络资源的唯一入口，集中管理所有远程访问请求；</li>
+</ul>
+<h2 id="_1">选择跳板机操作系统<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>综上原因需要，并不想每次都是通过配置命令行设置，最终陈大剩选择的具有图形界面的 Ubuntu 系统。</p>
+<h2 id="ubuntu">安装 Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link">&para;</a></h2>
+<p>Ubuntu 作为最受欢迎的 Linux 发行版之一，在ESXi环境中具有以下优势：<strong>优秀的虚拟化支持</strong>、<strong>丰富的软件生态</strong>、<strong>长期支持版本</strong>、<strong>活跃的社区</strong>、<strong>企业级稳定性</strong>。</p>
+<h3 id="_2">准备工作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="1-ubuntu-iso">1. 下载Ubuntu ISO镜像<a class="headerlink" href="#1-ubuntu-iso" title="Permanent link">&para;</a></h4>
+<p>根据使用场景选择合适的 Ubuntu 版本，陈大剩这里选择 Ubuntu Server 22.04 LTS 的版本。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu Server LTS（推荐）</label><label for="__tabbed_1_2">Ubuntu Desktop LTS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>适用场景：</strong> 服务器环境，无图形界面，资源占用少。</p>
+<ul>
+<li>下载地址：<a href="https://ubuntu.com/download/server">Ubuntu Server 22.04 LTS</a></li>
+<li>文件大小：约 1.4 GB</li>
+<li>推荐版本：22.04 LTS（支持到2027年）</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>适用场景：</strong> 需要图形界面的应用场景。</p>
+<ul>
+<li>下载地址：<a href="https://ubuntu.com/download/desktop">Ubuntu Desktop 22.04 LTS</a></li>
+<li>文件大小：约 4.7 GB</li>
+<li>资源需求：更高的 CPU 和内存要求</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="2-isoesxi">2. 上传ISO到ESXi数据存储<a class="headerlink" href="#2-isoesxi" title="Permanent link">&para;</a></h4>
+<p>将下载的 ISO 文件上传到 ESXi 数据存储：</p>
+<ol>
+<li>登录ESXi管理后台</li>
+<li>导航：<strong>存储</strong> → <strong>数据存储浏览器</strong></li>
+<li>选择目标数据存储</li>
+<li>创建ISO文件夹（可选）</li>
+<li>点击【上传文件】</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/191.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="上传ISO文件" src="https://img.it927.com/aio/191.png" /></a></p>
+<h3 id="_3">创建虚拟机<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="1">1. 新建虚拟机向导<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p><strong>导航路径</strong>：【虚拟机】→【创建/注册虚拟机】，首先是简单的三个步骤。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤 1：选择创建类型</label><label for="__tabbed_2_2">步骤 2：选择名称和操作系统</label><label for="__tabbed_2_3">步骤 3：选择储存</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/108.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/192.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/192.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/193.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/193.png" /></a></p>
+</div>
+</div>
+</div>
+<h4 id="2">2. 存储和硬件配置<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>由于陈大剩配置的是跳板机需要图形页面，所以硬件分配会稍微高一点，大家可以根据自己的需求分配，自定义步骤比较多，如无需配置直通，后面两个步骤可跳过。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">自定设置 1：CPU</label><label for="__tabbed_3_2">自定设置 2：内存</label><label for="__tabbed_3_3">自定设置 3：硬盘设置</label><label for="__tabbed_3_4">自定设置 4：添加网络适配器</label><label for="__tabbed_3_5">自定设置 5：添加镜像</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/194.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU" src="https://img.it927.com/aio/194.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/195.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存" src="https://img.it927.com/aio/195.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/196.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加硬盘" src="https://img.it927.com/aio/196.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>如果需要代理 ESXi 管理网卡，则需添加 VM NetWork，其他再添加三个网络拓扑的网段。
+<a class="glightbox" href="https://img.it927.com/aio/197.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加网络适配器" src="https://img.it927.com/aio/197.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/198.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加镜像" src="https://img.it927.com/aio/198.png" /></a></p>
+</div>
+</div>
+</div>
+<p>自定义设置完了，还需要需要将【虚拟机选项设】固件选择为【BIOS】，不直通选 EFI 也没有问题。
+<a class="glightbox" href="https://img.it927.com/aio/121.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="固件选择" src="https://img.it927.com/aio/121.png" /></a>
+最后，所有配置完成后，检查一遍，点完成。</p>
+<h3 id="_4">开始安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">安装流程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>配置配置完后，可以点击打开电源开始安装：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><input id="__tabbed_4_6" name="__tabbed_4" type="radio" /><input id="__tabbed_4_7" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">步骤一 ：引导页面</label><label for="__tabbed_4_2">步骤二 ：安装页面</label><label for="__tabbed_4_3">步骤三 ：选择键盘布局</label><label for="__tabbed_4_4">步骤四 ：安装选项</label><label for="__tabbed_4_5">步骤五 ：安装类型</label><label for="__tabbed_4_6">步骤六 ：选择时区</label><label for="__tabbed_4_7">步骤七 ：设置账号密码</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>引导页面选择：*Try or Install Ubuntu（尝试或安装 Ubuntu）
+ <a class="glightbox" href="https://img.it927.com/aio/199.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="引导页面" src="https://img.it927.com/aio/199.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>安装页面选择【中文】后，点击【安装 Ubuntu】
+ <a class="glightbox" href="https://img.it927.com/aio/203.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装页面" src="https://img.it927.com/aio/203.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>安装页面选择【中文】后，点击【安装 Ubuntu】
+ <a class="glightbox" href="https://img.it927.com/aio/204.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择键盘布局" src="https://img.it927.com/aio/204.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>安装选择选择【最小安装】即可
+ <a class="glightbox" href="https://img.it927.com/aio/205.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择键盘布局" src="https://img.it927.com/aio/205.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>安装类型选择【清除整个磁盘并安装 Ubuntu】，后面有个提示确认即可
+ <a class="glightbox" href="https://img.it927.com/aio/206.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装类型" src="https://img.it927.com/aio/206.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择时区点击【中国的地区】即可，或手动输入【上海】
+ <a class="glightbox" href="https://img.it927.com/aio/208.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择时区" src="https://img.it927.com/aio/208.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>设置账号密码按照自己的需求设置
+ <a class="glightbox" href="https://img.it927.com/aio/207.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置账号密码" src="https://img.it927.com/aio/207.png" /></a></p>
+</div>
+</div>
+</div>
+<h4 id="_6">完成安装<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>安装完成后，系统还会提示安装完成，需要重启一次
+<a class="glightbox" href="https://img.it927.com/aio/209.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="重启系统" src="https://img.it927.com/aio/209.png" /></a>
+至此，已经安装完成了 Ubuntu，稍后关机后，可以将 <a href="#2">存储和硬件配置-自定设置 5：添加镜像</a> 添加的镜像给删除。
+<a class="glightbox" href="https://img.it927.com/aio/210.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="删除镜像" src="https://img.it927.com/aio/210.png" /></a></p>
+<h4 id="sshd">安装 sshd<a class="headerlink" href="#sshd" title="Permanent link">&para;</a></h4>
+<p>因为我们最小化安装，Ubuntu 并未带 <code>sshd</code> 包，所以需安装了，通过点击左下角的菜单图标进入菜单，再点击终端进入终端。
+<a class="glightbox" href="https://img.it927.com/aio/211.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装 sshd" src="https://img.it927.com/aio/211.png" /></a>
+在终端中输入，并按照要求输入密码，结束安装。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w">  </span>openssh-server
+</code></pre></div></p>
+<details class="info" open="open">
+<summary>注意</summary>
+<p>如果无法安装，请注意换源，换源教程请参考：<a href="https://midoq.github.io/2022/05/30/Ubuntu20-04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90/">Ubuntu20.04 更换国内镜像源</a></p>
+</details>
+<h4 id="root">开启 root 登入<a class="headerlink" href="#root" title="Permanent link">&para;</a></h4>
+<p>在 Ubuntu 中，通常不推荐使用 root 用户来执行日常任务，因为这可能会导致系统安全性降低。由于我们只本地访问所以开启也无所谓。</p>
+<h5 id="root_1">先设置 root 密码<a class="headerlink" href="#root_1" title="Permanent link">&para;</a></h5>
+<p>输入如下命令后，再输入两次密码
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>passwd<span class="w"> </span>root
+</code></pre></div></p>
+<h5 id="root_2">开启 root 访问<a class="headerlink" href="#root_2" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+</code></pre></div>
+查找找这行 <code>PermitRootLogin prohibit-password</code>，改为 <code>PermitRootLogin yes</code>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#PermitRootLogin prohibit-password # 复制一行</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>PermitRootLogin<span class="w"> </span>yes
+</code></pre></div>
+重启 sshd，即可通过 ssh 访问了。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+</code></pre></div></p>
+<h2 id="_7">跳板机网络配置<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>跳板机安装成功后，我们还需要将四个网卡设置固定 IP ，防止每次重启 IP 发生变化。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">网卡一</label><label for="__tabbed_5_2">网卡二</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/212.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网卡一" src="https://img.it927.com/aio/212.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/213.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网卡二" src="https://img.it927.com/aio/213.png" /></a></p>
+</div>
+</div>
+</div>
+<p>其中 <code>ens34</code> 一直处于正在连接中，为什么呢？因它和 ESXi 管理网卡一个网段，这个网段没有 DHCP 服务器，所以一直在连接中，获取不到 IP 地址。</p>
+<h3 id="esxi">ESXi 管理网段设置<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h3>
+<p>编辑 <code>ens34</code> 网卡，选择【IPv4】方式改为【手动】，将地址和 ESXi 管理网卡设置成一个网段。</p>
+<p>因陈大剩 ESXi 管理网口地址为 <code>192.168.188.1</code>，所以这个网段设置为 <code>192.168.188.5</code>（不与 <code>192.168.188.1</code> 冲突就行），子网掩码为 <code>255.255.255.0</code>。
+<a class="glightbox" href="https://img.it927.com/aio/214.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ESXi 管理网段设置" src="https://img.it927.com/aio/214.png" /></a>
+点击【应用】后，能看到 <code>ens34</code> 状态为已连接：
+<a class="glightbox" href="https://img.it927.com/aio/215.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ens34网卡状态" src="https://img.it927.com/aio/215.png" /></a>
+通过 Ubuntu 自带的浏览器 Firefox 访问 <code>192.168.188.1</code>，可以看到能够成功访问 ESXi Web 管理页面。
+<a class="glightbox" href="https://img.it927.com/aio/216.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问ESXi Web" src="https://img.it927.com/aio/216.png" /></a></p>
+<h3 id="_8">其他网段设置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>其他网段需防止跳板机启动时跳 IP，还需要将获取 IP 方式改为 <strong>静态 IP</strong>，以家庭终端网段为例，首先查看获取的 IP：
+<a class="glightbox" href="https://img.it927.com/aio/217.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="获取的 IP" src="https://img.it927.com/aio/217.png" /></a>
+然后将 IP 填入【手动】中，点击【应用】
+<a class="glightbox" href="https://img.it927.com/aio/218.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问" src="https://img.it927.com/aio/218.png" /></a>
+<strong>实验室网段</strong> 和 <strong>预留网段</strong> 也依次按照此设置即可。</p>
+<h2 id="_9">安装端口转发工具<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p><code>socat</code> 是一个多功能的网络工具，可以用于端口转发，比如我们可以将 <strong>ESXi</strong> 管理 Web 端口转发至 跳板机的端口，<strong>ESXi</strong> 管理 Web 页面就不需要再插网线了。</p>
+<h3 id="socat">安装 socat<a class="headerlink" href="#socat" title="Permanent link">&para;</a></h3>
+<p>通过 apt 安装
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo apt install socat 
+</code></pre></div></p>
+<h3 id="_10">代理测试<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>安装成功后输入 Ubuntu 如下代理 <strong>ESXi</strong> 管理 Web 端口
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>socat<span class="w"> </span>TCP-LISTEN:443,fork<span class="w"> </span>TCP:192.168.188.1:443
+</code></pre></div></p>
+<ul>
+<li><code>TCP-LISTEN:443</code>：监听本地的 <code>443</code> 端口。</li>
+<li><code>fork</code>：允许同时处理多个连接。</li>
+<li><code>TCP:192.168.88.1:443</code>：将流量转发到跳板机的 <code>443</code> 端口。</li>
+</ul>
+<p>其他家庭网段终端可通过浏览器输入跳板机 IP <code>https://192.168.8.130/</code> 进行访问，记住一定要加上前面的  <code>https</code>  协议，不出意外我们能进行访问。
+<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png" /></a></p>
+<h2 id="esxi_1">代理 ESXi 管理网口<a class="headerlink" href="#esxi_1" title="Permanent link">&para;</a></h2>
+<p>前面步骤是 <strong>手动将命令输入到终端中</strong>，不可能每次都去手动输入，我们需要设置成随跳板机一起启动，就得将 <code>socat</code> 设置为 <strong>守护进程</strong>，可以通过 <code>systemd</code> 的特性来实现。</p>
+<h3 id="systemd">创建一个 systemd 服务文件<a class="headerlink" href="#systemd" title="Permanent link">&para;</a></h3>
+<p>打开终端，使用文本编辑器创建一个新的服务文件。例如，使用 <code>vim</code> 创建服务文件：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/systemd/system/socat-esxi.service
+</code></pre></div></p>
+<h3 id="_11">添加服务配置<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>写入如下内容：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>Unit<span class="o">]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">Description</span><span class="o">=</span>Socat<span class="w"> </span>Port<span class="w"> </span>Forwarding<span class="w"> </span>Service
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">After</span><span class="o">=</span>network.target
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">[</span>Service<span class="o">]</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/socat<span class="w"> </span>TCP-LISTEN:443,fork<span class="w"> </span>TCP:192.168.188.1:443
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nv">Restart</span><span class="o">=</span>always
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="o">[</span>Install<span class="o">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div></p>
+<ul>
+<li><strong>Restart=always</strong>：确保服务在退出时自动重启；</li>
+<li><strong>RestartSec=5</strong>：在重启之前等待 5 秒；</li>
+<li><strong>User=nobody</strong>：以 <code>nobody</code> 用户身份运行服务，确保安全性。你可以根据需要更改为其他用户；</li>
+<li><strong>StandardOutput=syslog</strong> 和 <strong>StandardError=syslog</strong>：将输出和错误记录到系统日志中，方便后续查看；</li>
+</ul>
+<h3 id="systemd_1">重新加载 systemd<a class="headerlink" href="#systemd_1" title="Permanent link">&para;</a></h3>
+<p>运行以重新加载 <code>systemd</code>，使其识别新创建的服务：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</code></pre></div></p>
+<h3 id="_12">启动服务<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>使用命令启动服务：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>socat-esxi.service
+</code></pre></div></p>
+<h3 id="_13">检查服务状态<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>socat-esxi.service
+</code></pre></div>
+<a class="glightbox" href="https://img.it927.com/aio/221.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="检查服务状态" src="https://img.it927.com/aio/221.png" /></a>
+执行后查看是否成功，其他家庭网段终端可通过浏览器输入跳板机 IP <code>https://192.168.8.130/</code> 进行访问：
+<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png" /></a>
+至此大功告成，设置跳板机设置开机启动后，开机启动设置在软路由之后即可，可参考 <a href="../../esxi/self-starting/">ESXi 进阶操作 - 虚拟机自启动</a>，最后可拔掉 <strong>ESXi</strong> 管理端口网线。</p>
+<h2 id="_14">后续规划<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>前面功能只能说是跳板机的冰山一角，后续还可通过跳板机实现很多跨网段的方案。</p>
 
   
 
