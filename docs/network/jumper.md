@@ -14,13 +14,14 @@ keywords:
   - 家庭All-in-One搭建教程
 description: 详细介绍在ESXi环境中创建和安装Ubuntu跳板机的完整教程，包含虚拟机配置、系统安装、VMware Tools安装和网络配置等步骤。
 ---
-根据网络拓扑设计的规范，需安装一个跳板机，跳板机需要支持的功能如下：
+根据网络拓扑设计规范，跳板机作为网络访问的核心节点，需要实现以下关键功能：
+## 跳板机功能需求
 
-- [x] **代理** ESXi 管理网口，使不需要插网线即可访问 ESXi Web 管理页面；
-- [x] **代理** 所有网络，可以通过跳板机找到每一台网络拓扑下的主机；
-- [x] **隔离** 网络，实现内外网物理隔离，避免直接暴露内部系统；
-- [x] **转发** 端口，可以提供安全的端口映射和转发服务；
-- [x] **统一** 入口管理，作为访问内部网络资源的唯一入口，集中管理所有远程访问请求；
+- [x] **代理功能** - 代理 ESXi 管理网口，实现无线访问 ESXi Web 管理界面
+- [x] **网络代理** - 提供全网络代理服务，统一访问网络拓扑下的所有主机
+- [x] **网络隔离** - 实现内外网物理隔离，保护内部系统安全
+- [x] **端口转发** - 提供安全的端口映射和转发服务
+- [x] **统一入口** - 作为访问内部网络资源的唯一入口，集中管理远程访问
 
 ## 选择跳板机操作系统
 
@@ -145,27 +146,24 @@ Ubuntu 作为最受欢迎的 Linux 发行版之一，在ESXi环境中具有以�
 ```shell
 sudo apt-get install  openssh-server
 ```
-???+info "注意"
+???+info "镜像源配置"
     如果无法安装，请注意换源，换源教程请参考：[Ubuntu20.04 更换国内镜像源](https://midoq.github.io/2022/05/30/Ubuntu20-04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90/)
 
 #### 开启 root 登入
 在 Ubuntu 中，通常不推荐使用 root 用户来执行日常任务，因为这可能会导致系统安全性降低。由于我们只本地访问所以开启也无所谓。
-##### 先设置 root 密码
-输入如下命令后，再输入两次密码
-```shell
+```bash
+# 设置 root 密码
 sudo passwd root
-```
-##### 开启 root 访问
-```shell
+
+# 编辑 SSH 配置文件
 sudo nano /etc/ssh/sshd_config
-```
-查找找这行 `PermitRootLogin prohibit-password`，改为 `PermitRootLogin yes`
-```shell
-#PermitRootLogin prohibit-password # 复制一行
-PermitRootLogin yes
-```
-重启 sshd，即可通过 ssh 访问了。
-```shell
+
+# 找到并修改以下行：
+# PermitRootLogin prohibit-password
+# 改为：
+# PermitRootLogin yes
+
+# 重启 SSH 服务
 sudo systemctl restart ssh
 ```
 ## 跳板机网络配置
@@ -181,7 +179,7 @@ sudo systemctl restart ssh
 
 因陈大剩 ESXi 管理网口地址为 `192.168.188.1`，所以这个网段设置为 `192.168.188.5`（不与 `192.168.188.1` 冲突就行），子网掩码为 `255.255.255.0`。
 ![ESXi 管理网段设置](https://img.it927.com/aio/214.png)
-点击【应用】后，能看到 `ens34` 状态为已连接：
+配置完成后，网卡状态变为"已连接"：
 ![ens34网卡状态](https://img.it927.com/aio/215.png)
 通过 Ubuntu 自带的浏览器 Firefox 访问 `192.168.188.1`，可以看到能够成功访问 ESXi Web 管理页面。
 ![访问ESXi Web](https://img.it927.com/aio/216.png)
@@ -190,8 +188,7 @@ sudo systemctl restart ssh
 ![获取的 IP](https://img.it927.com/aio/217.png)
 然后将 IP 填入【手动】中，点击【应用】
 ![访问](https://img.it927.com/aio/218.png)
-**实验室网段** 和 **预留网段** 也依次按照此设置即可。
-
+对所有网卡重复此操作，确保网络配置的稳定性。
 ## 安装端口转发工具
 `socat` 是一个多功能的网络工具，可以用于端口转发，比如我们可以将 **ESXi** 管理 Web 端口转发至 跳板机的端口，**ESXi** 管理 Web 页面就不需要再插网线了。
 ### 安装 socat

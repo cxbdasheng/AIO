@@ -96,6 +96,7 @@ nav:
       - 网络拓扑设计: "network/settings.md"
       - 网络拓扑实战: "network/fight.md"
       - 跳板机使用: "network/jumper.md"
+      - 突破 1000M 带宽 : "network/intranet.md"
       - 故障排查与优化: "network/qa.md"
   - ESXi 进阶操作:
       - 虚拟机自启动: "esxi/self-starting.md"
