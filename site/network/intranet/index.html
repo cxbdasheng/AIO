@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细分析千兆宽带无法跑满的原因，提供光猫和路由器升级方案，实现突破1000M带宽限制的完整解决方案。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>突破 1000M 带宽 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="千兆宽带优化,2.5G网络升级,万兆网络部署,光猫升级,路由器选购,网络瓶颈分析,家庭网络优化,高速宽带配置,网络设备升级,带宽测试优化">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -80,6 +82,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -888,6 +895,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    突破 1000M 带宽
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -897,6 +915,278 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      带宽限制的根本原因
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="带宽限制的根本原因">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 运营商预留机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 千兆网口的物理限制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 网络拓扑瓶颈
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25g" class="md-nav__link">
+    <span class="md-ellipsis">
+      突破方案：升级到 2.5G/万兆网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="突破方案：升级到 2.5G/万兆网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25g_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      升级到 2.5G 方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="升级到 2.5G 方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25g_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5G 光猫选购指南
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心需求分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      型号选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      刷机支持其他运营商
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="刷机支持其他运营商">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      刷入新光猫
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="刷入新光猫">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 telnet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改新光猫参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pppoe" class="md-nav__link">
+    <span class="md-ellipsis">
+      PPPoE配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      测速
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25g_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      全屋 2.5G 网络覆盖
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="全屋 2.5G 网络覆盖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25g_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5G 路由器选购指南
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5G 路由器选购指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心需求分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      网线和配件选择
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网线和配件选择">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      网线标准
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络拓扑优化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1765,6 +2055,269 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      带宽限制的根本原因
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="带宽限制的根本原因">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 运营商预留机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 千兆网口的物理限制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 网络拓扑瓶颈
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25g" class="md-nav__link">
+    <span class="md-ellipsis">
+      突破方案：升级到 2.5G/万兆网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="突破方案：升级到 2.5G/万兆网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25g_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      升级到 2.5G 方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="升级到 2.5G 方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25g_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5G 光猫选购指南
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心需求分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      型号选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      刷机支持其他运营商
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="刷机支持其他运营商">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      刷入新光猫
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="刷入新光猫">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 telnet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改新光猫参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pppoe" class="md-nav__link">
+    <span class="md-ellipsis">
+      PPPoE配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      测速
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25g_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      全屋 2.5G 网络覆盖
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="全屋 2.5G 网络覆盖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25g_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5G 路由器选购指南
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5G 路由器选购指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心需求分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      网线和配件选择
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网线和配件选择">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      网线标准
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络拓扑优化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1788,7 +2341,329 @@
 
   <h1>突破 1000M 带宽</h1>
 
+<p>在使用千兆宽带时会发现一个现象：明明办理的是 1000M 宽带，但实际测速往往只能达到 800-950M，很难跑满理论带宽。其实这背后的原因并非运营商"缩水"，而是涉及到网络设备的物理限制和协议开销，本文来教大家 1000M 宽带突破到 1200M，甚至更高。</p>
+<h2 id="_1">带宽限制的根本原因<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 运营商预留机制<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>运营商在提供宽带服务时，通常会预留 10%-20% 的带宽余量：</p>
+<ul>
+<li><strong>1000M 宽带</strong> → 实际可能提供 <strong>1100-1200M</strong></li>
+<li><strong>500M 宽带</strong> → 实际可能提供 <strong>550-600M</strong></li>
+<li><strong>200M 宽带</strong> → 实际可能提供 <strong>220-240M</strong></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">余量作用</p>
+<p>余量具体要看地区和某个运营商，余量主要用于：</p>
+<ul>
+<li>补偿网络传输中的协议开销；</li>
+<li>应对网络拥塞时的性能下降；</li>
+<li>确保用户能够达到承诺的最低速率；</li>
+</ul>
+</div>
+<h3 id="2">2. 千兆网口的物理限制<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>标准千兆以太网口的理论最大传输速率为 1000Mbps，但实际可用带宽会因以下因素降低：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">协议开销</label><label for="__tabbed_1_2">物理损耗</label><label for="__tabbed_1_3">设备处理能力</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>以太网帧头</strong>：18 字节（目标MAC + 源MAC + 类型 + FCS）；</li>
+<li><strong>IP 头部</strong>：20 字节（IPv4）或 40 字节（IPv6）；</li>
+<li><strong>TCP 头部</strong>：20-60 字节；</li>
+<li><strong>应用层协议</strong>：HTTP、FTP 等额外开销；</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>信号衰减</strong>：网线长度和质量影响；</li>
+<li><strong>接口老化</strong>：长期使用导致的性能下降；</li>
+<li><strong>电磁干扰</strong>：周围设备的信号干扰；</li>
+<li><strong>温度影响</strong>：高温环境下的性能降低；</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>CPU 性能</strong>：路由器和光猫的处理能力限制；</li>
+<li><strong>内存带宽</strong>：数据缓存和转发的瓶颈；</li>
+<li><strong>固件优化</strong>：软件层面的性能限制；</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="3">3. 网络拓扑瓶颈<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>典型家庭网络拓扑中的瓶颈点：</p>
+<p><pre class="mermaid"><code>graph LR
+    A[运营商机房] --&gt;|光纤| B[光猫]
+    B --&gt;|千兆网线| C[路由器]
+    C --&gt;|千兆网线| D[终端设备]
 
+    style B fill:#ff9999
+    style C fill:#ff9999</code></pre>
+红色标注的设备通常是性能瓶颈所在。</p>
+<h2 id="25g">突破方案：升级到 2.5G/万兆网络<a class="headerlink" href="#25g" title="Permanent link">&para;</a></h2>
+<p>综和前面的几个原因，能看到 <strong>只需要支持 1000Mbps 以上的硬件设备</strong>，即可以突破方案 1000M 宽带，目前支持 1000Mbps 以上的硬件设备有 2.5G、5G 、万兆。</p>
+<h3 id="_2">方案对比<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>升级方案</th>
+<th>理论带宽</th>
+<th>成本</th>
+<th>兼容性</th>
+<th>推荐指数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.5G 升级</td>
+<td>2500Mbps</td>
+<td>中等</td>
+<td>良好</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>5G 升级</td>
+<td>5000Mbps</td>
+<td>较高</td>
+<td>一般</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>万兆升级</td>
+<td>10000Mbps</td>
+<td>很高</td>
+<td>较差</td>
+<td>⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">推荐方案</p>
+<p>对于家庭用户，陈大剩推荐选择 <strong>2.5G 升级</strong> ，性价比高且兼容性好，目前陈大剩也是用的这个方案。</p>
+</div>
+<h2 id="25g_1">升级到 2.5G 方案<a class="headerlink" href="#25g_1" title="Permanent link">&para;</a></h2>
+<h3 id="25g_2">2.5G 光猫选购指南<a class="headerlink" href="#25g_2" title="Permanent link">&para;</a></h3>
+<p>光猫选购这块，大部光猫都是运营商定制版，比如中兴的某款电信版光猫，可以再找找它有没有联通版或移动版定制版。</p>
+<p>其实光猫不存在单运营商使用，因为芯片处理都是不能可能定制的，仅能定制软件系统，所以要看 <strong>光猫能不能刷机，能不能改参数</strong>，比如陈大剩现在就是用的电信定制版光猫，但我的宽带是移动 1000M。</p>
+<h3 id="_3">核心需求分析<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>说到核心参数，陈大剩认为核心参数要求如下：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">网口配置</label><label for="__tabbed_2_2">性能指标</label><label for="__tabbed_2_3">协议支持</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>上行接口</strong>：GPON/EPON 光纤接口</li>
+<li><strong>下行接口</strong>：至少 1 个 2.5G 网口</li>
+<li><strong>备用接口</strong>：2-4 个千兆网口</li>
+<li><strong>管理接口</strong>：1 个百兆管理口（可选）</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>处理器</strong>：双核 ARM Cortex-A53 或更高</li>
+<li><strong>内存</strong>：512MB DDR3 或更高</li>
+<li><strong>闪存</strong>：128MB NAND Flash 或更高</li>
+<li><strong>转发性能</strong>：≥ 2.5Gbps 线速转发</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>光纤标准</strong>：GPON/EPON/XG-PON</li>
+<li><strong>网络协议</strong>：IPv4/IPv6 双栈</li>
+<li><strong>管理协议</strong>：TR-069、OMCI</li>
+<li><strong>安全协议</strong>：WPA3、防火墙</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="_4">型号选择<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>经过了几天的筛选，陈大剩最终选中了 <strong>中兴 F7005TV3</strong> 这款电信定制光猫，这款光猫简直是我的梦中情猫，体积小，可刷机，无 WIFI，最 <strong>重要的是仅 ￥90 元</strong>，我太爱这个光猫了。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">光猫图一</label><label for="__tabbed_3_2">光猫图二</label><label for="__tabbed_3_3">光猫图三</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/229.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="光猫图一" src="https://img.it927.com/aio/229.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/228.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="光猫图一" src="https://img.it927.com/aio/228.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/227.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="光猫图三" src="https://img.it927.com/aio/227.png" /></a></p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">兼容性检查</p>
+<p>购买前务必确认：</p>
+<ul>
+<li>是否可刷机；</li>
+<li>是否需要运营商激活；</li>
+<li>固件版本是否支持所需功能；</li>
+</ul>
+</div>
+<h3 id="_5">刷机支持其他运营商<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>因陈大剩用的是移动宽带，用这款电信定制版光猫还需要刷机，需先记住老光猫的参数，首先登入老光猫，陈大剩这里为移动光猫为例，用超级管理登入：
+<a class="glightbox" href="https://img.it927.com/aio/230.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="光猫数据" src="https://img.it927.com/aio/230.png" /></a>
+需要记住的参数有：设备标识号、MAC信息、宽带识别码（没有可不选）
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>宽带识别码：
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>MAC：18:4F:43:56:C3:BA
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>设备识别码（SN）：F09CD7-UMTC38178AD3<span class="w"> </span>
+</code></pre></div></p>
+<h4 id="_6">刷入新光猫<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h5 id="telnet">开启 telnet<a class="headerlink" href="#telnet" title="Permanent link">&para;</a></h5>
+<p>首先第一个是开启 <code>telnet</code>，一般购买的时候商家会给你开启，记得让商家给你账号密码。如果没有开启的话，我们自己也可以开启，需要准备一台 Windows 控制电脑。</p>
+<p>用一根网线连接光猫和控制电脑，获取到 IP 以后，在浏览器中输入 <code>192.168.1.1</code> 访问光猫并登入，账号：<code>telecomadmin</code>；密码：<code>nE7jA%5m</code>；
+<a class="glightbox" href="https://img.it927.com/aio/232.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="登入光猫" src="https://img.it927.com/aio/232.png" /></a>
+修改连接电脑网卡的 MAC 地址，导航【网络和共享中心】-【以太网】-【网络地址】-【值】，输入：<code>000729553557</code>
+<a class="glightbox" href="https://img.it927.com/aio/231.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启telnet" src="https://img.it927.com/aio/231.png" /></a>
+使用开源项目 <a href="https://github.com/Septrum101/zteOnu">zteOnu</a> 解锁 <code>telnet</code>。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">进入 zteOnu Releases</label><label for="__tabbed_4_2">选择合适的 zteOnu 版本</label><label for="__tabbed_4_3">运行 zteOnu</label><label for="__tabbed_4_4">等待执行成功</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入后点击【Releases】按钮
+<a class="glightbox" href="https://img.it927.com/aio/233.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启telnet" src="https://img.it927.com/aio/233.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>根据自己的操作系统，选择下载并解压
+<a class="glightbox" href="https://img.it927.com/aio/234.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择合适的 zteOnu 版本" src="https://img.it927.com/aio/234.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>导航到 zteOnu 解压目录，用 CMD 输入 <code>zteOnu --telnet</code>
+<a class="glightbox" href="https://img.it927.com/aio/235.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="运行 zteOnu" src="https://img.it927.com/aio/235.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>如看到如下标识，则证明开启 telnet 成功，否则请多次尝试
+<a class="glightbox" href="https://img.it927.com/aio/236.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="等待执行成功" src="https://img.it927.com/aio/236.png" /></a></p>
+</div>
+</div>
+</div>
+<h5 id="_7">修改新光猫参数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<p>通过命令终端 <code>telnet 192.168.1.1</code> 登入到路由器，账号：<code>root</code> ;密码：<code>Zte521</code>，先查看系统参数;
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 查看系统参数</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>setmac<span class="w"> </span>show2<span class="w"> </span>
+</code></pre></div>
+输出后可以看到
+<a class="glightbox" href="https://img.it927.com/aio/237.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="结果" src="https://img.it927.com/aio/237.png" /></a>
+可以按照如下命名修改：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span>修改<span class="w"> </span>2查看<span class="w"> </span>3删除
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">[</span>ID<span class="o">]</span><span class="w"> </span><span class="o">[</span>内容<span class="o">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">32769</span><span class="w">   </span>修改光猫的MAC地址（可选），列如格式是：setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">32769</span><span class="w"> </span>B4:BA:12:B8:EE:50
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2176</span><span class="w">    </span>gponSN前4位
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2177</span><span class="w">    </span>gponSN后8位
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">768</span><span class="w">     </span>设备标识码前6位数字（可选）
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">512</span><span class="w">     </span>设备标识码后17位数字（可选）
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2180</span><span class="w"> </span>LOID<span class="w"> </span>（与2179不同时改）
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2179</span><span class="w"> </span>password<span class="w"> </span>（与2180不同时改）
+</code></pre></div>
+由于我是移动用户，只需要修改 MAC 地址和设备号
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2176</span><span class="w"> </span>F09CD7
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2177</span><span class="w"> </span>UMTC38178AD3
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>setmac<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">32769</span><span class="w"> </span><span class="m">18</span>:4F:43:56:C3:BA
+</code></pre></div>
+改完后 <code>reboot</code> 命名重启即可。</p>
+<h4 id="pppoe">PPPoE配置<a class="headerlink" href="#pppoe" title="Permanent link">&para;</a></h4>
+<p>最后我们仅需配置 PPPoE 即可上网，有 VLAN ID 的也记得配置好。
+<a class="glightbox" href="https://img.it927.com/aio/238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="PPPoE配置" src="https://img.it927.com/aio/238.png" /></a></p>
+<h3 id="_8">测速<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>配置完即可测试，测速直接从光猫的 2.5G 网口中接线到 Windows电脑，测试的网络拓扑如下：
+<pre class="mermaid"><code>graph LR
+    A[光猫] --&gt;|2.5G| B[Windows电脑]</code></pre>
+结果：
+<a class="glightbox" href="https://img.it927.com/aio/239.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="测试结果" src="https://img.it927.com/aio/239.png" /></a></p>
+<h2 id="25g_3">全屋 2.5G 网络覆盖<a class="headerlink" href="#25g_3" title="Permanent link">&para;</a></h2>
+<h3 id="25g_4">2.5G 路由器选购指南<a class="headerlink" href="#25g_4" title="Permanent link">&para;</a></h3>
+<h4 id="_9">核心需求分析<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>接口需求
+<pre class="mermaid"><code>graph TD
+    A[路由器] --&gt; B[WAN口]
+    A --&gt; C[LAN口]
+    A --&gt; D[无线模块]
+
+    B --&gt; B1[2.5G WAN口]
+    C --&gt; C1[2.5G LAN口 x1]
+    C --&gt; C2[千兆LAN口 x3-4]
+    D --&gt; D1[Wi-Fi 6/6E]
+    D --&gt; D2[2.4G + 5G 双频]</code></pre>
+性能需求</p>
+<table>
+<thead>
+<tr>
+<th>功能模块</th>
+<th>最低要求</th>
+<th>推荐配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>双核 1.2GHz</td>
+<td>四核 1.8GHz</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>256MB</td>
+<td>512MB+</td>
+</tr>
+<tr>
+<td>闪存</td>
+<td>128MB</td>
+<td>256MB+</td>
+</tr>
+<tr>
+<td>无线</td>
+<td>Wi-Fi 6 AX1800</td>
+<td>Wi-Fi 6E AX3000+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">网线和配件选择<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h4 id="_11">网线标准<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>最大带宽</th>
+<th>传输距离</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cat5e</td>
+<td>1Gbps</td>
+<td>100m</td>
+<td>千兆网络</td>
+</tr>
+<tr>
+<td>Cat6</td>
+<td>10Gbps</td>
+<td>55m</td>
+<td>万兆短距离</td>
+</tr>
+<tr>
+<td>Cat6A</td>
+<td>10Gbps</td>
+<td>100m</td>
+<td>万兆标准距离</td>
+</tr>
+<tr>
+<td>Cat7</td>
+<td>10Gbps</td>
+<td>100m</td>
+<td>专业级应用</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">推荐选择</p>
+<p>家庭环境建议使用 <strong>Cat6</strong> 或 <strong>Cat6A</strong> 网线，性价比最优。</p>
+</div>
+<h3 id="_12">网络拓扑优化<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph LR
+    A[光猫] --&gt;|2.5G| B[主路由器]
+    B --&gt;|2.5G| C[核心交换机]
+    C --&gt;|千兆| D[AP1]
+    C --&gt;|千兆| E[AP2]
+    C --&gt;|千兆| F[NAS]
+    C --&gt;|千兆| G[游戏主机]</code></pre>
+<h2 id="_13">总结<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>通过升级到 2.5G 网络设备，</p>
 
   
 
