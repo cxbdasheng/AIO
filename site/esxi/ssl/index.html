@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="介绍如何为ESXi配置有效的SSL证书，包括域名解析、证书申请、证书导入和自动续期等完整流程，提升ESXi管理界面的安全性。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>SSL 证书配置 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi SSL证书,ESXi HTTPS配置,VMware证书管理,ESXi安全配置,免费SSL证书,域名证书配置,ESXi证书导入,虚拟化安全,Let's Encrypt ESXi,阿里云SSL证书">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -1102,10 +1104,61 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="签发证书">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置证书信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS 验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      证书签发
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载证书
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       导入证书
     </span>
@@ -1865,10 +1918,61 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="签发证书">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置证书信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS 验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      证书签发
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载证书
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       导入证书
     </span>
@@ -1904,15 +2008,62 @@
 <h2 id="esxi">ESXi 自带的证书是无效的，这怎么能忍？<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="SSL证书信任" src="https://img.it927.com/aio/220.png" /></a></p>
 <h2 id="_1">域名解析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>配置 1 个  A 记录的子域名解析到 192.168.8.130（ESXi 的控制台 IP）：</p>
-<p><a class="glightbox" href="https://img.it927.com/aio/248.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="域名解析" src="https://img.it927.com/aio/248.png" /></a></p>
-<p>配置好解析后，十几分钟后测试一下，确保全国各地解析都没问题：</p>
+<p>配置 1 个 A 记录的子域名解析到 192.168.8.130（ESXi 的控制台 IP）：
+<a class="glightbox" href="https://img.it927.com/aio/248.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="域名解析" src="https://img.it927.com/aio/248.png" /></a></p>
+<div class="admonition info">
+<p class="admonition-title">IP 地址说明</p>
+<p>这里的 <code>192.168.8.130</code> 是 ESXi 管理网口的 IP 地址，请根据实际情况修改。</p>
+</div>
+<p>配置完成后，等待 10-15 分钟进行全球 DNS 传播，然后验证解析是否生效：</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/249.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="DNS解析" src="https://img.it927.com/aio/249.png" /></a></p>
 <h2 id="_2">签发证书<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>使用云服务器厂商提供服务签发1个免费的证书，陈大剩这里使用的是阿里云的 DigiCert 免费版 SSL：</p>
-<p><a class="glightbox" href="https://img.it927.com/aio/226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="签发证书" src="https://img.it927.com/aio/226.png" /></a></p>
-<p>然后下载类型为：「其他」留着备用</p>
-<h2 id="_3">导入证书<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>使用云服务器厂商提供服务签发 1 个免费的证书（3个月），陈大剩这里使用的是阿里云的 DigiCert 免费版 SSL：</p>
+<h3 id="_3">创建证书<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>登录阿里云控制台，进入 <strong>SSL证书服务</strong>：</p>
+<ol>
+<li>点击【购买证书】</li>
+<li>选择【DV单域名证书【免费试用】】</li>
+<li>确认订单并支付（免费）</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/222.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="创建证书" src="https://img.it927.com/aio/222.png" /></a></p>
+<h3 id="_4">配置证书信息<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>在证书管理页面：</p>
+<ol>
+<li>点击【证书申请】</li>
+<li>填写域名：<code>aio.it927.com</code></li>
+<li>选择验证方式：<strong>DNS验证</strong>（推荐）</li>
+<li>填写联系信息</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/223.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="验证 DNS" src="https://img.it927.com/aio/223.png" /></a></p>
+<h3 id="dns">DNS 验证<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h3>
+<p>系统会生成一条 TXT 记录，需要添加到域名 DNS 中：</p>
+<p><strong>验证记录示例：</strong>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>记录类型：TXT
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>主机记录：_dnsauth.aio
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>记录值：202312151234567890abcdef...
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>TTL：600
+</code></pre></div>
+<a class="glightbox" href="https://img.it927.com/aio/225.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="验证 DNS" src="https://img.it927.com/aio/225.png" /></a></p>
+<p><strong>验证步骤：</strong></p>
+<ol>
+<li>复制提供的 TXT 记录</li>
+<li>在域名管理后台添加 TXT 记录</li>
+<li>等待 DNS 传播（5-10分钟）</li>
+<li>点击【验证】按钮</li>
+</ol>
+<h3 id="_5">证书签发<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>验证通过后，证书会在 10-30 分钟内签发完成：</p>
+<p><a class="glightbox" href="https://img.it927.com/aio/226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="证书签发完成" src="https://img.it927.com/aio/226.png" /></a></p>
+<h3 id="_6">下载证书<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>证书签发后，下载证书文件：</p>
+<ol>
+<li>点击【下载】</li>
+<li>选择服务器类型：<strong>其他</strong></li>
+<li>下载包含以下文件：</li>
+<li><code>aio.it927.com.crt</code>（证书文件）</li>
+<li><code>aio.it927.com..key</code>（私钥文件）</li>
+</ol>
+<h2 id="_7">导入证书<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 
   
 
@@ -1933,7 +2084,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月5日 16:22:13 UTC">2025年8月5日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月6日 16:23:55 UTC">2025年8月6日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
