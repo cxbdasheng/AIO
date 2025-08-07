@@ -10,6 +10,8 @@ keywords:
   - 虚拟化安全
   - Let's Encrypt ESXi
   - 阿里云SSL证书
+  - 家庭AIO搭建教程
+  - 家庭All-in-One搭建教程
 description: 介绍如何为ESXi配置有效的SSL证书，包括域名解析、证书申请、证书导入和自动续期等完整流程，提升ESXi管理界面的安全性。
 ---
 ## ESXi 系统证书无效
