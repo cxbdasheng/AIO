@@ -1082,7 +1082,7 @@
         <li class="md-nav__item">
   <a href="#esxi" class="md-nav__link">
     <span class="md-ellipsis">
-      ESXi 自带的证书是无效的，这怎么能忍？
+      ESXi 系统证书无效
     </span>
   </a>
   
@@ -1091,7 +1091,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      域名解析
+      准备工作
     </span>
   </a>
   
@@ -1099,6 +1099,15 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      域名解析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       签发证书
     </span>
@@ -1108,7 +1117,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       创建证书
     </span>
@@ -1117,7 +1126,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       配置证书信息
     </span>
@@ -1135,7 +1144,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       证书签发
     </span>
@@ -1144,7 +1153,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       下载证书
     </span>
@@ -1158,9 +1167,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       导入证书
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -1896,7 +1914,7 @@
         <li class="md-nav__item">
   <a href="#esxi" class="md-nav__link">
     <span class="md-ellipsis">
-      ESXi 自带的证书是无效的，这怎么能忍？
+      ESXi 系统证书无效
     </span>
   </a>
   
@@ -1905,7 +1923,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      域名解析
+      准备工作
     </span>
   </a>
   
@@ -1913,6 +1931,15 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      域名解析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       签发证书
     </span>
@@ -1922,7 +1949,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       创建证书
     </span>
@@ -1931,7 +1958,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       配置证书信息
     </span>
@@ -1949,7 +1976,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       证书签发
     </span>
@@ -1958,7 +1985,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       下载证书
     </span>
@@ -1972,9 +1999,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       导入证书
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -2005,9 +2041,12 @@
 
   <h1>SSL 证书配置</h1>
 
-<h2 id="esxi">ESXi 自带的证书是无效的，这怎么能忍？<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
-<p><a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="SSL证书信任" src="https://img.it927.com/aio/220.png" /></a></p>
-<h2 id="_1">域名解析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="esxi">ESXi 系统证书无效<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<p><strong>浏览器警告</strong>：每次访问都显示"不安全"警告，ESXi 自带的证书是无效的，这怎么能忍？
+<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="SSL证书信任" src="https://img.it927.com/aio/220.png" /></a></p>
+<h2 id="_1">准备工作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>配置证书，需准备一个公网域名，如陈大剩的域名 <code>it927.com</code>，如果再拥有一个公网 IP 更好。</p>
+<h2 id="_2">域名解析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>配置 1 个 A 记录的子域名解析到 192.168.8.130（ESXi 的控制台 IP）：
 <a class="glightbox" href="https://img.it927.com/aio/248.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="域名解析" src="https://img.it927.com/aio/248.png" /></a></p>
 <div class="admonition info">
@@ -2016,9 +2055,13 @@
 </div>
 <p>配置完成后，等待 10-15 分钟进行全球 DNS 传播，然后验证解析是否生效：</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/249.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="DNS解析" src="https://img.it927.com/aio/249.png" /></a></p>
-<h2 id="_2">签发证书<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>使用云服务器厂商提供服务签发 1 个免费的证书（3个月），陈大剩这里使用的是阿里云的 DigiCert 免费版 SSL：</p>
-<h3 id="_3">创建证书<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h2 id="_3">签发证书<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>使用云服务器厂商提供服务签发 1 个免费的证书（3个月），陈大剩这里使用的是阿里云的 DigiCert 免费版 SSL。
+<a class="glightbox" href="https://img.it927.com/aio/226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="证书签发完成" src="https://img.it927.com/aio/226.png" /></a>
+因为签发证书为基础操作，这里不做展开，有需具体了解的可展开 “证书签发流程” 查看。</p>
+<details class="info">
+<summary>证书签发流程</summary>
+<h3 id="_4">创建证书<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>登录阿里云控制台，进入 <strong>SSL证书服务</strong>：</p>
 <ol>
 <li>点击【购买证书】</li>
@@ -2026,7 +2069,7 @@
 <li>确认订单并支付（免费）</li>
 </ol>
 <p><a class="glightbox" href="https://img.it927.com/aio/222.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="创建证书" src="https://img.it927.com/aio/222.png" /></a></p>
-<h3 id="_4">配置证书信息<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_5">配置证书信息<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>在证书管理页面：</p>
 <ol>
 <li>点击【证书申请】</li>
@@ -2051,19 +2094,30 @@
 <li>等待 DNS 传播（5-10分钟）</li>
 <li>点击【验证】按钮</li>
 </ol>
-<h3 id="_5">证书签发<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_6">证书签发<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>验证通过后，证书会在 10-30 分钟内签发完成：</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="证书签发完成" src="https://img.it927.com/aio/226.png" /></a></p>
-<h3 id="_6">下载证书<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+</details>
+<h3 id="_7">下载证书<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>证书签发后，下载证书文件：</p>
 <ol>
-<li>点击【下载】</li>
-<li>选择服务器类型：<strong>其他</strong></li>
+<li>点击【下载】；</li>
+<li>选择服务器类型：<strong>其他</strong>；</li>
 <li>下载包含以下文件：</li>
 <li><code>aio.it927.com.crt</code>（证书文件）</li>
 <li><code>aio.it927.com..key</code>（私钥文件）</li>
 </ol>
-<h2 id="_7">导入证书<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_8">导入证书<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>登录 ESXi 管理界面，导航【管理】-【安全性和用户】-【证书】</p>
+<ol>
+<li>点击【导入证书】；</li>
+<li>上传证书文件（.crt）；</li>
+<li>上传私钥文件（.key）；</li>
+<li>点击【导入】；</li>
+</ol>
+<p>导入完成后，重启管理服务，即可使用 <code>aio.it927.com</code> 访问，这时候已经没有“不安全”的提示了：</p>
+<h2 id="_9">总结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>本文演示配置了安全证书，但是 DNS 解析的是局域网 IP，有公网 IP 条件的朋友可以直接解析到公网 IP，没有的朋友也不要着急，我们可以将 DNS 解析 IPv6 地址上。</p>
 
   
 
@@ -2084,7 +2138,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月6日 16:23:55 UTC">2025年8月6日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月6日 16:41:02 UTC">2025年8月6日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
