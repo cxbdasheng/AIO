@@ -1179,13 +1179,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      开机启动
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       后续规划
     </span>
@@ -2362,13 +2371,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      开机启动
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       后续规划
     </span>
@@ -2635,9 +2653,16 @@
 </code></pre></div>
 <a class="glightbox" href="https://img.it927.com/aio/221.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="检查服务状态" src="https://img.it927.com/aio/221.png" /></a>
 执行后查看是否成功，其他家庭网段终端可通过浏览器输入跳板机 IP <code>https://192.168.8.130/</code> 进行访问：
-<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png" /></a>
+<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png" /></a></p>
+<h3 id="_15">开机启动<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>访问之后，还需最后一个步骤，将 <code>socat-esxi.service</code> 服务设为开机启动。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>socat-esxi.service
+</code></pre></div>
+返回结果：
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Created symlink /etc/systemd/system/multi-user.target.wants/socat-esxi.service → /etc/systemd/system/socat-esxi.service.
+</code></pre></div>
 至此大功告成，设置跳板机设置开机启动后，开机启动设置在软路由之后即可，可参考 <a href="../../esxi/self-starting/">ESXi 进阶操作 - 虚拟机自启动</a>，最后可拔掉 <strong>ESXi</strong> 管理端口网线。</p>
-<h2 id="_15">后续规划<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h2 id="_16">后续规划<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <p>前面功能只能说是跳板机的冰山一角，后续还可通过跳板机实现很多跨网段的方案。</p>
 
   

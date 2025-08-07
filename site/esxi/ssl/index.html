@@ -1173,10 +1173,61 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="导入证书">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      上传证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH 登入
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      备份默认证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      替换默认证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -2005,10 +2056,61 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="导入证书">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      上传证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH 登入
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      备份默认证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      替换默认证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -2102,21 +2204,35 @@
 <p>证书签发后，下载证书文件：</p>
 <ol>
 <li>点击【下载】；</li>
-<li>选择服务器类型：<strong>其他</strong>；</li>
+<li>选择服务器类型：<strong>Apache</strong>；</li>
 <li>下载包含以下文件：</li>
-<li><code>aio.it927.com.crt</code>（证书文件）</li>
-<li><code>aio.it927.com..key</code>（私钥文件）</li>
+<li><code>aio.it927.com_public.crt</code>（证书文件）</li>
+<li><code>aio.it927.com.key</code>（私钥文件）</li>
 </ol>
 <h2 id="_8">导入证书<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>登录 ESXi 管理界面，导航【管理】-【安全性和用户】-【证书】</p>
-<ol>
-<li>点击【导入证书】；</li>
-<li>上传证书文件（.crt）；</li>
-<li>上传私钥文件（.key）；</li>
-<li>点击【导入】；</li>
-</ol>
-<p>导入完成后，重启管理服务，即可使用 <code>aio.it927.com</code> 访问，这时候已经没有“不安全”的提示了：</p>
-<h2 id="_9">总结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>目前博通已经不允许 ESXi 管理界面导入 SSL 证书了，只能通过 SSH 方式更换证书，先开启 SSH 登入。</p>
+<h3 id="_9">上传证书<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>上传证书，可使用 ESXi 默认的数据浏览器上传，将两个证书上传至存储的根目录，导航【存储】-【选择盘】-【上载】，然后上载下载的两个文件即可。
+<a class="glightbox" href="https://img.it927.com/aio/254.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="上传证书" src="https://img.it927.com/aio/254.png" /></a></p>
+<h3 id="ssh">SSH 登入<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h3>
+<p>前面章节介绍过 SSH 登入，这里介绍另一种方法，导航【主机】-【操作】-【服务】-【启用 Secure Shell (SSH)】
+<a class="glightbox" href="https://img.it927.com/aio/253.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启 SSH" src="https://img.it927.com/aio/253.png" /></a>
+再通过控制电脑 SSH 到 ESXi 中，陈大剩这里可以使用 <a href="../../network/jumper/">跳板机</a> 也可以直接使用网线连接</p>
+<h3 id="_10">备份默认证书<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>SSH 登入后我们先要备份默认证书，进入 <code>/etc/vmware/ssl</code> 目录，分别找到 <code>rui.crt</code> 和 <code>rui.key</code>，将这 2 个文件改名 <code>xxx.back</code>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/etc/vmware/ssl
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mv<span class="w"> </span>rui.crt<span class="w"> </span>rui.crt.back
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>mv<span class="w"> </span>rui.key<span class="w"> </span>rui.crt.key
+</code></pre></div></p>
+<h3 id="_11">替换默认证书<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>备份默认证书后，还需将 <code>/vmfs/volumes/datastore1/</code> 目录下的 2 个证书，替换成默认证书，命令如下：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mv<span class="w"> </span>/vmfs/volumes/datastore1/aio.it927.com_public.crt<span class="w"> </span>rui.crt
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>mv<span class="w"> </span>/vmfs/volumes/datastore1/aio.it927.com.key<span class="w"> </span>rui.key
+</code></pre></div></p>
+<h3 id="_12">访问<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>上述步骤全部完成后，重启管理服务，即可使用 <code>https://aio.it927.com</code> 访问，这时候已经没有“不安全”的提示了，访问时记得加上 <code>https</code> 协议
+<a class="glightbox" href="https://img.it927.com/aio/252.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问管理界面" src="https://img.it927.com/aio/252.png" /></a></p>
+<h2 id="_13">总结<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <p>本文演示配置了安全证书，但是 DNS 解析的是局域网 IP，有公网 IP 条件的朋友可以直接解析到公网 IP，没有的朋友也不要着急，我们可以将 DNS 解析 IPv6 地址上。</p>
 
   
@@ -2138,7 +2254,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月6日 16:41:02 UTC">2025年8月6日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月7日 05:06:06 UTC">2025年8月7日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

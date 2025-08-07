@@ -251,6 +251,15 @@ sudo systemctl status socat-esxi.service
 ![检查服务状态](https://img.it927.com/aio/221.png)
 执行后查看是否成功，其他家庭网段终端可通过浏览器输入跳板机 IP `https://192.168.8.130/` 进行访问：
 ![浏览器输入跳板机](https://img.it927.com/aio/220.png)
+### 开机启动
+访问之后，还需最后一个步骤，将 `socat-esxi.service` 服务设为开机启动。
+```shell
+sudo systemctl enable socat-esxi.service
+```
+返回结果：
+```
+Created symlink /etc/systemd/system/multi-user.target.wants/socat-esxi.service → /etc/systemd/system/socat-esxi.service.
+```
 至此大功告成，设置跳板机设置开机启动后，开机启动设置在软路由之后即可，可参考 [ESXi 进阶操作 - 虚拟机自启动](../esxi/self-starting.md)，最后可拔掉 **ESXi** 管理端口网线。
 
 ## 后续规划

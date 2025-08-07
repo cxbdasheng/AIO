@@ -83,22 +83,37 @@ description: 介绍如何为ESXi配置有效的SSL证书，包括域名解析、
 证书签发后，下载证书文件：
 
 1. 点击【下载】；
-2. 选择服务器类型：**其他**；
+2. 选择服务器类型：**Apache**；
 3. 下载包含以下文件：
-   - `aio.it927.com.crt`（证书文件）
-   - `aio.it927.com..key`（私钥文件）
+   - `aio.it927.com_public.crt`（证书文件）
+   - `aio.it927.com.key`（私钥文件）
 
 ## 导入证书
-登录 ESXi 管理界面，导航【管理】-【安全性和用户】-【证书】
+目前博通已经不允许 ESXi 管理界面导入 SSL 证书了，只能通过 SSH 方式更换证书，先开启 SSH 登入。
+### 上传证书
+上传证书，可使用 ESXi 默认的数据浏览器上传，将两个证书上传至存储的根目录，导航【存储】-【选择盘】-【上载】，然后上载下载的两个文件即可。
+![上传证书](https://img.it927.com/aio/254.png)
+### SSH 登入
+前面章节介绍过 SSH 登入，这里介绍另一种方法，导航【主机】-【操作】-【服务】-【启用 Secure Shell (SSH)】
+![开启 SSH](https://img.it927.com/aio/253.png)
+再通过控制电脑 SSH 到 ESXi 中，陈大剩这里可以使用 [跳板机](../network/jumper.md) 也可以直接使用网线连接
+### 备份默认证书
+SSH 登入后我们先要备份默认证书，进入 `/etc/vmware/ssl` 目录，分别找到 `rui.crt` 和 `rui.key`，将这 2 个文件改名 `xxx.back`
+```shell
+cd /etc/vmware/ssl
+mv rui.crt rui.crt.back
+mv rui.key rui.crt.key
+```
+### 替换默认证书
+备份默认证书后，还需将 `/vmfs/volumes/datastore1/` 目录下的 2 个证书，替换成默认证书，命令如下：
+```shell
+mv /vmfs/volumes/datastore1/aio.it927.com_public.crt rui.crt
+mv /vmfs/volumes/datastore1/aio.it927.com.key rui.key
+```
 
-1. 点击【导入证书】；
-2. 上传证书文件（.crt）；
-3. 上传私钥文件（.key）；
-4. 点击【导入】；
-
-
-导入完成后，重启管理服务，即可使用 `aio.it927.com` 访问，这时候已经没有“不安全”的提示了：
-
+### 访问
+上述步骤全部完成后，重启管理服务，即可使用 `https://aio.it927.com` 访问，这时候已经没有“不安全”的提示了，访问时记得加上 `https` 协议
+![访问管理界面](https://img.it927.com/aio/252.png)
 
 ## 总结
 本文演示配置了安全证书，但是 DNS 解析的是局域网 IP，有公网 IP 条件的朋友可以直接解析到公网 IP，没有的朋友也不要着急，我们可以将 DNS 解析 IPv6 地址上。
