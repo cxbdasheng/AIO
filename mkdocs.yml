@@ -105,10 +105,10 @@ nav:
       - 故障排查与优化: "network/qa.md"
   - ESXi 进阶操作:
       - 虚拟机自启动: "esxi/self-starting.md"
-      - 虚拟机克隆: "esxi/clone.md"
-      - 硬件直通: "esxi/passthrough.md"
-      - SSL 证书配置: "esxi/ssl.md"
       - 镜像转换: "esxi/convert.md"
+      - SSL 证书配置: "esxi/ssl.md"
+      - 硬件直通: "esxi/passthrough.md"
+      - 虚拟机克隆: "esxi/clone.md"
       - 功耗节能: "esxi/energy.md"
   - 软路由:
       - 系统安装: "route/install.md"
