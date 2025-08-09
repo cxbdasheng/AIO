@@ -1,10 +1,10 @@
 # 🚀 家庭 All-in-One 服务器搭建指南
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-mkdocs-green.svg)](https://your-docs-url.com)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-green.svg)](https://esxi.it927.com/)
 [![ESXi](https://img.shields.io/badge/platform-ESXi-orange.svg)](https://www.vmware.com/products/esxi-and-esx.html)
 
-> 💪 一台电脑顶十台！让每一颗CPU、每一GB内存都发挥极致性能
+> 💪 一台电脑顶十台！让每一颗 CPU、每一 GB 内存都发挥极致性能
 
 ## 📖 项目简介
 
