@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://esxi.it927.com/esxi/passthrough/">
       
       
-        <link rel="prev" href="../clone/">
+        <link rel="prev" href="../ssl/">
       
       
-        <link rel="next" href="../ssl/">
+        <link rel="next" href="../clone/">
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
@@ -996,11 +996,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../clone/" class="md-nav__link">
+      <a href="../convert/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    虚拟机克隆
+    镜像转换
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL 证书配置
   </span>
   
 
@@ -1107,32 +1128,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../ssl/" class="md-nav__link">
+      <a href="../clone/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SSL 证书配置
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../convert/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    镜像转换
+    虚拟机克隆
   </span>
   
 
@@ -1897,7 +1897,7 @@
 
   <h1>硬件直通</h1>
 
-<p>ESXi 的硬件直通功能相比 PVE 更加简洁易用，通过将物理硬件设备直接分配给虚拟机，可以获得接近原生的硬件性能。</p>
+<p>ESXi 中硬件直通是指 <strong>单独将某个硬件以独占方式分配给某个虚拟机</strong>，ESXi 的硬件直通功能相比 PVE 更加简洁易用，通过将物理硬件设备直接分配给虚拟机，可以获得接近原生的硬件性能。</p>
 <h2 id="_1">直通配置入口<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>通过以下路径进入硬件直通配置页面：
 <strong>导航路径</strong>：【主机】→【管理】→【硬件】→【PCI 设备】
@@ -2015,7 +2015,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../clone/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 虚拟机克隆">
+          <a href="../ssl/" class="md-footer__link md-footer__link--prev" aria-label="上一页: SSL 证书配置">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2025,20 +2025,20 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
                 上一页
               </span>
               <div class="md-ellipsis">
-                虚拟机克隆
+                SSL 证书配置
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ssl/" class="md-footer__link md-footer__link--next" aria-label="下一页: SSL 证书配置">
+          <a href="../clone/" class="md-footer__link md-footer__link--next" aria-label="下一页: 虚拟机克隆">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                SSL 证书配置
+                虚拟机克隆
               </div>
             </div>
             <div class="md-footer__button md-icon">

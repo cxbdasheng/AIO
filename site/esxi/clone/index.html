@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="介绍ESXi环境中虚拟机克隆的完整教程，包括克隆方式选择、操作步骤、注意事项和最佳实践，帮助快速部署和管理虚拟机。">
       
       
         <meta name="author" content="陈大剩">
@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://esxi.it927.com/esxi/clone/">
       
       
-        <link rel="prev" href="../self-starting/">
+        <link rel="prev" href="../passthrough/">
       
       
-        <link rel="next" href="../passthrough/">
+        <link rel="next" href="../energy/">
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
@@ -29,6 +29,8 @@
         <title>虚拟机克隆 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi虚拟机克隆,VMware克隆教程,ESXi克隆虚拟机,虚拟机复制,ESXi模板创建,虚拟机快速部署,VMware vSphere克隆,虚拟化克隆技术,ESXi批量部署,虚拟机模板管理,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -991,6 +993,69 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../convert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    镜像转换
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL 证书配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../passthrough/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬件直通
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1038,9 +1103,141 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      前言
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="前言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心文件类型详解
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      克隆方式对比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      克隆方式一：直接复制方式克隆
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="克隆方式一：直接复制方式克隆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择源虚拟机
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      复制核心文件文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      注册虚拟机
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      克隆方式二：导出映像方式克隆
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="克隆方式二：导出映像方式克隆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      导出虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="导出虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择导出选项
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置导出参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      执行导出操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1048,69 +1245,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../passthrough/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    硬件直通
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ssl/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SSL 证书配置
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../convert/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    镜像转换
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1816,9 +1950,141 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      前言
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="前言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      核心文件类型详解
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      克隆方式对比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      克隆方式一：直接复制方式克隆
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="克隆方式一：直接复制方式克隆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择源虚拟机
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      复制核心文件文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      注册虚拟机
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      克隆方式二：导出映像方式克隆
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="克隆方式二：导出映像方式克隆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      导出虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="导出虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择导出选项
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置导出参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      执行导出操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1847,7 +2113,182 @@
 
   <h1>虚拟机克隆</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>虚拟机克隆是 ESXi 环境中，快速部署相同配置虚拟机的重要功能，通过克隆技术，可以大幅提升虚拟机部署效率，确保环境一致性。</p>
+<h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>介绍虚拟机克隆前，需明白 ESXi 虚拟机中几个重要的文件，分别为 <code>xxx.vmdk</code>、<code>xxx.vmx</code>、<code>xxx.ovf</code>、<code>xxx.mf</code>、<code>xxx.nvram</code>，理解这些文件的作用对于成功克隆至关重要。</p>
+<h3 id="_2">核心文件类型详解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">xxx.vmdk - 虚拟磁盘文件</label><label for="__tabbed_1_2">xxx.vmx - 虚拟机配置文件</label><label for="__tabbed_1_3">xxx.ovf - 开放虚拟化格式文件</label><label for="__tabbed_1_4">xxx.mf - 消息摘要文件</label><label for="__tabbed_1_5">xxx.nvram - 固件设置文件</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>xxx.vmdk 肯定大家不陌生，<a href="../convert/">ESXi 进阶操作 - 镜像转换</a> 中见过，VMDK（Virtual Machine Disk）文件代表虚拟硬盘。</p>
+<p><strong>功能：</strong> 虚拟机的硬盘文件，存储操作系统和数据</p>
+<ul>
+<li><strong>文件类型：</strong> Virtual Machine Disk</li>
+<li><strong>存储内容：</strong> 操作系统、应用程序、用户数据</li>
+<li><strong>数量特点：</strong> 可能有多个，取决于磁盘分配策略</li>
+<li><strong>包含组件：</strong> 基础磁盘映像、快照文件等</li>
+<li><strong>重要性：</strong> ⭐⭐⭐⭐⭐ （克隆必需）</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>VMX（Virtual Machine Configuration File）是虚拟机的主配置文件，采用文本格式（通常是 UTF-8 编码的文本），包含了虚拟机的绝大部分设置信息。</p>
+<p><strong>功能：</strong> 虚拟机的主配置文件，定义硬件规格</p>
+<ul>
+<li><strong>文件格式：</strong> UTF-8 编码的文本文件</li>
+<li><strong>内容结构：</strong> 键值对列表</li>
+<li><strong>配置项目：</strong><ul>
+<li>虚拟机名称和操作系统类型</li>
+<li>CPU 数量和核心数配置</li>
+<li>内存大小设置</li>
+<li>网络适配器配置（桥接、NAT、仅主机等）</li>
+<li>存储控制器和磁盘映射</li>
+<li>外设配置（光驱、USB、声卡等）</li>
+<li>启动选项和快照设置</li>
+</ul>
+</li>
+<li><strong>重要性：</strong> ⭐⭐⭐⭐⭐ （克隆必需）</li>
+</ul>
+<details class="info" open="open">
+<summary>提示</summary>
+<p>VMX 本质上是一个键值对的列表（可用文本编辑器打开），<code>.vmx</code> 是虚拟机的 “身份证” 和 “说明书”，定义了虚拟机的硬件配置，VMX 是一个内部使用的配置文件，适用于 VMware 自家的产品系列。</p>
+</details>
+</div>
+<div class="tabbed-block">
+<p>OVF（Open Virtualization Format）文件包含了虚拟机的配置信息，如CPU数量、内存大小、存储需求等。</p>
+<p><strong>功能：</strong> 跨平台虚拟机描述文件</p>
+<ul>
+<li><strong>标准类型：</strong> Open Virtualization Format</li>
+<li><strong>用途：</strong> 虚拟机的可移植描述</li>
+<li><strong>包含信息：</strong> CPU、内存、存储需求等</li>
+<li><strong>适用场景：</strong> 跨平台迁移和分发</li>
+<li><strong>重要性：</strong> ⭐⭐⭐ （导出时需要）</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>这个文件是 OVF 文件的消息摘要（通常是 SHA-1 或 SHA-256 哈希值），用于验证 OVF 文件的完整性，确保它没有被篡改并且是从可信来源获取的。    </p>
+<p><strong>功能：</strong> 文件完整性验证</p>
+<ul>
+<li><strong>内容：</strong> SHA-1 或 SHA-256 哈希值</li>
+<li><strong>作用：</strong> 验证 OVF 文件完整性</li>
+<li><strong>安全性：</strong> 防止文件篡改</li>
+<li><strong>验证方式：</strong> 哈希值比对</li>
+<li><strong>重要性：</strong> ⭐⭐ （安全验证）</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>NVRAM（Non-Volatile RAM）文件包含了虚拟机 BIOS 或 EFI 固件的设置信息。</p>
+<p><strong>功能：</strong> BIOS/EFI 固件配置存储</p>
+<ul>
+<li><strong>存储内容：</strong> 固件设置信息</li>
+<li><strong>配置项：</strong> 启动顺序、硬件配置等</li>
+<li><strong>生成时机：</strong> 首次启动时创建</li>
+<li><strong>更新机制：</strong> 设置修改时自动保存</li>
+<li><strong>重要性：</strong> ⭐⭐ （固件配置）</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>虚拟机正常运行的最小文件集合：</p>
+<ul>
+<li><strong>必需文件：</strong> <code>xxx.vmdk</code> + <code>xxx.vmx</code></li>
+<li><strong>可选文件：</strong> <code>xxx.nvram</code>（首次启动会自动生成）</li>
+<li><strong>导出文件：</strong> <code>xxx.ovf</code> + <code>xxx.mf</code>（用于跨平台迁移）</li>
+</ul>
+<h2 id="_4">克隆方式对比<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>ESXi 提供多种克隆方式，每种方式都有其适用场景和特点：</p>
+<table>
+<thead>
+<tr>
+<th>克隆方式</th>
+<th>适用场景</th>
+<th>优点</th>
+<th>缺点</th>
+<th>推荐度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直接复制</td>
+<td>同一 ESXi 主机内快速克隆</td>
+<td>操作简单、速度快</td>
+<td>仅限本地、需手动配置</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>导出映像</td>
+<td>跨平台迁移、备份存档</td>
+<td>标准化、可移植</td>
+<td>文件较大、传输耗时</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>vCenter 克隆</td>
+<td>企业环境批量部署</td>
+<td>功能完整、自动化高</td>
+<td>需要 vCenter 许可</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">克隆方式一：直接复制方式克隆<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>如果仅需在同一个 ESXi 中，克隆一台一模一样的虚拟机，可以采用直接复制方式克隆，确保复制的虚拟机环境一致，陈大剩以 Ubuntu 虚拟机为例。</p>
+<h3 id="_6">选择源虚拟机<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>第一步选择需克隆的虚拟机，陈大剩选择主机名为 u2 的 Ubuntu 虚拟机，选择虚拟机后，对虚拟机进行关机
+<a class="glightbox" href="https://img.it927.com/aio/255.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择虚拟机" src="https://img.it927.com/aio/255.png" /></a></p>
+<h3 id="_7">复制核心文件文件<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>导航至【存储】-【数据存储浏览器】，再创一个存放克隆之后虚拟机的文件夹，陈大剩这创建一个 u3 文件夹
+<a class="glightbox" href="https://img.it927.com/aio/256.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="创建文件夹" src="https://img.it927.com/aio/256.png" /></a>
+将 u2 虚拟机文件下的<code>xxx.vmdk</code>、<code>xxx.vmx</code> 复制 u3 文件
+<a class="glightbox" href="https://img.it927.com/aio/257.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="复制文件" src="https://img.it927.com/aio/257.png" /></a></p>
+<details class="info" open="open">
+<summary>提示</summary>
+<p>复制时需要修改主机名或 <code>xxx.vmdk</code> 的位置，可通过 SSH 连接 ESXi 主机，使用 <code>VI 编辑器</code> 修改参数，其中：<code>displayName</code> 参数为主机名；<code>scsi0:0.fileName</code> 参数为 <code>xxx.vmdk</code> 位置；</p>
+</details>
+<h3 id="_8">注册虚拟机<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>复制成功后，【右键】-【注册虚拟机】
+<a class="glightbox" href="https://img.it927.com/aio/258.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="复制文件" src="https://img.it927.com/aio/258.png" /></a>
+注册成功后虚拟机则会出现在虚拟机列表中
+<a class="glightbox" href="https://img.it927.com/aio/259.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="注册成功" src="https://img.it927.com/aio/259.png" /></a>
+克隆后需点【编辑设置】手动检查所有参数，注册后的虚拟机会继承源虚拟机的所有配置，建议进行全面检查：
+，如果需要改主机名，可虚拟机选项中修改：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">硬件检查</label><label for="__tabbed_2_2">虚拟机选项检查</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/260.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="硬件检查" src="https://img.it927.com/aio/260.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/261.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="虚拟机选项检查" src="https://img.it927.com/aio/261.png" /></a></p>
+</div>
+</div>
+</div>
+<p>检查无误后可点击【打开电源】开机，回答问题选择【我已复制】，不出意外顺利克隆成功。
+<a class="glightbox" href="https://img.it927.com/aio/262.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="我已复制" src="https://img.it927.com/aio/262.png" /></a></p>
+<h2 id="_9">克隆方式二：导出映像方式克隆<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>导出映像方式适用于跨平台迁移、长期备份和标准化部署场景。</p>
+<h3 id="_10">导出虚拟机<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h4 id="_11">选择导出选项<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>在虚拟机列表中选择要导出的虚拟机，右键点击【虚拟机】-【导出】-选择【导出格式（OVF 或 OVA）】</p>
+<h4 id="_12">配置导出参数<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">OVF 格式（推荐）</label><label for="__tabbed_3_2">OVA 格式</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>特点：</strong> 文件分离，便于管理、支持增量传输、标准化程度高。</p>
+<p><strong>包含文件：</strong> <code>.ovf</code>（描述文件）、<code>.vmdk</code>（磁盘文件）、<code>.mf</code>（校验文件）。</p>
+</div>
+<div class="tabbed-block">
+<p><strong>特点：</strong> 单一文件，便于传输、文件较大、适合一次性部署。</p>
+<p><strong>文件结构：</strong> 单个 <code>.ova</code> 文件、内部包含所有组件。</p>
+</div>
+</div>
+</div>
+<h4 id="_13">执行导出操作<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>选择导出位置和格式后，ESXi 将开始导出过程：</p>
+<ul>
+<li><strong>导出时间：</strong> 取决于虚拟磁盘大小</li>
+<li><strong>网络影响：</strong> 可能影响网络性能</li>
+<li><strong>存储要求：</strong> 需要足够的存储空间</li>
+</ul>
 
   
 
@@ -1901,7 +2342,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../self-starting/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 虚拟机自启动">
+          <a href="../passthrough/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 硬件直通">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1911,20 +2352,20 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
                 上一页
               </span>
               <div class="md-ellipsis">
-                虚拟机自启动
+                硬件直通
               </div>
             </div>
           </a>
         
         
           
-          <a href="../passthrough/" class="md-footer__link md-footer__link--next" aria-label="下一页: 硬件直通">
+          <a href="../energy/" class="md-footer__link md-footer__link--next" aria-label="下一页: 功耗节能">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                硬件直通
+                功耗节能
               </div>
             </div>
             <div class="md-footer__button md-icon">
