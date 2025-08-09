@@ -24,7 +24,7 @@ description: 介绍ESXi环境中虚拟机克隆的完整教程，包括克隆方
 
 === "xxx.vmdk - 虚拟磁盘文件"
     
-    xxx.vmdk 肯定大家不陌生，[ESXi 进阶操作 - 镜像转换](convert.md) 中见过，VMDK（Virtual Machine Disk）文件代表虚拟硬盘。
+    VMDK（Virtual Machine Disk）文件代表虚拟硬盘，`xxx.vmdk` 肯定大家不陌生，[ESXi 进阶操作 - 镜像转换](convert.md) 中见过。
 
     **功能：** 虚拟机的硬盘文件，存储操作系统和数据
     
@@ -90,7 +90,7 @@ description: 介绍ESXi环境中虚拟机克隆的完整教程，包括克隆方
     - **重要性：** ⭐⭐ （固件配置）
 
 ### 总结
-虚拟机正常运行的最小文件集合：
+ESXi 中每个虚拟机都由多个关键文件组成，虚拟机正常运行的最小文件集合包括：
 
 - **必需文件：** `xxx.vmdk` + `xxx.vmx`
 - **可选文件：** `xxx.nvram`（首次启动会自动生成）

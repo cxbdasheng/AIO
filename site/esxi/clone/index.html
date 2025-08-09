@@ -2120,7 +2120,7 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">xxx.vmdk - 虚拟磁盘文件</label><label for="__tabbed_1_2">xxx.vmx - 虚拟机配置文件</label><label for="__tabbed_1_3">xxx.ovf - 开放虚拟化格式文件</label><label for="__tabbed_1_4">xxx.mf - 消息摘要文件</label><label for="__tabbed_1_5">xxx.nvram - 固件设置文件</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>xxx.vmdk 肯定大家不陌生，<a href="../convert/">ESXi 进阶操作 - 镜像转换</a> 中见过，VMDK（Virtual Machine Disk）文件代表虚拟硬盘。</p>
+<p>VMDK（Virtual Machine Disk）文件代表虚拟硬盘，<code>xxx.vmdk</code> 肯定大家不陌生，<a href="../convert/">ESXi 进阶操作 - 镜像转换</a> 中见过。</p>
 <p><strong>功能：</strong> 虚拟机的硬盘文件，存储操作系统和数据</p>
 <ul>
 <li><strong>文件类型：</strong> Virtual Machine Disk</li>
@@ -2189,7 +2189,7 @@
 </div>
 </div>
 <h3 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>虚拟机正常运行的最小文件集合：</p>
+<p>ESXi 中每个虚拟机都由多个关键文件组成，虚拟机正常运行的最小文件集合包括：</p>
 <ul>
 <li><strong>必需文件：</strong> <code>xxx.vmdk</code> + <code>xxx.vmx</code></li>
 <li><strong>可选文件：</strong> <code>xxx.nvram</code>（首次启动会自动生成）</li>
@@ -2309,7 +2309,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 14:03:19 UTC">2025年7月27日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月9日 17:19:41 UTC">2025年8月9日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
