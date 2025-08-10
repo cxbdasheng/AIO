@@ -1236,6 +1236,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      导入虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="导入虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      上传映像文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ovf" class="md-nav__link">
+    <span class="md-ellipsis">
+      部署 OVF 模板
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证部署结果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2083,6 +2125,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      导入虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="导入虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      上传映像文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ovf" class="md-nav__link">
+    <span class="md-ellipsis">
+      部署 OVF 模板
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证部署结果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2234,7 +2318,7 @@
 <h2 id="_5">克隆方式一：直接复制方式克隆<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>如果仅需在同一个 ESXi 中，克隆一台一模一样的虚拟机，可以采用直接复制方式克隆，确保复制的虚拟机环境一致，陈大剩以 Ubuntu 虚拟机为例。</p>
 <h3 id="_6">选择源虚拟机<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>第一步选择需克隆的虚拟机，陈大剩选择主机名为 u2 的 Ubuntu 虚拟机，选择虚拟机后，对虚拟机进行关机
+<p>第一步选择需克隆的虚拟机，陈大剩选择主机名为 u2 的 Ubuntu 虚拟机，选择虚拟机后，对 <strong>虚拟机进行关机</strong>
 <a class="glightbox" href="https://img.it927.com/aio/255.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择虚拟机" src="https://img.it927.com/aio/255.png" /></a></p>
 <h3 id="_7">复制核心文件文件<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>导航至【存储】-【数据存储浏览器】，再创一个存放克隆之后虚拟机的文件夹，陈大剩这创建一个 u3 文件夹
@@ -2268,7 +2352,10 @@
 <p>导出映像方式适用于跨平台迁移、长期备份和标准化部署场景。</p>
 <h3 id="_10">导出虚拟机<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <h4 id="_11">选择导出选项<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
-<p>在虚拟机列表中选择要导出的虚拟机，右键点击【虚拟机】-【导出】-选择【导出格式（OVF 或 OVA）】</p>
+<p>在虚拟机列表中选择要导出的虚拟机,对 <strong>虚拟机进行关机</strong>，右键点击【虚拟机】-【导出】
+<a class="glightbox" href="https://img.it927.com/aio/263.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择导出选项" src="https://img.it927.com/aio/263.png" /></a>
+导出选项中默认会选择 <code>xxx.ovf</code> 和 <code>xxx.mf</code>，如果需要导出磁盘文件和启动选项可以继续选择 <code>xxx.vmdk</code> 和 <code>xxx.nvram</code>
+<a class="glightbox" href="https://img.it927.com/aio/264.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择文件" src="https://img.it927.com/aio/264.png" /></a></p>
 <h4 id="_12">配置导出参数<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">OVF 格式（推荐）</label><label for="__tabbed_3_2">OVA 格式</label></div>
 <div class="tabbed-content">
@@ -2289,6 +2376,16 @@
 <li><strong>网络影响：</strong> 可能影响网络性能</li>
 <li><strong>存储要求：</strong> 需要足够的存储空间</li>
 </ul>
+<h3 id="_14">导入虚拟机<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h4 id="_15">上传映像文件<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p>在 ESXi Web 界面中，选择【创建/注册虚拟机】【从 OVF 或 OVA 文件部署虚拟机】将导出的映像文件通过数据存储浏览器上传到目标 ESXi 主机中。
+<a class="glightbox" href="https://img.it927.com/aio/266.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="上传映像文件" src="https://img.it927.com/aio/266.png" /></a></p>
+<h4 id="ovf">部署 OVF 模板<a class="headerlink" href="#ovf" title="Permanent link">&para;</a></h4>
+<p>配置虚拟机参数，即可完成部署
+<a class="glightbox" href="https://img.it927.com/aio/260.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="硬件检查" src="https://img.it927.com/aio/260.png" /></a></p>
+<h4 id="_16">验证部署结果<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>部署完成后进行验证：检查虚拟机配置、验证网络连接、测试应用程序功能、确认数据完整性，不出意外顺利克隆成功。
+<a class="glightbox" href="https://img.it927.com/aio/267.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="验证部署结果" src="https://img.it927.com/aio/267.png" /></a></p>
 
   
 
@@ -2309,7 +2406,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月9日 17:19:41 UTC">2025年8月9日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月9日 17:25:20 UTC">2025年8月9日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
