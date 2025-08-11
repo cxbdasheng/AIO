@@ -20,12 +20,15 @@ OpenWrt 安装成功后，磁盘空间才 **86 Mib**，没安装几个软件就�
 ## 准备工作
 本教程基于 **SquashFS** 文件系统的 OpenWrt，如果是基于 **ext4** 系统话，应该会更简单。在扩容前需要安装几个特定的工具，`cfdisk`、`resize2fs`、`losetup`，导航至【软件包】-【过滤器】
 === "losetup"
+    【过滤器】输入 `losetup`，点击下方【安装】
     ![losetup](https://img.it927.com/aio/280.png)
 
 === "cfdisk"
+    【过滤器】输入 `cfdisk`，点击下方【安装】
     ![cfdisk](https://img.it927.com/aio/269.png)
 
 === "resize2fs"
+    【过滤器】输入 `resize2fs`，点击下方【安装】
     ![resize2fs](https://img.it927.com/aio/270.png)
 
 ## ESXi 虚拟磁盘扩容
