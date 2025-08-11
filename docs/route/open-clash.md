@@ -11,25 +11,24 @@ OpenClash 是基于 Clash 核心的 OpenWrt 代理工具，提供了友好的 We
 
 官方开源项目地址：[https://github.com/vernesong/OpenClash](https://github.com/vernesong/OpenClash)
 
-## 安装步骤
 
-### 方法一：通过 opkg 安装（推荐）
+## 方法一：通过 opkg 安装（推荐）
 
-#### 更新软件包列表
+### 更新软件包列表
 ```shell
 opkg update
 ```
-#### 卸载 dnsmasq
+### 卸载 dnsmasq
 ```shell
 opkg remove dnsmasq
 mv /etc/config/dhcp /etc/config/dhcp.bak
 ```
-#### 依赖安装
+### 依赖安装
 ```shell
 opkg install shell iptables dnsmasq-full curl ca-bundle ipset ip-full iptables-mod-tproxy iptables-mod-extra ruby ruby-yaml kmod-tun kmod-inet-diag unzip luci-compat luci luci-base
 ```
 
-#### 下载 OpenClash 安装包
+### 下载 OpenClash 安装包
 访问 [OpenClash Releases](https://github.com/vernesong/OpenClash/releases) 页面，下载对应的 ipk 文件， 传到 OpenWrt 里面。
 
 截止 2025年08月11日，最新版为：[luci-app-openclash_0.46.137_all.ipk](https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk)
@@ -41,24 +40,30 @@ wget https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app
 ???+info "提示"
     可使用多种方法下载，陈大剩这里使用的 `wget`，进入 `GitHub` 可到网上搜一些稳定的 IP 地址。
 
-#### 安装 OpenClash
+### 安装 OpenClash
 ```shell
 opkg install luci-app-openclash_0.46.137_all.ipk
 ```
-
-
-### 方法二：手动编译安装
+安装看到如下提示，则为安装成功
+```shell
+Installing luci-app-openclash (0.46.137) to root...
+Configuring luci-app-openclash.
+```
+成功后重启 OpenWrt，【服务】菜单下可以找到 OpenClash
+```shell
+reboot
+```
+## 方法二：手动编译安装
 手动编译安装稍微复杂点，不建议此方式安装。
-#### 克隆源码
+### 克隆源码
 ```shell
 git clone https://github.com/vernesong/OpenClash.git package/luci-app-openclash
 ```
-
-####  编译
+###  编译
 ```shell
 make package/luci-app-openclash/compile V=s
 ```
 
 ## 初始配置
-安装成功后，在 OpenWrt 的控制面板里面的【服务】菜单下可以找到 OpenClash，接下来的自由发挥。
+安装成功后，在 OpenWrt 的控制面板里面的【服务】菜单下可以找到 OpenClash，继续内核，后面的自由发挥。
 ![OpenClash](https://img.it927.com/aio/284.png)
