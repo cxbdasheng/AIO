@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="介绍在ESXi环境中对OpenWrt软路由进行磁盘扩容的完整教程，包括ESXi虚拟机设置、OpenWrt分区扩展和文件系统扩容等步骤。">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>硬盘扩容 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="OpenWrt扩容,ESXi虚拟机扩容,OpenWrt磁盘扩容,软路由扩容,OpenWrt存储扩展,ESXi磁盘扩展,虚拟机磁盘扩容,OpenWrt分区扩展,家庭AIO扩容,软路由存储管理,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -1230,7 +1232,109 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 虚拟磁盘扩容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 虚拟磁盘扩容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩展虚拟磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证磁盘扩展
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openwrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenWrt 系统层面扩容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenWrt 系统层面扩容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩充磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      重启系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证扩容结果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      结果
     </span>
   </a>
   
@@ -1816,7 +1920,109 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 虚拟磁盘扩容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 虚拟磁盘扩容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩展虚拟磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证磁盘扩展
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openwrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenWrt 系统层面扩容
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenWrt 系统层面扩容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩充磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置循环
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      重启系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证扩容结果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      结果
     </span>
   </a>
   
@@ -1847,7 +2053,102 @@
 
   <h1>硬盘扩容</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>OpenWrt 安装成功后，磁盘空间才 <strong>86 Mib</strong>，没安装几个软件就不够用了，这怎么能忍？
+<a class="glightbox" href="https://img.it927.com/aio/268.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="默认配置" src="https://img.it927.com/aio/268.png" /></a></p>
+<h2 id="_1">准备工作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本教程基于 <strong>SquashFS</strong> 文件系统的 OpenWrt，如果是基于 <strong>ext4</strong> 系统话，应该会更简单。在扩容前需要安装几个特定的工具，<code>cfdisk</code>、<code>resize2fs</code>、<code>losetup</code>，导航至【软件包】-【过滤器】</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">losetup</label><label for="__tabbed_1_2">cfdisk</label><label for="__tabbed_1_3">resize2fs</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/280.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="losetup" src="https://img.it927.com/aio/280.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/269.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="cfdisk" src="https://img.it927.com/aio/269.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/270.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="resize2fs" src="https://img.it927.com/aio/270.png" /></a></p>
+</div>
+</div>
+</div>
+<h2 id="esxi">ESXi 虚拟磁盘扩容<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<p>在进行磁盘扩容前，必须完全关闭 OpenWrt 虚拟机，在 ESXi 管理界面确认虚拟机状态为"已关闭电源" 开始操作。</p>
+<h3 id="_2">扩展虚拟磁盘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>工具安装成功后，先扩充物理磁盘，导航至【虚拟机】选择虚拟机后编辑，将硬盘设置成想要的大小，陈大剩设置成了 3 GB
+<a class="glightbox" href="https://img.it927.com/aio/271.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="扩充虚拟主机物理磁盘" src="https://img.it927.com/aio/271.png" /></a></p>
+<h3 id="_3">验证磁盘扩展<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>虚拟机启动后，通过 SSH 连接验证磁盘是否成功扩展：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 查看分区信息</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cat<span class="w"> </span>/proc/partitions
+</code></pre></div>
+<a class="glightbox" href="https://img.it927.com/aio/283.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看分区信息" src="https://img.it927.com/aio/283.png" /></a>
+可以看到分区信息 <code>sda</code> 中多很了多。</p>
+<h2 id="openwrt">OpenWrt 系统层面扩容<a class="headerlink" href="#openwrt" title="Permanent link">&para;</a></h2>
+<h3 id="_4">连接系统<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>使用 <a href="../install/#ttyd">ttyd 工具</a> 或 SSH 连接到 OpenWrt 命令行：
+<a class="glightbox" href="https://img.it927.com/aio/272.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="登录 SSH" src="https://img.it927.com/aio/272.png" /></a>
+可通过命令，查看一下原始磁盘的大小
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 查看磁盘使用情况</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>df<span class="w"> </span>-h
+</code></pre></div>
+<a class="glightbox" href="https://img.it927.com/aio/278.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="验证磁盘扩展" src="https://img.it927.com/aio/278.png" /></a></p>
+<h3 id="_5">扩充磁盘<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>扩充磁盘按照如下命令操作：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤一：查看磁盘</label><label for="__tabbed_2_2">步骤二：扩充磁盘</label><label for="__tabbed_2_3">步骤三：写入磁盘</label><label for="__tabbed_2_4">步骤四：确认写入</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>使用 <code>cfdisk</code> 命令查看磁盘状态，能看到有 <code>2.9 G</code> 的空余磁盘（Free space），选择需要扩容的第二个磁盘，选择【Resize】回车
+<a class="glightbox" href="https://img.it927.com/aio/273.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看磁盘状态" src="https://img.it927.com/aio/273.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>弹出来 <code>New size</code> 输入要扩大的大小，陈大剩这里默认是 <code>3 G</code>
+<a class="glightbox" href="https://img.it927.com/aio/274.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="New size" src="https://img.it927.com/aio/274.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>扩充成功后选，选择【Write】回车
+<a class="glightbox" href="https://img.it927.com/aio/275.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="写入磁盘" src="https://img.it927.com/aio/275.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>写入磁盘后，会弹出确认写入操作，输入【yes】回车后，选择【Quit】回车
+<a class="glightbox" href="https://img.it927.com/aio/276.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="确认写入" src="https://img.it927.com/aio/276.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="_6">设置循环<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>扩充磁盘后，还需要设置循环，目前还只用了 <code>cfdisk</code> 工具，接下来使用 <code>losetup</code> 和 <code>resize2fs</code> 工具，输入如下命令
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>losetup<span class="w"> </span>/dev/loop0<span class="w"> </span>/dev/sda2
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>resize2fs<span class="w"> </span>-f<span class="w"> </span>/dev/loop0
+</code></pre></div>
+不出意外，能看到如下结果
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>resize2fs 1.47.0 (5-Feb-2023)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Filesystem at /dev/loop0 is mounted on /overlay; on-line resizing required
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>old_desc_blocks = 1, new_desc_blocks = 24
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>The filesystem on /dev/loop0 is now 3123008 (1k) blocks long.
+</code></pre></div></p>
+<details class="info" open="open">
+<summary>提示</summary>
+<p>循环设备是 Linux 内核提供的一种虚拟块设备，它可以将一个普通文件映射为块设备来使用。</p>
+<p>简单来说，就是让系统把一个文件当作硬盘分区来操作</p>
+</details>
+<h3 id="_7">重启系统<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>看到结果后，使用命令重启 OpenWrt：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>reboot
+</code></pre></div></p>
+<h3 id="_8">验证扩容结果<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>系统重启后，验证扩容是否成功：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 查看磁盘使用情况</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>df<span class="w"> </span>-h
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 查看覆盖文件系统大小</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>df<span class="w"> </span>-h<span class="w"> </span>/overlay
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 查看可用空间</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>df<span class="w"> </span>-h<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>overlay
+</code></pre></div>
+<strong>成功扩容后的输出示例：</strong>
+<a class="glightbox" href="https://img.it927.com/aio/282.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="成功扩容后的输出示例" src="https://img.it927.com/aio/282.png" /></a></p>
+<h2 id="_9">结果<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>通过上述步骤后，能看到软件包已经扩容成功，还是不能忍，可以继续加空间
+<a class="glightbox" href="https://img.it927.com/aio/281.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="结果" src="https://img.it927.com/aio/281.png" /></a></p>
 
   
 
