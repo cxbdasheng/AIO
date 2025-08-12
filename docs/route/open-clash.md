@@ -2,15 +2,14 @@
 keywords:
   - OpenClash安装
   - OpenWrt安装OpenClash
-  - 软路由存储管理
+  - 软路由插件安装
   - 陈大剩的家庭AIO服务器
   - 家庭AIO服务器
 description: 介绍在ESXi环境中对OpenWrt软路由进行磁盘扩容的完整教程，包括ESXi虚拟机设置、OpenWrt分区扩展和文件系统扩容等步骤。
 ---
 OpenClash 是基于 Clash 核心的 OpenWrt 代理工具，提供了友好的 Web 界面和强大的规则管理功能。本教程将详细介绍如何在 OpenWrt 系统上安装和配置 OpenClash。
 
-官方开源项目地址：[https://github.com/vernesong/OpenClash](https://github.com/vernesong/OpenClash)
-
+官方开源项目地址：[https://github.com/vernesong/OpenClash](https://github.com/vernesong/OpenClash)，截止 2025年08月11日，最新版为：[luci-app-openclash_0.46.137_all.ipk](https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk)
 
 ## 方法一：通过 opkg 安装（推荐）
 
@@ -28,17 +27,15 @@ mv /etc/config/dhcp /etc/config/dhcp.bak
 opkg install shell iptables dnsmasq-full curl ca-bundle ipset ip-full iptables-mod-tproxy iptables-mod-extra ruby ruby-yaml kmod-tun kmod-inet-diag unzip luci-compat luci luci-base
 ```
 
-### 下载 OpenClash 安装包
+**### 下载 OpenClash 安装包**
 访问 [OpenClash Releases](https://github.com/vernesong/OpenClash/releases) 页面，下载对应的 ipk 文件， 传到 OpenWrt 里面。
-
-截止 2025年08月11日，最新版为：[luci-app-openclash_0.46.137_all.ipk](https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk)
 ```shell
 # 下载最新版本
 cd /tmp
 wget https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk
 ```
 ???+info "提示"
-    可使用多种方法下载，陈大剩这里使用的 `wget`，进入 `GitHub` 可到网上搜一些稳定的 IP 地址。
+    可使用多种方法下载，陈大剩这里使用的 `wget`，访问 `GitHub` 国内可设置 [稳定的 DNS](https://www.cnblogs.com/mq0036/p/7229466.html)。
 
 ### 安装 OpenClash
 ```shell
@@ -65,5 +62,5 @@ make package/luci-app-openclash/compile V=s
 ```
 
 ## 初始配置
-安装成功后，在 OpenWrt 的控制面板里面的【服务】菜单下可以找到 OpenClash，继续内核，后面的自由发挥。
+安装成功后，在 OpenWrt 的控制面板里面的【服务】菜单下可以找到 OpenClash，安装内核，后面的自由发挥。
 ![OpenClash](https://img.it927.com/aio/284.png)

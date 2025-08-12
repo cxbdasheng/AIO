@@ -2546,7 +2546,7 @@
 </div>
 </div>
 <h3 id="_4">型号选择<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>经过了几天的筛选，陈大剩最终选中了 <strong>中兴 F7005TV3</strong> 这款电信定制光猫，这款光猫简直是我的梦中情猫，体积小，可刷机，无 WIFI，最 <strong>重要的是仅 ￥90 元</strong>，我太爱这个光猫了。</p>
+<p>经过了几天的筛选，陈大剩最终选中了 <strong>中兴 F7005TV3</strong> 这款电信定制光猫，这款光猫简直是我的梦中情猫，体积小，可刷机，无 WI-FI，最 <strong>重要的是仅 ￥90 元</strong>，我太爱这个光猫了。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">光猫图一</label><label for="__tabbed_3_2">光猫图二</label><label for="__tabbed_3_3">光猫图三</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2643,7 +2643,7 @@
 <p>测试结果下来已经突破了 1400M，甚至已经快达到了 1500M，白嫖了移动仅 500M 带宽，结果如图：
 <a class="glightbox" href="https://img.it927.com/aio/239.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="测试结果" src="https://img.it927.com/aio/239.png" /></a></p>
 <h2 id="25g_3">全屋 2.5G 网络覆盖<a class="headerlink" href="#25g_3" title="Permanent link">&para;</a></h2>
-<p>实现全屋 2.5G 网络覆盖，本质上只要我们购买 2.5G 路由器当主路由即可，前面我们已经完成了 2.5G 光猫的配置，接下来我们来配置路由器，实现全屋 2.5G 网络覆盖。</p>
+<p>实现全屋 2.5G 网络覆盖，本质上只要我们购买 2.5G 路由器当主路由即可，前面已经完成了 2.5G 光猫的配置，接下来配置路由器，实现全屋 2.5G 网络覆盖。</p>
 <h4 id="_9">核心需求分析<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
 <p>实现全屋 2.5G 网络覆盖，路由器的接口至少需要：<strong>1 个 2.5G WAN 口（光猫），1 个 2.5G LAN 口（内网）</strong>，Wi-Fi 6/6E 无线跑满速率，需求拓扑如下：
 <pre class="mermaid"><code>graph TD
@@ -2775,12 +2775,12 @@ B --&gt;|Wi-Fi 6/6E| D[其他家庭终端]</code></pre></p>
     A[光猫] --&gt;|2.5G 桥接| B[主路由器]
     B --&gt;|2.5G| C[Windows电脑]
     B --&gt;|Wi-Fi 6/6E| D[其他家庭终端]</code></pre>
-内网测试陈大剩使用的 iperf3，iperf3 需要路由器和客户端都安装，不会安装的同学可以去搜搜网上教程，陈大剩内网单向打流命令如下。
+内网测试陈大剩使用的 iperf3，iperf3 需路由器和客户端同时安装，未安装的同学可搜搜教程，陈大剩内网单向打流命令如下：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>iperf3<span class="w"> </span>-c<span class="w"> </span><span class="m">192</span>.168.8.1<span class="w"> </span>-p<span class="w"> </span><span class="m">6868</span><span class="w">  </span>-u<span class="w"> </span>-b<span class="w"> </span>3500M
 </code></pre></div></p>
 <h4 id="25g_4">有线 2.5G 测速<a class="headerlink" href="#25g_4" title="Permanent link">&para;</a></h4>
 <p><a class="glightbox" href="https://img.it927.com/aio/246.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="有线 2.5G 测速" src="https://img.it927.com/aio/246.png" /></a>
-在有线 2.5G 测速下，单向打流测试下路由器内网速度能达到 2.39Gbits 左右的速度，离 2.5G 只插一点点损耗了。</p>
+在有线 2.5G 测速下，单向打流测试下路由器内网速度能达到 2.39Gbits 左右的速度，离跑满 2.5G 仅差一点点。</p>
 <h4 id="wi-fi-66e">Wi-Fi 6/6E 内网测试<a class="headerlink" href="#wi-fi-66e" title="Permanent link">&para;</a></h4>
 <p>家庭终端 Wi-Fi 6/6E 内网测试：</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">协商速度</label><label for="__tabbed_7_2">单向打流</label></div>
@@ -2793,7 +2793,7 @@ B --&gt;|Wi-Fi 6/6E| D[其他家庭终端]</code></pre></p>
 </div>
 </div>
 </div>
-<p>在协商速度 2401 Mbps 下，单向打流测试下路由器 Wi-Fi 6/6E 只能跑早 1.5G 左右的内网带宽，离 2.5G 还差很多。</p>
+<p>在协商速度 2401 Mbps 下，单向打流测试下路由器 Wi-Fi 6/6E 只能跑到 1.5G 左右的内网带宽，离 2.5G 还差许多，看来 Wi-Fi 对速度影响比较较大。</p>
 <h2 id="_16">总结<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <p>通过升级到 2.5G 网络设备，花小量的价钱，提升了网络质量。</p>
 

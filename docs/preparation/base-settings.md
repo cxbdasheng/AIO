@@ -46,7 +46,7 @@ description: 在成功安装ESXi系统后，还需要进行一系列基础配置
     用户名输入：root，密码输入 [安装系统](install-esxi.md#__tabbed_3_6) 时的密码，点击登入即可。
     ![进入管理后台](https://img.it927.com/aio/60.png)
 
-成功登录后，将看到ESXi管理界面，可以查看硬件状态和进行后续配置。
+成功登录后，将看到 ESXi 管理界面，可以查看硬件状态和进行后续配置。
 ![管理后台](https://img.it927.com/aio/62.png)
 ## 设置主机名
 导航到 【管理】- 【系统】- 【高级设置】，搜索 `System.hostname`，设置有意义的主机名，如 `all-in-one-pc`。

@@ -30,7 +30,7 @@
       
     
     
-    <meta name="keywords" content="OpenClash安装,OpenWrt安装OpenClash,软路由存储管理,陈大剩的家庭AIO服务器,家庭AIO服务器">
+    <meta name="keywords" content="OpenClash安装,OpenWrt安装OpenClash,软路由插件安装,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -1290,15 +1290,6 @@
           <li class="md-nav__item">
   <a href="#openclash" class="md-nav__link">
     <span class="md-ellipsis">
-      下载 OpenClash 安装包
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openclash_1" class="md-nav__link">
-    <span class="md-ellipsis">
       安装 OpenClash
     </span>
   </a>
@@ -1948,15 +1939,6 @@
           <li class="md-nav__item">
   <a href="#openclash" class="md-nav__link">
     <span class="md-ellipsis">
-      下载 OpenClash 安装包
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openclash_1" class="md-nav__link">
-    <span class="md-ellipsis">
       安装 OpenClash
     </span>
   </a>
@@ -2036,7 +2018,7 @@
   <h1>OpenClash</h1>
 
 <p>OpenClash 是基于 Clash 核心的 OpenWrt 代理工具，提供了友好的 Web 界面和强大的规则管理功能。本教程将详细介绍如何在 OpenWrt 系统上安装和配置 OpenClash。</p>
-<p>官方开源项目地址：<a href="https://github.com/vernesong/OpenClash">https://github.com/vernesong/OpenClash</a></p>
+<p>官方开源项目地址：<a href="https://github.com/vernesong/OpenClash">https://github.com/vernesong/OpenClash</a>，截止 2025年08月11日，最新版为：<a href="https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk">luci-app-openclash_0.46.137_all.ipk</a></p>
 <h2 id="opkg">方法一：通过 opkg 安装（推荐）<a class="headerlink" href="#opkg" title="Permanent link">&para;</a></h2>
 <h3 id="_1">更新软件包列表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>opkg<span class="w"> </span>update
@@ -2048,18 +2030,17 @@
 <h3 id="_2">依赖安装<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>opkg<span class="w"> </span>install<span class="w"> </span>shell<span class="w"> </span>iptables<span class="w"> </span>dnsmasq-full<span class="w"> </span>curl<span class="w"> </span>ca-bundle<span class="w"> </span>ipset<span class="w"> </span>ip-full<span class="w"> </span>iptables-mod-tproxy<span class="w"> </span>iptables-mod-extra<span class="w"> </span>ruby<span class="w"> </span>ruby-yaml<span class="w"> </span>kmod-tun<span class="w"> </span>kmod-inet-diag<span class="w"> </span>unzip<span class="w"> </span>luci-compat<span class="w"> </span>luci<span class="w"> </span>luci-base
 </code></pre></div>
-<h3 id="openclash">下载 OpenClash 安装包<a class="headerlink" href="#openclash" title="Permanent link">&para;</a></h3>
-<p>访问 <a href="https://github.com/vernesong/OpenClash/releases">OpenClash Releases</a> 页面，下载对应的 ipk 文件， 传到 OpenWrt 里面。</p>
-<p>截止 2025年08月11日，最新版为：<a href="https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk">luci-app-openclash_0.46.137_all.ipk</a>
+<p><strong>### 下载 OpenClash 安装包</strong>
+访问 <a href="https://github.com/vernesong/OpenClash/releases">OpenClash Releases</a> 页面，下载对应的 ipk 文件， 传到 OpenWrt 里面。
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 下载最新版本</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>/tmp
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wget<span class="w"> </span>https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk
 </code></pre></div></p>
 <details class="info" open="open">
 <summary>提示</summary>
-<p>可使用多种方法下载，陈大剩这里使用的 <code>wget</code>，进入 <code>GitHub</code> 可到网上搜一些稳定的 IP 地址。</p>
+<p>可使用多种方法下载，陈大剩这里使用的 <code>wget</code>，访问 <code>GitHub</code> 国内可设置 <a href="https://www.cnblogs.com/mq0036/p/7229466.html">稳定的 DNS</a>。</p>
 </details>
-<h3 id="openclash_1">安装 OpenClash<a class="headerlink" href="#openclash_1" title="Permanent link">&para;</a></h3>
+<h3 id="openclash">安装 OpenClash<a class="headerlink" href="#openclash" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>opkg<span class="w"> </span>install<span class="w"> </span>luci-app-openclash_0.46.137_all.ipk
 </code></pre></div>
 安装看到如下提示，则为安装成功
@@ -2078,7 +2059,7 @@
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>make<span class="w"> </span>package/luci-app-openclash/compile<span class="w"> </span><span class="nv">V</span><span class="o">=</span>s
 </code></pre></div>
 <h2 id="_6">初始配置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>安装成功后，在 OpenWrt 的控制面板里面的【服务】菜单下可以找到 OpenClash，继续内核，后面的自由发挥。
+<p>安装成功后，在 OpenWrt 的控制面板里面的【服务】菜单下可以找到 OpenClash，安装内核，后面的自由发挥。
 <a class="glightbox" href="https://img.it927.com/aio/284.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="OpenClash" src="https://img.it927.com/aio/284.png" /></a></p>
 
   
@@ -2100,7 +2081,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月11日 16:14:21 UTC">2025年8月11日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月11日 16:28:20 UTC">2025年8月11日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
