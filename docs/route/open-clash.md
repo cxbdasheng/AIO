@@ -27,7 +27,7 @@ mv /etc/config/dhcp /etc/config/dhcp.bak
 opkg install shell iptables dnsmasq-full curl ca-bundle ipset ip-full iptables-mod-tproxy iptables-mod-extra ruby ruby-yaml kmod-tun kmod-inet-diag unzip luci-compat luci luci-base
 ```
 
-**### 下载 OpenClash 安装包**
+### **下载 OpenClash 安装包**
 访问 [OpenClash Releases](https://github.com/vernesong/OpenClash/releases) 页面，下载对应的 ipk 文件， 传到 OpenWrt 里面。
 ```shell
 # 下载最新版本
@@ -35,7 +35,7 @@ cd /tmp
 wget https://github.com/vernesong/OpenClash/releases/download/v0.46.137/luci-app-openclash_0.46.137_all.ipk
 ```
 ???+info "提示"
-    可使用多种方法下载，陈大剩这里使用的 `wget`，访问 `GitHub` 国内可设置 [稳定的 DNS](https://www.cnblogs.com/mq0036/p/7229466.html)。
+    可使用多种方法下载，陈大剩这里使用的 `wget`，如无法访问 `GitHub`，国内可设置 [稳定的 DNS](https://www.cnblogs.com/mq0036/p/7229466.html)。
 
 ### 安装 OpenClash
 ```shell
