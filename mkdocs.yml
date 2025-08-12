@@ -23,6 +23,7 @@ theme:
     - search.highlight
     - search.share
     - content.code.annotate
+    - content.code.copy
     - content.action.edit
   palette:
     - scheme: default
