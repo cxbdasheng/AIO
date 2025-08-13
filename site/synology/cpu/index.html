@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍如何修正黑群晖系统中CPU显示信息不准确的问题，通过修改系统文件让DSM正确识别和显示CPU型号、核心数等硬件信息">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>CPU修正 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="黑群晖CPU修正,DSM CPU显示,群晖CPU信息,黑群晖优化,Synology CPU,虚拟机CPU,ESXi群晖,DSM系统优化,群晖硬件信息,黑群晖调优">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -82,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#cpu" class="md-skip">
           跳转至
         </a>
       
@@ -1321,6 +1323,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -1349,6 +1353,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1359,9 +1365,375 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      问题背景
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="问题背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题现象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      影响和意义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      解决方案概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法一：通过 SSH 手动修正
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法一：通过 SSH 手动修正">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置条件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：启用 SSH 服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：连接 SSH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：备份原始文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤4：修改 CPU 信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤5：设置开机自启
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤6：应用修改并重启
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法二：使用自动化脚本
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法二：使用自动化脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      一键修正脚本
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法三：ESXi 虚拟机优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法三：ESXi 虚拟机优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机配置优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟机配置优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：修改虚拟机配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：CPU 热插拔配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：性能优化参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证修正效果
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="验证修正效果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      检查方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="检查方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 系统信息面板
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 资源监控
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. SSH 命令验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-web-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Web API 验证
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题和解决方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见问题和解决方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题1：修改后重启失效
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题2：部分信息仍显示错误
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题3：性能监控异常
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级优化技巧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级优化技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义 CPU 特征
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      动态 CPU 信息更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐方案优先级
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1806,6 +2178,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1816,9 +2190,375 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      问题背景
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="问题背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题现象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      影响和意义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      解决方案概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法一：通过 SSH 手动修正
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法一：通过 SSH 手动修正">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置条件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：启用 SSH 服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：连接 SSH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：备份原始文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤4：修改 CPU 信息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤5：设置开机自启
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤6：应用修改并重启
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法二：使用自动化脚本
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法二：使用自动化脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      一键修正脚本
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法三：ESXi 虚拟机优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法三：ESXi 虚拟机优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机配置优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟机配置优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：修改虚拟机配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：CPU 热插拔配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：性能优化参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证修正效果
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="验证修正效果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      检查方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="检查方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 系统信息面板
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 资源监控
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. SSH 命令验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-web-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Web API 验证
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题和解决方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见问题和解决方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题1：修改后重启失效
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题2：部分信息仍显示错误
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题3：性能监控异常
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级优化技巧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级优化技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义 CPU 特征
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      动态 CPU 信息更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐方案优先级
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1845,9 +2585,421 @@
   
 
 
-  <h1>CPU修正</h1>
-
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="cpu">黑群晖 CPU 显示信息修正<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h1>
+<h2 id="_1">问题背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在 ESXi 虚拟机环境中安装黑群晖后，经常会遇到以下 CPU 显示问题：</p>
+<h3 id="_2">常见问题现象<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>CPU 型号显示错误</strong>：显示为 "QEMU Virtual CPU" 或其他虚拟化标识</li>
+<li><strong>核心数不准确</strong>：显示的 CPU 核心数与实际分配不符</li>
+<li><strong>频率信息缺失</strong>：无法正确显示 CPU 频率信息</li>
+<li><strong>硬件信息面板异常</strong>：控制面板中硬件信息显示不完整</li>
+</ol>
+<h3 id="_3">影响和意义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>虽然这些显示问题不影响系统正常运行，但会带来以下困扰：</p>
+<ul>
+<li><strong>监控不准确</strong>：无法准确监控 CPU 使用情况</li>
+<li><strong>性能评估困难</strong>：难以评估系统真实性能</li>
+<li><strong>管理体验差</strong>：影响整体的管理和使用体验</li>
+<li><strong>套件兼容性</strong>：部分套件可能因硬件识别问题出现异常</li>
+</ul>
+<h2 id="_4">解决方案概述<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>修正 CPU 显示信息主要通过以下方式实现：</p>
+<ol>
+<li><strong>修改系统配置文件</strong>：调整 CPU 识别相关配置</li>
+<li><strong>更新硬件数据库</strong>：添加或修改 CPU 型号识别信息</li>
+<li><strong>调整虚拟化参数</strong>：优化 ESXi 虚拟机 CPU 配置</li>
+<li><strong>应用系统补丁</strong>：使用社区提供的修正补丁</li>
+</ol>
+<h2 id="ssh">方法一：通过 SSH 手动修正<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h2>
+<h3 id="_5">前置条件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>已成功安装黑群晖系统</li>
+<li>启用 SSH 服务</li>
+<li>具备基本的 Linux 命令行操作经验</li>
+</ul>
+<h3 id="1-ssh">步骤1：启用 SSH 服务<a class="headerlink" href="#1-ssh" title="Permanent link">&para;</a></h3>
+<ol>
+<li>登录 DSM 管理界面</li>
+<li>进入 <strong>控制面板</strong> → <strong>终端机和 SNMP</strong></li>
+<li>勾选 <strong>启动 SSH 功能</strong></li>
+<li>端口保持默认 22 或自定义端口</li>
+</ol>
+<h3 id="2-ssh">步骤2：连接 SSH<a class="headerlink" href="#2-ssh" title="Permanent link">&para;</a></h3>
+<p>使用 SSH 客户端连接群晖：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 连接到群晖（替换为实际 IP 地址）</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ssh<span class="w"> </span>admin@192.168.1.100
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 切换到 root 用户</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>-i
+</code></pre></div>
+<h3 id="3">步骤3：备份原始文件<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>在修改前先备份重要文件：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 创建备份目录</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/volume1/backup/cpu_fix
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 备份 CPU 相关配置文件</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cp<span class="w"> </span>/proc/cpuinfo<span class="w"> </span>/volume1/backup/cpu_fix/cpuinfo.bak
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>cp<span class="w"> </span>/usr/syno/etc/cpu.conf<span class="w"> </span>/volume1/backup/cpu_fix/cpu.conf.bak<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+<h3 id="4-cpu">步骤4：修改 CPU 信息<a class="headerlink" href="#4-cpu" title="Permanent link">&para;</a></h3>
+<p>创建自定义的 CPU 信息脚本：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 创建 CPU 修正脚本</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/cpu_fix.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="s">#!/bin/bash</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s"># 获取实际 CPU 信息（根据实际情况修改）</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="s">CPU_MODEL=&quot;Intel(R) Core(TM) i7-12700K CPU @ 3.60GHz&quot;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="s">CPU_CORES=$(nproc)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="s">CPU_FREQ=&quot;3600&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="s"># 修改 /proc/cpuinfo 显示信息</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="s">sed -i &quot;s/model name.*/model name\t: $CPU_MODEL/g&quot; /proc/cpuinfo</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="s">sed -i &quot;s/cpu MHz.*/cpu MHz\t\t: $CPU_FREQ/g&quot; /proc/cpuinfo</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="s"># 更新系统硬件信息</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="s">if [ -f /usr/syno/etc/cpu.conf ]; then</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="s">    echo &quot;cpu_model=\&quot;$CPU_MODEL\&quot;&quot; &gt; /usr/syno/etc/cpu.conf</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="s">    echo &quot;cpu_cores=\&quot;$CPU_CORES\&quot;&quot; &gt;&gt; /usr/syno/etc/cpu.conf</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="s">    echo &quot;cpu_freq=\&quot;$CPU_FREQ\&quot;&quot; &gt;&gt; /usr/syno/etc/cpu.conf</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="s">fi</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="s">echo &quot;CPU 信息修正完成&quot;</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="s">EOF</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="c1"># 设置执行权限</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/cpu_fix.sh
+</code></pre></div>
+<h3 id="5">步骤5：设置开机自启<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<p>创建开机启动脚本：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 创建启动脚本</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/etc/rc.d/cpu_fix.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s">#!/bin/sh</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s">case $1 in</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">    start)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s">        echo &quot;启动 CPU 信息修正...&quot;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s">        /usr/local/bin/cpu_fix.sh</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s">        ;;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s">    stop)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s">        echo &quot;停止 CPU 信息修正...&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s">        ;;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s">    *)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="s">        echo &quot;用法: $0 {start|stop}&quot;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="s">        exit 1</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="s">        ;;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="s">esac</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="s">exit 0</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="s">EOF</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="c1"># 设置权限</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/usr/local/etc/rc.d/cpu_fix.sh
+</code></pre></div>
+<h3 id="6">步骤6：应用修改并重启<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 立即执行修正</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/usr/local/bin/cpu_fix.sh
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 重启 DSM 服务使修改生效</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>synoservicectl<span class="w"> </span>--restart<span class="w"> </span>pkgctl-WebStation
+</code></pre></div>
+<h2 id="_6">方法二：使用自动化脚本<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">一键修正脚本<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>创建一个更完整的自动化修正脚本：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 黑群晖 CPU 信息一键修正脚本</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 作者：ESXi All-in-One 教程</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># 版本：1.0</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;===================================&quot;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;    黑群晖 CPU 信息修正工具&quot;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;===================================&quot;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># 检测当前用户权限</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EUID</span><span class="s2">&quot;</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;请使用 root 权限运行此脚本&quot;</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="k">fi</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="c1"># 备份原始文件</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;正在备份原始文件...&quot;</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/volume1/backup/cpu_fix_</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M%S<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="c1"># 复制重要文件到备份目录</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>cp<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/cpuinfo.bak&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>cp<span class="w"> </span>/usr/syno/etc/cpu.conf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/cpu.conf.bak&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="c1"># 获取系统信息</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="nv">CPU_CORES</span><span class="o">=</span><span class="k">$(</span>nproc<span class="k">)</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="nv">TOTAL_MEM</span><span class="o">=</span><span class="k">$(</span>free<span class="w"> </span>-m<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/^Mem:/ {print $2}&#39;</span><span class="k">)</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="c1"># 用户输入 CPU 信息</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;请输入正确的 CPU 信息：&quot;</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;CPU 型号（如 Intel Core i7-12700K）: &quot;</span><span class="w"> </span>CPU_MODEL
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;CPU 基准频率（MHz，如 3600）: &quot;</span><span class="w"> </span>CPU_FREQ
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="c1"># 验证输入</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CPU_MODEL</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CPU_FREQ</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;错误：CPU 信息不能为空&quot;</span>
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="k">fi</span>
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="c1"># 应用修正</span>
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;正在应用 CPU 信息修正...&quot;</span>
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="c1"># 创建新的 CPU 配置文件</span>
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/usr/syno/etc/cpu.conf<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="s">cpu_model=&quot;$CPU_MODEL&quot;</span>
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="s">cpu_cores=&quot;$CPU_CORES&quot;</span>
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="s">cpu_freq=&quot;$CPU_FREQ MHz&quot;</span>
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="s">cpu_cache=&quot;12288 KB&quot;</span>
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="s">cpu_bogomips=&quot;7200&quot;</span>
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="s">EOF</span>
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="c1"># 修改 /proc/cpuinfo（临时）</span>
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/model name.*/model name\t: </span><span class="nv">$CPU_MODEL</span><span class="s2">/g&quot;</span><span class="w"> </span>/proc/cpuinfo
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="w">    </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/cpu MHz.*/cpu MHz\t\t: </span><span class="nv">$CPU_FREQ</span><span class="s2">.000/g&quot;</span><span class="w"> </span>/proc/cpuinfo
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="k">fi</span>
+<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a>
+<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="c1"># 创建持久化脚本</span>
+<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/cpu_info_fix.sh<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="s">#!/bin/bash</span>
+<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="s"># CPU 信息持久化修正脚本</span>
+<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a>
+<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="s"># 修改 cpuinfo 显示</span>
+<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="s">if [ -f /proc/cpuinfo ]; then</span>
+<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="s">    sed -i &quot;s/model name.*/model name\t: $CPU_MODEL/g&quot; /proc/cpuinfo</span>
+<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a><span class="s">    sed -i &quot;s/cpu MHz.*/cpu MHz\t\t: $CPU_FREQ.000/g&quot; /proc/cpuinfo</span>
+<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="s">fi</span>
+<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a>
+<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a><span class="s"># 更新硬件信息缓存</span>
+<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="s">if [ -f /usr/syno/sbin/synowebapi ]; then</span>
+<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a><span class="s">    /usr/syno/sbin/synowebapi --exec api=SYNO.Core.Hardware.Info method=get &gt;/dev/null 2&gt;&amp;1</span>
+<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a><span class="s">fi</span>
+<a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a><span class="s">EOF</span>
+<a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a>
+<a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/cpu_info_fix.sh
+<a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a>
+<a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a><span class="c1"># 添加到启动脚本</span>
+<a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;cpu_info_fix&quot;</span><span class="w"> </span>/usr/local/etc/rc.local<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;/usr/local/bin/cpu_info_fix.sh&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/usr/local/etc/rc.local
+<a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a><span class="k">fi</span>
+<a id="__codelineno-5-84" name="__codelineno-5-84" href="#__codelineno-5-84"></a>
+<a id="__codelineno-5-85" name="__codelineno-5-85" href="#__codelineno-5-85"></a><span class="c1"># 验证修正结果</span>
+<a id="__codelineno-5-86" name="__codelineno-5-86" href="#__codelineno-5-86"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-5-87" name="__codelineno-5-87" href="#__codelineno-5-87"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;修正完成！当前 CPU 信息：&quot;</span>
+<a id="__codelineno-5-88" name="__codelineno-5-88" href="#__codelineno-5-88"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;型号：</span><span class="nv">$CPU_MODEL</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-89" name="__codelineno-5-89" href="#__codelineno-5-89"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;核心数：</span><span class="nv">$CPU_CORES</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-90" name="__codelineno-5-90" href="#__codelineno-5-90"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;频率：</span><span class="nv">$CPU_FREQ</span><span class="s2"> MHz&quot;</span>
+<a id="__codelineno-5-91" name="__codelineno-5-91" href="#__codelineno-5-91"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;内存：</span><span class="si">${</span><span class="nv">TOTAL_MEM</span><span class="si">}</span><span class="s2">MB&quot;</span>
+<a id="__codelineno-5-92" name="__codelineno-5-92" href="#__codelineno-5-92"></a>
+<a id="__codelineno-5-93" name="__codelineno-5-93" href="#__codelineno-5-93"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-5-94" name="__codelineno-5-94" href="#__codelineno-5-94"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;备份文件位置：</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-95" name="__codelineno-5-95" href="#__codelineno-5-95"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-5-96" name="__codelineno-5-96" href="#__codelineno-5-96"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;建议重启系统以确保所有修改生效&quot;</span>
+<a id="__codelineno-5-97" name="__codelineno-5-97" href="#__codelineno-5-97"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;重启命令：reboot&quot;</span>
+</code></pre></div>
+<h2 id="esxi">方法三：ESXi 虚拟机优化<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<h3 id="_8">虚拟机配置优化<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>在 ESXi 层面优化虚拟机配置，改善 CPU 信息显示：</p>
+<h4 id="1">步骤1：修改虚拟机配置<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>关闭群晖虚拟机</strong></li>
+<li><strong>编辑虚拟机设置</strong></li>
+<li><strong>虚拟机选项</strong> → <strong>高级</strong> → <strong>配置参数</strong></li>
+<li><strong>添加以下参数</strong>：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cpuid.coresPerSocket</code></td>
+<td><code>4</code></td>
+<td>每个插槽的核心数</td>
+</tr>
+<tr>
+<td><code>numa.nodeSize</code></td>
+<td><code>2048</code></td>
+<td>NUMA 节点大小(MB)</td>
+</tr>
+<tr>
+<td><code>cpuid.80000001.edx</code></td>
+<td><code>0x2c100800</code></td>
+<td>CPU 特性标识</td>
+</tr>
+<tr>
+<td><code>cpuid.brand</code></td>
+<td><code>Intel Core i7-12700K</code></td>
+<td>CPU 品牌信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2cpu">步骤2：CPU 热插拔配置<a class="headerlink" href="#2cpu" title="Permanent link">&para;</a></h4>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># 启用 CPU 热插拔（可选）
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>hotplug.cpu.enabled = &quot;TRUE&quot;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>vcpu.hotadd = &quot;TRUE&quot;
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a># CPU 调度优化
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>sched.cpu.affinity = &quot;all&quot;
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>sched.cpu.min = &quot;0&quot;
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>sched.cpu.units = &quot;normal&quot;
+</code></pre></div>
+<h4 id="3_1">步骤3：性能优化参数<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a># 内存管理优化
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mainMem.useNamedFile = &quot;FALSE&quot;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>prefvmx.useRecommendedLockedMemSize = &quot;TRUE&quot;
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a># 时钟同步优化
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>tools.syncTime = &quot;TRUE&quot;
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>time.synchronize.continue = &quot;TRUE&quot;
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>time.synchronize.restore = &quot;TRUE&quot;
+</code></pre></div>
+<h2 id="_9">验证修正效果<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">检查方法<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>修正完成后，通过以下方式验证效果：</p>
+<h4 id="1_1">1. 系统信息面板<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>进入 DSM <strong>控制面板</strong></li>
+<li>查看 <strong>信息中心</strong> → <strong>常规</strong></li>
+<li>检查 CPU 型号和核心数显示</li>
+</ul>
+<h4 id="2">2. 资源监控<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>打开 <strong>资源监控器</strong></li>
+<li>查看 CPU 使用率图表</li>
+<li>确认核心数显示正确</li>
+</ul>
+<h4 id="3-ssh">3. SSH 命令验证<a class="headerlink" href="#3-ssh" title="Permanent link">&para;</a></h4>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 查看 CPU 信息</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;model name&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 查看核心数</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>nproc
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># 查看 CPU 频率</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;cpu MHz&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># 查看系统硬件信息</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>cat<span class="w"> </span>/usr/syno/etc/cpu.conf
+</code></pre></div>
+<h4 id="4-web-api">4. Web API 验证<a class="headerlink" href="#4-web-api" title="Permanent link">&para;</a></h4>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 通过 API 获取硬件信息</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>curl<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;https://localhost:5001/webapi/entry.cgi?api=SYNO.Core.Hardware.Info&amp;version=1&amp;method=get&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-SYNO-TOKEN: your_token&quot;</span>
+</code></pre></div>
+<h2 id="_11">常见问题和解决方案<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="1_2">问题1：修改后重启失效<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：重启系统后 CPU 信息恢复原状</p>
+<p><strong>解决方案</strong>：
+1. 检查启动脚本是否正确创建
+2. 确认脚本权限是否正确设置
+3. 验证脚本路径是否添加到 rc.local</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 检查启动脚本</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>/usr/local/etc/rc.d/
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>ls<span class="w"> </span>-la<span class="w"> </span>/usr/local/bin/cpu_fix.sh
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># 手动测试脚本</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>/usr/local/bin/cpu_fix.sh
+</code></pre></div>
+<h3 id="2_1">问题2：部分信息仍显示错误<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：某些地方的 CPU 信息未完全修正</p>
+<p><strong>解决方案</strong>：
+1. 清除系统缓存
+2. 重启相关服务</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 清除硬件信息缓存</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>/tmp/.syno_hw_*
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>/var/cache/synology/*
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># 重启核心服务</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>synoservicectl<span class="w"> </span>--restart<span class="w"> </span>synoscgi
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>synoservicectl<span class="w"> </span>--restart<span class="w"> </span>nginx
+</code></pre></div>
+<h3 id="3_2">问题3：性能监控异常<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h3>
+<p><strong>现象</strong>：CPU 使用率显示异常或监控图表错误</p>
+<p><strong>解决方案</strong>：
+1. 重置性能监控数据库
+2. 重新校准监控服务</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 停止监控服务</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>synoservicectl<span class="w"> </span>--stop<span class="w"> </span>syno-hw-mgmt
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># 清理监控数据</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/var/db/rrd/*
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># 重启监控服务</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>synoservicectl<span class="w"> </span>--start<span class="w"> </span>syno-hw-mgmt
+</code></pre></div>
+<h2 id="_12">高级优化技巧<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="cpu_1">自定义 CPU 特征<a class="headerlink" href="#cpu_1" title="Permanent link">&para;</a></h3>
+<p>针对特定需求，可以进一步自定义 CPU 特征信息：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 创建高级 CPU 信息文件</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/etc/cpu_advanced.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="s"># CPU 高级特征配置</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="s">cpu_vendor=&quot;GenuineIntel&quot;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="s">cpu_family=&quot;6&quot;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s">cpu_model_id=&quot;151&quot;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s">cpu_stepping=&quot;2&quot;</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s">cpu_cache_size=&quot;12288 KB&quot;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s">cpu_cache_alignment=&quot;64&quot;</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s">cpu_address_sizes=&quot;39 bits physical, 48 bits virtual&quot;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s"># CPU 特性标志</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s">cpu_flags=&quot;fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt xsaveopt xsavec xgetbv1 xsaves arat md_clear flush_l1d arch_capabilities&quot;</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="s">EOF</span>
+</code></pre></div>
+<h3 id="cpu_2">动态 CPU 信息更新<a class="headerlink" href="#cpu_2" title="Permanent link">&para;</a></h3>
+<p>创建动态更新 CPU 信息的服务：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># 创建动态更新服务</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/cpu_dynamic_update.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="s">#!/bin/bash</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="s"># 动态获取和更新 CPU 信息</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="s">while true; do</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="s">    # 获取当前 CPU 使用率</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="s">    CPU_USAGE=$(top -bn1 | grep &quot;Cpu(s)&quot; | awk &#39;{print $2+$4}&#39;)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="s">    # 根据负载动态调整显示频率</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="s">    if (( $(echo &quot;$CPU_USAGE &gt; 80&quot; | bc -l) )); then</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="s">        DISPLAY_FREQ=&quot;4200&quot;  # 高负载显示加速频率</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="s">    else</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="s">        DISPLAY_FREQ=&quot;3600&quot;  # 正常频率</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="s">    fi</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="s">    # 更新显示频率</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="s">    sed -i &quot;s/cpu MHz.*/cpu MHz\t\t: $DISPLAY_FREQ.000/g&quot; /proc/cpuinfo</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="s">    sleep 30  # 每30秒更新一次</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="s">done</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="s">EOF</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/cpu_dynamic_update.sh
+</code></pre></div>
+<h2 id="_13">总结<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>通过以上方法，可以有效修正黑群晖中 CPU 显示信息的问题。建议按照以下优先级选择修正方案：</p>
+<h3 id="_14">推荐方案优先级<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>方法二（自动化脚本）</strong>：适合大多数用户，操作简单，效果稳定</li>
+<li><strong>方法一（手动修正）</strong>：适合有一定技术基础的用户，可定制性强</li>
+<li><strong>方法三（ESXi优化）</strong>：作为补充方案，提升整体虚拟化体验</li>
+</ol>
+<h3 id="_15">注意事项<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>定期备份</strong>：修改系统文件前务必备份</li>
+<li><strong>测试验证</strong>：修改后充分测试各项功能</li>
+<li><strong>版本兼容</strong>：不同 DSM 版本可能需要调整方法</li>
+<li><strong>更新影响</strong>：系统更新可能覆盖修改，需重新应用</li>
+</ul>
+<p>通过正确的 CPU 信息修正，可以获得更准确的硬件监控数据和更好的管理体验，让黑群晖系统运行得更加完美。</p>
 
   
 
