@@ -1112,6 +1112,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sata" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载 SATA 控制器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直通板载 SATA 控制器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passthrumap" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改 passthru.map
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      切换直通
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证直通
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1872,6 +1914,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sata" class="md-nav__link">
+    <span class="md-ellipsis">
+      直通板载 SATA 控制器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直通板载 SATA 控制器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passthrumap" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改 passthru.map
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      切换直通
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证直通
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1937,6 +2021,11 @@
 <td>Realtek Audio</td>
 </tr>
 <tr>
+<td>板载 SATA 控制器</td>
+<td>AHCI Controller</td>
+<td>AHCI</td>
+</tr>
+<tr>
 <td>USB控制器</td>
 <td>USB Controller</td>
 <td>xHCI、EHCI</td>
@@ -1962,6 +2051,35 @@
 <p>如果直通管理网卡，可能导致无法远程管理 ESXi，所以至少保留一个网卡用于 ESXi 管理。</p>
 </details>
 <p>直通完成后，即可在其他虚拟机中添加【PCI 设备】方式引入直通。</p>
+<h2 id="sata">直通板载 SATA 控制器<a class="headerlink" href="#sata" title="Permanent link">&para;</a></h2>
+<p>因 ESXi 不能针对某个特定硬盘直通，只能直通 SATA 控制器，所以我们只能直通 SATA 控制器。通过搜索【AHCI】发现 SATA 控制器无法点击直通。
+<a class="glightbox" href="https://img.it927.com/aio/296.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="SATA" src="https://img.it927.com/aio/296.png" /></a>
+这是因为 ESXi 默认禁止了 SATA 控制器直通，需 <a href="../../preparation/base-settings/#ssh">SSH</a> 连接上 ESXi 服务器中，查找 SATA 控制器
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lspci<span class="w"> </span>-v<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Class 0106&quot;</span><span class="w"> </span>-B<span class="w"> </span><span class="m">1</span><span class="w">  </span>
+</code></pre></div>
+可以看到输出如下：其中 8086：供应商 ID；8d62：设备 ID；
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>0000:00:11.4 Mass storage controller SATA controller: Intel Corporation Wellsburg AHCI Controller 
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>     Class 0106: 8086:8d62
+</code></pre></div></p>
+<h3 id="passthrumap">修改 passthru.map<a class="headerlink" href="#passthrumap" title="Permanent link">&para;</a></h3>
+<p><code>passthru.map</code> 是 VMware ESXi 中一个可选的配置文件，用于定义哪些 PCI 设备可以被配置为 PCI 设备直通（PCI Passthrough），以便直接分配给虚拟机使用，编辑 <code>passthru.map</code>。
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vim<span class="w"> </span>/etc/vmware/passthru.map
+</code></pre></div>
+再最后的行后添加：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Intel Corporation Lynx Point AHCI Controller</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 供应商ID PCLE_ID</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="m">8086</span><span class="w">  </span>8d62<span class="w">   </span>d3d0<span class="w">    </span><span class="nb">false</span>
+</code></pre></div>
+修改成功后，请点击【重新引导主机】，这时主机会进行重启
+<a class="glightbox" href="https://img.it927.com/aio/297.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="重新引导主机" src="https://img.it927.com/aio/297.png" /></a></p>
+<h3 id="_4">切换直通<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>重启完毕后，可看到之前的灰色按钮变为了蓝色可点击状态，点击【切换直通】
+<a class="glightbox" href="https://img.it927.com/aio/298.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="切换直通" src="https://img.it927.com/aio/298.png" /></a>
+切换直通后，可看到颜色变黄，还需【重新引导主机】，点击【重新引导主机】
+<a class="glightbox" href="https://img.it927.com/aio/299.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="重新引导主机" src="https://img.it927.com/aio/299.png" /></a></p>
+<h3 id="_5">验证直通<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>不出意外重启后，能看到直通变为了【活动】，证明直通成功
+<a class="glightbox" href="https://img.it927.com/aio/301.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="验证直通" src="https://img.it927.com/aio/301.png" /></a></p>
 
   
 
@@ -1982,7 +2100,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月9日 17:19:41 UTC">2025年8月9日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月17日 06:09:24 UTC">2025年8月17日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

@@ -30,7 +30,7 @@
       
     
     
-    <meta name="keywords" content="黑群晖安装,DSM安装教程,ESXi黑群晖,群晖NAS搭建,黑群晖7.2,Synology DSM,家庭NAS,ESXi虚拟机,群晖系统安装,家庭存储服务器">
+    <meta name="keywords" content="黑群晖安装,DSM安装教程,ESXi黑群晖,群晖NAS搭建,黑群晖7.2,Synology DSM,家庭NAS,ESXi虚拟机,群晖系统安装,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -1281,8 +1281,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -1311,8 +1309,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1321,7 +1317,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       什么是黑群晖
     </span>
@@ -1330,7 +1326,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       准备工作
     </span>
@@ -1340,18 +1336,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#rr" class="md-nav__link">
     <span class="md-ellipsis">
-      系统要求
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      所需文件
+      下载 RR 引导工具
     </span>
   </a>
   
@@ -1363,7 +1350,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       创建虚拟机
     </span>
@@ -1373,27 +1360,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤1：新建虚拟机
+      新建虚拟机
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤2：配置虚拟硬件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤3：高级配置
+      配置虚拟硬件
     </span>
   </a>
   
@@ -1405,39 +1383,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#rr_1" class="md-nav__link">
     <span class="md-ellipsis">
-      安装引导系统
+      安装 RR 引导系统
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="安装引导系统">
+    <nav class="md-nav" aria-label="安装 RR 引导系统">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤1：启动虚拟机
+      启动虚拟机
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-arpl" class="md-nav__link">
+  <a href="#rr_2" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤2：配置 ARPL 引导
+      配置 RR 引导
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置 RR 引导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      切换中文
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤3：构建引导文件
+      构建黑群晖
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1457,69 +1450,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-dsm" class="md-nav__link">
+  <a href="#dsm_1" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤1：进入 DSM 安装
+      DSM 安装向导
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2dsm" class="md-nav__link">
+  <a href="#dsm_2" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤2：DSM 安装向导
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤3：初始配置
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      虚拟机优化配置
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="虚拟机优化配置">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤1：移除安装介质
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤2：网络优化
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤3：存储优化
+      DSM 初始配置
     </span>
   </a>
   
@@ -1533,68 +1475,26 @@
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      存储配置建议
+      安装完成
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="存储配置建议">
+    <nav class="md-nav" aria-label="安装完成">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#raid" class="md-nav__link">
-    <span class="md-ellipsis">
-      RAID 配置方案
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      存储池规划
+      验证安装结果
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      常见问题解决
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常见问题解决">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      问题1：找不到群晖设备
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2dsm_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      问题2：DSM 安装失败
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      问题3：启动后无法进入系统
+      下一步操作
     </span>
   </a>
   
@@ -1602,15 +1502,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      后续配置
-    </span>
-  </a>
   
 </li>
       
@@ -2097,8 +1988,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2107,7 +1996,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       什么是黑群晖
     </span>
@@ -2116,7 +2005,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       准备工作
     </span>
@@ -2126,18 +2015,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#rr" class="md-nav__link">
     <span class="md-ellipsis">
-      系统要求
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      所需文件
+      下载 RR 引导工具
     </span>
   </a>
   
@@ -2149,7 +2029,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       创建虚拟机
     </span>
@@ -2159,27 +2039,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤1：新建虚拟机
+      新建虚拟机
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤2：配置虚拟硬件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤3：高级配置
+      配置虚拟硬件
     </span>
   </a>
   
@@ -2191,39 +2062,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#rr_1" class="md-nav__link">
     <span class="md-ellipsis">
-      安装引导系统
+      安装 RR 引导系统
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="安装引导系统">
+    <nav class="md-nav" aria-label="安装 RR 引导系统">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤1：启动虚拟机
+      启动虚拟机
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-arpl" class="md-nav__link">
+  <a href="#rr_2" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤2：配置 ARPL 引导
+      配置 RR 引导
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置 RR 引导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      切换中文
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤3：构建引导文件
+      构建黑群晖
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2243,69 +2129,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-dsm" class="md-nav__link">
+  <a href="#dsm_1" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤1：进入 DSM 安装
+      DSM 安装向导
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2dsm" class="md-nav__link">
+  <a href="#dsm_2" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤2：DSM 安装向导
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤3：初始配置
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      虚拟机优化配置
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="虚拟机优化配置">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤1：移除安装介质
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤2：网络优化
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      步骤3：存储优化
+      DSM 初始配置
     </span>
   </a>
   
@@ -2319,68 +2154,26 @@
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      存储配置建议
+      安装完成
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="存储配置建议">
+    <nav class="md-nav" aria-label="安装完成">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#raid" class="md-nav__link">
-    <span class="md-ellipsis">
-      RAID 配置方案
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      存储池规划
+      验证安装结果
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      常见问题解决
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常见问题解决">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      问题1：找不到群晖设备
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2dsm_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      问题2：DSM 安装失败
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      问题3：启动后无法进入系统
+      下一步操作
     </span>
   </a>
   
@@ -2388,15 +2181,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      后续配置
-    </span>
-  </a>
   
 </li>
       
@@ -2423,289 +2207,293 @@
   
 
 
-<h1 id="_1">黑群晖系统安装<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">什么是黑群晖<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+  <h1>系统安装</h1>
+
+<p>本文以安装群晖 DS925+ 为例，介绍 ESXi 家庭 AIO 服务器黑群晖的安装配置过程。</p>
+<h2 id="_1">什么是黑群晖<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>黑群晖是指在非群晖官方硬件上安装群晖 DSM（DiskStation Manager）系统的方法。相比白群晖（官方硬件），黑群晖具有更高的性价比和硬件选择自由度，可以在普通 x86 硬件上体验到群晖系统的强大功能。</p>
 <div class="admonition warning">
 <p class="admonition-title">重要声明</p>
-<p>黑群晖仅供学习和个人使用，不建议用于商业环境。请支持正版软件，如有商业需求请购买官方白群晖设备。</p>
-</div>
-<h2 id="_3">准备工作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="_4">系统要求<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>宿主机</strong>：已安装 ESXi 的服务器</li>
-<li><strong>内存</strong>：推荐至少分配 2GB 给群晖虚拟机</li>
-<li><strong>存储</strong>：至少 20GB 用于系统安装</li>
-<li><strong>网络</strong>：确保虚拟机能够正常联网</li>
+<li>黑群晖仅供学习和个人研究使用</li>
+<li>不建议用于生产环境或商业用途</li>
+<li>如有商业需求，请支持正版并购买官方白群晖设备</li>
+<li>使用过程中请遵守相关法律法规</li>
 </ul>
-<h3 id="_5">所需文件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+</div>
+<h2 id="_2">准备工作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="rr">下载 RR 引导工具<a class="headerlink" href="#rr" title="Permanent link">&para;</a></h3>
+<p>众所周知，<a href="https://github.com/fbelavenuto/arpl">ARPL</a> 项目已经停止更新。目前推荐使用 <a href="https://github.com/RROrg/rr">RR</a>，它是 ARPL 的活跃分支版本。</p>
+<p><strong>下载地址</strong>：<a href="https://github.com/RROrg/rr/releases">https://github.com/RROrg/rr/releases</a></p>
+<div class="admonition info">
+<p class="admonition-title">文件格式说明</p>
+<ul>
+<li><strong><code>.img</code> 文件</strong>：用于物理机安装，需要制作启动 U 盘</li>
+<li><strong><code>.ova</code> 文件</strong>：用于 VMware ESXi 等虚拟机环境（本教程推荐）</li>
+</ul>
+<p>建议下载最新稳定版本的 <code>.ova</code> 文件。</p>
+</div>
+<p><a class="glightbox" href="https://img.it927.com/aio/285.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="RR" src="https://img.it927.com/aio/285.png" /></a></p>
+<h2 id="_3">创建虚拟机<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">新建虚拟机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>导航路径</strong>：【虚拟机】→【创建/注册虚拟机】，首先是简单的五个步骤。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：选择创建类型</label><label for="__tabbed_1_2">步骤 2：选择 OVF 和 VMDK 文件</label><label for="__tabbed_1_3">步骤 3：选择储存</label><label for="__tabbed_1_4">步骤 4：部署完成选项</label><label for="__tabbed_1_5">步骤 5：应用配置</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>此处选择【从 OVF 或 OVA 文件部署虚拟机】
+<a class="glightbox" href="https://img.it927.com/aio/287.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/287.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>输入虚拟机名称（例如：<code>DS925+</code>），然后选择刚刚下载的 OVA 文件
+<a class="glightbox" href="https://img.it927.com/aio/288.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择 OVF 和 VMDK 文件" src="https://img.it927.com/aio/288.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择虚拟机存储位置，通常选择默认的第一块存储磁盘
+<a class="glightbox" href="https://img.it927.com/aio/289.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择储存" src="https://img.it927.com/aio/289.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>网络映射</strong>：根据网络规划选择合适的网络段</li>
+<li><strong>磁盘置备</strong>：选择【厚置备延迟置零】（推荐）或【厚置备】</li>
+<li><strong>自动打开电源</strong>：建议保持关闭状态
+<a class="glightbox" href="https://img.it927.com/aio/290.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="部署完成选项" src="https://img.it927.com/aio/290.png" /></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>检查没有问题后，点击【完成】
+<a class="glightbox" href="https://img.it927.com/aio/291.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="应用配置" src="https://img.it927.com/aio/291.png" /></a></p>
+</div>
+</div>
+</div>
+<p>上述五个步骤完成后，ESXi 会开始上传 <code>rr.ova</code> 文件到服务器。
+<a class="glightbox" href="https://img.it927.com/aio/292.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="正在上传" src="https://img.it927.com/aio/292.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">上传注意事项</p>
+<ul>
+<li>上传过程可能耗时较长，请耐心等待</li>
+<li>上传完成前不要关闭浏览器或断开网络连接</li>
+<li>上传完成后才能进行虚拟机操作</li>
+</ul>
+</div>
+<h3 id="_5">配置虚拟硬件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>新建虚拟机步骤完成后，需要根据实际需求自定义硬件配置。</p>
+<div class="admonition tip">
+<p class="admonition-title">配置建议</p>
+<ul>
+<li>新手用户可使用默认配置，无需复杂调整</li>
+<li>如无直通需求，可跳过后面的高级配置步骤</li>
+<li>建议首次安装使用简单配置，熟悉后再进行高级调整</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">自定设置 1：CPU</label><label for="__tabbed_2_2">自定设置 2：内存</label><label for="__tabbed_2_3">自定设置 3：硬盘</label><label for="__tabbed_2_4">自定设置 4：清理不必要的设备</label><label for="__tabbed_2_5">自定设置 5：配置 SATA 控制器直通（可选）</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>如需多个插件需求，建议将 CPU 调多一点
+<a class="glightbox" href="https://img.it927.com/aio/293.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU" src="https://img.it927.com/aio/293.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>根据需求分配内存，建议最少 2GB。</p>
+<div class="admonition warning">
+<p class="admonition-title">PCI 设备直通要求</p>
+<p>如果需要直通 PCI 设备（如 SATA 控制器），必须勾选 <strong>预留客户机内存(全部锁定)</strong>。详细配置请参考 <a href="../../esxi/passthrough/#sata">SATA 控制器直通</a>。</p>
+</div>
+<p><a class="glightbox" href="https://img.it927.com/aio/294.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存" src="https://img.it927.com/aio/294.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>导入后默认硬盘大小为 1GB，这足够 RR 引导系统使用。如需额外存储空间，可后续添加数据盘。
+<a class="glightbox" href="https://img.it927.com/aio/311.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="硬盘" src="https://img.it927.com/aio/311.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>可删除以下不必要的设备以优化性能：
+- USB 控制器
+- 软盘驱动器
+- 其他不使用的设备
+<a class="glightbox" href="https://img.it927.com/aio/295.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="删除不必要的配置" src="https://img.it927.com/aio/295.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>如需直通物理 SATA 控制器获得更好的存储性能，请按照以下步骤：</p>
 <ol>
-<li><strong>引导镜像</strong>：ARPL 引导文件（推荐使用最新版本）</li>
-<li><strong>DSM 系统</strong>：群晖官方 DSM 系统文件（会自动下载）</li>
+<li>选择【添加其他设备】→【PCI 设备】</li>
+<li>选择要直通的 SATA 控制器</li>
+<li>详细配置方法请参考：<a href="../../esxi/passthrough/#sata">ESXi 硬件直通教程</a></li>
 </ol>
-<h2 id="_6">创建虚拟机<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="1">步骤1：新建虚拟机<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>在 ESXi 管理界面中，点击 <strong>创建/注册虚拟机</strong>：</p>
-<ol>
-<li>选择 <strong>创建新的虚拟机</strong></li>
-<li>输入虚拟机名称：<code>Synology-DSM</code></li>
-<li>选择兼容性：<strong>ESXi 7.0 及更高版本</strong></li>
-<li>客户机操作系统系列：<strong>Linux</strong></li>
-<li>客户机操作系统版本：<strong>其他 3.x Linux（64 位）</strong></li>
-</ol>
-<h3 id="2">步骤2：配置虚拟硬件<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>硬件组件</th>
-<th>推荐配置</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>CPU</strong></td>
-<td>2核</td>
-<td>最少1核，推荐2核以上</td>
-</tr>
-<tr>
-<td><strong>内存</strong></td>
-<td>4GB</td>
-<td>最少2GB，推荐4GB以上</td>
-</tr>
-<tr>
-<td><strong>硬盘1</strong></td>
-<td>50GB</td>
-<td>系统盘，薄置备</td>
-</tr>
-<tr>
-<td><strong>硬盘2</strong></td>
-<td>500GB+</td>
-<td>数据盘，根据需求调整</td>
-</tr>
-<tr>
-<td><strong>网络适配器</strong></td>
-<td>VMXNET3</td>
-<td>推荐使用 VMXNET3</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3">步骤3：高级配置<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>在虚拟机选项中进行以下设置：</p>
-<ol>
-<li><strong>引导选项</strong>：</li>
-<li>固件：<strong>BIOS</strong>（不要选择 UEFI）</li>
-<li>
-<p>引导延迟：<strong>5000 毫秒</strong></p>
-</li>
-<li>
-<p><strong>引导顺序</strong>：</p>
-</li>
-<li>设置从 CD/DVD 驱动器启动</li>
-<li>将引导镜像挂载到虚拟光驱</li>
-</ol>
-<h2 id="_7">安装引导系统<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h3 id="1_1">步骤1：启动虚拟机<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
-<ol>
-<li>挂载 ARPL 引导镜像到虚拟光驱</li>
-<li>启动虚拟机</li>
-<li>等待系统进入 ARPL 配置界面</li>
-</ol>
-<h3 id="2-arpl">步骤2：配置 ARPL 引导<a class="headerlink" href="#2-arpl" title="Permanent link">&para;</a></h3>
-<p>在 ARPL 主界面中进行以下操作：</p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. 选择 &quot;Choose a model&quot;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># 推荐选择：DS918+ 或 DS920+</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 2. 选择 &quot;Choose a Build Number&quot; </span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 选择对应的版本号（建议选择稳定版本）</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 3. 选择 &quot;Choose a serial number&quot;</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 可以生成随机序列号或手动输入</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># 4. 添加必要的驱动和插件</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 在 &quot;Addons&quot; 中添加所需驱动</span>
-</code></pre></div>
-<h3 id="3_1">步骤3：构建引导文件<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
-<ol>
-<li>选择 <strong>"Build the loader"</strong></li>
-<li>等待引导文件构建完成</li>
-<li>构建完成后，选择 <strong>"Boot the loader"</strong></li>
-</ol>
+<div class="admonition note">
+<p class="admonition-title">可选配置</p>
+<ul>
+<li>此步骤为高级可选项，新手可跳过</li>
+<li>仅在需要直通物理 SATA 控制器时配置</li>
+<li>直通后可获得更好的磁盘性能和硬件支持</li>
+</ul>
+</div>
+<p><a class="glightbox" href="https://img.it927.com/aio/302.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="直通 SATA 控制器" src="https://img.it927.com/aio/302.png" /></a></p>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">配置完成</p>
+<p>虚拟机硬件配置已完成，现在可以开始安装 RR 引导系统。</p>
+</div>
+<h2 id="rr_1">安装 RR 引导系统<a class="headerlink" href="#rr_1" title="Permanent link">&para;</a></h2>
+<h3 id="_6">启动虚拟机<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>点击【打开电源】即可进入 RR 引导界面，默认选择第【Configure loader】即可
+<a class="glightbox" href="https://img.it927.com/aio/303.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="启动虚拟机" src="https://img.it927.com/aio/303.png" /></a>
+系统引导完成后，会显示 Web 管理界面地址，通常为 <code>http://虚拟机IP:7681</code>（IP 地址以实际显示为准）
+<a class="glightbox" href="https://img.it927.com/aio/304.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="启动虚拟机" src="https://img.it927.com/aio/304.png" /></a></p>
+<h3 id="rr_2">配置 RR 引导<a class="headerlink" href="#rr_2" title="Permanent link">&para;</a></h3>
+<p>使用浏览器访问显示的管理地址，进入 RR 配置界面。
+<a class="glightbox" href="https://img.it927.com/aio/312.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="引导页面" src="https://img.it927.com/aio/312.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">网络连接要求</p>
+<p>确保电脑与 ESXi 服务器在同一网络段，否则无法访问管理界面。</p>
+</div>
+<h4 id="_7">切换中文<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">切换成中文</label><label for="__tabbed_3_2">中文后效果</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>英文对我们不是特别友好，先可以把英文替换成中文，导航【Advanced menu】-【Choose a language】选择【zh_CN】
+<a class="glightbox" href="https://img.it927.com/aio/313.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="切换语言" src="https://img.it927.com/aio/313.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>切换后会变成【中文】界面，这对我们比较友好
+<a class="glightbox" href="https://img.it927.com/aio/314.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="切换语言" src="https://img.it927.com/aio/314.png" /></a></p>
+</div>
+</div>
+</div>
+<h4 id="_8">构建黑群晖<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:5"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">步骤 1：选择型号</label><label for="__tabbed_4_2">步骤 2：选择版本号</label><label for="__tabbed_4_3">步骤 3：编译引导</label><label for="__tabbed_4_4">步骤 4：等待结果</label><label for="__tabbed_4_5">步骤 5：启动引导</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>导航至【选择型号】，根据硬件配置选择合适的群晖型号。常用型号：</p>
+<ul>
+<li><strong>DS925+</strong>：适合大多数家用环境</li>
+<li><strong>DS918+</strong>：适合有核显的家庭用户</li>
+<li><strong>DS920+</strong>：4盘位经典型号</li>
+<li><strong>DS3617xs</strong>：企业级型号，支持更多功能</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/315.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择型号" src="https://img.it927.com/aio/315.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择对应的 DSM 版本号，建议选择稳定版本（如 7.2）。
+<a class="glightbox" href="https://img.it927.com/aio/318.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择型号" src="https://img.it927.com/aio/318.png" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">PAT 文件准备</p>
+<p>选择版本后会显示对应的 <code>.pat</code> 文件下载链接。如果网络环境无法直接访问外网，建议提前下载此文件，后续安装时会用到。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>选择版本后，RR 会自动跳转到编译页面，直接回车开始编译引导文件。
+<a class="glightbox" href="https://img.it927.com/aio/320.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="编译引导" src="https://img.it927.com/aio/320.png" /></a></p>
+<div class="admonition info">
+<p class="admonition-title">编译过程</p>
+<p>编译过程可能需要几分钟，请耐心等待。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>编译完成后会显示结果，成功后将进入启动阶段。
+<a class="glightbox" href="https://img.it927.com/aio/321.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="等待结果" src="https://img.it927.com/aio/321.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>编译完成后，系统会自动跳转到启动页面，回车开始启动群晖引导。
+<a class="glightbox" href="https://img.it927.com/aio/333.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="启动引导" src="https://img.it927.com/aio/333.png" /></a></p>
+</div>
+</div>
+</div>
+<p>引导完成后，RR 会自动重启进入群晖引导模式。等待系统完全加载后，控制台会显示群晖 Web 界面地址，通常为 <code>http://虚拟机IP:5000</code>，陈大剩这里为：<code>http://192.168.8.185:5000</code>
+<a class="glightbox" href="https://img.it927.com/aio/334.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="等待引导" src="https://img.it927.com/aio/334.png" /></a></p>
 <h2 id="dsm">安装 DSM 系统<a class="headerlink" href="#dsm" title="Permanent link">&para;</a></h2>
-<h3 id="1-dsm">步骤1：进入 DSM 安装<a class="headerlink" href="#1-dsm" title="Permanent link">&para;</a></h3>
+<p>使用浏览器访问显示的群晖管理地址，进入 DSM 安装界面，点击【安装】开始系统安装
+<a class="glightbox" href="https://img.it927.com/aio/306.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装 DSM 系统" src="https://img.it927.com/aio/306.png" /></a></p>
+<h3 id="dsm_1">DSM 安装向导<a class="headerlink" href="#dsm_1" title="Permanent link">&para;</a></h3>
+<p>DSM 系统安装分为三个阶段，整个过程约需 10-15 分钟。</p>
+<div class="admonition info">
+<p class="admonition-title">安装时间说明</p>
+<ul>
+<li>上传文件：2-5 分钟（取决于网络速度）</li>
+<li>系统安装：5-8 分钟</li>
+<li>系统重启：2-3 分钟</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">步骤 1：安装 DSM</label><label for="__tabbed_5_2">步骤 2：等待安装</label><label for="__tabbed_5_3">步骤 3：系统重启</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>DSM 安装有两种方式：</p>
+<ul>
+<li><strong>手动上传</strong>：选择之前下载的 <code>.pat</code> 文件</li>
+<li><strong>在线安装</strong>：系统自动下载（需要外网连接）</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/307.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装 DSM 系统" src="https://img.it927.com/aio/307.png" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">安装方式选择</p>
+<ul>
+<li><strong>推荐：手动上传</strong>，可控性强，成功率高</li>
+<li><strong>在线安装</strong>：需要稳定的外网连接，可能失败</li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<p>系统会自动安装 DSM，进度条将显示安装进度。
+<a class="glightbox" href="https://img.it927.com/aio/308.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装 DSM 系统" src="https://img.it927.com/aio/308.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">安装注意事项</p>
+<p>安装过程中请勿断电或关闭虚拟机，否则可能导致系统损坏。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>安装完成后系统会自动重启，倒计时结束后进入初始配置。
+<a class="glightbox" href="https://img.it927.com/aio/309.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="系统重启" src="https://img.it927.com/aio/309.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="dsm_2">DSM 初始配置<a class="headerlink" href="#dsm_2" title="Permanent link">&para;</a></h3>
+<p>系统安装完成并重启后，会自动进入 DSM 初始配置向导：
+<a class="glightbox" href="https://img.it927.com/aio/335.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="DSM 安装向导" src="https://img.it927.com/aio/335.png" /></a>
+按照向导完成以下初始配置步骤：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">步骤 1：创建管理员账户</label><label for="__tabbed_6_2">步骤 2：设置更新选项</label><label for="__tabbed_6_3">步骤 3：登入群晖账号（可选）</label><label for="__tabbed_6_4">步骤 4：设备分析设置</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>设置管理员用户名和密码</li>
+<li>建议使用强密码确保安全
+<a class="glightbox" href="https://img.it927.com/aio/336.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="创建管理员账户" src="https://img.it927.com/aio/336.png" /></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>选择是否开启自动更新（黑群晖建议关闭）</li>
+<li>选择通知设置
+<a class="glightbox" href="https://img.it927.com/aio/337.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置更新选项" src="https://img.it927.com/aio/337.png" /></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>可选择跳过此步骤</li>
+<li>如需使用群晖云服务可登录账号
+<a class="glightbox" href="https://img.it927.com/aio/338.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="登入群晖账号" src="https://img.it927.com/aio/338.png" /></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>选择是否参与用户体验改进计划</li>
+<li>可根据个人需求选择
+<a class="glightbox" href="https://img.it927.com/aio/339.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设备分析" src="https://img.it927.com/aio/339.png" /></a></li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="_9">安装完成<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>恭喜！按照上述步骤，黑群晖系统已成功安装并可以正常使用。</p>
+<h3 id="_10">验证安装结果<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>安装完成后，可以看到群晖管理界面：
+<a class="glightbox" href="https://img.it927.com/aio/340.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="首页" src="https://img.it927.com/aio/340.png" /></a></p>
+<h3 id="_11">下一步操作<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>系统安装完成后，建议进行以下配置：</p>
 <ol>
-<li>虚拟机重启后，会自动从构建的引导启动</li>
-<li>等待系统加载，观察控制台输出的 IP 地址</li>
-<li>在浏览器中访问显示的 IP 地址</li>
+<li><strong>存储空间配置</strong>：创建存储池和共享文件夹</li>
+<li><strong>网络设置</strong>：配置静态 IP 地址（如需）</li>
+<li><strong>用户管理</strong>：创建其他用户账户和权限设置</li>
+<li><strong>安全设置</strong>：开启防火墙和其他安全功能</li>
+<li><strong>应用安装</strong>：根据需求安装群晖套件</li>
 </ol>
-<h3 id="2dsm">步骤2：DSM 安装向导<a class="headerlink" href="#2dsm" title="Permanent link">&para;</a></h3>
-<p>在浏览器中完成以下步骤：</p>
-<ol>
-<li><strong>搜索 DSM</strong>：</li>
-<li>系统会自动搜索局域网内的群晖设备</li>
-<li>
-<p>找到后点击 <strong>连接</strong></p>
-</li>
-<li>
-<p><strong>安装 DSM</strong>：</p>
-</li>
-<li>选择 <strong>手动安装</strong></li>
-<li>上传 DSM 系统文件（.pat 文件）</li>
-<li>
-<p>或选择 <strong>在线安装</strong>让系统自动下载</p>
-</li>
-<li>
-<p><strong>等待安装</strong>：</p>
-</li>
-<li>系统会自动安装并重启</li>
-<li>安装过程约需 10-15 分钟</li>
-</ol>
-<h3 id="3_2">步骤3：初始配置<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h3>
-<p>DSM 安装完成后进行初始配置：</p>
-<ol>
-<li><strong>创建管理员账户</strong>：</li>
-<li>用户名：admin</li>
-<li>
-<p>设置密码（建议使用强密码）</p>
-</li>
-<li>
-<p><strong>网络设置</strong>：</p>
-</li>
-<li>配置静态 IP（推荐）</li>
-<li>
-<p>设置 DNS 服务器</p>
-</li>
-<li>
-<p><strong>存储配置</strong>：</p>
-</li>
-<li>创建存储池</li>
-<li>设置 RAID 模式（根据需求选择）</li>
-<li>创建存储空间</li>
-</ol>
-<h2 id="_8">虚拟机优化配置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<h3 id="1_2">步骤1：移除安装介质<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
-<p>安装完成后，执行以下操作：</p>
-<ol>
-<li>关闭群晖虚拟机</li>
-<li>编辑虚拟机设置</li>
-<li>移除 CD/DVD 驱动器或设置为客户机设备</li>
-<li>确保引导顺序为硬盘优先</li>
-</ol>
-<h3 id="2_1">步骤2：网络优化<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
-<p>为了更好的网络性能，建议：</p>
-<ol>
-<li>使用 <strong>VMXNET3</strong> 网络适配器</li>
-<li>启用 <strong>SR-IOV</strong>（如果硬件支持）</li>
-<li>配置专用的 VLAN（可选）</li>
-</ol>
-<h3 id="3_3">步骤3：存储优化<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>磁盘控制器</strong>：</li>
-<li>推荐使用 LSI Logic SAS 控制器</li>
-<li>
-<p>启用磁盘热添加功能</p>
-</li>
-<li>
-<p><strong>存储分配</strong>：</p>
-</li>
-<li>系统盘使用厚置备（性能更好）</li>
-<li>数据盘可使用薄置备（节省空间）</li>
-</ol>
-<h2 id="_9">存储配置建议<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h3 id="raid">RAID 配置方案<a class="headerlink" href="#raid" title="Permanent link">&para;</a></h3>
-<p>根据数据重要程度和性能需求选择：</p>
-<table>
-<thead>
-<tr>
-<th>RAID类型</th>
-<th>最少磁盘数</th>
-<th>容错能力</th>
-<th>空间利用率</th>
-<th>适用场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Basic</strong></td>
-<td>1</td>
-<td>无</td>
-<td>100%</td>
-<td>临时存储</td>
-</tr>
-<tr>
-<td><strong>JBOD</strong></td>
-<td>2+</td>
-<td>无</td>
-<td>100%</td>
-<td>最大容量</td>
-</tr>
-<tr>
-<td><strong>RAID 1</strong></td>
-<td>2</td>
-<td>1块磁盘</td>
-<td>50%</td>
-<td>重要数据</td>
-</tr>
-<tr>
-<td><strong>SHR-1</strong></td>
-<td>2+</td>
-<td>1块磁盘</td>
-<td>灵活</td>
-<td>推荐方案</td>
-</tr>
-<tr>
-<td><strong>SHR-2</strong></td>
-<td>4+</td>
-<td>2块磁盘</td>
-<td>灵活</td>
-<td>高可靠性</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_10">存储池规划<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>推荐配置：
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── 存储池 1（系统+应用）
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── 磁盘：2×1TB SSD（RAID 1）
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   └── 用途：系统、套件、缓存
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── 存储池 2（重要数据）
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── 磁盘：4×4TB HDD（SHR-1）
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   └── 用途：文档、照片、重要备份
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>└── 存储池 3（媒体文件）
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    ├── 磁盘：6×8TB HDD（SHR-1）
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    └── 用途：影音文件、冷备份
-</code></pre></div>
-<h2 id="_11">常见问题解决<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<h3 id="1_3">问题1：找不到群晖设备<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h3>
-<p><strong>现象</strong>：浏览器中无法找到群晖设备</p>
-<p><strong>解决方案</strong>：
-1. 检查虚拟机网络连接是否正常
-2. 确认虚拟机与客户端在同一网段
-3. 尝试直接访问虚拟机IP地址:5000端口
-4. 检查防火墙设置</p>
-<h3 id="2dsm_1">问题2：DSM 安装失败<a class="headerlink" href="#2dsm_1" title="Permanent link">&para;</a></h3>
-<p><strong>现象</strong>：DSM 系统安装过程中出错</p>
-<p><strong>解决方案</strong>：
-1. 确认引导文件版本与 DSM 版本匹配
-2. 检查虚拟机硬件配置是否满足要求
-3. 重新构建引导文件
-4. 尝试使用不同的 DSM 版本</p>
-<h3 id="3_4">问题3：启动后无法进入系统<a class="headerlink" href="#3_4" title="Permanent link">&para;</a></h3>
-<p><strong>现象</strong>：虚拟机启动后卡在引导界面</p>
-<p><strong>解决方案</strong>：
-1. 检查引导顺序设置
-2. 确认引导文件构建成功
-3. 增加虚拟机内存分配
-4. 检查存储控制器配置</p>
-<h2 id="_12">后续配置<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
-<p>群晖系统安装完成后，建议进行以下配置：</p>
-<ol>
-<li><strong><a href="../cpu/">CPU 修正</a></strong>：优化 CPU 显示信息</li>
-<li><strong><a href="../ssl/">SSL 证书</a></strong>：配置 HTTPS 安全访问</li>
-<li><strong><a href="../remote/">远程访问</a></strong>：设置外网访问</li>
-<li><strong>套件安装</strong>：安装所需的应用套件</li>
-<li><strong>备份配置</strong>：设置定期备份策略</li>
-</ol>
-<p>通过以上步骤，您就成功在 ESXi 环境中安装了黑群晖系统，可以开始享受群晖 NAS 的强大功能了。</p>
 
   
 
@@ -2726,7 +2514,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月13日 14:21:39 UTC">2025年8月13日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月17日 06:09:24 UTC">2025年8月17日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
