@@ -393,7 +393,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../qa/" class="md-tabs__link">
+        <a href="../../qa/purple/" class="md-tabs__link">
           
   
   常见 Q&A
@@ -1821,7 +1821,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../qa/" class="md-nav__link">
+      <a href="../../qa/purple/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESXi 紫屏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qa/qa/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2036,8 +2057,8 @@
 <p>考虑到内网已升级至 2.5 Gbps 网络环境，本打算 3.2TB 的 NVMe 固态硬盘直通给黑群晖做 <strong>SSD 存储池</strong>，但发现 <strong>SSD 存储池</strong> 2.5G 压根就跑不满，后续升级至万兆网络环境可以考虑用 <strong>SSD 存储池</strong> 方案。因此采用以下方案：</p>
 <ul>
 <li><del><strong>SSD 存储池</strong>：选用一块 3.2TB 的 NVMe 固态硬盘直通给黑群晖，用于高速读写任务（如迅雷下载、视频缓存等），充分发挥 2.5G 网络带宽优势。</del></li>
-<li><strong>HDD 存储池1</strong>：配备一块或多块大容量机械硬盘（如 4TB），用来存储私有化的关键数据，如影音、文件、重要资源；</li>
-<li><strong>HDD 存储池2</strong>： 1TB 机械存储池，用于存储一些公共服务相关数据，可以对外提供展示，如 WEB 服务资源等；</li>
+<li><strong>HDD 存储池1</strong>： 1TB 机械存储池，用于存储一些公共服务相关数据，可以对外提供展示，如 WEB 服务资源等；</li>
+<li><strong>HDD 存储池2</strong>：配备一块或多块大容量机械硬盘（如 4TB），用来存储私有化的关键数据，如影音、文件、重要资源；</li>
 <li><strong>冗余备份机制</strong>：未来计划引入第三块硬盘作为关键数据备份，进一步保障数据安全；</li>
 </ul>
 <p><strong>HDD 存储池1</strong> 和 <strong>HDD 存储池2</strong> 主要是考虑敏感数据问题，其次可以将公共盘 NAS 存储以虚拟盘的形式分给各个 AIO 中的操作系统，这样设计不仅能满足当前家庭 NAS 的性能需求，也为后续升级至万兆网络环境打下良好基础。</p>

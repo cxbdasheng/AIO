@@ -135,5 +135,6 @@ nav:
       - IPv6 转 IPv4: "remote/ipv6-ipv4.md"
       - Frp 内网穿透: "remote/frp.md"
   - 常见 Q&A:
-      - 问题列表: "qa.md"
+      - ESXi 紫屏: "qa/purple.md"
+      - 问题列表: "qa/qa.md"
 

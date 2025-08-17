@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍黑群晖存储系统的设计方案，包括硬盘选择、RAID配置、存储池规划、性能优化等核心要素，帮助构建稳定高效的家庭存储系统">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>存储设计 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="黑群晖存储设计,群晖存储方案,黑群晖磁盘配置,存储池设计,RAID配置,群晖存储规划,DSM存储管理,黑群晖硬盘选择,存储架构设计,家庭NAS存储,ESXi黑群晖存储,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -391,7 +393,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../qa/" class="md-tabs__link">
+        <a href="../../qa/purple/" class="md-tabs__link">
           
   
   常见 Q&A
@@ -1338,7 +1340,34 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      存储架构设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      架构解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      最终效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      后续规划
     </span>
   </a>
   
@@ -1768,7 +1797,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../qa/" class="md-nav__link">
+      <a href="../../qa/purple/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESXi 紫屏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qa/qa/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1816,7 +1866,34 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      存储架构设计
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      架构解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      最终效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      后续规划
     </span>
   </a>
   
@@ -1847,7 +1924,43 @@
 
   <h1>存储设计</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>黑群晖存储设计是构建家庭 NAS 系统的核心环节，合理的存储架构直接影响数据安全性、系统性能和扩展能力。</p>
+<h2 id="_1">存储架构设计<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>根据 <a href="../../preparation/disk-partitioning/">准备工作 - 硬盘划分</a> 陈大剩将磁盘设置为三个存储池，架构如下：
+<pre class="mermaid"><code>graph LR
+    A[存储池 1（basic）] --&gt;B[希捷 ST2000VX008 4TB]
+    B --&gt;C[存储空间 1]
+    C--&gt;D[homes]
+    C--&gt;E[docker]
+     style B fill:#ff9999</code></pre>
+<pre class="mermaid"><code>graph LR
+    A[存储池 2（basic）] --&gt;B[西数   1TB]
+    B --&gt; C[存储空间 2]
+    C--&gt;D[data]
+     style B fill:#ff9999</code></pre>
+<pre class="mermaid"><code>graph LR
+    A[存储池 3（basic）] --&gt;B[ESXi 虚拟硬盘 32GB]
+    B --&gt;C[存储空间 3]
+    C--&gt;D[web]
+    C--&gt;E[system]
+     style B fill:#ff9999</code></pre></p>
+<h2 id="_2">架构解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>存储池 1</strong>：用于存储一些公共服务相关数据，可以对外提供展示，如 WEB 服务资源等；</li>
+<li><strong>存储池 2</strong>：用来存储私有化的关键数据，如影音、文件、重要资源，家庭数据等；</li>
+<li><strong>存储池 3</strong>：用于安装黑群晖和群晖系统套件，和 <strong>存储池 1</strong>、<strong>存储池 2</strong> 隔离开来；</li>
+</ol>
+<p><strong>存储池 1</strong> 和 <strong>存储池 2</strong> 使用第三方 <strong>备份插件</strong>，实时上传云盘，做多手冗余准备，及时某个物理磁盘坏了还能进行数据恢复。</p>
+<p><strong>存储池 3</strong> 是 ESXi 的虚拟硬盘，这样设计的好处是：下次换其他群晖版本或虚拟机，<strong>存储池 1</strong> 和 <strong>存储池 2</strong> 无需进行任何操作，仅需要进行磁盘重组，实现了操作系统无关性。</p>
+<details class="warning" open="open">
+<summary>警告</summary>
+<p>按照陈大剩这样设计，并未进行灾备，如果硬盘坏了，则无法恢复数据，请勿参考。</p>
+</details>
+<h2 id="_3">最终效果<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>个人认为：如果不存小姐姐，4T 硬盘基本够用了，话说陈大剩个人空间从未用完过 2T，最终效果如下：
+<a class="glightbox" href="https://img.it927.com/aio/323.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="最终效果" src="https://img.it927.com/aio/323.png" /></a></p>
+<h2 id="_4">后续规划<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>在叨叨几句，细心的网友肯定发现了，陈大剩并未做任何 <strong>灾备支持</strong>，后续陈大剩将会采购 1T 和 4T 的硬盘给 <strong>存储池 1</strong>、<strong>存储池 2</strong> 组 raid1，这样坏了一个盘也能继续恢复。</p>
 
   
 
