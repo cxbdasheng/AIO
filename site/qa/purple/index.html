@@ -1773,34 +1773,19 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="什么是 ESXi 紫屏">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      紫屏死机概述
+      陈大剩遇到的紫屏
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常见错误类型
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       紫屏信息解读
     </span>
@@ -1810,9 +1795,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       基本信息结构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见错误类型
     </span>
   </a>
   
@@ -2134,34 +2128,19 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="什么是 ESXi 紫屏">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      紫屏死机概述
+      陈大剩遇到的紫屏
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常见错误类型
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       紫屏信息解读
     </span>
@@ -2171,9 +2150,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       基本信息结构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见错误类型
     </span>
   </a>
   
@@ -2452,9 +2440,9 @@
 
   <h1>ESXi 紫屏</h1>
 
-<p>ESXi 紫屏死机（Purple Screen of Death，简称 PSOD）是 VMware ESXi 系统遇到严重错误时显示的紫色错误界面，类似于 Windows 的蓝屏死机。本教程将介绍如何系统性地检查和诊断 ESXi 紫屏问题。</p>
+<p>ESXi 紫屏死机（Purple Screen of Death，简称 PSOD）是 VMware ESXi 系统遇到严重错误时显示的紫色错误界面，类似于 Windows 的蓝屏死机。</p>
+<p>紫屏类比于程序员写代码，跑起来全是红色警告。起初陈大剩遇到有点慌，当遇到多了，也就习惯了，先记录一下，再看是什么原因。</p>
 <h2 id="esxi">什么是 ESXi 紫屏<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
-<h3 id="_1">紫屏死机概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>ESXi 紫屏是 VMware 虚拟化平台的内核级错误显示机制，当系统遇到无法恢复的严重错误时会触发。</p>
 <div class="admonition warning">
 <p class="admonition-title">紫屏死机影响</p>
@@ -2465,7 +2453,45 @@
 <li><strong>系统重启</strong>：ESXi 主机自动重启</li>
 </ul>
 </div>
-<h3 id="_2">常见错误类型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h2 id="_1">陈大剩遇到的紫屏<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>不得不说陈大剩遇到的紫屏还真不少，此处列举几个常遇到的紫屏，遇到先记录下来。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">紫屏一</label><label for="__tabbed_1_2">紫屏二</label><label for="__tabbed_1_3">紫屏三</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏一" src="https://img.it927.com/aio/324.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/325.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏二" src="https://img.it927.com/aio/325.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/326.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏三" src="https://img.it927.com/aio/326.png" /></a></p>
+</div>
+</div>
+</div>
+<h2 id="_2">紫屏信息解读<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>陈大剩用一个图来解释一下紫屏的信息，通过 ESXi 紫屏信息，可以看到具体的使用状态：</p>
+<p>ESXi 8.0.3 版本，架构为 x86_64，错误类型为 PF Exception 14，世界 ID 为 2099241，问题标签为 vmx，涉及模块包括：xxxx。
+<a class="glightbox" href="https://img.it927.com/aio/327.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏信息解读" src="https://img.it927.com/aio/327.png" /></a>
+从图上我们只能看出是 <code>vmx</code> 相关问题 ，并不能看出什么来，向这种问题就需要向 <a href="#_19">VMware 官方资源</a> 去搜索或提问了。</p>
+<h3 id="_3">基本信息结构<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>此处陈大剩将 ESXi 紫屏重点信息关键信息，列举一下：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 错误类型和世界 ID</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#PF Exception 14 in world 12345:vmm0</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 错误发生地址</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>@<span class="w"> </span>0x41800123abc
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 寄存器状态</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>RAX:<span class="w"> </span>0x0000000000000000<span class="w">  </span>RBX:<span class="w"> </span>0x1234567890abcdef
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>RCX:<span class="w"> </span>0x0000000000000001<span class="w">  </span>RDX:<span class="w"> </span>0x0000000000000000
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 调用堆栈</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Backtrace:
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>0x41800123abc<span class="w"> </span><span class="o">[</span>vmkernel<span class="o">]</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>0x41800456def<span class="w"> </span><span class="o">[</span>vmkernel<span class="o">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>0x418007890ab<span class="w"> </span><span class="o">[</span>driver_module<span class="o">]</span>
+</code></pre></div>
+<h3 id="_4">常见错误类型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2508,31 +2534,14 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_3">紫屏信息解读<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="_4">基本信息结构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>ESXi 紫屏包含以下关键信息：</p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 错误类型和世界 ID</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#PF Exception 14 in world 12345:vmm0</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 错误发生地址</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>@<span class="w"> </span>0x41800123abc
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 寄存器状态</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>RAX:<span class="w"> </span>0x0000000000000000<span class="w">  </span>RBX:<span class="w"> </span>0x1234567890abcdef
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>RCX:<span class="w"> </span>0x0000000000000001<span class="w">  </span>RDX:<span class="w"> </span>0x0000000000000000
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 调用堆栈</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Backtrace:
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>0x41800123abc<span class="w"> </span><span class="o">[</span>vmkernel<span class="o">]</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>0x41800456def<span class="w"> </span><span class="o">[</span>vmkernel<span class="o">]</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>0x418007890ab<span class="w"> </span><span class="o">[</span>driver_module<span class="o">]</span>
-</code></pre></div>
 <h3 id="_5">关键字段含义<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p><strong>世界 ID（World ID）</strong>：
-- <code>vmm0</code>: 虚拟机监视器
-- <code>console</code>: 管理控制台
-- <code>net-XXX</code>: 网络相关进程
-- <code>scsi-XXX</code>: 存储相关进程</p>
+<p><strong>世界 ID（World ID）</strong>：</p>
+<ul>
+<li><code>vmm0</code>: 虚拟机监视器</li>
+<li><code>console</code>: 管理控制台</li>
+<li><code>net-XXX</code>: 网络相关进程</li>
+<li><code>scsi-XXX</code>: 存储相关进程</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">信息记录建议</p>
 <ul>
@@ -2540,16 +2549,17 @@
 <li><strong>记录完整信息</strong>：包括错误代码、地址、调用堆栈</li>
 <li><strong>注意时间</strong>：记录故障发生的具体时间</li>
 </ul>
+<p>本文只挑选了关键部分讲解，细致的讲解可参考官方文章：<a href="https://knowledge.broadcom.com/external/article?legacyId=1004250">Interpreting a host purple diagnostic screen</a>，需要一些英文基础。</p>
 </div>
 <h2 id="_6">检查方法步骤<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <h3 id="1">步骤 1：获取核心转储文件<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p>ESXi 紫屏发生后，系统会生成核心转储文件用于详细分析：</p>
 <p><strong>查找转储文件位置</strong>：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">方法 1：vSphere Client 查看</label><label for="__tabbed_1_2">方法 2：SSH 命令行</label><label for="__tabbed_1_3">方法 3：直连控制台</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">方法 1：vSphere Client 查看</label><label for="__tabbed_2_2">方法 2：SSH 命令行</label><label for="__tabbed_2_3">方法 3：直连控制台</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>导航路径：【主机】→【监控】→【日志】→【系统日志】
-<a class="glightbox" href="https://img.it927.com/aio/401.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看系统日志" src="https://img.it927.com/aio/401.png" /></a></p>
+<p>导航路径：【主机】→【监控】→【日志】，具体日志每个日志代表什么，可在 <a href="#2">步骤 2：分析系统日志</a> 分析。
+<a class="glightbox" href="https://img.it927.com/aio/328.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看系统日志" src="https://img.it927.com/aio/328.png" /></a></p>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 连接 ESXi SSH</span>
@@ -2648,12 +2658,14 @@
 </code></pre></div>
 <h2 id="_7">常见故障原因及解决<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <h3 id="_8">硬件相关问题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">内存故障</label><label for="__tabbed_2_2">CPU 过热</label><label for="__tabbed_2_3">存储控制器故障</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">内存故障</label><label for="__tabbed_3_2">CPU 过热</label><label for="__tabbed_3_3">存储控制器故障</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><strong>症状特征</strong>：
-- 错误代码：<code>#PF Exception 14</code>、<code>NMI Exception</code>
-- 日志关键词：<code>ECC error</code>、<code>Memory</code>、<code>DIMM</code></p>
+<p><strong>症状特征</strong>：</p>
+<ul>
+<li>错误代码：<code>#PF Exception 14</code>、<code>NMI Exception</code></li>
+<li>日志关键词：<code>ECC error</code>、<code>Memory</code>、<code>DIMM</code></li>
+</ul>
 <p><strong>检查方法</strong>：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 内存错误日志</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;ecc\|memory\|dimm&quot;</span><span class="w"> </span>/var/log/vmkernel.log
@@ -2661,17 +2673,15 @@
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># BIOS 内存测试</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># 重启进入 BIOS，运行内存诊断程序</span>
 </code></pre></div></p>
-<p><strong>解决方案</strong>：
-1. 更换故障内存条
-2. 重新插拔内存条
-3. 检查内存兼容性
-4. 升级 BIOS 版本</p>
+<p><strong>解决方案</strong>：更换故障内存条、重新插拔内存条、检查内存兼容性、升级 BIOS 版本。</p>
 </div>
 <div class="tabbed-block">
-<p><strong>症状特征</strong>：
-- 错误代码：<code>MCE Exception 18</code>
-- 日志关键词：<code>thermal</code>、<code>temperature</code>
-- 间歇性死机，高负载时频发</p>
+<p><strong>症状特征</strong>：</p>
+<ul>
+<li>错误代码：<code>MCE Exception 18</code></li>
+<li>日志关键词：<code>thermal</code>、<code>temperature</code></li>
+<li>间歇性死机，高负载时频发</li>
+</ul>
 <p><strong>检查方法</strong>：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># CPU 温度监控</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>vsish<span class="w"> </span>-e<span class="w"> </span>get<span class="w"> </span>/hardware/cpu/cpuList/0/temperature
@@ -2679,17 +2689,15 @@
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># 风扇转速检查</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ipmitool<span class="w"> </span>sensor<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>fan
 </code></pre></div></p>
-<p><strong>解决方案</strong>：
-1. 清洁 CPU 散热器
-2. 更换导热硅胶
-3. 检查机箱风扇
-4. 改善机房散热</p>
+<p><strong>解决方案</strong>：清洁 CPU 散热器、更换导热硅胶、检查机箱风扇、改善机房散热。</p>
 </div>
 <div class="tabbed-block">
-<p><strong>症状特征</strong>：
-- 错误代码：<code>#GP Exception 13</code>
-- 日志关键词：<code>scsi</code>、<code>storage</code>、<code>adapter</code>
-- 虚拟机磁盘错误</p>
+<p><strong>症状特征</strong>：</p>
+<ul>
+<li>错误代码：<code>#GP Exception 13</code></li>
+<li>日志关键词：<code>scsi</code>、<code>storage</code>、<code>adapter</code></li>
+<li>虚拟机磁盘错误</li>
+</ul>
 <p><strong>检查方法</strong>：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 存储错误日志</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;scsi\|storage\|adapter&quot;</span><span class="w"> </span>/var/log/vmkernel.log
@@ -2697,21 +2705,19 @@
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># 磁盘阵列状态</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>esxcli<span class="w"> </span>storage<span class="w"> </span>core<span class="w"> </span>adapter<span class="w"> </span>stats<span class="w"> </span>get
 </code></pre></div></p>
-<p><strong>解决方案</strong>：
-1. 检查 SATA/SAS 线缆
-2. 更新存储驱动
-3. 检查磁盘阵列卡
-4. 更换故障硬盘</p>
+<p><strong>解决方案</strong>：检查 SATA/SAS 线缆、更新存储驱动、检查磁盘阵列卡、更换故障硬盘。</p>
 </div>
 </div>
 </div>
 <h3 id="_9">软件配置问题<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">驱动不兼容</label><label for="__tabbed_3_2">虚拟机配置错误</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">驱动不兼容</label><label for="__tabbed_4_2">虚拟机配置错误</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><strong>症状特征</strong>：
-- 错误发生在特定驱动模块
-- 调用堆栈指向第三方驱动</p>
+<p><strong>症状特征</strong>：</p>
+<ul>
+<li>错误发生在特定驱动模块</li>
+<li>调用堆栈指向第三方驱动</li>
+</ul>
 <p><strong>解决方法</strong>：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 查看已安装驱动</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>esxcli<span class="w"> </span>software<span class="w"> </span>vib<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>VMware
@@ -2724,10 +2730,12 @@
 </code></pre></div></p>
 </div>
 <div class="tabbed-block">
-<p><strong>常见配置问题</strong>：
-- 内存过量分配
-- CPU 热插拔配置错误
-- 设备直通配置冲突</p>
+<p><strong>常见配置问题</strong>：</p>
+<ul>
+<li>内存过量分配</li>
+<li>CPU 热插拔配置错误</li>
+<li>设备直通配置冲突</li>
+</ul>
 <p><strong>检查方法</strong>：
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 检查虚拟机配置</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>vim-cmd<span class="w"> </span>vmsvc/getallvms
@@ -2740,19 +2748,23 @@
 </div>
 </div>
 <h3 id="_10">系统环境问题<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">ESXi 版本缺陷</label><label for="__tabbed_4_2">BIOS 兼容性</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">ESXi 版本缺陷</label><label for="__tabbed_5_2">BIOS 兼容性</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><strong>解决方案</strong>：
-1. 检查 VMware 知识库
-2. 升级到最新补丁版本
-3. 应用临时修复方案</p>
+<p><strong>解决方案</strong>：</p>
+<ol>
+<li>检查 VMware 知识库</li>
+<li>升级到最新补丁版本</li>
+<li>应用临时修复方案</li>
+</ol>
 </div>
 <div class="tabbed-block">
-<p><strong>检查要点</strong>：
-- 虚拟化功能是否开启
-- 内存映射设置
-- CPU 省电模式配置</p>
+<p><strong>检查要点</strong>：</p>
+<ul>
+<li>虚拟化功能是否开启</li>
+<li>内存映射设置</li>
+<li>CPU 省电模式配置</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2760,10 +2772,10 @@
 <h3 id="_12">硬件层面<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <p><strong>定期维护计划</strong>：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>每月检查</strong>：CPU 温度、内存使用率</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>每季度维护</strong>：清洁散热器、检查风扇</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>每半年检查</strong>：内存诊断、硬盘 SMART 信息</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>每年更换</strong>：导热硅胶、UPS 电池</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每月检查</strong>：CPU 温度、内存使用率</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每季度维护</strong>：清洁散热器、检查风扇</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每半年检查</strong>：内存诊断、硬盘 SMART 信息</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每年更换</strong>：导热硅胶、UPS 电池</li>
 </ul>
 <p><strong>监控告警设置</strong>：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># 设置硬件监控告警</span>
@@ -2918,6 +2930,7 @@
 <p>ESXi 紫屏问题的诊断需要系统性方法，从错误信息解读到硬件检查，再到软件配置验证。建立完善的监控机制和定期维护计划，可以有效预防此类严重故障的发生。遇到复杂问题时，及时收集诊断信息并寻求专业技术支持。</p>
 </div>
 <h2 id="_19">技术支持资源<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>如实在遇到不能解决的问题，可在 VMware 官方资源中查找，其他人有没有出现过类似的问题，没有的话，就直接提出问题，不要害怕语言问题。</p>
 <h3 id="vmware">VMware 官方资源<a class="headerlink" href="#vmware" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>知识库</strong>：<a href="https://kb.vmware.com">kb.vmware.com</a></li>
