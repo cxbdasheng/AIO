@@ -1,10 +1,10 @@
 site_name: 家庭 AIO 服务器搭建教程
-site_url: https://esxi.it927.com
+site_url: https://aio.it927.com
 site_author: 陈大剩
 site_description: "家庭 AIO 服务器 ESXi 环境搭建教程"
-repo_name: cxbdasheng/ESXi
-repo_url: https://github.com/cxbdasheng/ESXi
-copyright: Copyright &copy; 2024 esxi.it927.com 陈大剩
+repo_name: cxbdasheng/AIO
+repo_url: https://github.com/cxbdasheng/AIO
+copyright: Copyright &copy; 2024 aio.it927.com 陈大剩
 theme:
   name: material
   custom_dir: overrides
@@ -119,7 +119,7 @@ nav:
   - 黑群晖:
       - 系统安装: "synology/install.md"
       - 存储设计: "synology/design.md"
-      - CPU修正: "synology/cpu.md"
+      - SSD 缓存加速: "synology/ssd.md"
       - 添加证书: "synology/ssl.md"
       - 远程访问: "synology/remote.md"
   - 家庭工作区:

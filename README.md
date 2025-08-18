@@ -1,7 +1,7 @@
 # 🚀 家庭 All-in-One 服务器搭建指南
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-mkdocs-green.svg)](https://esxi.it927.com/)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-green.svg)](https://aio.it927.com/)
 [![ESXi](https://img.shields.io/badge/platform-ESXi-orange.svg)](https://www.vmware.com/products/esxi-and-esx.html)
 
 > 💪 一台电脑顶十台！让每一颗 CPU、每一 GB 内存都发挥极致性能
@@ -31,6 +31,6 @@
 - 基本的网络配置知识
 
 ## 教程地址
-[🚀 陈大剩的家庭 All-in-One 服务器搭建指南](https://esxi.it927.com/)
+[🚀 陈大剩的家庭 All-in-One 服务器搭建指南](https://aio.it927.com/)
 
 ![封面图](overrides/assets/images/cover.png)

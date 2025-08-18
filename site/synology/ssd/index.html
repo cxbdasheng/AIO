@@ -1,0 +1,3140 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="详细介绍如何在ESXi环境下为黑群晖配置SSD缓存，包括虚拟磁盘创建、缓存设置、性能优化等步骤，提升家庭NAS存储性能">
+      
+      
+        <meta name="author" content="陈大剩">
+      
+      
+        <link rel="canonical" href="https://aio.it927.com/synology/ssd/">
+      
+      
+        <link rel="prev" href="../design/">
+      
+      
+        <link rel="next" href="../ssl/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>SSD 缓存加速 - 家庭 AIO 服务器搭建教程</title>
+      
+    
+    
+    <meta name="keywords" content="黑群晖SSD缓存,ESXi虚拟磁盘,群晖SSD缓存配置,DSM缓存加速,ESXi存储优化,黑群晖性能优化,群晖虚拟SSD,ESXi磁盘管理,SSD读写缓存,家庭NAS优化,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ssd" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-header__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            家庭 AIO 服务器搭建教程
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SSD 缓存加速
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/cxbdasheng/ESXi" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cxbdasheng/ESXi
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
+          
+  
+  前言介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../preparation/hardware-details/" class="md-tabs__link">
+          
+  
+  准备工作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../network/overview/" class="md-tabs__link">
+          
+  
+  网络架构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../esxi/self-starting/" class="md-tabs__link">
+          
+  
+  ESXi 进阶操作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../route/install/" class="md-tabs__link">
+          
+  
+  软路由
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../install/" class="md-tabs__link">
+          
+  
+  黑群晖
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/pc/" class="md-tabs__link">
+          
+  
+  家庭工作区
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../remote/overview/" class="md-tabs__link">
+          
+  
+  远程穿透
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../qa/purple/" class="md-tabs__link">
+          
+  
+  常见 Q&A
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-nav__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+
+    </a>
+    家庭 AIO 服务器搭建教程
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/cxbdasheng/ESXi" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cxbdasheng/ESXi
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    前言介绍
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            前言介绍
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    All-in-One 环境概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    什么是 ESXi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    陈大剩写在前面的话
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    本教程目标与适用对象
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    准备工作
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            准备工作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/hardware-details/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬件配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/bios-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BIOS 设置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/disk-partitioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬盘划分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/install-esxi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装 ESXi
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/base-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESXi 基础设置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    网络架构
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            网络架构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESXi 网络概述
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络拓扑设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/fight/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络拓扑实战
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/jumper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    跳板机使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/intranet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    突破 1000M 带宽
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/qa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    故障排查与优化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ESXi 进阶操作
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ESXi 进阶操作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/self-starting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    虚拟机自启动
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/convert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    镜像转换
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL 证书配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/passthrough/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬件直通
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/clone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    虚拟机克隆
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/energy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    功耗节能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    软路由
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            软路由
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统安装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/ipv6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开启 IPv6
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/expansion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    硬盘扩容
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/open-clash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenClash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    黑群晖
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            黑群晖
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    系统安装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    存储设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SSD 缓存加速
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SSD 缓存加速
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSD 缓存工作原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSD 缓存工作原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存机制概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能提升效果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 环境准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 环境准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件要求
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 存储配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建 SSD 缓存虚拟磁盘
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="创建 SSD 缓存虚拟磁盘">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 1：规划缓存磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 2：在 ESXi 中创建虚拟磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 3：验证磁盘创建
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssd_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置群晖 SSD 缓存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置群晖 SSD 缓存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 1：访问存储管理器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 2：创建 SSD 缓存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 3：优化缓存设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能测试与优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="性能测试与优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基准性能测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能优化配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存效果监控
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      故障排除
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="故障排除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题诊断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      维护和监控
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最佳实践总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置建议
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    添加证书
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    远程访问
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    家庭工作区
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            家庭工作区
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/pc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    家庭 PC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    影视媒体中心
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全屋网络覆盖
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/develop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开发系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/k8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes 集群
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    远程穿透
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            远程穿透
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/ipv6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IPv6 DDNS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/nat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    公网 NAT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IPv6 转 IPv4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/frp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frp 内网穿透
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    常见 Q&A
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            常见 Q&A
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qa/purple/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESXi 紫屏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qa/qa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    问题列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSD 缓存工作原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSD 缓存工作原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存机制概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能提升效果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 环境准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 环境准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件要求
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 存储配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建 SSD 缓存虚拟磁盘
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="创建 SSD 缓存虚拟磁盘">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 1：规划缓存磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 2：在 ESXi 中创建虚拟磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 3：验证磁盘创建
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssd_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置群晖 SSD 缓存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置群晖 SSD 缓存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 1：访问存储管理器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 2：创建 SSD 缓存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤 3：优化缓存设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能测试与优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="性能测试与优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基准性能测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能优化配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      缓存效果监控
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      故障排除
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="故障排除">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见问题诊断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      维护和监控
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最佳实践总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置建议
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/cxbdasheng/ESXi/edit/main/docs/synology/ssd.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>SSD 缓存加速</h1>
+
+<p>在 ESXi 虚拟化环境中为黑群晖配置 SSD 缓存是提升存储性能的有效方法。本教程将介绍如何使用 ESXi 虚拟磁盘为黑群晖创建 SSD 缓存，实现读写性能的显著提升。</p>
+<h2 id="ssd">SSD 缓存工作原理<a class="headerlink" href="#ssd" title="Permanent link">&para;</a></h2>
+<h3 id="_1">缓存机制概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>SSD 缓存通过在高速 SSD 和传统 HDD 之间建立缓存层，将热点数据存储在 SSD 上，实现性能加速：</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>应用程序
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>SSD 缓存层 ←→ 缓存命中/未命中
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ↓
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>传统 HDD 存储池
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ↓
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>物理存储设备
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">缓存类型对比</p>
+<ul>
+<li><strong>只读缓存（Read-only）</strong>：仅缓存读取数据，安全性高</li>
+<li><strong>读写缓存（Read-write）</strong>：同时缓存读写数据，性能提升更明显</li>
+<li><strong>跳过顺序 I/O</strong>：优化随机访问，避免缓存污染</li>
+</ul>
+</div>
+<h3 id="_2">性能提升效果<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><strong>典型性能对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>操作类型</th>
+<th>纯 HDD</th>
+<th>HDD + SSD 缓存</th>
+<th>提升倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>随机读取</strong></td>
+<td>120 IOPS</td>
+<td>3000+ IOPS</td>
+<td>25x</td>
+</tr>
+<tr>
+<td><strong>随机写入</strong></td>
+<td>80 IOPS</td>
+<td>1500+ IOPS</td>
+<td>19x</td>
+</tr>
+<tr>
+<td><strong>文件浏览</strong></td>
+<td>2-3 秒</td>
+<td>0.5 秒</td>
+<td>5x</td>
+</tr>
+<tr>
+<td><strong>应用启动</strong></td>
+<td>10-15 秒</td>
+<td>3-5 秒</td>
+<td>3x</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">适用场景</p>
+<ul>
+<li><strong>媒体服务器</strong>：频繁访问视频缩略图和元数据</li>
+<li><strong>文件服务器</strong>：提升文件浏览和搜索速度</li>
+<li><strong>数据库应用</strong>：加速数据库查询和索引操作</li>
+<li><strong>开发环境</strong>：提升代码编译和构建速度</li>
+</ul>
+</div>
+<h2 id="esxi">ESXi 环境准备<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<h3 id="_3">硬件要求<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><strong>SSD 选择建议</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>推荐型号</th>
+<th>容量建议</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SATA SSD</strong></td>
+<td>三星 980、WD Blue SN570</td>
+<td>256-500GB</td>
+<td>家庭用户，预算有限</td>
+</tr>
+<tr>
+<td><strong>NVMe SSD</strong></td>
+<td>三星 980 PRO、WD SN850X</td>
+<td>500GB-1TB</td>
+<td>专业用户，性能优先</td>
+</tr>
+<tr>
+<td><strong>企业级 SSD</strong></td>
+<td>三星 PM9A3、Intel D7-P5510</td>
+<td>1TB+</td>
+<td>企业应用，高耐久性</td>
+</tr>
+</tbody>
+</table>
+<p><strong>容量规划原则</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 缓存容量计算公式</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>总数据量<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">(</span>经验值<span class="o">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>SSD<span class="w"> </span><span class="nv">缓存容量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>热数据量<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">(</span>预留空间<span class="o">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 示例：10TB 存储系统</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>10TB<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">=</span><span class="w"> </span>2TB
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>SSD<span class="w"> </span><span class="nv">缓存容量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>2TB<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">=</span><span class="w"> </span>3TB<span class="w"> </span><span class="o">(</span>建议配置<span class="o">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nv">实际配置</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>500GB-1TB<span class="w"> </span><span class="o">(</span>基于预算调整<span class="o">)</span>
+</code></pre></div>
+<h3 id="esxi_1">ESXi 存储配置<a class="headerlink" href="#esxi_1" title="Permanent link">&para;</a></h3>
+<p><strong>存储布局规划</strong>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">单 SSD 方案</label><label for="__tabbed_1_2">双 SSD 方案</label><label for="__tabbed_1_3">混合存储方案</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>适用</strong>：预算有限的家庭用户</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ESXi 主机存储
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── 本地存储1 (HDD)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── 群晖系统盘 (32GB)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   └── 数据存储池 (剩余空间)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>└── 本地存储2 (SSD)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    ├── ESXi 系统 (50GB)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    └── SSD 缓存盘 (剩余空间)
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>适用</strong>：性能要求较高的用户</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ESXi 主机存储
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── NVMe SSD1 - ESXi系统+VM存储
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   ├── ESXi 系统 (50GB)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   └── 虚拟机存储 (剩余空间)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── NVMe SSD2 - SSD缓存专用
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   └── 缓存虚拟磁盘 (全部容量)
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>└── SATA HDD - 数据存储
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    └── 数据存储池 (全部容量)
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>适用</strong>：专业用户和企业环境</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ESXi 主机存储
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── NVMe SSD (系统+缓存)
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│   ├── ESXi 系统
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│   ├── 虚拟机存储
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   └── 读写缓存盘
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>├── SATA SSD (只读缓存)
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   └── 只读缓存盘
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>└── 企业级 HDD (数据存储)
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    └── 主数据存储池
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="ssd_1">创建 SSD 缓存虚拟磁盘<a class="headerlink" href="#ssd_1" title="Permanent link">&para;</a></h2>
+<h3 id="1">步骤 1：规划缓存磁盘<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><strong>确定缓存配置方案</strong>：</p>
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 推荐配置方案</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">方案1 - 只读缓存</span><span class="p">:</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">磁盘数量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1个</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">磁盘容量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256GB-500GB</span><span class="w">  </span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">安全级别</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">高 (SSD故障不影响数据)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nt">方案2 - 读写缓存</span><span class="p">:</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">磁盘数量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2个 (RAID 1)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">磁盘容量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500GB-1TB 每个</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">安全级别</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">中 (需要冗余保护)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="nt">方案3 - 混合缓存</span><span class="p">:</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nt">读取缓存</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1个 256GB SSD</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="nt">读写缓存</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2个 500GB SSD (RAID 1)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span><span class="nt">安全级别</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">高 (分离风险)</span>
+</code></pre></div>
+<h3 id="2-esxi">步骤 2：在 ESXi 中创建虚拟磁盘<a class="headerlink" href="#2-esxi" title="Permanent link">&para;</a></h3>
+<p><strong>通过 vSphere Client 创建</strong>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤 1：选择虚拟机</label><label for="__tabbed_2_2">步骤 2：添加硬盘</label><label for="__tabbed_2_3">步骤 3：配置磁盘参数</label><label for="__tabbed_2_4">步骤 4：高级设置</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>导航至【虚拟机和模板】，选择黑群晖虚拟机，右键点击【编辑设置】。
+<a class="glightbox" href="https://img.it927.com/aio/501.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择虚拟机" src="https://img.it927.com/aio/501.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>点击【添加新设备】→【硬盘】，添加新的虚拟磁盘。
+<a class="glightbox" href="https://img.it927.com/aio/502.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加硬盘" src="https://img.it927.com/aio/502.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><strong>关键配置项</strong>：</p>
+<ul>
+<li><strong>磁盘大小</strong>：根据缓存需求设置（建议 256GB-1TB）</li>
+<li><strong>磁盘置备</strong>：选择【厚置备延迟置零】</li>
+<li><strong>存储位置</strong>：选择 SSD 数据存储</li>
+<li><strong>磁盘模式</strong>：选择【独立 - 持久】</li>
+<li><strong>虚拟设备节点</strong>：选择 SCSI 控制器</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/503.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置磁盘参数" src="https://img.it927.com/aio/503.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><strong>性能优化配置</strong>：</p>
+<ul>
+<li><strong>磁盘共享</strong>：无</li>
+<li><strong>磁盘模式</strong>：独立持久</li>
+<li><strong>I/O 限制</strong>：无限制</li>
+<li><strong>多写入器标志</strong>：未启用</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">SSD 优化建议</p>
+<ul>
+<li>如果底层存储是 NVMe SSD，建议使用 NVMe 控制器</li>
+<li>对于 SATA SSD，使用 SATA 控制器获得更好兼容性</li>
+<li>启用写入缓存以提升性能（需要 UPS 保护）</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h3 id="3">步骤 3：验证磁盘创建<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p><strong>检查虚拟机配置</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 在黑群晖 SSH 中检查新磁盘</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>fdisk<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(sd[a-z]|nvme)&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 应该看到类似输出</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>/dev/sda:<span class="w"> </span><span class="m">32</span><span class="w"> </span>GiB<span class="w">    </span><span class="c1"># 系统盘</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>/dev/sdb:<span class="w"> </span><span class="m">2048</span><span class="w"> </span>GiB<span class="w">  </span><span class="c1"># 数据盘</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>/dev/sdc:<span class="w"> </span><span class="m">512</span><span class="w"> </span>GiB<span class="w">   </span><span class="c1"># SSD缓存盘 (新增)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># 检查磁盘类型</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>lsblk<span class="w"> </span>-f
+</code></pre></div>
+<p><strong>验证磁盘性能</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 测试顺序读取性能</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/sdc<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/null<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1024</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 测试随机读取性能 (需要安装 fio)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/sdc<span class="w"> </span>--direct<span class="o">=</span><span class="m">1</span><span class="w"> </span>--rw<span class="o">=</span>randread<span class="w"> </span>--bs<span class="o">=</span>4k<span class="w"> </span>--runtime<span class="o">=</span><span class="m">30</span><span class="w"> </span>--name<span class="o">=</span><span class="nb">test</span>
+</code></pre></div>
+<h2 id="ssd_2">配置群晖 SSD 缓存<a class="headerlink" href="#ssd_2" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">步骤 1：访问存储管理器<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<p><strong>登录 DSM 系统</strong>：</p>
+<ol>
+<li>打开浏览器访问群晖管理界面</li>
+<li>使用管理员账户登录</li>
+<li>打开【控制面板】→【存储管理器】</li>
+<li>切换到【SSD 缓存】页面</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/504.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="存储管理器" src="https://img.it927.com/aio/504.png" /></a></p>
+<h3 id="2-ssd">步骤 2：创建 SSD 缓存<a class="headerlink" href="#2-ssd" title="Permanent link">&para;</a></h3>
+<p><strong>选择缓存类型</strong>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">只读缓存配置</label><label for="__tabbed_3_2">读写缓存配置</label><label for="__tabbed_3_3">混合缓存配置</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>适合场景</strong>：媒体服务器、文件共享</p>
+<ol>
+<li>点击【创建】按钮</li>
+<li>选择【只读缓存】</li>
+<li>选择之前创建的 SSD 虚拟磁盘</li>
+<li>选择要加速的存储空间</li>
+</ol>
+<p><strong>配置参数</strong>：
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">缓存类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">只读缓存</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">缓存设备</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/dev/sdc (512GB SSD)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">目标存储空间</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">存储空间1</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">跳过顺序I/O</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">启用 (推荐)</span>
+</code></pre></div></p>
+<p><a class="glightbox" href="https://img.it927.com/aio/505.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="只读缓存配置" src="https://img.it927.com/aio/505.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><strong>适合场景</strong>：数据库、开发环境</p>
+<ol>
+<li>点击【创建】按钮  </li>
+<li>选择【读写缓存】</li>
+<li>选择两个 SSD 虚拟磁盘组建 RAID 1</li>
+<li>选择要加速的存储空间</li>
+</ol>
+<p><strong>配置参数</strong>：
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">缓存类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">读写缓存</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">RAID类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RAID 1 (推荐)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">缓存设备</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/dev/sdc + /dev/sdd</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nt">目标存储空间</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">存储空间1</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nt">跳过顺序I/O</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">启用</span>
+</code></pre></div></p>
+<p><a class="glightbox" href="https://img.it927.com/aio/506.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="读写缓存配置" src="https://img.it927.com/aio/506.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">读写缓存风险</p>
+<ul>
+<li><strong>数据安全</strong>：SSD 故障可能导致缓存数据丢失</li>
+<li><strong>建议配置</strong>：使用两个 SSD 组建 RAID 1</li>
+<li><strong>定期备份</strong>：重要数据务必备份到其他位置</li>
+<li><strong>UPS 保护</strong>：避免断电导致的缓存数据损坏</li>
+</ul>
+</div>
+</div>
+<div class="tabbed-block">
+<p><strong>适合场景</strong>：企业环境、高性能需求</p>
+<p><strong>步骤</strong>：
+1. 创建只读缓存（使用较大的 SSD）
+2. 单独创建读写缓存（使用两个小 SSD）
+3. 分别应用到不同的存储空间</p>
+<p><strong>配置示例</strong>：
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">只读缓存</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">设备</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1TB NVMe SSD</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">应用</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">媒体存储空间</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nt">读写缓存</span><span class="p">:</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">设备</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2×256GB SATA SSD (RAID 1)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">应用</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">系统和应用存储空间</span>
+</code></pre></div></p>
+</div>
+</div>
+</div>
+<h3 id="3_1">步骤 3：优化缓存设置<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p><strong>高级参数调整</strong>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">跳过顺序 I/O</label><label for="__tabbed_4_2">缓存大小分配</label><label for="__tabbed_4_3">缓存策略优化</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>建议启用</strong>，避免大文件传输影响缓存效果</p>
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">跳过条件</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">文件大小 &gt; 1MB 的顺序读取</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">视频流媒体播放</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">大文件备份操作</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nt">保留缓存</span><span class="p">:</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">小文件随机访问</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">数据库查询</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">应用程序启动</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>智能分配策略</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 自动分配比例</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>元数据缓存:<span class="w"> </span><span class="m">20</span>%<span class="w">    </span><span class="c1"># 文件系统元数据</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>热点数据缓存:<span class="w"> </span><span class="m">70</span>%<span class="w">  </span><span class="c1"># 频繁访问的数据</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>写入缓存:<span class="w"> </span><span class="m">10</span>%<span class="w">      </span><span class="c1"># 待写入数据(仅读写缓存)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>读取策略</strong>：
+- 预读取：提前加载相关数据
+- LRU 淘汰：优先淘汰最久未使用的数据
+- 热点识别：自动识别频繁访问的文件</p>
+<p><strong>写入策略</strong>（读写缓存）：
+- 写回模式：数据先写入缓存，定期同步到HDD
+- 写透模式：数据同时写入缓存和HDD
+- 批量提交：合并小写入操作</p>
+</div>
+</div>
+</div>
+<h2 id="_4">性能测试与优化<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">基准性能测试<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><strong>测试工具和方法</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 1. 文件拷贝测试</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># 从 Windows 客户端测试</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># 大文件拷贝 (测试顺序读写)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>copy<span class="w"> </span><span class="s2">&quot;large_file.iso&quot;</span><span class="w"> </span><span class="s2">&quot;\\synology\share\&quot;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s2"># 小文件批量拷贝 (测试随机读写)  </span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s2">robocopy &quot;</span>C:<span class="se">\t</span>est_files<span class="s2">&quot; &quot;</span><span class="se">\\</span>synology<span class="se">\s</span>hare<span class="se">\t</span>est<span class="s2">&quot; /MT:8</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s2"># 2. 数据库性能测试</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s2"># 使用 MariaDB 进行 OLTP 测试</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s2">sysbench --test=oltp --mysql-host=synology-ip --num-threads=4 run</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s2"># 3. Web 应用响应测试</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="s2"># 测试网页加载速度</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="s2">wget -O /dev/null http://synology-ip/phpMyAdmin/</span>
+</code></pre></div>
+<p><strong>性能监控指标</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># DSM 资源监视器中关键指标</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>CPU使用率:<span class="w"> </span>监控存储I/O对CPU的影响
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>内存使用:<span class="w"> </span>观察系统缓存使用情况<span class="w">  </span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>网络吞吐:<span class="w"> </span>测试网络传输瓶颈
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>存储I/O:<span class="w"> </span>对比HDD和SSD的IOPS
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># SSD缓存命中率</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>缓存命中率:<span class="w"> </span>&gt;70%<span class="w"> </span><span class="o">(</span>良好<span class="o">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>缓存命中率:<span class="w"> </span>&gt;85%<span class="w"> </span><span class="o">(</span>优秀<span class="o">)</span>
+</code></pre></div>
+<h3 id="_6">性能优化配置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><strong>网络优化</strong>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">巨型帧配置</label><label for="__tabbed_5_2">网卡队列优化</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>ESXi 主机网络</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 设置 ESXi 虚拟交换机 MTU</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>esxcli<span class="w"> </span>network<span class="w"> </span>vswitch<span class="w"> </span>standard<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-v<span class="w"> </span>vSwitch0<span class="w"> </span>-m<span class="w"> </span><span class="m">9000</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># 设置虚拟机网络适配器 MTU  </span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>esxcli<span class="w"> </span>network<span class="w"> </span>vswitch<span class="w"> </span>standard<span class="w"> </span>portgroup<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;VM Network&quot;</span><span class="w"> </span>-m<span class="w"> </span><span class="m">9000</span>
+</code></pre></div></p>
+<p><strong>群晖网络设置</strong>：
+1. 控制面板 → 网络 → 网络界面
+2. 编辑网络接口 → 高级设置
+3. 设置 MTU = 9000</p>
+</div>
+<div class="tabbed-block">
+<p><strong>多队列网卡配置</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># 在群晖中启用多队列</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">echo</span><span class="w"> </span><span class="m">4</span><span class="w"> </span>&gt;<span class="w"> </span>/proc/irq/24/smp_affinity<span class="w">  </span><span class="c1"># 网卡中断分配到多个CPU</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># 调整网络缓冲区</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;net.core.rmem_max = 134217728&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/sysctl.conf
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;net.core.wmem_max = 134217728&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/sysctl.conf
+</code></pre></div></p>
+</div>
+</div>
+</div>
+<p><strong>存储系统优化</strong>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">文件系统参数</label><label for="__tabbed_6_2">I/O 调度器优化</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Btrfs 优化设置</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># 挂载时优化参数</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>mount<span class="w"> </span>-o<span class="w"> </span><span class="nv">compress</span><span class="o">=</span>lzo,space_cache<span class="o">=</span>v2,autodefrag<span class="w"> </span>/dev/md0<span class="w"> </span>/volume1
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># SSD 优化 (如果系统盘使用SSD)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>mount<span class="w"> </span>-o<span class="w"> </span><span class="nv">compress</span><span class="o">=</span>lzo,ssd,discard<span class="w"> </span>/dev/md1<span class="w"> </span>/volume2
+</code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p><strong>针对不同存储类型</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># SSD 使用 deadline 调度器</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">echo</span><span class="w"> </span>deadline<span class="w"> </span>&gt;<span class="w"> </span>/sys/block/sdc/queue/scheduler
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># HDD 使用 cfq 调度器  </span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nb">echo</span><span class="w"> </span>cfq<span class="w"> </span>&gt;<span class="w"> </span>/sys/block/sdb/queue/scheduler
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># 调整队列深度</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">echo</span><span class="w"> </span><span class="m">32</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/block/sdc/queue/nr_requests<span class="w">  </span><span class="c1"># SSD</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="nb">echo</span><span class="w"> </span><span class="m">128</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/block/sdb/queue/nr_requests<span class="w"> </span><span class="c1"># HDD</span>
+</code></pre></div></p>
+</div>
+</div>
+</div>
+<h3 id="_7">缓存效果监控<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><strong>实时监控脚本</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1"># ssd-cache-monitor.sh - SSD缓存监控脚本</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== SSD 缓存状态监控 ===&quot;</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;监控时间: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># 缓存命中率统计</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== 缓存命中率 ===&quot;</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;cache hit&quot;</span><span class="w"> </span>/var/log/messages<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="c1"># 存储I/O统计</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== 存储I/O统计 ===&quot;</span><span class="w">  </span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>iostat<span class="w"> </span>-x<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(sdb|sdc)&quot;</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="c1"># 缓存设备使用率</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== SSD缓存使用情况 ===&quot;</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>df<span class="w"> </span>-h<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cache
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="c1"># 系统负载情况</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== 系统负载 ===&quot;</span>
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>uptime
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>free<span class="w"> </span>-h
+</code></pre></div>
+<p><strong>长期性能分析</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 设置 crontab 定期收集性能数据</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># 每10分钟记录一次缓存统计</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>*/10<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/usr/local/bin/ssd-cache-monitor.sh<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/cache-performance.log
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># 每日生成性能报告</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/usr/local/bin/generate-cache-report.sh
+</code></pre></div>
+<h2 id="_8">故障排除<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">常见问题诊断<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">缓存创建失败</label><label for="__tabbed_7_2">缓存性能不佳</label><label for="__tabbed_7_3">缓存数据丢失</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>问题现象</strong>：
+- 创建缓存时提示"无可用磁盘"
+- SSD 磁盘无法识别</p>
+<p><strong>排查步骤</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># 1. 检查磁盘识别状态</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>fdisk<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>sdc
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># 2. 检查磁盘分区状态</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>parted<span class="w"> </span>/dev/sdc<span class="w"> </span>print
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># 3. 清理磁盘分区表</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sdc<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">10</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>sync
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="c1"># 4. 重新扫描磁盘</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;- - -&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/scsi_host/host0/scan
+</code></pre></div></p>
+<p><strong>解决方案</strong>：
+1. 确保 SSD 虚拟磁盘正确添加到虚拟机
+2. 检查磁盘是否有现有分区或数据
+3. 如需要，备份数据后清空磁盘
+4. 重启群晖系统重新识别硬件</p>
+</div>
+<div class="tabbed-block">
+<p><strong>问题现象</strong>：
+- 缓存命中率低于预期 (&lt;50%)
+- 存储性能提升不明显</p>
+<p><strong>性能分析</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># 分析缓存使用模式</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>iotop<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>pgrep<span class="w"> </span>synobios<span class="k">)</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># 检查缓存碎片化程度</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>tune2fs<span class="w"> </span>-l<span class="w"> </span>/dev/md2<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>frag
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># 监控缓存I/O模式</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>iostat<span class="w"> </span>-x<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>sdc
+</code></pre></div></p>
+<p><strong>优化措施</strong>：
+1. 启用"跳过顺序I/O"避免缓存污染
+2. 调整应用程序访问模式
+3. 考虑增加缓存容量
+4. 检查底层存储性能</p>
+</div>
+<div class="tabbed-block">
+<p><strong>紧急处理</strong>：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># 1. 立即停止所有写入操作</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>synopkg<span class="w"> </span>stop<span class="w"> </span>all
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># 2. 检查缓存设备状态</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>mdadm<span class="w"> </span>--detail<span class="w"> </span>/dev/md2
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="c1"># 3. 尝试修复缓存阵列</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>mdadm<span class="w"> </span>--assemble<span class="w"> </span>--force<span class="w"> </span>/dev/md2<span class="w"> </span>/dev/sdc<span class="w"> </span>/dev/sdd
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="c1"># 4. 数据恢复 (如有备份)</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>rsync<span class="w"> </span>-av<span class="w"> </span>/backup/<span class="w"> </span>/volume1/
+</code></pre></div></p>
+<p><strong>预防措施</strong>：
+1. 读写缓存必须使用RAID 1
+2. 定期备份关键数据
+3. 监控SSD健康状态
+4. 配置UPS防止意外断电</p>
+</div>
+</div>
+</div>
+<h3 id="_10">维护和监控<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><strong>定期维护任务</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># 每周维护检查清单</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>check_ssd_health<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== SSD健康状态检查 ===&quot;</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span>smartctl<span class="w"> </span>-a<span class="w"> </span>/dev/sdc<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(Health|Wear|Error)&quot;</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="o">}</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>check_cache_performance<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== 缓存性能统计 ===&quot;</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">    </span><span class="c1"># 获取最近一周的缓存命中率</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">    </span>awk<span class="w"> </span><span class="s1">&#39;/cache hit/ {print $0}&#39;</span><span class="w"> </span>/var/log/messages<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="o">}</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>optimize_cache<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== 缓存优化 ===&quot;</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">    </span><span class="c1"># 清理无效缓存项</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="m">3</span><span class="w"> </span>&gt;<span class="w"> </span>/proc/sys/vm/drop_caches
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">    </span><span class="c1"># 整理文件系统碎片</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="w">    </span>btrfs<span class="w"> </span>filesystem<span class="w"> </span>defragment<span class="w"> </span>-r<span class="w"> </span>/volume1/
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="o">}</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>
+<a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="c1"># 执行维护任务</span>
+<a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>check_ssd_health
+<a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a>check_cache_performance<span class="w">  </span>
+<a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a>optimize_cache
+</code></pre></div>
+<p><strong>监控告警设置</strong>：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># 创建监控脚本 /usr/local/bin/cache-alert.sh</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1">#!/bin/bash</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># 设置告警阈值</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="nv">CACHE_HIT_THRESHOLD</span><span class="o">=</span><span class="m">70</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="nv">SSD_WEAR_THRESHOLD</span><span class="o">=</span><span class="m">80</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="c1"># 检查缓存命中率</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="nv">cache_hit_rate</span><span class="o">=</span><span class="k">$(</span>get_cache_hit_rate<span class="k">)</span><span class="w">  </span><span class="c1"># 需要实现获取函数</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$cache_hit_rate</span><span class="s2">&quot;</span><span class="w"> </span>-lt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CACHE_HIT_THRESHOLD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;警告: SSD缓存命中率过低 (</span><span class="nv">$cache_hit_rate</span><span class="s2">%)&quot;</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="k">fi</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="c1"># 检查SSD磨损程度</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="nv">ssd_wear</span><span class="o">=</span><span class="k">$(</span>smartctl<span class="w"> </span>-a<span class="w"> </span>/dev/sdc<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>wear<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ssd_wear</span><span class="s2">&quot;</span><span class="w"> </span>-gt<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SSD_WEAR_THRESHOLD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;警告: SSD磨损程度过高 (</span><span class="nv">$ssd_wear</span><span class="s2">%)&quot;</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="k">fi</span>
+</code></pre></div>
+<h2 id="_11">最佳实践总结<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_12">配置建议<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><strong>家庭用户推荐配置</strong>：</p>
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">硬件配置</span><span class="p">:</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="nt">SSD类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SATA SSD (性价比高)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="nt">SSD容量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256-500GB</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="nt">缓存类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">只读缓存</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="nt">存储布局</span><span class="p">:</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span><span class="nt">系统盘</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32GB (虚拟磁盘)</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">  </span><span class="nt">数据盘</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2-8TB HDD</span><span class="w"> </span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">  </span><span class="nt">缓存盘</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256GB SSD</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="nt">性能预期</span><span class="p">:</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">  </span><span class="nt">随机读取</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5-10x 提升</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">  </span><span class="nt">文件浏览</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3-5x 加速</span>
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">  </span><span class="nt">应用响应</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2-3x 提升</span>
+</code></pre></div>
+<p><strong>专业用户推荐配置</strong>：</p>
+<div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nt">硬件配置</span><span class="p">:</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="nt">SSD类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NVMe SSD (高性能)</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">  </span><span class="nt">SSD容量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1TB+</span><span class="w"> </span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span><span class="nt">缓存类型</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">读写缓存 (RAID 1)</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nt">存储布局</span><span class="p">:</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="nt">系统盘</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50GB NVMe SSD</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">  </span><span class="nt">数据盘</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">多盘位企业级HDD阵列</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">  </span><span class="nt">读写缓存</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2×500GB NVMe SSD (RAID 1)</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">  </span><span class="nt">只读缓存</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1TB SATA SSD (可选)</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="nt">性能预期</span><span class="p">:</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="w">  </span><span class="nt">IOPS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10-20x 提升</span>
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">  </span><span class="nt">延迟</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50-80% 降低</span>
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="w">  </span><span class="nt">吞吐量</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3-5x 提升</span>
+</code></pre></div>
+<h3 id="_13">注意事项<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">重要提醒</p>
+<ul>
+<li><strong>数据安全</strong>：读写缓存存在数据丢失风险，重要数据必须备份</li>
+<li><strong>电源保护</strong>：使用UPS避免断电导致缓存数据损坏</li>
+<li><strong>容量规划</strong>：缓存容量过小效果有限，过大浪费资源</li>
+<li><strong>定期维护</strong>：监控SSD健康状态，及时更换故障设备</li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">配置成功标志</p>
+<ul>
+<li>SSD缓存创建成功并正常运行</li>
+<li>缓存命中率稳定在70%以上</li>
+<li>随机I/O性能显著提升</li>
+<li>系统整体响应速度明显改善</li>
+<li>无异常错误日志产生</li>
+</ul>
+</div>
+<p>通过合理配置 ESXi 虚拟磁盘作为 SSD 缓存，可以显著提升黑群晖的存储性能，改善用户体验。建议从只读缓存开始配置，在熟悉操作后再考虑更高级的读写缓存方案。</p>
+
+  
+
+<!-- taken from
+https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
+
+<hr/>
+<div class="md-source-file">
+  <small>
+
+    <!-- mkdocs-git-revision-date-localized-plugin -->
+    
+    
+        <span class="md-source-file__fact">
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月18日 05:17:47 UTC">2025年8月18日</span>
+        </span>
+    
+      <span class="md-source-file__fact">
+        最后更新:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月18日 05:17:47 UTC">2025年8月18日</span>
+      </span>
+    <!-- mkdocs-git-revision-date-plugin -->
+    
+  </small>
+</div>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../design/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 存储设计">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                存储设计
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ssl/" class="md-footer__link md-footer__link--next" aria-label="下一页: 添加证书">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                添加证书
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 aio.it927.com 陈大剩
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.it927.com" target="_blank" rel="noopener" title="陈大剩" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M489.2 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32H128v-32c0-2.6-2-4.6-4.6-4.6H96c-2.6 0-4.6 2-4.6 4.6v178.3H54.8v-32c0-2.6-2-4.6-4.6-4.6H22.8c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96h182.9V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../javascripts/analysis.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
