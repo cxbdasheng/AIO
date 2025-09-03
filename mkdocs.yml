@@ -78,6 +78,8 @@ plugins:
 edit_uri: edit/main/docs/
 extra_javascript:
   - javascripts/analysis.js
+  - javascripts/mermaid.min.js
+  - javascripts/mermaid-init.js
 extra:
   generator: false
   social:
