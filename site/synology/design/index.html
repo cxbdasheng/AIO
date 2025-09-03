@@ -1928,15 +1928,15 @@
 <h2 id="_1">存储架构设计<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>根据 <a href="../../preparation/disk-partitioning/">准备工作 - 硬盘划分</a> 陈大剩将磁盘设置为三个存储池，架构如下：
 <pre class="mermaid"><code>graph LR
-    A[存储池 1（basic）] --&gt;B[希捷 ST2000VX008 4TB]
-    B --&gt;C[存储空间 1]
-    C--&gt;D[homes]
-    C--&gt;E[docker]
+    A[存储池 1（basic）] --&gt;B[西数 1TB]
+    B --&gt; C[存储空间 1]
+    C--&gt;D[data]
      style B fill:#ff9999</code></pre>
 <pre class="mermaid"><code>graph LR
-    A[存储池 2（basic）] --&gt;B[西数   1TB]
-    B --&gt; C[存储空间 2]
-    C--&gt;D[data]
+    A[存储池 2（basic）] --&gt;B[希捷 ST2000VX008 4TB]
+    B --&gt;C[存储空间 2]
+    C--&gt;D[homes]
+    C--&gt;E[docker]
      style B fill:#ff9999</code></pre>
 <pre class="mermaid"><code>graph LR
     A[存储池 3（basic）] --&gt;B[ESXi 虚拟硬盘 32GB]
@@ -1946,8 +1946,8 @@
      style B fill:#ff9999</code></pre></p>
 <h2 id="_2">架构解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>存储池 1</strong>：用来存储私有化的关键数据，如影音、文件、重要资源，家庭数据等；</li>
-<li><strong>存储池 2</strong>：用于存储一些公共服务相关数据，可以对外提供展示，如 WEB 服务资源等；</li>
+<li><strong>存储池 1</strong>：用于存储一些公共服务相关数据，可以对外提供展示，如 WEB 服务资源等；</li>
+<li><strong>存储池 2</strong>：用来存储私有化的关键数据，如影音、文件、重要资源，家庭数据等；</li>
 <li><strong>存储池 3</strong>：用于安装黑群晖和群晖系统套件，和 <strong>存储池 1</strong>、<strong>存储池 2</strong> 隔离开来；</li>
 </ol>
 <p><strong>存储池 1</strong> 和 <strong>存储池 2</strong> 使用第三方 <strong>备份插件</strong>，实时上传云盘，做多手冗余准备，及时某个物理磁盘坏了还能进行数据恢复。</p>
@@ -1981,7 +1981,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月17日 15:58:19 UTC">2025年8月17日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月2日 15:57:39 UTC">2025年9月2日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
