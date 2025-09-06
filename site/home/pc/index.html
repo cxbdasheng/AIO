@@ -30,7 +30,7 @@
       
     
     
-    <meta name="keywords" content="家庭PC虚拟机,ESXi Windows虚拟机,Windows 10虚拟化,Windows 11虚拟化,远程桌面连接,RDP远程访问,家庭办公系统,虚拟机GPU直通,Windows虚拟机优化,ESXi Windows性能,ESXi环境搭建教程,陈大剩的家庭AIO服务器">
+    <meta name="keywords" content="家庭PC虚拟机,ESXi Windows虚拟机,Windows 10虚拟化,Windows 11虚拟化,远程桌面连接,RDP 远程访问,家庭办公系统,虚拟机GPU直通,Windows虚拟机优化,ESXi Windows性能,ESXi环境搭建教程,陈大剩的家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -2104,10 +2104,10 @@
 
   <h1>家庭 PC</h1>
 
-<p>根据陈大剩家庭工作区的规划，家庭中还需搭建一台高性能的主力 PC（Windows 虚拟机），满足家庭成员办公、游戏娱乐和开发工作的需求。</p>
+<p>根据陈大剩家庭工作区的规划，家庭中还需搭建一台高性能的 PC（Windows 虚拟机），满足家庭成员办公、游戏娱乐和开发工作的需求。</p>
 <h2 id="_1">硬件规划<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">推荐配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>为了获得最佳性能和数据安全性，建议采用以下配置方案， <strong>直通存储</strong>：确保数据安全，ESXi故障时不会影响数据；<strong>GPU直通</strong>：支持高性能游戏和图形处理； 通过硬件配置和优化设置，可以获得接近物理机的使用体验。</p>
+<p>根据家庭需求，陈大剩建议将存储设为 <strong>直通存储</strong>、<strong>GPU 直通</strong>。即使在 ESXi 系统挂了的情况下，存储的数据也不会丢失，显卡直通方便直连显示器，通过硬件配置和优化设置，可以获得接近物理机的使用体验。</p>
 <table>
 <thead>
 <tr>
@@ -2165,7 +2165,7 @@
 <td><strong>C:盘</strong></td>
 <td>120 GB</td>
 <td>系统盘</td>
-<td>Windows系统及程序文件</td>
+<td>Windows 系统及程序文件</td>
 </tr>
 <tr>
 <td><strong>D:盘</strong></td>
@@ -2177,7 +2177,7 @@
 <td><strong>E:盘</strong></td>
 <td>4 TB</td>
 <td>数据盘</td>
-<td>NAS网络驱动器，存储重要资料</td>
+<td>NAS 网络驱动器，存储重要资料</td>
 </tr>
 </tbody>
 </table>
@@ -2191,21 +2191,21 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：选择创建类型</label><label for="__tabbed_1_2">步骤 2：配置基本信息</label><label for="__tabbed_1_3">步骤 3：选择存储位置</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>选择“创建新虚拟机”，使用默认设置</p>
+<p>选择【创建新虚拟机】，使用默认设置</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/359.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/359.png" /></a></p>
 </div>
 <div class="tabbed-block">
 <ul>
-<li><strong>名称</strong>：输入有意义的虚拟机名称（如：Home-PC-Win11）</li>
+<li><strong>名称</strong>：输入有意义的虚拟机名称（如：Windows-PC）</li>
 <li><strong>兼容性</strong>：ESXi 8.0 U2 或更高版本  </li>
-<li><strong>客户机系统</strong>：Windows 10/11 (64位)</li>
+<li><strong>客户机系统</strong>：Windows 10 (64位)</li>
 </ul>
 <p><a class="glightbox" href="https://img.it927.com/aio/360.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/360.png" /></a></p>
 </div>
 <div class="tabbed-block">
 <ul>
 <li><strong>直通方式</strong>：随意选择一个数据存储（后续会配置直通盘）</li>
-<li><strong>虚拟磁盘方式</strong>：选择性能最好的SSD数据存储</li>
+<li><strong>虚拟磁盘方式</strong>：选择性能最好的 SSD 数据存储</li>
 </ul>
 <p><a class="glightbox" href="https://img.it927.com/aio/361.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择存储位置" src="https://img.it927.com/aio/361.png" /></a></p>
 </div>
@@ -2226,7 +2226,7 @@
 <div class="tabbed-block">
 <ul>
 <li><strong>内存大小</strong>：32 GB  </li>
-<li><strong>重要设置</strong>：如果需要直通 PCI 设备，必须勾选“预留客户机内存(全部锁定)”</li>
+<li><strong>重要设置</strong>：如果需要直通 PCI 设备，必须勾选【预留客户机内存(全部锁定)】</li>
 <li><strong>内存热添加</strong>：可选启用</li>
 </ul>
 <p><a class="glightbox" href="https://img.it927.com/aio/363.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存配置" src="https://img.it927.com/aio/363.png" /></a></p>
@@ -2267,7 +2267,7 @@
 </div>
 <h3 id="_8">确认最终设置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p><strong>设置启动模式</strong></p>
-<p>在虚拟机选项中，将固件设置为<strong>EFI</strong>（支持UEFI启动）</p>
+<p>在虚拟机选项中，将固件设置为 <strong>EFI</strong>（支持 UEFI 启动）</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/379.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="EFI设置" src="https://img.it927.com/aio/379.png" /></a></p>
 <p><strong>检查配置清单</strong></p>
 <p>在点击“完成”前，请确认：</p>
@@ -2337,7 +2337,7 @@
 <ol>
 <li><strong>系统更新</strong>：进入 Windows Update，安装所有可用更新</li>
 <li><strong>驱动安装</strong>：系统会自动安装大部分驱动程序，没有更新的手动下载驱动更新</li>
-<li><strong>VMware Tools</strong>：安装VMware Tools以获得更好性能</li>
+<li><strong>VMware Tools</strong>：安装 VMware Tools 以获得更好性能</li>
 </ol>
 <p><a class="glightbox" href="https://img.it927.com/aio/386.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装完成" src="https://img.it927.com/aio/386.png" /></a></p>
 
@@ -2360,7 +2360,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月6日 15:47:28 UTC">2025年9月6日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月6日 15:48:33 UTC">2025年9月6日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
