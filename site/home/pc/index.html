@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍如何在ESXi环境中部署Windows家庭PC虚拟机，包括硬件规划、系统安装、性能优化和故障排除，打造高效稳定的家庭办公和娱乐环境">
       
       
         <meta name="author" content="陈大剩">
@@ -29,6 +29,8 @@
         <title>家庭 PC - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="家庭PC虚拟机,ESXi Windows虚拟机,Windows 10虚拟化,Windows 11虚拟化,远程桌面连接,RDP远程访问,家庭办公系统,虚拟机GPU直通,Windows虚拟机优化,ESXi Windows性能,ESXi环境搭建教程,陈大剩的家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
@@ -80,6 +82,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1425,6 +1432,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    家庭 PC
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1434,6 +1452,149 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件规划
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="硬件规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘分区规划
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="创建虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础配置步骤
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义配置设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      确认最终设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows 系统安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows 系统安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置引导阶段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统初始化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装后操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1786,6 +1947,140 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件规划
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="硬件规划">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘分区规划
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建虚拟机
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="创建虚拟机">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础配置步骤
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义配置设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      确认最终设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows 系统安装
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows 系统安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置引导阶段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统初始化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装后操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1809,7 +2104,242 @@
 
   <h1>家庭 PC</h1>
 
-
+<p>根据陈大剩家庭工作区的规划，家庭中还需搭建一台高性能的主力 PC（Windows 虚拟机），满足家庭成员办公、游戏娱乐和开发工作的需求。</p>
+<h2 id="_1">硬件规划<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">推荐配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>为了获得最佳性能和数据安全性，建议采用以下配置方案， <strong>直通存储</strong>：确保数据安全，ESXi故障时不会影响数据；<strong>GPU直通</strong>：支持高性能游戏和图形处理； 通过硬件配置和优化设置，可以获得接近物理机的使用体验。</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>推荐配置</th>
+<th>最低配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong></td>
+<td>12 vCPU</td>
+<td>8 vCPU</td>
+<td>建议选择高主频处理器</td>
+</tr>
+<tr>
+<td><strong>内存</strong></td>
+<td>32 GB</td>
+<td>16 GB</td>
+<td>GPU直通必须预留全部内存</td>
+</tr>
+<tr>
+<td><strong>存储</strong></td>
+<td>500GB NVMe SSD</td>
+<td>256GB SSD</td>
+<td>推荐直通整块物理盘</td>
+</tr>
+<tr>
+<td><strong>显卡</strong></td>
+<td>直通 GPU</td>
+<td>集成显卡</td>
+<td>游戏和图形处理必备</td>
+</tr>
+<tr>
+<td><strong>网络</strong></td>
+<td>10 Gbps</td>
+<td>1 Gbps</td>
+<td>高速内网传输</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">磁盘分区规划<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>分区</th>
+<th>容量</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C:盘</strong></td>
+<td>120 GB</td>
+<td>系统盘</td>
+<td>Windows系统及程序文件</td>
+</tr>
+<tr>
+<td><strong>D:盘</strong></td>
+<td>380 GB</td>
+<td>软件盘</td>
+<td>安装软件、游戏及工作文件</td>
+</tr>
+<tr>
+<td><strong>E:盘</strong></td>
+<td>4 TB</td>
+<td>数据盘</td>
+<td>NAS网络驱动器，存储重要资料</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">准备工作<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><strong>下载 Windows ISO 镜像</strong></p>
+<p>访问 <a href="https://www.microsoft.com/zh-cn/software-download/">Microsoft 官方下载页面</a>，推荐下载：<strong>Windows 10 Pro</strong>，下载完成后，将 ISO 文件上传到 ESXi 数据存储。
+<a class="glightbox" href="https://img.it927.com/aio/370.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Windows下载" src="https://img.it927.com/aio/370.png" /></a></p>
+<h2 id="_5">创建虚拟机<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><strong>导航路径</strong>：【虚拟机】→【创建/注册虚拟机】</p>
+<h3 id="_6">基础配置步骤<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：选择创建类型</label><label for="__tabbed_1_2">步骤 2：配置基本信息</label><label for="__tabbed_1_3">步骤 3：选择存储位置</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>选择“创建新虚拟机”，使用默认设置</p>
+<p><a class="glightbox" href="https://img.it927.com/aio/359.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/359.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>名称</strong>：输入有意义的虚拟机名称（如：Home-PC-Win11）</li>
+<li><strong>兼容性</strong>：ESXi 8.0 U2 或更高版本  </li>
+<li><strong>客户机系统</strong>：Windows 10/11 (64位)</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/360.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/360.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>直通方式</strong>：随意选择一个数据存储（后续会配置直通盘）</li>
+<li><strong>虚拟磁盘方式</strong>：选择性能最好的SSD数据存储</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/361.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择存储位置" src="https://img.it927.com/aio/361.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="_7">自定义配置设置<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>以下配置步骤针对高性能需求，请根据实际情况调整参数。新手可使用默认设置。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:6"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><input id="__tabbed_2_6" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CPU 配置</label><label for="__tabbed_2_2">内存配置</label><label for="__tabbed_2_3">清理默认设备</label><label for="__tabbed_2_4">网络配置</label><label for="__tabbed_2_5">添加直通设备</label><label for="__tabbed_2_6">添加ISO镜像</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>处理器数量</strong>：12 个 vCPU</li>
+<li><strong>每插槽内核数</strong>：12</li>
+<li><strong>CPU 热添加</strong>：可选启用（支持在线扩容）</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/362.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU配置" src="https://img.it927.com/aio/362.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>内存大小</strong>：32 GB  </li>
+<li><strong>重要设置</strong>：如果需要直通 PCI 设备，必须勾选“预留客户机内存(全部锁定)”</li>
+<li><strong>内存热添加</strong>：可选启用</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/363.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存配置" src="https://img.it927.com/aio/363.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>删除不需要的默认设备：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 删除默认硬盘</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 删除CD/DVD驱动器  </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 保留网络适配器</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/364.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="清理默认设备" src="https://img.it927.com/aio/364.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>网络类型</strong>：选择【家庭终端网段】</li>
+<li><strong>网卡类型</strong>：推荐VMXNET3（高性能）</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/365.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络配置" src="https://img.it927.com/aio/365.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><strong>磁盘直通配置：</strong></p>
+<ol>
+<li>选择【添加其他设备】 → 【PCI设备】</li>
+<li>选择目标存储设备</li>
+<li>确保物理盘平时未被使用</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/367.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="磁盘直通" src="https://img.it927.com/aio/367.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>CD/DVD驱动器</strong>：选择“数据存储ISO文件”</li>
+<li><strong>镜像文件</strong>：选择上传的Windows ISO</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/368.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ISO镜像配置" src="https://img.it927.com/aio/368.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="_8">确认最终设置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><strong>设置启动模式</strong></p>
+<p>在虚拟机选项中，将固件设置为<strong>EFI</strong>（支持UEFI启动）</p>
+<p><a class="glightbox" href="https://img.it927.com/aio/379.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="EFI设置" src="https://img.it927.com/aio/379.png" /></a></p>
+<p><strong>检查配置清单</strong></p>
+<p>在点击“完成”前，请确认：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> CPU 和内存配置正确</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 直通设备已添加（如需）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ISO 镜像已挂载</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 网络配置正确</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> EFI 启动已启用</li>
+</ul>
+<p><a class="glightbox" href="https://img.it927.com/aio/369.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="完成虚拟机创建" src="https://img.it927.com/aio/369.png" /></a></p>
+<h2 id="windows">Windows 系统安装<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h2>
+<p>点击【打开电源】开启 Windows 系统安装，因是保姆教程，所以介绍一下安装，Windows 安装过程相对简单，主要包括以下阶段：</p>
+<h3 id="_9">配置引导阶段<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>配置引导阶段主要任务是配置引导 Windows 系统安装，顺利将 Windows 安装进磁盘中。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:8"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><input id="__tabbed_3_6" name="__tabbed_3" type="radio" /><input id="__tabbed_3_7" name="__tabbed_3" type="radio" /><input id="__tabbed_3_8" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">步骤 1：等待引导</label><label for="__tabbed_3_2">步骤 2：安装程序启动</label><label for="__tabbed_3_3">步骤 3：现在安装</label><label for="__tabbed_3_4">步骤 4：激活 Windows</label><label for="__tabbed_3_5">步骤 5：选择操作系统</label><label for="__tabbed_3_6">步骤 6：接受许可协议</label><label for="__tabbed_3_7">步骤 7：选择驱动磁盘</label><label for="__tabbed_3_8">步骤 8：安装 Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/371.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="等待引导" src="https://img.it927.com/aio/371.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/372.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装程序启动" src="https://img.it927.com/aio/372.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/373.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="现在安装" src="https://img.it927.com/aio/373.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/374.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="激活 Windows" src="https://img.it927.com/aio/374.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/375.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择操作系统" src="https://img.it927.com/aio/375.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/376.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="接受许可协议" src="https://img.it927.com/aio/376.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>这步就不多介绍，无脑操作就行
+<a class="glightbox" href="https://img.it927.com/aio/378.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择驱动磁盘" src="https://img.it927.com/aio/378.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/381.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装 Windows" src="https://img.it927.com/aio/381.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="_10">系统初始化<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>系统初始化阶段主要是为 Windows 系统准备操作数据，以保证安装完成后</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">步骤 1：准备设备</label><label for="__tabbed_4_2">步骤 2：系统初始化</label><label for="__tabbed_4_3">步骤 3：配置选择</label><label for="__tabbed_4_4">步骤 4：准备系统</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/382.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="准备设备" src="https://img.it927.com/aio/382.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="https://img.it927.com/aio/383.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="系统初始化" src="https://img.it927.com/aio/383.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择区域记得选择【中国】，后续过程中有一些初始化选项，按需选择即可，这里不做过多的赘述
+<a class="glightbox" href="https://img.it927.com/aio/384.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="系统初始化" src="https://img.it927.com/aio/384.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>前步骤【配置选择】全部完成后，会进入到准备系统阶段，此阶段会多次重启系统
+<a class="glightbox" href="https://img.it927.com/aio/385.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="系统初始化" src="https://img.it927.com/aio/385.png" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="_11">安装后操作<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>安装过程中请耐心等待，避免强制关机，不出意外，系统能顺利安装。系统安装完成后，建议立即执行以下操作：</p>
+<ol>
+<li><strong>系统更新</strong>：进入 Windows Update，安装所有可用更新</li>
+<li><strong>驱动安装</strong>：系统会自动安装大部分驱动程序，没有更新的手动下载驱动更新</li>
+<li><strong>VMware Tools</strong>：安装VMware Tools以获得更好性能</li>
+</ol>
+<p><a class="glightbox" href="https://img.it927.com/aio/386.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装完成" src="https://img.it927.com/aio/386.png" /></a></p>
 
   
 
