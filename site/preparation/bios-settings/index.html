@@ -1955,7 +1955,7 @@
 </ul>
 <p>以华南主板为例，<strong>首先恢复出厂设置</strong> 后，<code>VMX</code>、<code>VT-d</code> 和 <code>Numa</code> 都是满足要求的，我只需要设置其他选项即可，如果你的也是华南主板，请按照以下步骤进行设置：</p>
 <details class="info" open="open">
-<summary>Info</summary>
+<summary>提示</summary>
 <p>华南金牌主板的操作手册可在：<a href="http://www.huananzhi.com/download1.php?lm=13">下载中心-华南金牌官网</a> 处下载，BIOS 说明书可在：<a href="http://www.huananzhi.com/sc.php?lm=18">服务支持-华南金牌官网</a> 处下载。</p>
 </details>
 <h2 id="above-4g-decoding">开启 Above 4G  Decoding<a class="headerlink" href="#above-4g-decoding" title="Permanent link">&para;</a></h2>
@@ -1965,14 +1965,14 @@
 <p>以华南主板为例，在【Advenced】-【PCI Subsustem Settings】里面可以打开 <strong>SR-IOV</strong> 选项：</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启 SR-IOV" src="https://img.it927.com/aio/17.png" /></a></p>
 <details class="info" open="open">
-<summary>Info</summary>
+<summary>提示</summary>
 <p>全称是 <code>Single Root IO Virtualization Support</code> 是一种高效先进的虚拟网卡技术。一个物理网卡可以虚拟出来多个轻量化的PCI-e 物理设备，从而可以分配给虚拟机使用。启用 SR-IOV 的这个功能，将大大减轻宿主机的CPU负荷，提高网络性能，降低网络时延等。</p>
 </details>
 <h2 id="x2apic">开启 x2APIC<a class="headerlink" href="#x2apic" title="Permanent link">&para;</a></h2>
 <p>华南主板为例，在 【InterRCSetup】 - 【Processor Configuration】 里面可以打开 <strong>X2APIC</strong> 选项：</p>
 <p><a class="glightbox" href="https://img.it927.com/aio/18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启 x2APIC" src="https://img.it927.com/aio/18.png" /></a></p>
 <details class="info" open="open">
-<summary>Info</summary>
+<summary>提示</summary>
 <p>x2APIC 是 x86 平台处理中断的机制，是之前 xAPIC 的替代品，再之前是 Intel® 82489DX external APIC。x2APIC 支持帮助操作系统以较高的内核数配置更高效地运行，并优化虚拟化环境中的中断分配。</p>
 </details>
 <div class="admonition warning">
@@ -1982,7 +1982,7 @@
 <p>设置好来电启动后，只要电源通电主机就会自动开机，这个能配合后面的小米智能插座进行远程开机。华南主板为例，在 【InterRCSetup】 - 【PCH Configuration】-【PCH Devices】-【Restore AC after Power Loss】 里面可以选择 <strong>Power On</strong> （来电启动）选项：
 <a class="glightbox" href="https://img.it927.com/aio/24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="开启来电启动" src="https://img.it927.com/aio/24.png" /></a></p>
 <details class="info" open="open">
-<summary>Info</summary>
+<summary>提示</summary>
 <p>“来电启动”（也称为 PWRON After PWR-Fail 或 AC Power Recovery）是指在计算机意外断电后，当电源恢复时，计算机自动开机的功能。</p>
 </details>
 

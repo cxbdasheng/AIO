@@ -41,7 +41,7 @@ description: 详细介绍如何安装 ESXi 8.0 Update 3e，包括准备工作、
     ![Hypervisor](https://img.it927.com/aio/30.png)
     下载后记得将镜像移动到上一步的 **引导 U盘** 中。
 
-???+ info
+???+ info "提示"
 
     找不到具体哈希值值时可去官网查历史: [版本记录](https://knowledge.broadcom.com/external/article?legacyId=2143832)。同时需要注意一下，硬件是否支持 ：[VMware兼容性指南](https://compatibilityguide.broadcom.com/)，ESXi 9.0 系列已经不支持 E5-2600 处理器了，请自行确认。
 
@@ -61,7 +61,7 @@ description: 详细介绍如何安装 ESXi 8.0 Update 3e，包括准备工作、
 如果空间不足，可修改 ESXi 的默认空间，在读秒阶段，快速按下 `Shift+o`（英文字母 o），调出命令行，来修改 ESXi 的默认空间大小，在下面命令行输入：`autoPartotionOSDataSize=20480`。
 ![修改ESXi的默认空间](https://img.it927.com/aio/33.png)
 
-???+ info
+???+ info "提示"
 
     注意命令区分大小写，将默认空间设置为 20GB。硬盘空间不足的话推荐设置 8192(8GB) 即可
 

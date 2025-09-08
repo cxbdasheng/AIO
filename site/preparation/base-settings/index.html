@@ -864,18 +864,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esxi_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      禁用 ESXi 显卡占用
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sata" class="md-nav__link">
-    <span class="md-ellipsis">
-      直通板载 SATA 控制器
+      硬件直通
     </span>
   </a>
   
@@ -2014,18 +2005,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#esxi_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      禁用 ESXi 显卡占用
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sata" class="md-nav__link">
-    <span class="md-ellipsis">
-      直通板载 SATA 控制器
+      硬件直通
     </span>
   </a>
   
@@ -2113,30 +2095,8 @@
 <p>通过 <code>ssh</code> 命令测试，密码为登入密码，如果能进入的话，证明虚拟机已开通 SSH 服务。
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>root@192.168.188.1
 </code></pre></div></p>
-<h2 id="esxi_1">禁用 ESXi 显卡占用<a class="headerlink" href="#esxi_1" title="Permanent link">&para;</a></h2>
-<p>如果 AIO 只有一张显卡的话，大概率这张显卡无法直通，因为被 ESXi 系统占用了，这时可以关闭 ESXi 占用。</p>
-<p>通过上一步的 <a href="./#ssh_1">验证 SSH 连接</a> 进入 SSH 后，执行关闭命令。
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 关闭</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>FALSE
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 开启</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>TRUE
-</code></pre></div></p>
-<details class="note" open="open">
-<summary>注意事项</summary>
-<p>禁用显卡占用后将无法通过显示器查看 ESXi 控制台信息，只能通过 SSH 进行管理操作，也就是无法使用 <code>F2</code> 进行系统设置（其实很少用到，除了开始设置网络外）。</p>
-</details>
-<h2 id="sata">直通板载 SATA 控制器<a class="headerlink" href="#sata" title="Permanent link">&para;</a></h2>
-<p>ESXi 中板载 SATA 控制器默认是无法进行直通（灰色按钮），需要通过命令开启，通过 <a href="./#ssh_1">验证 SSH 连接</a> 进入 SSH 后，查找板载 SATA 控制器信息。
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lspci<span class="w"> </span>-v<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Class 0106&quot;</span><span class="w"> </span>-B<span class="w"> </span><span class="m">1</span>
-</code></pre></div>
-然后再修改 passthru.map 文件，
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vi<span class="w"> </span>/etc/vmware/passthru.map
-</code></pre></div>
-添加相应的设备 ID 配置
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Intel Corporation Lynx Point AHCI Controller</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 供应商ID PCLE_ID</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="m">8086</span><span class="w">  </span>8d62<span class="w">   </span>d3d0<span class="w">    </span><span class="nb">false</span>
-</code></pre></div></p>
+<h2 id="_4">硬件直通<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>限于篇幅的原因，这部分在后面 <a href="../../esxi/passthrough/">ESXi 进阶操作 - 硬件直通</a> 章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可，</p>
 
   
 

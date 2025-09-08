@@ -63,32 +63,6 @@ description: 在成功安装ESXi系统后，还需要进行一系列基础配置
 ```bash
 ssh root@192.168.188.1
 ```
-## 禁用 ESXi 显卡占用
-如果 AIO 只有一张显卡的话，大概率这张显卡无法直通，因为被 ESXi 系统占用了，这时可以关闭 ESXi 占用。
+## 硬件直通
+限于篇幅的原因，这部分在后面 [ESXi 进阶操作 - 硬件直通](../esxi/passthrough.md) 章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可，
 
-通过上一步的 [验证 SSH 连接](base-settings.md#ssh_1) 进入 SSH 后，执行关闭命令。
-```bash
-# 关闭
-esxcli system settings kernel set -s vga -v FALSE
-# 开启
-esxcli system settings kernel set -s vga -v TRUE
-```
-???+ note "注意事项"
-
-    禁用显卡占用后将无法通过显示器查看 ESXi 控制台信息，只能通过 SSH 进行管理操作，也就是无法使用 `F2` 进行系统设置（其实很少用到，除了开始设置网络外）。
-
-## 直通板载 SATA 控制器
-ESXi 中板载 SATA 控制器默认是无法进行直通（灰色按钮），需要通过命令开启，通过 [验证 SSH 连接](base-settings.md#ssh_1) 进入 SSH 后，查找板载 SATA 控制器信息。
-```bash
-lspci -v | grep "Class 0106" -B 1
-```
-然后再修改 passthru.map 文件，
-```bash
-vi /etc/vmware/passthru.map
-```
-添加相应的设备 ID 配置
-```bash
-# Intel Corporation Lynx Point AHCI Controller
-# 供应商ID PCLE_ID
-8086  8d62   d3d0    false
-```

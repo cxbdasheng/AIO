@@ -59,7 +59,7 @@ description: 什么是 All-in-One 环境？All-in-One 环境，又称“一体�
 
 ## 硬件要求
 推荐配置：至少 8GB 内存、双核 CPU、120GB SSD（系统盘）、额外硬盘用于数据存储。网络：建议千兆网卡，支持 VLAN 配置更佳。
-???+ info
+???+ info "提示"
 
     需注意的是 ESXi 有网卡限制，请查阅：[Broadcom Compatibility Guide](https://compatibilityguide.broadcom.com/search?program=io&persona=live&column=brandName&order=asc)。
 
