@@ -24,7 +24,7 @@ description: 如果看到这个教程，证明你已经踏上了一条不归路�
 ## 写在最后
 如果你看到了这个教程，说明你已经踏上了一条"不归路"——折腾之路。恭喜你即将迈入 **家庭 All-in-One** 的世界！请务必做好心理准备：这条路上免不了熬夜查资料、反复试验，甚至无数次重装系统。
 
-眨眼功夫又到了凌晨1点，最后啰嗦几句，由于水平有限，再加上编写时间仓促，教程中中难免会出现不准确的地方，欢迎大家指正提交 [PR](https://github.com/cxbdasheng/AIO/pulls)。
+不知不觉又到了凌晨时分，最后说几句：由于个人水平有限，加上编写时间仓促，教程中难免存在不准确之处，欢迎大家指正并提交 [PR](https://github.com/cxbdasheng/AIO/pulls) 完善内容。
 
 <div style="text-align: right; margin: 20px 0;">
   <div style="margin-bottom: 10px;">2025年09月08日01:12:22</div>
