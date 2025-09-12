@@ -102,6 +102,7 @@ esxcli system settings kernel set -s vga -v TRUE
 
 ### 查找显卡设备
 在 PCI 设备列表中搜索对应显卡：
+
 - **NVIDIA 显卡**：搜索 `NVIDIA` 或 `GeForce`
 - **AMD 显卡**：搜索 `AMD` 或 `Radeon`  
 - **Intel 核显**：搜索 `Intel` 和 `Display`
