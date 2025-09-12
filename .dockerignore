@@ -1,0 +1,6 @@
+*
+!docs
+!overrides
+!mkdocs.yml
+!pyproject.toml
+!uv.lock

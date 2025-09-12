@@ -1,0 +1,43 @@
+[general]
+ignore=title-trailing-punctuation,body-is-missing,T3
+verbosity = 2
+ignore-merge-commits=true
+ignore-revert-commits=true
+ignore-fixup-commits=true
+ignore-squash-commits=true
+ignore-stdin=true
+debug=true
+contrib=contrib-title-conventional-commits
+regex-style-search=True
+
+[title-max-length]
+line-length=120
+
+[title-min-length]
+min-length=5
+
+[title-must-not-contain-word]
+words=wip
+
+[title-match-regex]
+#regex=^US[0-9]*
+
+[body-max-line-length]
+line-length=120
+
+[body-min-length]
+min-length=5
+
+[body-match-regex]
+#regex=My-Commit-Tag: foo$
+
+[author-valid-email]
+#regex=[^@]+@qq\.com
+
+[ignore-by-title]
+regex=^Release(.*)
+ignore=T1,body-min-length
+
+
+[contrib-title-conventional-commits]
+types = feature,feat,bugfix,fix,refactor,docs,test,optimize

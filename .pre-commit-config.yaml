@@ -1,0 +1,20 @@
+repos:
+- repo: https://github.com/jorisroovers/gitlint
+  rev: v0.19.1
+  hooks:
+    - id: gitlint
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+    - id: check-added-large-files
+      args: ["--maxkb=2048"]
+
+    - id: check-merge-conflict
+
+    - id: check-symlinks
+
+    - id: detect-private-key
+
+    - id: trailing-whitespace
+      files: .*\.(py|yaml|yml)$
