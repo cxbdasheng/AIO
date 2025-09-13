@@ -30,6 +30,14 @@
 - VMware ESXi 安装介质
 - 基本的网络配置知识
 
+##  贡献指南
+由于个人水平有限，加上编写时间仓促，教程中难免存在不准确之处，欢迎大家指正并提交 [PR](https://github.com/cxbdasheng/AIO/pulls) 完善内容，贡献请阅读的 [贡献指南](CONTRIBUTING.md) 了解：
+
+- 如何报告问题和提出建议
+- 文档编写规范和要求
+- 代码提交流程和规范
+- Pull Request 最佳实践
+
 ## 教程地址
 [🚀 陈大剩的家庭 All-in-One 服务器搭建指南](https://aio.it927.com/)
 
