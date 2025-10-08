@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="zh" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -33,7 +30,7 @@
     <meta name="keywords" content="ESXi网络概述,ESXi网络架构详解,家庭ESXi网络概述,家庭AIO搭建教程,家庭All-in-One搭建教程,ESXi物理网卡配置,ESXi虚拟交换机vSwitch,ESXi端口组配置,ESXi网络组件关系,ESXi网络管理基础,ESXi网络安全策略,ESXi网络流量转发,ESXi网络冗余配置,ESXi网络拓扑结构">
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -56,16 +53,17 @@
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     
@@ -103,12 +101,12 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-header__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -133,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换深色模式" type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue" aria-label="切换浅色模式" type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
@@ -158,31 +156,33 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="查找">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -201,13 +201,14 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
         <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -227,9 +228,11 @@
   
   
   
+  
     <li class="md-tabs__item">
       <a href="../.." class="md-tabs__link">
         
+  
   
     
   
@@ -244,11 +247,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
           
+  
   
   前言介绍
 
@@ -262,11 +267,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../preparation/hardware-details/" class="md-tabs__link">
           
+  
   
   准备工作
 
@@ -279,6 +286,7 @@
         
   
   
+  
     
   
   
@@ -287,6 +295,7 @@
       <li class="md-tabs__item md-tabs__item--active">
         <a href="./" class="md-tabs__link">
           
+  
   
   网络架构
 
@@ -300,11 +309,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../esxi/self-starting/" class="md-tabs__link">
           
+  
   
   ESXi 进阶操作
 
@@ -318,11 +329,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../route/install/" class="md-tabs__link">
           
+  
   
   软路由
 
@@ -336,11 +349,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../synology/install/" class="md-tabs__link">
           
+  
   
   黑群晖
 
@@ -354,11 +369,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../home/pc/" class="md-tabs__link">
           
+  
   
   家庭工作区
 
@@ -372,11 +389,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../remote/overview/" class="md-tabs__link">
           
+  
   
   远程穿透
 
@@ -390,13 +409,15 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../qa/purple/" class="md-tabs__link">
           
   
-  常见 Q&A
+  
+  常见 Q&amp;A
 
         </a>
       </li>
@@ -421,7 +442,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -435,7 +456,7 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-nav__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     家庭 AIO 服务器搭建教程
@@ -445,7 +466,7 @@
       <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -465,8 +486,10 @@
       <a href="../.." class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     首页
+    
   </span>
   
 
@@ -484,6 +507,7 @@
     
     
     
+    
       
       
     
@@ -492,14 +516,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     前言介绍
+    
   </span>
   
 
@@ -523,8 +549,10 @@
       <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     All-in-One 环境概念
+    
   </span>
   
 
@@ -544,8 +572,10 @@
       <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     什么是 ESXi
+    
   </span>
   
 
@@ -565,8 +595,10 @@
       <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     陈大剩写在前面的话
+    
   </span>
   
 
@@ -586,8 +618,10 @@
       <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     本教程目标与适用对象
+    
   </span>
   
 
@@ -613,6 +647,7 @@
     
     
     
+    
       
       
     
@@ -621,14 +656,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     准备工作
+    
   </span>
   
 
@@ -652,8 +689,10 @@
       <a href="../../preparation/hardware-details/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件配置
+    
   </span>
   
 
@@ -673,8 +712,10 @@
       <a href="../../preparation/bios-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     BIOS 设置
+    
   </span>
   
 
@@ -694,8 +735,10 @@
       <a href="../../preparation/disk-partitioning/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘划分
+    
   </span>
   
 
@@ -715,8 +758,10 @@
       <a href="../../preparation/install-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     安装 ESXi
+    
   </span>
   
 
@@ -736,8 +781,10 @@
       <a href="../../preparation/base-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 基础设置
+    
   </span>
   
 
@@ -765,6 +812,7 @@
     
     
     
+    
       
         
         
@@ -782,8 +830,10 @@
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
     网络架构
+    
   </span>
   
 
@@ -814,8 +864,10 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
     ESXi 网络概述
+    
   </span>
   
 
@@ -825,8 +877,10 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
     ESXi 网络概述
+    
   </span>
   
 
@@ -990,8 +1044,10 @@
       <a href="../settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑设计
+    
   </span>
   
 
@@ -1011,8 +1067,10 @@
       <a href="../fight/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑实战
+    
   </span>
   
 
@@ -1032,8 +1090,10 @@
       <a href="../jumper/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     跳板机使用
+    
   </span>
   
 
@@ -1053,8 +1113,10 @@
       <a href="../intranet/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     突破 1000M 带宽
+    
   </span>
   
 
@@ -1074,8 +1136,10 @@
       <a href="../qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     故障排查与优化
+    
   </span>
   
 
@@ -1101,6 +1165,7 @@
     
     
     
+    
       
       
     
@@ -1109,14 +1174,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     ESXi 进阶操作
+    
   </span>
   
 
@@ -1140,8 +1207,10 @@
       <a href="../../esxi/self-starting/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机自启动
+    
   </span>
   
 
@@ -1161,8 +1230,10 @@
       <a href="../../esxi/convert/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     镜像转换
+    
   </span>
   
 
@@ -1182,8 +1253,10 @@
       <a href="../../esxi/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSL 证书配置
+    
   </span>
   
 
@@ -1203,8 +1276,10 @@
       <a href="../../esxi/passthrough/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件直通
+    
   </span>
   
 
@@ -1224,8 +1299,10 @@
       <a href="../../esxi/clone/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机克隆
+    
   </span>
   
 
@@ -1245,8 +1322,10 @@
       <a href="../../esxi/energy/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     功耗节能
+    
   </span>
   
 
@@ -1272,6 +1351,7 @@
     
     
     
+    
       
       
     
@@ -1280,14 +1360,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     软路由
+    
   </span>
   
 
@@ -1311,8 +1393,10 @@
       <a href="../../route/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1332,8 +1416,10 @@
       <a href="../../route/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开启 IPv6
+    
   </span>
   
 
@@ -1353,8 +1439,10 @@
       <a href="../../route/expansion/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘扩容
+    
   </span>
   
 
@@ -1374,8 +1462,10 @@
       <a href="../../route/open-clash/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     OpenClash
+    
   </span>
   
 
@@ -1401,6 +1491,7 @@
     
     
     
+    
       
       
     
@@ -1409,14 +1500,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     黑群晖
+    
   </span>
   
 
@@ -1440,8 +1533,10 @@
       <a href="../../synology/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1461,8 +1556,10 @@
       <a href="../../synology/design/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     存储设计
+    
   </span>
   
 
@@ -1482,8 +1579,10 @@
       <a href="../../synology/ssd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSD 缓存加速
+    
   </span>
   
 
@@ -1503,8 +1602,10 @@
       <a href="../../synology/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     添加证书
+    
   </span>
   
 
@@ -1524,8 +1625,10 @@
       <a href="../../synology/remote/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     远程访问
+    
   </span>
   
 
@@ -1551,6 +1654,7 @@
     
     
     
+    
       
       
     
@@ -1559,14 +1663,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     家庭工作区
+    
   </span>
   
 
@@ -1590,8 +1696,10 @@
       <a href="../../home/pc/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     家庭 PC
+    
   </span>
   
 
@@ -1611,8 +1719,10 @@
       <a href="../../home/video/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     影视媒体中心
+    
   </span>
   
 
@@ -1632,8 +1742,10 @@
       <a href="../../home/network/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     全屋网络覆盖
+    
   </span>
   
 
@@ -1653,8 +1765,10 @@
       <a href="../../home/develop/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开发系统
+    
   </span>
   
 
@@ -1674,8 +1788,10 @@
       <a href="../../home/k8s/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Kubernetes 集群
+    
   </span>
   
 
@@ -1701,6 +1817,7 @@
     
     
     
+    
       
       
     
@@ -1709,14 +1826,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     远程穿透
+    
   </span>
   
 
@@ -1740,8 +1859,10 @@
       <a href="../../remote/overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     前言
+    
   </span>
   
 
@@ -1761,8 +1882,10 @@
       <a href="../../remote/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 DDNS
+    
   </span>
   
 
@@ -1782,8 +1905,10 @@
       <a href="../../remote/nat/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     公网 NAT
+    
   </span>
   
 
@@ -1803,8 +1928,10 @@
       <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 转 IPv4
+    
   </span>
   
 
@@ -1824,8 +1951,10 @@
       <a href="../../remote/frp/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Frp 内网穿透
+    
   </span>
   
 
@@ -1851,6 +1980,7 @@
     
     
     
+    
       
       
     
@@ -1859,14 +1989,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
-    常见 Q&A
+    常见 Q&amp;A
+    
   </span>
   
 
@@ -1876,7 +2008,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
-            常见 Q&A
+            常见 Q&amp;A
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1890,8 +2022,10 @@
       <a href="../../qa/purple/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 紫屏
+    
   </span>
   
 
@@ -1911,8 +2045,10 @@
       <a href="../../qa/qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     问题列表
+    
   </span>
   
 
@@ -1937,7 +2073,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2094,9 +2230,9 @@
                   
 
   
-    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/network/overview.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/network/overview.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
   
   
@@ -2106,16 +2242,16 @@
 
 <p>在 ESXi 网络管理中，我们主要操作三个核心组件：<strong>物理网卡</strong>、<strong>虚拟交换机</strong>、<strong>端口组</strong>。理解这三者的关系和作用是管理 ESXi 网络的基础。</p>
 <p>以下是 ESXi Web 管理界面中这三个组件的展示页面：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">物理网卡</label><label for="__tabbed_1_2">虚拟交换机</label><label for="__tabbed_1_3">端口组</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">物理网卡</label><label for="__tabbed_1_2">虚拟交换机</label><label for="__tabbed_1_3">端口组</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/67.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="物理网卡" src="https://img.it927.com/aio/67.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/67.png" data-desc-position="bottom"><img alt="物理网卡" src="https://img.it927.com/aio/67.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/68.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/68.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/68.png" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/68.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/70.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/70.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/70.png" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/70.png"></a></p>
 </div>
 </div>
 </div>
@@ -2123,41 +2259,41 @@
 <summary>架构类比</summary>
 <p>在 ESXi 网络架构中，物理网卡、虚拟交换机、端口组的关系可以类比为现实中的 <strong>路由器</strong>：物理网卡相当于 WAN 口，虚拟交换机相当于 LAN 口，端口组相当于 LAN 口的子接口。</p>
 </details>
-<h2 id="_1">物理网卡<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">物理网卡<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <p>物理网卡（Physical Network Adapter，也称为 vmnic）是 ESXi 主机上的实际网络硬件接口（必须是 ESXi 兼容的网卡），负责与外部网络的物理连接，可绑定到虚拟交换机上。
-<a class="glightbox" href="https://img.it927.com/aio/69.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="物理网卡" src="https://img.it927.com/aio/69.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/69.png" data-desc-position="bottom"><img alt="物理网卡" src="https://img.it927.com/aio/69.png"></a>
 如图所示，这里使用的是 Intel I350-T4V2 四口千兆网卡，显示了四个网络接口。其中一个接口会被管理网络占用，对物理网卡进行编辑时，主要可以修改其协商速度等参数。</p>
-<h3 id="_2">主要特点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_2">主要特点<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <ul>
 <li><strong>硬件基础</strong>：ESXi 网络架构的物理基础；</li>
 <li><strong>上行链路</strong>：为 <strong>虚拟交换机</strong> 提供与外部网络的连接；</li>
 <li><strong>冗余支持</strong>：可配置多个物理网卡实现网络冗余；</li>
 <li><strong>带宽限制</strong>：物理网卡的带宽决定了整个网络的最大吞吐量；</li>
 </ul>
-<h3 id="_3">物理网卡总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_3">物理网卡总结<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>物理网卡是 <a href="#_4">虚拟交换机</a> 连接外部网络的桥梁，类似于路由器的 WAN 口。我们通常无法改变其硬件配置，只能调整协商速度等网络参数。</p>
-<h2 id="_4">虚拟交换机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_4">虚拟交换机<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <p>虚拟交换机（简称 vSwitch）是 ESXi 中的 <strong>软件交换机</strong>，是整个网络架构的核心组件。它负责在虚拟机、VMkernel 接口和物理网络之间转发网络流量。
-<a class="glightbox" href="https://img.it927.com/aio/71.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/71.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/71.png" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/71.png"></a></p>
 <details class="warning" open="open">
 <summary>重要提醒</summary>
 <p>vSwitch0 是 ESXi 安装后自动创建的默认虚拟交换机，承载 <strong>管理网络</strong> 和 <strong>基础虚拟机</strong> 网络流量，<strong>请勿删除</strong>，否则可能导致系统无法正常启动。</p>
 </details>
-<h3 id="_5">连接关系<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_5">连接关系<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <ul>
 <li><strong>上行连接</strong>：可绑定 0-1 个物理网卡（0 个表示仅内部通信）；</li>
 <li><strong>下行连接</strong>：可分配给 0-N 个端口组；</li>
 </ul>
-<h3 id="_6">主要功能<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="_6">主要功能<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <ul>
 <li><strong>流量转发</strong>：在连接的端口之间转发数据包；</li>
 <li><strong>VLAN支持</strong>：<strong>实现网络隔离和分段</strong>；</li>
 <li><strong>负载均衡</strong>：在多个上行链路间分配流量；</li>
 <li><strong>故障转移</strong>：自动切换到可用的上行链路；</li>
 </ul>
-<h3 id="_7">创建标准虚拟交换机<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="https://img.it927.com/aio/72.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加虚标准虚拟交换机" src="https://img.it927.com/aio/72.png" /></a></p>
-<h4 id="_8">链路发现<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<h3 id="_7">创建标准虚拟交换机<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/72.png" data-desc-position="bottom"><img alt="添加虚标准虚拟交换机" src="https://img.it927.com/aio/72.png"></a></p>
+<h4 id="_8">链路发现<a class="headerlink" href="#_8" title="Permanent link">¶</a></h4>
 <p>链路发现协议帮助识别和管理网络连接：</p>
 <ul>
 <li><strong>CDP（Cisco Discovery Protocol）</strong>：<ul>
@@ -2168,7 +2304,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="_9">安全<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<h4 id="_9">安全<a class="headerlink" href="#_9" title="Permanent link">¶</a></h4>
 <p>虚拟交换机的安全策略控制网络流量的安全性：</p>
 <ul>
 <li><strong>混杂模式（Promiscuous Mode）</strong>：<ul>
@@ -2187,7 +2323,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="_10">网络隔离实现<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h3 id="_10">网络隔离实现<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
 <p>虚拟交换机的网络隔离和分段主要通过以下方式实现：</p>
 <ol>
 <li><strong>上游链路隔离</strong>：不同虚拟交换机绑定不同物理网卡;</li>
@@ -2198,13 +2334,13 @@
 <summary>重要</summary>
 <p>在同一个虚拟交换机中避免出现多个 DHCP 服务器，否则会导致 IP 地址冲突。</p>
 </details>
-<h2 id="_11">端口组<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="_11">端口组<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
 <p>端口组（Port Group）是虚拟交换机上的逻辑分组，定义了连接到该组的虚拟机或 VMkernel 接口的网络策略和配置。
-<a class="glightbox" href="https://img.it927.com/aio/73.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/73.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/73.png" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/73.png"></a>
 端口组在 ESXi 中相当于路由器的 LAN 子接口，它负责在虚拟机和虚拟交换机之间转发网络流量，可以理解为它才是 <strong>底层打工人</strong>。</p>
-<h2 id="_12">总结<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h2 id="_12">总结<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
 <p>ESXi 网络流转流程是：<code>物理网卡 -&gt; 虚拟交换机 -&gt; 端口组 -&gt; 某虚拟机</code>，可以用一张图总结，如下：
-<a class="glightbox" href="https://img.it927.com/aio/76.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络的关系" src="https://img.it927.com/aio/76.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/76.png" data-desc-position="bottom"><img alt="网络的关系" src="https://img.it927.com/aio/76.png"></a></p>
 <details class="info" open="open">
 <summary>名词解释</summary>
 <p>在本节中只有 <strong>物理网卡</strong> 是真实存在的设备，端口组和虚拟交换机是 <strong>虚拟设备</strong>，由 ESXi 虚拟出来的（非真实设备）。</p>
@@ -2213,10 +2349,9 @@
 
   
 
-<!-- taken from
-https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
 
-<hr/>
+
+<hr>
 <div class="md-source-file">
   <small>
 
@@ -2250,7 +2385,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   回到页面顶部
 </button>
         
@@ -2260,13 +2395,13 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
           <a href="../../preparation/base-settings/" class="md-footer__link md-footer__link--prev" aria-label="上一页: ESXi 基础设置">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
@@ -2291,7 +2426,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
             </div>
           </a>
         
@@ -2303,20 +2438,21 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 aio.it927.com 陈大剩
+      Copyright © 2024 aio.it927.com 陈大剩
     </div>
   
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
     
     
     <a href="https://www.it927.com" target="_blank" rel="noopener" title="陈大剩" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M489.2 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32H128v-32c0-2.6-2-4.6-4.6-4.6H96c-2.6 0-4.6 2-4.6 4.6v178.3H54.8v-32c0-2.6-2-4.6-4.6-4.6H22.8c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96h182.9V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M489.5 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.3v-32c0-2.6-2-4.6-4.6-4.6H96.3c-2.6 0-4.6 2-4.6 4.6v178.3H55.1v-32c0-2.6-2-4.6-4.6-4.6H23.1c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96H494V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"></path></svg>
     </a>
   
 </div>
@@ -2331,10 +2467,12 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../javascripts/analysis.js"></script>
       
@@ -2343,7 +2481,8 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         <script src="../../javascripts/mermaid-init.js"></script>
       
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- taken from
+https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->

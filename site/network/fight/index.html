@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="zh" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -33,7 +30,7 @@
     <meta name="keywords" content="ESXi网络拓扑实战,ESXi虚拟交换机配置,ESXi网络实施教程,ESXi VLAN配置实战,ESXi端口组配置,ESXi网络隔离实现,ESXi多网段配置,ESXi网络管理实战,ESXi虚拟化网络部署,ESXi网络安全配置,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -56,16 +53,17 @@
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     
@@ -103,12 +101,12 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-header__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -133,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换深色模式" type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue" aria-label="切换浅色模式" type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
@@ -158,31 +156,33 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="查找">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -201,13 +201,14 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
         <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -227,9 +228,11 @@
   
   
   
+  
     <li class="md-tabs__item">
       <a href="../.." class="md-tabs__link">
         
+  
   
     
   
@@ -244,11 +247,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
           
+  
   
   前言介绍
 
@@ -262,11 +267,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../preparation/hardware-details/" class="md-tabs__link">
           
+  
   
   准备工作
 
@@ -279,6 +286,7 @@
         
   
   
+  
     
   
   
@@ -287,6 +295,7 @@
       <li class="md-tabs__item md-tabs__item--active">
         <a href="../overview/" class="md-tabs__link">
           
+  
   
   网络架构
 
@@ -300,11 +309,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../esxi/self-starting/" class="md-tabs__link">
           
+  
   
   ESXi 进阶操作
 
@@ -318,11 +329,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../route/install/" class="md-tabs__link">
           
+  
   
   软路由
 
@@ -336,11 +349,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../synology/install/" class="md-tabs__link">
           
+  
   
   黑群晖
 
@@ -354,11 +369,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../home/pc/" class="md-tabs__link">
           
+  
   
   家庭工作区
 
@@ -372,11 +389,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../remote/overview/" class="md-tabs__link">
           
+  
   
   远程穿透
 
@@ -390,13 +409,15 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../qa/purple/" class="md-tabs__link">
           
   
-  常见 Q&A
+  
+  常见 Q&amp;A
 
         </a>
       </li>
@@ -421,7 +442,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -435,7 +456,7 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-nav__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     家庭 AIO 服务器搭建教程
@@ -445,7 +466,7 @@
       <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -465,8 +486,10 @@
       <a href="../.." class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     首页
+    
   </span>
   
 
@@ -484,6 +507,7 @@
     
     
     
+    
       
       
     
@@ -492,14 +516,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     前言介绍
+    
   </span>
   
 
@@ -523,8 +549,10 @@
       <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     All-in-One 环境概念
+    
   </span>
   
 
@@ -544,8 +572,10 @@
       <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     什么是 ESXi
+    
   </span>
   
 
@@ -565,8 +595,10 @@
       <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     陈大剩写在前面的话
+    
   </span>
   
 
@@ -586,8 +618,10 @@
       <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     本教程目标与适用对象
+    
   </span>
   
 
@@ -613,6 +647,7 @@
     
     
     
+    
       
       
     
@@ -621,14 +656,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     准备工作
+    
   </span>
   
 
@@ -652,8 +689,10 @@
       <a href="../../preparation/hardware-details/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件配置
+    
   </span>
   
 
@@ -673,8 +712,10 @@
       <a href="../../preparation/bios-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     BIOS 设置
+    
   </span>
   
 
@@ -694,8 +735,10 @@
       <a href="../../preparation/disk-partitioning/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘划分
+    
   </span>
   
 
@@ -715,8 +758,10 @@
       <a href="../../preparation/install-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     安装 ESXi
+    
   </span>
   
 
@@ -736,8 +781,10 @@
       <a href="../../preparation/base-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 基础设置
+    
   </span>
   
 
@@ -765,6 +812,7 @@
     
     
     
+    
       
         
         
@@ -782,8 +830,10 @@
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
     网络架构
+    
   </span>
   
 
@@ -807,8 +857,10 @@
       <a href="../overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 网络概述
+    
   </span>
   
 
@@ -828,8 +880,10 @@
       <a href="../settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑设计
+    
   </span>
   
 
@@ -856,8 +910,10 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
     网络拓扑实战
+    
   </span>
   
 
@@ -867,8 +923,10 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑实战
+    
   </span>
   
 
@@ -1134,8 +1192,10 @@
       <a href="../jumper/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     跳板机使用
+    
   </span>
   
 
@@ -1155,8 +1215,10 @@
       <a href="../intranet/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     突破 1000M 带宽
+    
   </span>
   
 
@@ -1176,8 +1238,10 @@
       <a href="../qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     故障排查与优化
+    
   </span>
   
 
@@ -1203,6 +1267,7 @@
     
     
     
+    
       
       
     
@@ -1211,14 +1276,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     ESXi 进阶操作
+    
   </span>
   
 
@@ -1242,8 +1309,10 @@
       <a href="../../esxi/self-starting/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机自启动
+    
   </span>
   
 
@@ -1263,8 +1332,10 @@
       <a href="../../esxi/convert/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     镜像转换
+    
   </span>
   
 
@@ -1284,8 +1355,10 @@
       <a href="../../esxi/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSL 证书配置
+    
   </span>
   
 
@@ -1305,8 +1378,10 @@
       <a href="../../esxi/passthrough/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件直通
+    
   </span>
   
 
@@ -1326,8 +1401,10 @@
       <a href="../../esxi/clone/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机克隆
+    
   </span>
   
 
@@ -1347,8 +1424,10 @@
       <a href="../../esxi/energy/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     功耗节能
+    
   </span>
   
 
@@ -1374,6 +1453,7 @@
     
     
     
+    
       
       
     
@@ -1382,14 +1462,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     软路由
+    
   </span>
   
 
@@ -1413,8 +1495,10 @@
       <a href="../../route/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1434,8 +1518,10 @@
       <a href="../../route/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开启 IPv6
+    
   </span>
   
 
@@ -1455,8 +1541,10 @@
       <a href="../../route/expansion/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘扩容
+    
   </span>
   
 
@@ -1476,8 +1564,10 @@
       <a href="../../route/open-clash/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     OpenClash
+    
   </span>
   
 
@@ -1503,6 +1593,7 @@
     
     
     
+    
       
       
     
@@ -1511,14 +1602,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     黑群晖
+    
   </span>
   
 
@@ -1542,8 +1635,10 @@
       <a href="../../synology/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1563,8 +1658,10 @@
       <a href="../../synology/design/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     存储设计
+    
   </span>
   
 
@@ -1584,8 +1681,10 @@
       <a href="../../synology/ssd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSD 缓存加速
+    
   </span>
   
 
@@ -1605,8 +1704,10 @@
       <a href="../../synology/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     添加证书
+    
   </span>
   
 
@@ -1626,8 +1727,10 @@
       <a href="../../synology/remote/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     远程访问
+    
   </span>
   
 
@@ -1653,6 +1756,7 @@
     
     
     
+    
       
       
     
@@ -1661,14 +1765,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     家庭工作区
+    
   </span>
   
 
@@ -1692,8 +1798,10 @@
       <a href="../../home/pc/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     家庭 PC
+    
   </span>
   
 
@@ -1713,8 +1821,10 @@
       <a href="../../home/video/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     影视媒体中心
+    
   </span>
   
 
@@ -1734,8 +1844,10 @@
       <a href="../../home/network/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     全屋网络覆盖
+    
   </span>
   
 
@@ -1755,8 +1867,10 @@
       <a href="../../home/develop/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开发系统
+    
   </span>
   
 
@@ -1776,8 +1890,10 @@
       <a href="../../home/k8s/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Kubernetes 集群
+    
   </span>
   
 
@@ -1803,6 +1919,7 @@
     
     
     
+    
       
       
     
@@ -1811,14 +1928,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     远程穿透
+    
   </span>
   
 
@@ -1842,8 +1961,10 @@
       <a href="../../remote/overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     前言
+    
   </span>
   
 
@@ -1863,8 +1984,10 @@
       <a href="../../remote/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 DDNS
+    
   </span>
   
 
@@ -1884,8 +2007,10 @@
       <a href="../../remote/nat/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     公网 NAT
+    
   </span>
   
 
@@ -1905,8 +2030,10 @@
       <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 转 IPv4
+    
   </span>
   
 
@@ -1926,8 +2053,10 @@
       <a href="../../remote/frp/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Frp 内网穿透
+    
   </span>
   
 
@@ -1953,6 +2082,7 @@
     
     
     
+    
       
       
     
@@ -1961,14 +2091,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
-    常见 Q&A
+    常见 Q&amp;A
+    
   </span>
   
 
@@ -1978,7 +2110,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
-            常见 Q&A
+            常见 Q&amp;A
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1992,8 +2124,10 @@
       <a href="../../qa/purple/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 紫屏
+    
   </span>
   
 
@@ -2013,8 +2147,10 @@
       <a href="../../qa/qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     问题列表
+    
   </span>
   
 
@@ -2039,7 +2175,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2298,9 +2434,9 @@
                   
 
   
-    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/network/fight.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/network/fight.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
   
   
@@ -2309,7 +2445,7 @@
   <h1>网络拓扑实战</h1>
 
 <p>前面已经介绍了家庭 AIO 网络拓扑设计，本节开始 ESXi 网络配置实战教程。</p>
-<h2 id="_1">网段规划回顾<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">网段规划回顾<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
@@ -2341,120 +2477,120 @@
 </tr>
 </tbody>
 </table>
-<h2 id="esxi">登入 ESXi 管理后台<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<h2 id="esxi">登入 ESXi 管理后台<a class="headerlink" href="#esxi" title="Permanent link">¶</a></h2>
 <p>按照 <a href="../../preparation/base-settings/#web">ESXi 基础设置</a> 中通过 Web 浏览器进入 ESXi 管理后台，进入后台后导航到【网络】-【虚拟交换机页面】。</p>
-<h2 id="_2">配置网段<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">配置网段<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>按照网络规划，我们需配置好：家庭终端网段、实验室网段、预留网段三个网段，我们分别添加这几个网段。</p>
-<h3 id="_3">家庭终端网段<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">家庭终端网段虚拟交换机</label><label for="__tabbed_1_2">家庭终端网段端口组</label></div>
+<h3 id="_3">家庭终端网段<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">家庭终端网段虚拟交换机</label><label for="__tabbed_1_2">家庭终端网段端口组</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>因为是直通网卡，所以不需要 ESXi 中的上行链路，<strong>请将上行链路关闭掉</strong>。
-<a class="glightbox" href="https://img.it927.com/aio/92.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置家庭终端网段" src="https://img.it927.com/aio/92.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/92.png" data-desc-position="bottom"><img alt="配置家庭终端网段" src="https://img.it927.com/aio/92.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/93.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置家庭终端网段端口组" src="https://img.it927.com/aio/93.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/93.png" data-desc-position="bottom"><img alt="配置家庭终端网段端口组" src="https://img.it927.com/aio/93.png"></a></p>
 </div>
 </div>
 </div>
-<h3 id="_4">实验室网段<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">实验室网段虚拟交换机</label><label for="__tabbed_2_2">实验室网段端口组</label></div>
+<h3 id="_4">实验室网段<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">实验室网段虚拟交换机</label><label for="__tabbed_2_2">实验室网段端口组</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>因为是软路由进行流量中转，所以也不需要 ESXi 中的上行链路，<strong>请将上行链路关闭掉</strong>。
-<a class="glightbox" href="https://img.it927.com/aio/94.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置实验室网段虚拟交换机" src="https://img.it927.com/aio/94.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/94.png" data-desc-position="bottom"><img alt="配置实验室网段虚拟交换机" src="https://img.it927.com/aio/94.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/95.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="配置实验室网段端口组" src="https://img.it927.com/aio/95.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/95.png" data-desc-position="bottom"><img alt="配置实验室网段端口组" src="https://img.it927.com/aio/95.png"></a></p>
 </div>
 </div>
 </div>
-<h3 id="_5">预留网段<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">预留网段虚拟交换机</label><label for="__tabbed_3_2">预留网段端口组</label></div>
+<h3 id="_5">预留网段<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">预留网段虚拟交换机</label><label for="__tabbed_3_2">预留网段端口组</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>因为是软路由进行流量中转，所以也不需要 ESXi 中的上行链路，<strong>请将上行链路关闭掉</strong>。
-<a class="glightbox" href="https://img.it927.com/aio/96.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="预留网段虚拟交换机" src="https://img.it927.com/aio/96.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/96.png" data-desc-position="bottom"><img alt="预留网段虚拟交换机" src="https://img.it927.com/aio/96.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/97.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="预留网段端口组" src="https://img.it927.com/aio/97.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/97.png" data-desc-position="bottom"><img alt="预留网段端口组" src="https://img.it927.com/aio/97.png"></a></p>
 </div>
 </div>
 </div>
 <p>配置好后，得到虚拟交换机和端口组如下：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">虚拟交换机</label><label for="__tabbed_4_2">端口组</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">虚拟交换机</label><label for="__tabbed_4_2">端口组</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/98.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/98.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/98.png" data-desc-position="bottom"><img alt="虚拟交换机" src="https://img.it927.com/aio/98.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/99.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/99.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/99.png" data-desc-position="bottom"><img alt="端口组" src="https://img.it927.com/aio/99.png"></a></p>
 </div>
 </div>
 </div>
-<h2 id="_6">主路由设置（家庭终端网段）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_6">主路由设置（家庭终端网段）<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <p>网段已经设置好了，接下来是安装软路由，因为我们要将两个板载的 2.5G 螃蟹网卡直通给软路由，所以先要进行直通。</p>
-<h3 id="_7">直通板载网卡<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_7">直通板载网卡<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
 <p>限于篇幅的原因，这部分后面的文章有详细讲解，按照 <a href="../../esxi/passthrough/#_3">ESXi 进阶操作 - 硬件直通</a>
 章节直通即可，需注意的是：不要直通错了网卡。</p>
-<h3 id="_8">安装软路由<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h3 id="_8">安装软路由<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <p>限于篇幅的原因，这部分在后面 <a href="../../route/install/">软路由 - 系统安装</a> 章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可，需要注意的是
 <strong>直通网卡</strong> 和 <strong>WAN/LAN</strong> 设置，不要忘了 <strong>虚拟端口组</strong> 选择的 <strong>家庭终端网段端口组1</strong>。</p>
-<h3 id="_9">网络配置<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h3 id="_9">网络配置<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <p>网络配置阶段需要看是：24 小时开机、随时开机方案，24 小时开机由软路由进行拨号，随时开机方案则是中继上级路由器网段。</p>
-<h4 id="24">24 小时开机网络配置<a class="headerlink" href="#24" title="Permanent link">&para;</a></h4>
+<h4 id="24">24 小时开机网络配置<a class="headerlink" href="#24" title="Permanent link">¶</a></h4>
 <p>24 小时开机主路由网络架构如下：
-<a class="glightbox" href="https://img.it927.com/aio/140.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="24 小时开机主路由网络架" src="https://img.it927.com/aio/140.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/140.png" data-desc-position="bottom"><img alt="24 小时开机主路由网络架" src="https://img.it927.com/aio/140.png"></a></p>
 <p>首先，将光猫改为桥接，以我的中兴光猫 F7005Tv3 2.5G 为例，先用一根网线连接光猫，陈大剩这里插的是光猫千兆网口。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">访问光猫管理后台</label><label for="__tabbed_5_2">修改网络连接信息</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">访问光猫管理后台</label><label for="__tabbed_5_2">修改网络连接信息</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>浏览器输入<code>192.168.1.1</code> 访问，账号为：telecomadmin，超级密码为：nE7jA%5m
-<a class="glightbox" href="https://img.it927.com/aio/177.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问光猫管理后台" src="https://img.it927.com/aio/177.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/177.png" data-desc-position="bottom"><img alt="访问光猫管理后台" src="https://img.it927.com/aio/177.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>导航到：【网络】-【网络设置】-【网络连接】选择 <code>2_INTERNET_B_VID_2001</code> 连接，进行如下设置，连接模式改为：桥接，LAN 口绑定按需选择。
-<a class="glightbox" href="https://img.it927.com/aio/178.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="修改网络连接信息" src="https://img.it927.com/aio/178.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/178.png" data-desc-position="bottom"><img alt="修改网络连接信息" src="https://img.it927.com/aio/178.png"></a></p>
 </div>
 </div>
 </div>
 <p>桥接改完后，再将光猫的 LAN 直接接入主路由的 WAN 口， 在软路由中新建一个 PPPoE 接口。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">WAN 接口设置</label><label for="__tabbed_6_2">常规设置</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">WAN 接口设置</label><label for="__tabbed_6_2">常规设置</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>导航【网络】-【接口】编辑 wan 接口，如果没有需新建一个 <code>wan</code> 接口，协议选择 PPPoE，设备陈大剩这里是选择 <code>eth2</code>
-<a class="glightbox" href="https://img.it927.com/aio/172.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="新建 wan 接口" src="https://img.it927.com/aio/172.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/172.png" data-desc-position="bottom"><img alt="新建 wan 接口" src="https://img.it927.com/aio/172.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>常规设置中，【PAP/CHAP 用户名】为宽带账户名，【PAP/CHAP 密码】为宽带密码。
-<a class="glightbox" href="https://img.it927.com/aio/173.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="常规设置" src="https://img.it927.com/aio/173.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/173.png" data-desc-position="bottom"><img alt="常规设置" src="https://img.it927.com/aio/173.png"></a></p>
 </div>
 </div>
 </div>
 <p>点击【保存并应用】后，等待一会（3-5 分钟）会出现如下页面，证明拨号成功，还会新出一个 wan_6 接口，这里先不用管。
-    <a class="glightbox" href="https://img.it927.com/aio/149.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="PPPoE拨号网络拓扑" src="https://img.it927.com/aio/149.png" /></a>
+    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/149.png" data-desc-position="bottom"><img alt="PPPoE拨号网络拓扑" src="https://img.it927.com/aio/149.png"></a>
     lan 口需要配置一个网段，和 DHCP 服务，导航【网络】-【接口】-【lan】</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">LAN 接口设置</label><label for="__tabbed_7_2">LAN 接口设置 DHCP</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">LAN 接口设置</label><label for="__tabbed_7_2">LAN 接口设置 DHCP</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>IPv4 地址填填写家庭网段终端地址 <code>192.168.8.1</code>，IPv4 默认网关不填，然后点击保存。
-<a class="glightbox" href="https://img.it927.com/aio/174.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="LAN 接口设置" src="https://img.it927.com/aio/174.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/174.png" data-desc-position="bottom"><img alt="LAN 接口设置" src="https://img.it927.com/aio/174.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>【DHCP 服务器】-【常规设置】中【忽略此接口】不勾选，启动默认 100 或 1 都行，客户数也就是终端数，一般家庭终端不会超过 100，超过 100
 的话，启动建议填写为 1。
-<a class="glightbox" href="https://img.it927.com/aio/175.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="LAN 接口设置" src="https://img.it927.com/aio/175.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/175.png" data-desc-position="bottom"><img alt="LAN 接口设置" src="https://img.it927.com/aio/175.png"></a></p>
 </div>
 </div>
 </div>
 <p>点击【保存并应用】后，系统会提示连接更改，也就是说：保存后，需要再 90 秒内，手动访问新的 <code>192.168.8.1</code>，否则，系统将恢复到之前的配置状态。
-<a class="glightbox" href="https://img.it927.com/aio/144.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="保存并应用" src="https://img.it927.com/aio/144.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/144.png" data-desc-position="bottom"><img alt="保存并应用" src="https://img.it927.com/aio/144.png"></a>
 立即访问 <code>http://192.168.8.1</code>，看到"配置已应用"提示即表示配置成功：
-<a class="glightbox" href="https://img.it927.com/aio/176.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="点击后需要立马访问" src="https://img.it927.com/aio/176.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/176.png" data-desc-position="bottom"><img alt="点击后需要立马访问" src="https://img.it927.com/aio/176.png"></a>
 至此，24 小时开机网络配置完毕。</p>
-<h4 id="_10">随时开机方案网络配置<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<h4 id="_10">随时开机方案网络配置<a class="headerlink" href="#_10" title="Permanent link">¶</a></h4>
 <p>随时开机方案网络架构如下：
-<a class="glightbox" href="https://img.it927.com/aio/139.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="随时开机网络架构" src="https://img.it927.com/aio/139.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/139.png" data-desc-position="bottom"><img alt="随时开机网络架构" src="https://img.it927.com/aio/139.png"></a></p>
 <details class="info" open="open">
 <summary>提示</summary>
 <p>因随时开机方案中继的特性，主路由相当于一个傻瓜交换机，主路由做不了任何功能，如去广告、代理等。如随时开机方案需要其他功能，建议下一个网段（实验室网段、预留网段）上使用，当然也可使用旁路由技术，旁路由技术有些玄学，且必须要
@@ -2462,12 +2598,12 @@ AIO 开机才能走，不如直接选 24 小时开机方案。如果选择随时
 </details>
 <p>首先，将路由器的 LAN 直接接入主路由的 WAN 口，然后开始设置中继流程，设置中继流程比较简单，只需要把 WAN 变成 LAN
 口就是行，此时主路由相当于一个傻瓜交换机。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><input id="__tabbed_8_4" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">LAN 设置静态 IP</label><label for="__tabbed_8_2">LAN 关闭 DHCP</label><label for="__tabbed_8_3">删除 WAN 口</label><label for="__tabbed_8_4">所有网口桥接</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><input id="__tabbed_8_2" name="__tabbed_8" type="radio"><input id="__tabbed_8_3" name="__tabbed_8" type="radio"><input id="__tabbed_8_4" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">LAN 设置静态 IP</label><label for="__tabbed_8_2">LAN 关闭 DHCP</label><label for="__tabbed_8_3">删除 WAN 口</label><label for="__tabbed_8_4">所有网口桥接</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>导航【网络】-【接口】，将 lan 口协议改为和上一级路由器同一个网段的静态 IP ，按照规划，上一级属于 <code>192.168.8.x</code> 网段，这里设置为
 <code>192.168.8.10</code>，并设置网关。
-<a class="glightbox" href="https://img.it927.com/aio/145.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="lan 设置静态 IP" src="https://img.it927.com/aio/145.png" /></a>  </p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/145.png" data-desc-position="bottom"><img alt="lan 设置静态 IP" src="https://img.it927.com/aio/145.png"></a>  </p>
 <details class="warning" open="open">
 <summary>IP 地址冲突检查</summary>
 <p>设置为 <code>192.168.8.10</code> 需查看和上级路由中有没有设备已经占用 <code>192.168.8.10</code>，否则会设置不成功。</p>
@@ -2475,39 +2611,39 @@ AIO 开机才能走，不如直接选 24 小时开机方案。如果选择随时
 </div>
 <div class="tabbed-block">
 <p>导航【网络】-【接口】-【lan】-【DHCP 服务器】-【常规设置】勾选【忽略此接口】。
-<a class="glightbox" href="https://img.it927.com/aio/166.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="lan 关闭 dhcp" src="https://img.it927.com/aio/166.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/166.png" data-desc-position="bottom"><img alt="lan 关闭 dhcp" src="https://img.it927.com/aio/166.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>导航【网络】-【接口】，将 WAN 和 WAN6 删除
-<a class="glightbox" href="https://img.it927.com/aio/141.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="删除 WAN 口" src="https://img.it927.com/aio/141.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/141.png" data-desc-position="bottom"><img alt="删除 WAN 口" src="https://img.it927.com/aio/141.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>导航【网络】-【设备】-【br-lan】，将所有网口设为桥接
-<a class="glightbox" href="https://img.it927.com/aio/142.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="所有网口桥接" src="https://img.it927.com/aio/142.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/142.png" data-desc-position="bottom"><img alt="所有网口桥接" src="https://img.it927.com/aio/142.png"></a></p>
 </div>
 </div>
 </div>
 <p>点击【保存并应用】后，系统会提示连接更改，也就是说：保存后，需要再 90 秒内，手动访问新的 <code>192.168.8.10</code>，否则，系统将恢复到之前的配置状态。
-<a class="glightbox" href="https://img.it927.com/aio/144.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="保存并应用" src="https://img.it927.com/aio/144.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/144.png" data-desc-position="bottom"><img alt="保存并应用" src="https://img.it927.com/aio/144.png"></a>
 立即访问 <code>http://192.168.8.10</code>，看到"配置已应用"提示即表示配置成功：
-<a class="glightbox" href="https://img.it927.com/aio/146.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="点击后需要立马访问" src="https://img.it927.com/aio/146.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/146.png" data-desc-position="bottom"><img alt="点击后需要立马访问" src="https://img.it927.com/aio/146.png"></a>
 至此，随时开机方案网络架构配置完毕。</p>
-<h3 id="ipv6">开启 IPv6<a class="headerlink" href="#ipv6" title="Permanent link">&para;</a></h3>
+<h3 id="ipv6">开启 IPv6<a class="headerlink" href="#ipv6" title="Permanent link">¶</a></h3>
 <p>根据网络拓扑设置，家庭终端网络中的设备还需要开启
 IPv6，限于篇幅的原因，这部分后面的文章有详细讲解 <a href="../../route/ipv6/">软路由 - 开启 IPv6</a>，需注意的是如果是 24
 小时开机网络配置，应按照 <a href="../../route/ipv6/#pppoe-ipv624">软路由 - 开启 IPv6 - 场景一</a>
 方案配置；随时开机方案，按照 <a href="../../route/ipv6/#ipv624">软路由 - 开启 IPv6 - 场景三</a> 配置。</p>
-<h2 id="_11">实验室网段设置<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="_11">实验室网段设置<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
 <p>实验室网段是 <a href="#_3">主路由设置（家庭终端网段）</a> 下级网段，实验室网段 WAN 为家庭终端网段的 LAN
 口，需借助 <a href="#_3">主路由设置（家庭终端网段）</a> 进行上网，此网段无需任何直通，仅使用虚拟交换机。</p>
-<h3 id="_12">安装软路由<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h3 id="_12">安装软路由<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <p>限于篇幅的原因，这部分在后面 软路由 - 系统安装 章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可。
-<a class="glightbox" href="https://img.it927.com/aio/179.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装软路由" src="https://img.it927.com/aio/179.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/179.png" data-desc-position="bottom"><img alt="安装软路由" src="https://img.it927.com/aio/179.png"></a>
 实验室网段硬件设置建议 CPU 为 2 核心，内存为 2GB，不要忘了需要两个网络适配器， <strong>家庭终端网段端口组1</strong>、<strong>实验室网段端口组1
 </strong>，因 <strong>此网段没有直通网卡，所以不能通过 WEB 页面访问</strong>，配置好点打开电源后，通过 ESXi 管理页面访问即可。</p>
-<h3 id="_13">网络配置<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h3 id="_13">网络配置<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <p>我们通过 ESXi 管理页面进入此路由，可使用 <code>ip add show</code> 查看网卡：
-<a class="glightbox" href="https://img.it927.com/aio/180.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络配置" src="https://img.it927.com/aio/180.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/180.png" data-desc-position="bottom"><img alt="网络配置" src="https://img.it927.com/aio/180.png"></a>
 如果像陈大剩一样，显示的 <code>eth0</code> 和 <code>eth1</code> 网卡均未有 IP 地址，又由于我们 <strong>主路由（家庭终端网段）</strong>
 已经打开，所以按理来说陈大剩这里应该有一个网卡有地址的，然后我们又看到 <code>eth0</code> 桥接到 br-lan 接口上。</p>
 <p>所以根据这几个原因，可判断 <code>eth0</code> 是 <strong>主路由（家庭终端网段）</strong> 接口，由于被桥接了所以未能正确识别到，现在可以确定好 <code>eth0</code> 为
@@ -2516,46 +2652,46 @@ WAN 口， <code>eth1</code> 为 LAN 口。</p>
 <summary>提示</summary>
 <p>如果还是不清楚，可导航【网络】-【端口组】点击【家庭终端网段端口组1】查看网卡的 <code>mac</code> 地址，陈大剩这里为：<code>00:0c:29:f7:1f:a5</code>
 ，当这里是个虚拟的网卡 <code>mac</code> 地址。
-<a class="glightbox" href="https://img.it927.com/aio/181.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="mac地址查看" src="https://img.it927.com/aio/181.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/181.png" data-desc-position="bottom"><img alt="mac地址查看" src="https://img.it927.com/aio/181.png"></a></p>
 </details>
 <p>接下来进行配置：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 编辑当前网络配置</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vim<span class="w"> </span>/etc/config/network
 </code></pre></div>
 <p>在下面添加三行 <code>wan</code> 接口，并修改 LAN 口的网段地址为 <code>10.10.10.1</code></p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">&#39;lan&#39;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>option<span class="w"> </span>device<span class="w"> </span><span class="s1">&#39;br-lan&#39;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">&#39;static&#39;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>option<span class="w"> </span>ipaddr<span class="w"> </span><span class="s1">&#39;10.10.10.1&#39;</span><span class="w"> </span><span class="c1">#修改网段地址</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>option<span class="w"> </span>netmask<span class="w"> </span><span class="s1">&#39;255.255.255.0&#39;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span>option<span class="w"> </span>ip6assign<span class="w"> </span><span class="s1">&#39;60&#39;</span>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">'lan'</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>option<span class="w"> </span>device<span class="w"> </span><span class="s1">'br-lan'</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">'static'</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>option<span class="w"> </span>ipaddr<span class="w"> </span><span class="s1">'10.10.10.1'</span><span class="w"> </span><span class="c1">#修改网段地址</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>option<span class="w"> </span>netmask<span class="w"> </span><span class="s1">'255.255.255.0'</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span>option<span class="w"> </span>ip6assign<span class="w"> </span><span class="s1">'60'</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 新添加的三行</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">&#39;wan&#39;</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span>option<span class="w"> </span>ifname<span class="w"> </span><span class="s1">&#39;eth0&#39;</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">&#39;dhcp&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">'wan'</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span>option<span class="w"> </span>ifname<span class="w"> </span><span class="s1">'eth0'</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">'dhcp'</span>
 </code></pre></div>
 <details class="warning" open="open">
 <summary>警告</summary>
 <p>如果已经存在可 <code>wan</code> 接口，则修改即可，无需再添加。    </p>
 </details>
 <p>再重启网卡即可
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 重启网络服务</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 重启网络服务</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/etc/init.d/network<span class="w"> </span>restart
 </code></pre></div>
-<a class="glightbox" href="https://img.it927.com/aio/184.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络详情" src="https://img.it927.com/aio/184.png" /></a>
-可以看到已经有了 IP 地址 <code>192.168.8.240</code>，可以 ping 一下百度是否有网。</p>
-<h3 id="_14">防火墙设置<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/184.png" data-desc-position="bottom"><img alt="网络详情" src="https://img.it927.com/aio/184.png"></a>
+可以看到已经有了 IP 地址 <code>192.168.8.240</code>，可以 ping 一下百度是否有网。<p></p>
+<h3 id="_14">防火墙设置<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <p>因实验室网段是家庭终端网段的下级路由，也就是说实验室网段 WAN 口还会保留一个家庭终端网段的地址，我们只需要将 WAN 口的入站规则打开，即可通过家庭终端网段访问实验室网段软路由的管理页面了。</p>
 <p>编辑防火墙
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 编辑防火墙</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 编辑防火墙</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>vim<span class="w"> </span>/etc/config/firewall<span class="w"> </span>
 </code></pre></div>
 将 <code>wan</code> 口的入站规则（input）改为接受
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>config<span class="w"> </span>zone<span class="w">                           </span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span>option<span class="w"> </span>name<span class="w">             </span>wan<span class="w">   </span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span>list<span class="w">   </span>network<span class="w">          </span><span class="s1">&#39;wan&#39;</span><span class="w"> </span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span>list<span class="w">   </span>network<span class="w">          </span><span class="s1">&#39;wan6&#39;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span>list<span class="w">   </span>network<span class="w">          </span><span class="s1">'wan'</span><span class="w"> </span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span>list<span class="w">   </span>network<span class="w">          </span><span class="s1">'wan6'</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span>option<span class="w"> </span>input<span class="w">            </span>ACCEPT<span class="w"> </span><span class="c1">#改为接受</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span>option<span class="w"> </span>output<span class="w">           </span>ACCEPT
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span>option<span class="w"> </span>forward<span class="w">          </span>REJECT
@@ -2567,17 +2703,17 @@ WAN 口， <code>eth1</code> 为 LAN 口。</p>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/etc/init.d/firewall<span class="w"> </span>restart
 </code></pre></div>
 可以通过其他家庭终端网段的设备，访问 <code>192.168.8.240</code>，其他设置可以自行设置。
-<a class="glightbox" href="https://img.it927.com/aio/185.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问管理页面" src="https://img.it927.com/aio/185.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/185.png" data-desc-position="bottom"><img alt="访问管理页面" src="https://img.it927.com/aio/185.png"></a><p></p>
 <p>至此，实验室网段就安装完了。</p>
-<h2 id="_15">预留网段设置<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h2 id="_15">预留网段设置<a class="headerlink" href="#_15" title="Permanent link">¶</a></h2>
 <p>预留网段也是 <a href="#_3">主路由设置（家庭终端网段）</a> 下级网段，实验室网段 WAN 为家庭终端网段的 LAN
 口，需借助 <a href="#_3">主路由设置（家庭终端网段）</a> 进行上网，此网段无需任何直通，仅使用虚拟交换机。</p>
-<h3 id="_16">安装软路由<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<h3 id="_16">安装软路由<a class="headerlink" href="#_16" title="Permanent link">¶</a></h3>
 <p>限于篇幅的原因，这部分在后面 <a href="../../route/install/">软路由 - 系统安装</a>  章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可。
-<a class="glightbox" href="https://img.it927.com/aio/179.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装软路由" src="https://img.it927.com/aio/179.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/179.png" data-desc-position="bottom"><img alt="安装软路由" src="https://img.it927.com/aio/179.png"></a>
 实验室网段硬件设置建议 CPU 为 2 核心，内存为 2GB，不要忘了需要两个网络适配器， <strong>家庭终端网段端口组1</strong>、<strong>预留网段端口组1</strong>
 ，因 <strong>此网段没有直通网卡，所以不能通过 WEB 页面访问</strong>，配置好点打开电源后，通过 ESXi 管理页面访问即可。</p>
-<h3 id="_17">网络配置<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<h3 id="_17">网络配置<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
 <p>网络配置和 <a href="#_10">实验室网段设置 - 实验室网段设置</a> 不能说一模一样，只是说有细小差别，只需在 LAN 口出更改一下网断为
 <code>10.10.1.1</code> 即可：
 接下来进行配置：</p>
@@ -2585,43 +2721,42 @@ WAN 口， <code>eth1</code> 为 LAN 口。</p>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>vim<span class="w"> </span>/etc/config/network
 </code></pre></div>
 <p>在下面添加三行 <code>wan</code> 接口，并修改 LAN 口的网段地址为 <code>10.10.1.1</code></p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">&#39;lan&#39;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>option<span class="w"> </span>device<span class="w"> </span><span class="s1">&#39;br-lan&#39;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">&#39;static&#39;</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>option<span class="w"> </span>ipaddr<span class="w"> </span><span class="s1">&#39;10.10.10.1&#39;</span><span class="w"> </span><span class="c1">#修改网段地址</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>option<span class="w"> </span>netmask<span class="w"> </span><span class="s1">&#39;255.255.255.0&#39;</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span>option<span class="w"> </span>ip6assign<span class="w"> </span><span class="s1">&#39;60&#39;</span>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">'lan'</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>option<span class="w"> </span>device<span class="w"> </span><span class="s1">'br-lan'</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">'static'</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>option<span class="w"> </span>ipaddr<span class="w"> </span><span class="s1">'10.10.10.1'</span><span class="w"> </span><span class="c1">#修改网段地址</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>option<span class="w"> </span>netmask<span class="w"> </span><span class="s1">'255.255.255.0'</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span>option<span class="w"> </span>ip6assign<span class="w"> </span><span class="s1">'60'</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># 新添加的三行</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">&#39;wan&#39;</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span>option<span class="w"> </span>ifname<span class="w"> </span><span class="s1">&#39;eth0&#39;</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">&#39;dhcp&#39;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>config<span class="w"> </span>interface<span class="w"> </span><span class="s1">'wan'</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span>option<span class="w"> </span>ifname<span class="w"> </span><span class="s1">'eth0'</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span>option<span class="w"> </span>proto<span class="w"> </span><span class="s1">'dhcp'</span>
 </code></pre></div>
 <details class="warning" open="open">
 <summary>警告</summary>
 <p>如果已经存在可 <code>wan</code> 接口，则修改即可，无需再添加。    </p>
 </details>
 <p>再重启网卡即可
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 重启网络服务</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 重启网络服务</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>/etc/init.d/network<span class="w"> </span>restart
 </code></pre></div>
-<a class="glightbox" href="https://img.it927.com/aio/186.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网络详情" src="https://img.it927.com/aio/186.png" /></a>
-可以看到已经有了 IP 地址 <code>192.168.8.189</code>，可以 ping 一下百度是否有网。</p>
-<h3 id="_18">防火墙设置<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/186.png" data-desc-position="bottom"><img alt="网络详情" src="https://img.it927.com/aio/186.png"></a>
+可以看到已经有了 IP 地址 <code>192.168.8.189</code>，可以 ping 一下百度是否有网。<p></p>
+<h3 id="_18">防火墙设置<a class="headerlink" href="#_18" title="Permanent link">¶</a></h3>
 <p>参考 <a href="#_14">实验室网段设置 - 防火墙设置</a> 即可。</p>
 <p>至此，预留网段设置就安装完了。</p>
-<h2 id="_19">总结<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h2 id="_19">总结<a class="headerlink" href="#_19" title="Permanent link">¶</a></h2>
 <p>三个网段也就配置完了，可以看到，我们已经有了三台虚拟机了，分别为一个主路由，两个副路由。
-<a class="glightbox" href="https://img.it927.com/aio/183.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="虚拟机" src="https://img.it927.com/aio/183.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/183.png" data-desc-position="bottom"><img alt="虚拟机" src="https://img.it927.com/aio/183.png"></a></p>
 <p>最后，是将三台虚拟机配置成 <strong>开机启动</strong>，限于篇幅的原因，这部分在后面 <a href="../../esxi/self-starting/">ESXi 进阶操作 - 虚拟机自启动
 </a> 章节中有详细介绍，陈大剩我不在赘述，大家自己看后面的章节即可。</p>
 
   
 
-<!-- taken from
-https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
 
-<hr/>
+
+<hr>
 <div class="md-source-file">
   <small>
 
@@ -2655,7 +2790,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   回到页面顶部
 </button>
         
@@ -2665,13 +2800,13 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
           <a href="../settings/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 网络拓扑设计">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
@@ -2696,7 +2831,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
             </div>
           </a>
         
@@ -2708,20 +2843,21 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 aio.it927.com 陈大剩
+      Copyright © 2024 aio.it927.com 陈大剩
     </div>
   
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
     
     
     <a href="https://www.it927.com" target="_blank" rel="noopener" title="陈大剩" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M489.2 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32H128v-32c0-2.6-2-4.6-4.6-4.6H96c-2.6 0-4.6 2-4.6 4.6v178.3H54.8v-32c0-2.6-2-4.6-4.6-4.6H22.8c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96h182.9V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M489.5 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.3v-32c0-2.6-2-4.6-4.6-4.6H96.3c-2.6 0-4.6 2-4.6 4.6v178.3H55.1v-32c0-2.6-2-4.6-4.6-4.6H23.1c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96H494V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"></path></svg>
     </a>
   
 </div>
@@ -2736,10 +2872,12 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../javascripts/analysis.js"></script>
       
@@ -2748,7 +2886,8 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         <script src="../../javascripts/mermaid-init.js"></script>
       
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- taken from
+https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->

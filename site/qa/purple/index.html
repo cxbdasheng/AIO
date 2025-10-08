@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="zh" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -33,7 +30,7 @@
     <meta name="keywords" content="ESXi紫屏死机,ESXi紫屏错误,ESXi故障排查,ESXi紫屏分析,ESXi系统崩溃,ESXi错误诊断,ESXi日志分析,PSOD紫屏死机,ESXi系统稳定性,ESXi故障处理,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -56,16 +53,17 @@
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     
@@ -103,12 +101,12 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-header__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -133,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换深色模式" type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue" aria-label="切换浅色模式" type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
@@ -158,31 +156,33 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="查找">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -201,13 +201,14 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
         <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -227,9 +228,11 @@
   
   
   
+  
     <li class="md-tabs__item">
       <a href="../.." class="md-tabs__link">
         
+  
   
     
   
@@ -244,11 +247,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
           
+  
   
   前言介绍
 
@@ -262,11 +267,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../preparation/hardware-details/" class="md-tabs__link">
           
+  
   
   准备工作
 
@@ -280,11 +287,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../network/overview/" class="md-tabs__link">
           
+  
   
   网络架构
 
@@ -298,11 +307,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../esxi/self-starting/" class="md-tabs__link">
           
+  
   
   ESXi 进阶操作
 
@@ -316,11 +327,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../route/install/" class="md-tabs__link">
           
+  
   
   软路由
 
@@ -334,11 +347,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../synology/install/" class="md-tabs__link">
           
+  
   
   黑群晖
 
@@ -352,11 +367,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../home/pc/" class="md-tabs__link">
           
+  
   
   家庭工作区
 
@@ -370,11 +387,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../remote/overview/" class="md-tabs__link">
           
+  
   
   远程穿透
 
@@ -387,6 +406,7 @@
         
   
   
+  
     
   
   
@@ -396,7 +416,8 @@
         <a href="./" class="md-tabs__link">
           
   
-  常见 Q&A
+  
+  常见 Q&amp;A
 
         </a>
       </li>
@@ -421,7 +442,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -435,7 +456,7 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-nav__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     家庭 AIO 服务器搭建教程
@@ -445,7 +466,7 @@
       <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -465,8 +486,10 @@
       <a href="../.." class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     首页
+    
   </span>
   
 
@@ -484,6 +507,7 @@
     
     
     
+    
       
       
     
@@ -492,14 +516,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     前言介绍
+    
   </span>
   
 
@@ -523,8 +549,10 @@
       <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     All-in-One 环境概念
+    
   </span>
   
 
@@ -544,8 +572,10 @@
       <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     什么是 ESXi
+    
   </span>
   
 
@@ -565,8 +595,10 @@
       <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     陈大剩写在前面的话
+    
   </span>
   
 
@@ -586,8 +618,10 @@
       <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     本教程目标与适用对象
+    
   </span>
   
 
@@ -613,6 +647,7 @@
     
     
     
+    
       
       
     
@@ -621,14 +656,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     准备工作
+    
   </span>
   
 
@@ -652,8 +689,10 @@
       <a href="../../preparation/hardware-details/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件配置
+    
   </span>
   
 
@@ -673,8 +712,10 @@
       <a href="../../preparation/bios-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     BIOS 设置
+    
   </span>
   
 
@@ -694,8 +735,10 @@
       <a href="../../preparation/disk-partitioning/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘划分
+    
   </span>
   
 
@@ -715,8 +758,10 @@
       <a href="../../preparation/install-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     安装 ESXi
+    
   </span>
   
 
@@ -736,8 +781,10 @@
       <a href="../../preparation/base-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 基础设置
+    
   </span>
   
 
@@ -763,6 +810,7 @@
     
     
     
+    
       
       
     
@@ -771,14 +819,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     网络架构
+    
   </span>
   
 
@@ -802,8 +852,10 @@
       <a href="../../network/overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 网络概述
+    
   </span>
   
 
@@ -823,8 +875,10 @@
       <a href="../../network/settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑设计
+    
   </span>
   
 
@@ -844,8 +898,10 @@
       <a href="../../network/fight/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑实战
+    
   </span>
   
 
@@ -865,8 +921,10 @@
       <a href="../../network/jumper/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     跳板机使用
+    
   </span>
   
 
@@ -886,8 +944,10 @@
       <a href="../../network/intranet/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     突破 1000M 带宽
+    
   </span>
   
 
@@ -907,8 +967,10 @@
       <a href="../../network/qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     故障排查与优化
+    
   </span>
   
 
@@ -934,6 +996,7 @@
     
     
     
+    
       
       
     
@@ -942,14 +1005,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     ESXi 进阶操作
+    
   </span>
   
 
@@ -973,8 +1038,10 @@
       <a href="../../esxi/self-starting/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机自启动
+    
   </span>
   
 
@@ -994,8 +1061,10 @@
       <a href="../../esxi/convert/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     镜像转换
+    
   </span>
   
 
@@ -1015,8 +1084,10 @@
       <a href="../../esxi/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSL 证书配置
+    
   </span>
   
 
@@ -1036,8 +1107,10 @@
       <a href="../../esxi/passthrough/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件直通
+    
   </span>
   
 
@@ -1057,8 +1130,10 @@
       <a href="../../esxi/clone/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机克隆
+    
   </span>
   
 
@@ -1078,8 +1153,10 @@
       <a href="../../esxi/energy/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     功耗节能
+    
   </span>
   
 
@@ -1105,6 +1182,7 @@
     
     
     
+    
       
       
     
@@ -1113,14 +1191,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     软路由
+    
   </span>
   
 
@@ -1144,8 +1224,10 @@
       <a href="../../route/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1165,8 +1247,10 @@
       <a href="../../route/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开启 IPv6
+    
   </span>
   
 
@@ -1186,8 +1270,10 @@
       <a href="../../route/expansion/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘扩容
+    
   </span>
   
 
@@ -1207,8 +1293,10 @@
       <a href="../../route/open-clash/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     OpenClash
+    
   </span>
   
 
@@ -1234,6 +1322,7 @@
     
     
     
+    
       
       
     
@@ -1242,14 +1331,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     黑群晖
+    
   </span>
   
 
@@ -1273,8 +1364,10 @@
       <a href="../../synology/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1294,8 +1387,10 @@
       <a href="../../synology/design/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     存储设计
+    
   </span>
   
 
@@ -1315,8 +1410,10 @@
       <a href="../../synology/ssd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSD 缓存加速
+    
   </span>
   
 
@@ -1336,8 +1433,10 @@
       <a href="../../synology/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     添加证书
+    
   </span>
   
 
@@ -1357,8 +1456,10 @@
       <a href="../../synology/remote/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     远程访问
+    
   </span>
   
 
@@ -1384,6 +1485,7 @@
     
     
     
+    
       
       
     
@@ -1392,14 +1494,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     家庭工作区
+    
   </span>
   
 
@@ -1423,8 +1527,10 @@
       <a href="../../home/pc/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     家庭 PC
+    
   </span>
   
 
@@ -1444,8 +1550,10 @@
       <a href="../../home/video/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     影视媒体中心
+    
   </span>
   
 
@@ -1465,8 +1573,10 @@
       <a href="../../home/network/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     全屋网络覆盖
+    
   </span>
   
 
@@ -1486,8 +1596,10 @@
       <a href="../../home/develop/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开发系统
+    
   </span>
   
 
@@ -1507,8 +1619,10 @@
       <a href="../../home/k8s/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Kubernetes 集群
+    
   </span>
   
 
@@ -1534,6 +1648,7 @@
     
     
     
+    
       
       
     
@@ -1542,14 +1657,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     远程穿透
+    
   </span>
   
 
@@ -1573,8 +1690,10 @@
       <a href="../../remote/overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     前言
+    
   </span>
   
 
@@ -1594,8 +1713,10 @@
       <a href="../../remote/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 DDNS
+    
   </span>
   
 
@@ -1615,8 +1736,10 @@
       <a href="../../remote/nat/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     公网 NAT
+    
   </span>
   
 
@@ -1636,8 +1759,10 @@
       <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 转 IPv4
+    
   </span>
   
 
@@ -1657,8 +1782,10 @@
       <a href="../../remote/frp/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Frp 内网穿透
+    
   </span>
   
 
@@ -1686,6 +1813,7 @@
     
     
     
+    
       
         
         
@@ -1703,8 +1831,10 @@
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
-    常见 Q&A
+    常见 Q&amp;A
+    
   </span>
   
 
@@ -1714,7 +1844,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
-            常见 Q&A
+            常见 Q&amp;A
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1735,8 +1865,10 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
     ESXi 紫屏
+    
   </span>
   
 
@@ -1746,8 +1878,10 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
     ESXi 紫屏
+    
   </span>
   
 
@@ -2079,8 +2213,10 @@
       <a href="../qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     问题列表
+    
   </span>
   
 
@@ -2105,7 +2241,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2430,9 +2566,9 @@
                   
 
   
-    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/qa/purple.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/qa/purple.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
   
   
@@ -2442,7 +2578,7 @@
 
 <p>ESXi 紫屏死机（Purple Screen of Death，简称 PSOD）是 VMware ESXi 系统遇到严重错误时显示的紫色错误界面，类似于 Windows 的蓝屏死机。</p>
 <p>紫屏类比于程序员写代码，跑起来全是红色警告。起初陈大剩遇到有点慌，当遇到多了，也就习惯了，先记录一下，再看是什么原因。</p>
-<h2 id="esxi">什么是 ESXi 紫屏<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h2>
+<h2 id="esxi">什么是 ESXi 紫屏<a class="headerlink" href="#esxi" title="Permanent link">¶</a></h2>
 <p>ESXi 紫屏是 VMware 虚拟化平台的内核级错误显示机制，当系统遇到无法恢复的严重错误时会触发。</p>
 <div class="admonition warning">
 <p class="admonition-title">紫屏死机影响</p>
@@ -2453,27 +2589,27 @@
 <li><strong>系统重启</strong>：ESXi 主机自动重启</li>
 </ul>
 </div>
-<h2 id="_1">陈大剩遇到的紫屏<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">陈大剩遇到的紫屏<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <p>不得不说陈大剩遇到的紫屏还真不少，此处列举几个常遇到的紫屏，遇到先记录下来。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">紫屏一</label><label for="__tabbed_1_2">紫屏二</label><label for="__tabbed_1_3">紫屏三</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">紫屏一</label><label for="__tabbed_1_2">紫屏二</label><label for="__tabbed_1_3">紫屏三</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏一" src="https://img.it927.com/aio/324.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/324.png" data-desc-position="bottom"><img alt="紫屏一" src="https://img.it927.com/aio/324.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/325.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏二" src="https://img.it927.com/aio/325.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/325.png" data-desc-position="bottom"><img alt="紫屏二" src="https://img.it927.com/aio/325.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/326.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏三" src="https://img.it927.com/aio/326.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/326.png" data-desc-position="bottom"><img alt="紫屏三" src="https://img.it927.com/aio/326.png"></a></p>
 </div>
 </div>
 </div>
-<h2 id="_2">紫屏信息解读<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">紫屏信息解读<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>陈大剩用一个图来解释一下紫屏的信息，通过 ESXi 紫屏信息，可以看到具体的使用状态：</p>
 <p>ESXi 8.0.3 版本，架构为 x86_64，错误类型为 PF Exception 14，世界 ID 为 2099241，问题标签为 vmx，涉及模块包括：xxxx。
-<a class="glightbox" href="https://img.it927.com/aio/327.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="紫屏信息解读" src="https://img.it927.com/aio/327.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/327.png" data-desc-position="bottom"><img alt="紫屏信息解读" src="https://img.it927.com/aio/327.png"></a>
 从图上我们只能看出是 <code>vmx</code> 相关问题 ，并不能看出什么来，向这种问题就需要向 <a href="#_19">VMware 官方资源</a> 去搜索或提问了。</p>
-<h3 id="_3">基本信息结构<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_3">基本信息结构<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>此处陈大剩将 ESXi 紫屏重点信息关键信息，列举一下：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 错误类型和世界 ID</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#PF Exception 14 in world 12345:vmm0</span>
@@ -2491,7 +2627,7 @@
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>0x41800456def<span class="w"> </span><span class="o">[</span>vmkernel<span class="o">]</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>0x418007890ab<span class="w"> </span><span class="o">[</span>driver_module<span class="o">]</span>
 </code></pre></div>
-<h3 id="_4">常见错误类型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4">常见错误类型<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -2534,7 +2670,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_5">关键字段含义<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_5">关键字段含义<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <p><strong>世界 ID（World ID）</strong>：</p>
 <ul>
 <li><code>vmm0</code>: 虚拟机监视器</li>
@@ -2551,23 +2687,23 @@
 </ul>
 <p>本文只挑选了关键部分讲解，细致的讲解可参考官方文章：<a href="https://knowledge.broadcom.com/external/article?legacyId=1004250">Interpreting a host purple diagnostic screen</a>，需要一些英文基础。</p>
 </div>
-<h2 id="_6">检查方法步骤<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="1">步骤 1：获取核心转储文件<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<h2 id="_6">检查方法步骤<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="1">步骤 1：获取核心转储文件<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
 <p>ESXi 紫屏发生后，系统会生成核心转储文件用于详细分析：</p>
 <p><strong>查找转储文件位置</strong>：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">方法 1：vSphere Client 查看</label><label for="__tabbed_2_2">方法 2：SSH 命令行</label><label for="__tabbed_2_3">方法 3：直连控制台</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">方法 1：vSphere Client 查看</label><label for="__tabbed_2_2">方法 2：SSH 命令行</label><label for="__tabbed_2_3">方法 3：直连控制台</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>导航路径：【主机】→【监控】→【日志】，具体日志每个日志代表什么，可在 <a href="#2">步骤 2：分析系统日志</a> 分析。
-<a class="glightbox" href="https://img.it927.com/aio/328.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="查看系统日志" src="https://img.it927.com/aio/328.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/328.png" data-desc-position="bottom"><img alt="查看系统日志" src="https://img.it927.com/aio/328.png"></a></p>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 连接 ESXi SSH</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ssh<span class="w"> </span>root@esxi-host-ip
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 查找核心转储文件</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>find<span class="w"> </span>/vmfs/volumes<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.dumpfile&quot;</span><span class="w"> </span>-type<span class="w"> </span>f
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>find<span class="w"> </span>/var/core<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.dumpfile&quot;</span><span class="w"> </span>-type<span class="w"> </span>f
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>find<span class="w"> </span>/vmfs/volumes<span class="w"> </span>-name<span class="w"> </span><span class="s2">"*.dumpfile"</span><span class="w"> </span>-type<span class="w"> </span>f
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>find<span class="w"> </span>/var/core<span class="w"> </span>-name<span class="w"> </span><span class="s2">"*.dumpfile"</span><span class="w"> </span>-type<span class="w"> </span>f
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 查看最新的转储文件</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>ls<span class="w"> </span>-la<span class="w"> </span>/var/core/<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
@@ -2584,7 +2720,7 @@
 </div>
 </div>
 </div>
-<h3 id="2">步骤 2：分析系统日志<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<h3 id="2">步骤 2：分析系统日志<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
 <p><strong>关键日志文件</strong>：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 主要系统日志</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/var/log/vmkernel.log<span class="w">      </span><span class="c1"># 内核日志（最重要）</span>
@@ -2593,7 +2729,7 @@
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>/var/log/vpxa.log<span class="w">          </span><span class="c1"># vCenter 代理日志</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 查看日志的时间范围（紫屏前后 30 分钟）</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>-B<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">&quot;Exception\|PSOD\|panic&quot;</span><span class="w"> </span>/var/log/vmkernel.log
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>-B<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">"Exception\|PSOD\|panic"</span><span class="w"> </span>/var/log/vmkernel.log
 </code></pre></div>
 <p><strong>日志分析示例</strong>：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 示例：内存相关错误</span>
@@ -2608,7 +2744,7 @@
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="m">2024</span>-01-15T14:32:25.789Z<span class="w"> </span>cpu2:12345<span class="o">)</span>WARNING:<span class="w"> </span>vmkapi:<span class="w"> </span><span class="m">1234</span>:<span class="w"> </span>Invalid<span class="w"> </span>parameter<span class="w"> </span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span>passed<span class="w"> </span>to<span class="w"> </span>vmk_PktList<span class="w"> </span>API
 </code></pre></div>
-<h3 id="3">步骤 3：硬件健康检查<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<h3 id="3">步骤 3：硬件健康检查<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
 <p><strong>CPU 状态检查</strong>：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 检查 CPU 信息和错误</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>esxcli<span class="w"> </span>hardware<span class="w"> </span>cpu<span class="w"> </span>list
@@ -2622,7 +2758,7 @@
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>esxcli<span class="w"> </span>hardware<span class="w"> </span>memory<span class="w"> </span>get
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 内存插槽详细信息</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>smbiosDump<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">&quot;Memory Device&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>smbiosDump<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s2">"Memory Device"</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># ECC 错误统计</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>vsish<span class="w"> </span>-e<span class="w"> </span>get<span class="w"> </span>/hardware/memory/
@@ -2638,7 +2774,7 @@
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># SMART 信息检查</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>esxcli<span class="w"> </span>storage<span class="w"> </span>core<span class="w"> </span>device<span class="w"> </span>smart<span class="w"> </span>get<span class="w"> </span>-d<span class="w"> </span>&lt;device-name&gt;
 </code></pre></div>
-<h3 id="4pci">步骤 4：网络和PCI设备检查<a class="headerlink" href="#4pci" title="Permanent link">&para;</a></h3>
+<h3 id="4pci">步骤 4：网络和PCI设备检查<a class="headerlink" href="#4pci" title="Permanent link">¶</a></h3>
 <p><strong>网络设备状态</strong>：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 网络适配器列表</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>esxcli<span class="w"> </span>network<span class="w"> </span>nic<span class="w"> </span>list
@@ -2654,11 +2790,11 @@
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>lspci<span class="w"> </span>-v
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 查看设备直通状态</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>esxcli<span class="w"> </span>hardware<span class="w"> </span>pci<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">5</span><span class="w"> </span>-B<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s2">&quot;Pass&quot;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>esxcli<span class="w"> </span>hardware<span class="w"> </span>pci<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">5</span><span class="w"> </span>-B<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s2">"Pass"</span>
 </code></pre></div>
-<h2 id="_7">常见故障原因及解决<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h3 id="_8">硬件相关问题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">内存故障</label><label for="__tabbed_3_2">CPU 过热</label><label for="__tabbed_3_3">存储控制器故障</label></div>
+<h2 id="_7">常见故障原因及解决<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<h3 id="_8">硬件相关问题<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">内存故障</label><label for="__tabbed_3_2">CPU 过热</label><label for="__tabbed_3_3">存储控制器故障</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>症状特征</strong>：</p>
@@ -2667,12 +2803,12 @@
 <li>日志关键词：<code>ECC error</code>、<code>Memory</code>、<code>DIMM</code></li>
 </ul>
 <p><strong>检查方法</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 内存错误日志</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;ecc\|memory\|dimm&quot;</span><span class="w"> </span>/var/log/vmkernel.log
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 内存错误日志</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"ecc\|memory\|dimm"</span><span class="w"> </span>/var/log/vmkernel.log
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># BIOS 内存测试</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># 重启进入 BIOS，运行内存诊断程序</span>
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>解决方案</strong>：更换故障内存条、重新插拔内存条、检查内存兼容性、升级 BIOS 版本。</p>
 </div>
 <div class="tabbed-block">
@@ -2683,12 +2819,12 @@
 <li>间歇性死机，高负载时频发</li>
 </ul>
 <p><strong>检查方法</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># CPU 温度监控</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># CPU 温度监控</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>vsish<span class="w"> </span>-e<span class="w"> </span>get<span class="w"> </span>/hardware/cpu/cpuList/0/temperature
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># 风扇转速检查</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ipmitool<span class="w"> </span>sensor<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>fan
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>解决方案</strong>：清洁 CPU 散热器、更换导热硅胶、检查机箱风扇、改善机房散热。</p>
 </div>
 <div class="tabbed-block">
@@ -2699,18 +2835,18 @@
 <li>虚拟机磁盘错误</li>
 </ul>
 <p><strong>检查方法</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 存储错误日志</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;scsi\|storage\|adapter&quot;</span><span class="w"> </span>/var/log/vmkernel.log
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 存储错误日志</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"scsi\|storage\|adapter"</span><span class="w"> </span>/var/log/vmkernel.log
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># 磁盘阵列状态</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>esxcli<span class="w"> </span>storage<span class="w"> </span>core<span class="w"> </span>adapter<span class="w"> </span>stats<span class="w"> </span>get
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>解决方案</strong>：检查 SATA/SAS 线缆、更新存储驱动、检查磁盘阵列卡、更换故障硬盘。</p>
 </div>
 </div>
 </div>
-<h3 id="_9">软件配置问题<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">驱动不兼容</label><label for="__tabbed_4_2">虚拟机配置错误</label></div>
+<h3 id="_9">软件配置问题<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">驱动不兼容</label><label for="__tabbed_4_2">虚拟机配置错误</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>症状特征</strong>：</p>
@@ -2719,7 +2855,7 @@
 <li>调用堆栈指向第三方驱动</li>
 </ul>
 <p><strong>解决方法</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 查看已安装驱动</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 查看已安装驱动</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>esxcli<span class="w"> </span>software<span class="w"> </span>vib<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>VMware
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># 移除问题驱动</span>
@@ -2727,7 +2863,7 @@
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># 安装兼容驱动</span>
 <a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>esxcli<span class="w"> </span>software<span class="w"> </span>vib<span class="w"> </span>install<span class="w"> </span>-v<span class="w"> </span>/path/to/driver.vib
-</code></pre></div></p>
+</code></pre></div><p></p>
 </div>
 <div class="tabbed-block">
 <p><strong>常见配置问题</strong>：</p>
@@ -2737,18 +2873,18 @@
 <li>设备直通配置冲突</li>
 </ul>
 <p><strong>检查方法</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 检查虚拟机配置</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 检查虚拟机配置</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>vim-cmd<span class="w"> </span>vmsvc/getallvms
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>vim-cmd<span class="w"> </span>vmsvc/get.config<span class="w"> </span>&lt;vmid&gt;
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># 检查资源分配</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>esxtop<span class="w"> </span>-b<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">20</span><span class="w"> </span>MACHINE
-</code></pre></div></p>
+</code></pre></div><p></p>
 </div>
 </div>
 </div>
-<h3 id="_10">系统环境问题<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">ESXi 版本缺陷</label><label for="__tabbed_5_2">BIOS 兼容性</label></div>
+<h3 id="_10">系统环境问题<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">ESXi 版本缺陷</label><label for="__tabbed_5_2">BIOS 兼容性</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>解决方案</strong>：</p>
@@ -2768,14 +2904,14 @@
 </div>
 </div>
 </div>
-<h2 id="_11">预防措施<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<h3 id="_12">硬件层面<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h2 id="_11">预防措施<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
+<h3 id="_12">硬件层面<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <p><strong>定期维护计划</strong>：</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每月检查</strong>：CPU 温度、内存使用率</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每季度维护</strong>：清洁散热器、检查风扇</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每半年检查</strong>：内存诊断、硬盘 SMART 信息</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>每年更换</strong>：导热硅胶、UPS 电池</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>每月检查</strong>：CPU 温度、内存使用率</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>每季度维护</strong>：清洁散热器、检查风扇</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>每半年检查</strong>：内存诊断、硬盘 SMART 信息</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>每年更换</strong>：导热硅胶、UPS 电池</li>
 </ul>
 <p><strong>监控告警设置</strong>：</p>
 <div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># 设置硬件监控告警</span>
@@ -2785,7 +2921,7 @@
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>esxcli<span class="w"> </span>system<span class="w"> </span>snmp<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--enable<span class="w"> </span><span class="nb">true</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>esxcli<span class="w"> </span>system<span class="w"> </span>snmp<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--communities<span class="w"> </span>community_name
 </code></pre></div>
-<h3 id="_13">软件层面<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h3 id="_13">软件层面<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <p><strong>系统配置最佳实践</strong>：</p>
 <div class="highlight"><span class="filename">YAML</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># ESXi 主机配置建议</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">内存预留</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10-15%</span>
@@ -2800,7 +2936,7 @@
 <li><strong>分阶段生产环境部署</strong></li>
 <li><strong>建立回滚预案</strong></li>
 </ol>
-<h3 id="_14">监控和备份<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h3 id="_14">监控和备份<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <p><strong>关键监控指标</strong>：</p>
 <table>
 <thead>
@@ -2854,33 +2990,33 @@
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># 定期完整备份</span>
 <a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>ghettoVCB.sh<span class="w"> </span>-a<span class="w"> </span>-g<span class="w"> </span>ghettoVCB.conf
 </code></pre></div>
-<h2 id="_15">故障案例分析<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
-<h3 id="1-ecc">案例 1：内存 ECC 错误<a class="headerlink" href="#1-ecc" title="Permanent link">&para;</a></h3>
+<h2 id="_15">故障案例分析<a class="headerlink" href="#_15" title="Permanent link">¶</a></h2>
+<h3 id="1-ecc">案例 1：内存 ECC 错误<a class="headerlink" href="#1-ecc" title="Permanent link">¶</a></h3>
 <p><strong>故障现象</strong>：
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#PF Exception 14 in world 12345:vmm0
+</p><div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#PF Exception 14 in world 12345:vmm0
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>@ 0x41800123abc
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>RAX: 0x0000000000000000
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>排查过程</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># 1. 查看内存错误日志</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;ecc&quot;</span><span class="w"> </span>/var/log/vmkernel.log
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># 1. 查看内存错误日志</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"ecc"</span><span class="w"> </span>/var/log/vmkernel.log
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>&gt;<span class="w"> </span><span class="m">2024</span>-01-15T14:32:20.456Z<span class="w"> </span>cpu0:12345<span class="o">)</span>NMI:<span class="w"> </span>NVRAM:<span class="w"> </span>Single-bit<span class="w"> </span>ECC<span class="w"> </span>error<span class="w"> </span>detected
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
 <a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="c1"># 2. 检查内存插槽</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>smbiosDump<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">&quot;DIMM_A1&quot;</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>smbiosDump<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="s2">"DIMM_A1"</span>
 <a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>&gt;<span class="w"> </span>Memory<span class="w"> </span>Device:<span class="w"> </span>DIMM_A1,<span class="w"> </span>Size:<span class="w"> </span><span class="m">16384</span><span class="w"> </span>MB,<span class="w"> </span>Type:<span class="w"> </span>DDR4,<span class="w"> </span>Speed:<span class="w"> </span><span class="m">2666</span><span class="w"> </span>MHz
 <a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
 <a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="c1"># 3. 内存诊断测试</span>
 <a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># BIOS 内存测试发现 DIMM_A1 存在错误</span>
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>解决方案</strong>：更换 DIMM_A1 内存条，问题解决。</p>
-<h3 id="2_1">案例 2：第三方网卡驱动冲突<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<h3 id="2_1">案例 2：第三方网卡驱动冲突<a class="headerlink" href="#2_1" title="Permanent link">¶</a></h3>
 <p><strong>故障现象</strong>：
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>#GP Exception 13 in world 67890:net-queue-0
+</p><div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>#GP Exception 13 in world 67890:net-queue-0
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Backtrace: 0x418007890ab [rtl8125_driver]
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>排查过程</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 1. 识别问题驱动</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 1. 识别问题驱动</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>esxcli<span class="w"> </span>software<span class="w"> </span>vib<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>rtl8125
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>&gt;<span class="w"> </span>rtl8125<span class="w">    </span><span class="m">1</span>.0.0-1<span class="w">    </span>Realtek<span class="w">    </span>PartnerSupported
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
@@ -2890,38 +3026,38 @@
 <a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
 <a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="c1"># 3. 移除问题驱动</span>
 <a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>esxcli<span class="w"> </span>software<span class="w"> </span>vib<span class="w"> </span>remove<span class="w"> </span>-n<span class="w"> </span>rtl8125
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>解决方案</strong>：使用 VMware 官方兼容的网卡驱动，系统恢复稳定。</p>
-<h2 id="_16">故障诊断工具<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
-<h3 id="_17">命令行工具<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<h2 id="_16">故障诊断工具<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
+<h3 id="_17">命令行工具<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
 <p><strong>系统信息收集</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># 生成系统诊断包</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># 生成系统诊断包</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>vm-support<span class="w"> </span>-w<span class="w"> </span>/tmp/<span class="w"> </span>-d<span class="w"> </span><span class="m">7</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># 硬件信息导出</span>
 <a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>esxcli<span class="w"> </span>hardware<span class="w"> </span>platform<span class="w"> </span>get<span class="w"> </span>&gt;<span class="w"> </span>hardware-info.txt
 <a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>esxcli<span class="w"> </span>system<span class="w"> </span>version<span class="w"> </span>get<span class="w"> </span>&gt;<span class="w"> </span>version-info.txt
-</code></pre></div></p>
+</code></pre></div><p></p>
 <p><strong>日志分析脚本</strong>：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="ch">#!/bin/bash</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="ch">#!/bin/bash</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1"># psod-analyzer.sh - ESXi 紫屏日志分析脚本</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== ESXi PSOD 日志分析 ===&quot;</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;分析时间: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"=== ESXi PSOD 日志分析 ==="</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"分析时间: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>
 <a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
 <a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># 检查最近的异常</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== 最近错误日志 ===&quot;</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;exception\|panic\|psod&quot;</span><span class="w"> </span>/var/log/vmkernel.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n=== 最近错误日志 ==="</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"exception\|panic\|psod"</span><span class="w"> </span>/var/log/vmkernel.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
 <a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>
 <a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="c1"># 硬件错误统计</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== 硬件错误统计 ===&quot;</span>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;NMI\|MCE\|ECC&quot;</span><span class="w"> </span>/var/log/vmkernel.log
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n=== 硬件错误统计 ==="</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">"NMI\|MCE\|ECC"</span><span class="w"> </span>/var/log/vmkernel.log
 <a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
 <a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="c1"># 内存相关错误</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\n=== 内存错误详情 ===&quot;</span>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;memory\|dimm&quot;</span><span class="w"> </span>/var/log/vmkernel.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-10
-</code></pre></div></p>
-<h3 id="_18">第三方工具<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n=== 内存错误详情 ==="</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"memory\|dimm"</span><span class="w"> </span>/var/log/vmkernel.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-10
+</code></pre></div><p></p>
+<h3 id="_18">第三方工具<a class="headerlink" href="#_18" title="Permanent link">¶</a></h3>
 <p><strong>RVTools</strong>：虚拟化环境信息收集
 <strong>vSphere Health Check</strong>：系统健康评估
 <strong>VMware Log Insight</strong>：日志集中分析</p>
@@ -2929,15 +3065,15 @@
 <p class="admonition-title">诊断总结</p>
 <p>ESXi 紫屏问题的诊断需要系统性方法，从错误信息解读到硬件检查，再到软件配置验证。建立完善的监控机制和定期维护计划，可以有效预防此类严重故障的发生。遇到复杂问题时，及时收集诊断信息并寻求专业技术支持。</p>
 </div>
-<h2 id="_19">技术支持资源<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h2 id="_19">技术支持资源<a class="headerlink" href="#_19" title="Permanent link">¶</a></h2>
 <p>如实在遇到不能解决的问题，可在 VMware 官方资源中查找，其他人有没有出现过类似的问题，没有的话，就直接提出问题，不要害怕语言问题。</p>
-<h3 id="vmware">VMware 官方资源<a class="headerlink" href="#vmware" title="Permanent link">&para;</a></h3>
+<h3 id="vmware">VMware 官方资源<a class="headerlink" href="#vmware" title="Permanent link">¶</a></h3>
 <ul>
 <li><strong>知识库</strong>：<a href="https://kb.vmware.com">kb.vmware.com</a></li>
 <li><strong>社区论坛</strong>：<a href="https://communities.vmware.com">communities.vmware.com</a></li>
 <li><strong>技术支持</strong>：通过 vSphere Client 提交 SR</li>
 </ul>
-<h3 id="_20">诊断信息收集<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h3 id="_20">诊断信息收集<a class="headerlink" href="#_20" title="Permanent link">¶</a></h3>
 <p>提交技术支持时，需要收集：</p>
 <ol>
 <li><strong>完整紫屏照片</strong></li>
@@ -2958,10 +3094,9 @@
 
   
 
-<!-- taken from
-https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
 
-<hr/>
+
+<hr>
 <div class="md-source-file">
   <small>
 
@@ -2995,7 +3130,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   回到页面顶部
 </button>
         
@@ -3005,13 +3140,13 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
           <a href="../../remote/frp/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Frp 内网穿透">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
@@ -3036,7 +3171,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
             </div>
           </a>
         
@@ -3048,20 +3183,21 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 aio.it927.com 陈大剩
+      Copyright © 2024 aio.it927.com 陈大剩
     </div>
   
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
     
     
     <a href="https://www.it927.com" target="_blank" rel="noopener" title="陈大剩" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M489.2 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32H128v-32c0-2.6-2-4.6-4.6-4.6H96c-2.6 0-4.6 2-4.6 4.6v178.3H54.8v-32c0-2.6-2-4.6-4.6-4.6H22.8c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96h182.9V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M489.5 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.3v-32c0-2.6-2-4.6-4.6-4.6H96.3c-2.6 0-4.6 2-4.6 4.6v178.3H55.1v-32c0-2.6-2-4.6-4.6-4.6H23.1c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96H494V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"></path></svg>
     </a>
   
 </div>
@@ -3076,10 +3212,12 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../javascripts/analysis.js"></script>
       
@@ -3088,7 +3226,8 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         <script src="../../javascripts/mermaid-init.js"></script>
       
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- taken from
+https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->

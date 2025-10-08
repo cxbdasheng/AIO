@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="zh" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -33,7 +30,7 @@
     <meta name="keywords" content="ESXi安装Ubuntu,Ubuntu虚拟机创建,ESXi Ubuntu教程,虚拟化Ubuntu部署,ESXi Linux安装,Ubuntu Server安装,VMware Ubuntu配置,家庭AIO Ubuntu,跳板机,Ubuntu系统优化,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -56,16 +53,17 @@
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     
@@ -103,12 +101,12 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-header__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -133,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换深色模式" type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue" aria-label="切换浅色模式" type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
@@ -158,31 +156,33 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="查找">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -201,13 +201,14 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
         <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -227,9 +228,11 @@
   
   
   
+  
     <li class="md-tabs__item">
       <a href="../.." class="md-tabs__link">
         
+  
   
     
   
@@ -244,11 +247,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
           
+  
   
   前言介绍
 
@@ -262,11 +267,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../preparation/hardware-details/" class="md-tabs__link">
           
+  
   
   准备工作
 
@@ -279,6 +286,7 @@
         
   
   
+  
     
   
   
@@ -287,6 +295,7 @@
       <li class="md-tabs__item md-tabs__item--active">
         <a href="../overview/" class="md-tabs__link">
           
+  
   
   网络架构
 
@@ -300,11 +309,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../esxi/self-starting/" class="md-tabs__link">
           
+  
   
   ESXi 进阶操作
 
@@ -318,11 +329,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../route/install/" class="md-tabs__link">
           
+  
   
   软路由
 
@@ -336,11 +349,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../synology/install/" class="md-tabs__link">
           
+  
   
   黑群晖
 
@@ -354,11 +369,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../home/pc/" class="md-tabs__link">
           
+  
   
   家庭工作区
 
@@ -372,11 +389,13 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../remote/overview/" class="md-tabs__link">
           
+  
   
   远程穿透
 
@@ -390,13 +409,15 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../qa/purple/" class="md-tabs__link">
           
   
-  常见 Q&A
+  
+  常见 Q&amp;A
 
         </a>
       </li>
@@ -421,7 +442,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -435,7 +456,7 @@
     <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-nav__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 
     </a>
     家庭 AIO 服务器搭建教程
@@ -445,7 +466,7 @@
       <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     cxbdasheng/AIO
@@ -465,8 +486,10 @@
       <a href="../.." class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     首页
+    
   </span>
   
 
@@ -484,6 +507,7 @@
     
     
     
+    
       
       
     
@@ -492,14 +516,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     前言介绍
+    
   </span>
   
 
@@ -523,8 +549,10 @@
       <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     All-in-One 环境概念
+    
   </span>
   
 
@@ -544,8 +572,10 @@
       <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     什么是 ESXi
+    
   </span>
   
 
@@ -565,8 +595,10 @@
       <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     陈大剩写在前面的话
+    
   </span>
   
 
@@ -586,8 +618,10 @@
       <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     本教程目标与适用对象
+    
   </span>
   
 
@@ -613,6 +647,7 @@
     
     
     
+    
       
       
     
@@ -621,14 +656,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     准备工作
+    
   </span>
   
 
@@ -652,8 +689,10 @@
       <a href="../../preparation/hardware-details/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件配置
+    
   </span>
   
 
@@ -673,8 +712,10 @@
       <a href="../../preparation/bios-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     BIOS 设置
+    
   </span>
   
 
@@ -694,8 +735,10 @@
       <a href="../../preparation/disk-partitioning/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘划分
+    
   </span>
   
 
@@ -715,8 +758,10 @@
       <a href="../../preparation/install-esxi/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     安装 ESXi
+    
   </span>
   
 
@@ -736,8 +781,10 @@
       <a href="../../preparation/base-settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 基础设置
+    
   </span>
   
 
@@ -765,6 +812,7 @@
     
     
     
+    
       
         
         
@@ -782,8 +830,10 @@
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
     网络架构
+    
   </span>
   
 
@@ -807,8 +857,10 @@
       <a href="../overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 网络概述
+    
   </span>
   
 
@@ -828,8 +880,10 @@
       <a href="../settings/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑设计
+    
   </span>
   
 
@@ -849,8 +903,10 @@
       <a href="../fight/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     网络拓扑实战
+    
   </span>
   
 
@@ -877,8 +933,10 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
     跳板机使用
+    
   </span>
   
 
@@ -888,8 +946,10 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
     跳板机使用
+    
   </span>
   
 
@@ -1221,8 +1281,10 @@
       <a href="../intranet/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     突破 1000M 带宽
+    
   </span>
   
 
@@ -1242,8 +1304,10 @@
       <a href="../qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     故障排查与优化
+    
   </span>
   
 
@@ -1269,6 +1333,7 @@
     
     
     
+    
       
       
     
@@ -1277,14 +1342,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     ESXi 进阶操作
+    
   </span>
   
 
@@ -1308,8 +1375,10 @@
       <a href="../../esxi/self-starting/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机自启动
+    
   </span>
   
 
@@ -1329,8 +1398,10 @@
       <a href="../../esxi/convert/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     镜像转换
+    
   </span>
   
 
@@ -1350,8 +1421,10 @@
       <a href="../../esxi/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSL 证书配置
+    
   </span>
   
 
@@ -1371,8 +1444,10 @@
       <a href="../../esxi/passthrough/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬件直通
+    
   </span>
   
 
@@ -1392,8 +1467,10 @@
       <a href="../../esxi/clone/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     虚拟机克隆
+    
   </span>
   
 
@@ -1413,8 +1490,10 @@
       <a href="../../esxi/energy/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     功耗节能
+    
   </span>
   
 
@@ -1440,6 +1519,7 @@
     
     
     
+    
       
       
     
@@ -1448,14 +1528,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     软路由
+    
   </span>
   
 
@@ -1479,8 +1561,10 @@
       <a href="../../route/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1500,8 +1584,10 @@
       <a href="../../route/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开启 IPv6
+    
   </span>
   
 
@@ -1521,8 +1607,10 @@
       <a href="../../route/expansion/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     硬盘扩容
+    
   </span>
   
 
@@ -1542,8 +1630,10 @@
       <a href="../../route/open-clash/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     OpenClash
+    
   </span>
   
 
@@ -1569,6 +1659,7 @@
     
     
     
+    
       
       
     
@@ -1577,14 +1668,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     黑群晖
+    
   </span>
   
 
@@ -1608,8 +1701,10 @@
       <a href="../../synology/install/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     系统安装
+    
   </span>
   
 
@@ -1629,8 +1724,10 @@
       <a href="../../synology/design/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     存储设计
+    
   </span>
   
 
@@ -1650,8 +1747,10 @@
       <a href="../../synology/ssd/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     SSD 缓存加速
+    
   </span>
   
 
@@ -1671,8 +1770,10 @@
       <a href="../../synology/ssl/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     添加证书
+    
   </span>
   
 
@@ -1692,8 +1793,10 @@
       <a href="../../synology/remote/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     远程访问
+    
   </span>
   
 
@@ -1719,6 +1822,7 @@
     
     
     
+    
       
       
     
@@ -1727,14 +1831,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     家庭工作区
+    
   </span>
   
 
@@ -1758,8 +1864,10 @@
       <a href="../../home/pc/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     家庭 PC
+    
   </span>
   
 
@@ -1779,8 +1887,10 @@
       <a href="../../home/video/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     影视媒体中心
+    
   </span>
   
 
@@ -1800,8 +1910,10 @@
       <a href="../../home/network/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     全屋网络覆盖
+    
   </span>
   
 
@@ -1821,8 +1933,10 @@
       <a href="../../home/develop/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     开发系统
+    
   </span>
   
 
@@ -1842,8 +1956,10 @@
       <a href="../../home/k8s/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Kubernetes 集群
+    
   </span>
   
 
@@ -1869,6 +1985,7 @@
     
     
     
+    
       
       
     
@@ -1877,14 +1994,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
     远程穿透
+    
   </span>
   
 
@@ -1908,8 +2027,10 @@
       <a href="../../remote/overview/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     前言
+    
   </span>
   
 
@@ -1929,8 +2050,10 @@
       <a href="../../remote/ipv6/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 DDNS
+    
   </span>
   
 
@@ -1950,8 +2073,10 @@
       <a href="../../remote/nat/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     公网 NAT
+    
   </span>
   
 
@@ -1971,8 +2096,10 @@
       <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     IPv6 转 IPv4
+    
   </span>
   
 
@@ -1992,8 +2119,10 @@
       <a href="../../remote/frp/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     Frp 内网穿透
+    
   </span>
   
 
@@ -2019,6 +2148,7 @@
     
     
     
+    
       
       
     
@@ -2027,14 +2157,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
-    常见 Q&A
+    常见 Q&amp;A
+    
   </span>
   
 
@@ -2044,7 +2176,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
-            常见 Q&A
+            常见 Q&amp;A
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2058,8 +2190,10 @@
       <a href="../../qa/purple/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     ESXi 紫屏
+    
   </span>
   
 
@@ -2079,8 +2213,10 @@
       <a href="../../qa/qa/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
     问题列表
+    
   </span>
   
 
@@ -2105,7 +2241,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -2430,9 +2566,9 @@
                   
 
   
-    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/network/jumper.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/network/jumper.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
   
   
@@ -2441,22 +2577,22 @@
   <h1>跳板机使用</h1>
 
 <p>根据网络拓扑设计规范，跳板机作为网络访问的核心节点，需要实现以下关键功能：</p>
-<h2 id="_1">跳板机功能需求<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">跳板机功能需求<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>代理功能</strong> - 代理 ESXi 管理网口，实现无线访问 ESXi Web 管理界面</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>网络代理</strong> - 提供全网络代理服务，统一访问网络拓扑下的所有主机</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>网络隔离</strong> - 实现内外网物理隔离，保护内部系统安全</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>端口转发</strong> - 提供安全的端口映射和转发服务</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>统一入口</strong> - 作为访问内部网络资源的唯一入口，集中管理远程访问</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>代理功能</strong> - 代理 ESXi 管理网口，实现无线访问 ESXi Web 管理界面</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>网络代理</strong> - 提供全网络代理服务，统一访问网络拓扑下的所有主机</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>网络隔离</strong> - 实现内外网物理隔离，保护内部系统安全</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>端口转发</strong> - 提供安全的端口映射和转发服务</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> <strong>统一入口</strong> - 作为访问内部网络资源的唯一入口，集中管理远程访问</li>
 </ul>
-<h2 id="_2">选择跳板机操作系统<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">选择跳板机操作系统<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>综上原因需要，并不想每次都是通过配置命令行设置，最终陈大剩选择的具有图形界面的 Ubuntu 系统。</p>
-<h2 id="ubuntu">安装 Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link">&para;</a></h2>
+<h2 id="ubuntu">安装 Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link">¶</a></h2>
 <p>Ubuntu 作为最受欢迎的 Linux 发行版之一，在 ESXi 环境中具有以下优势：<strong>优秀的虚拟化支持</strong>、<strong>丰富的软件生态</strong>、<strong>长期支持版本</strong>、<strong>活跃的社区</strong>、<strong>企业级稳定性</strong>。</p>
-<h3 id="_3">准备工作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<h4 id="1-ubuntu-iso">1. 下载 Ubuntu ISO 镜像<a class="headerlink" href="#1-ubuntu-iso" title="Permanent link">&para;</a></h4>
+<h3 id="_3">准备工作<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<h4 id="1-ubuntu-iso">1. 下载 Ubuntu ISO 镜像<a class="headerlink" href="#1-ubuntu-iso" title="Permanent link">¶</a></h4>
 <p>根据使用场景选择合适的 Ubuntu 版本，陈大剩这里选择 Ubuntu Server 22.04 LTS 的版本。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu Server LTS（推荐）</label><label for="__tabbed_1_2">Ubuntu Desktop LTS</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu Server LTS（推荐）</label><label for="__tabbed_1_2">Ubuntu Desktop LTS</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>适用场景：</strong> 服务器环境，无图形界面，资源占用少。</p>
@@ -2476,7 +2612,7 @@
 </div>
 </div>
 </div>
-<h4 id="2-iso-esxi">2. 上传 ISO 到 ESXi 数据存储<a class="headerlink" href="#2-iso-esxi" title="Permanent link">&para;</a></h4>
+<h4 id="2-iso-esxi">2. 上传 ISO 到 ESXi 数据存储<a class="headerlink" href="#2-iso-esxi" title="Permanent link">¶</a></h4>
 <p>将下载的 ISO 文件上传到 ESXi 数据存储：</p>
 <ol>
 <li>登录 ESXi 管理后台</li>
@@ -2485,101 +2621,101 @@
 <li>创建 ISO 文件夹（可选）</li>
 <li>点击【上传文件】</li>
 </ol>
-<p><a class="glightbox" href="https://img.it927.com/aio/191.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="上传ISO文件" src="https://img.it927.com/aio/191.png" /></a></p>
-<h3 id="_4">创建虚拟机<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<h4 id="1">1. 新建虚拟机向导<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/191.png" data-desc-position="bottom"><img alt="上传ISO文件" src="https://img.it927.com/aio/191.png"></a></p>
+<h3 id="_4">创建虚拟机<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<h4 id="1">1. 新建虚拟机向导<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
 <p><strong>导航路径</strong>：【虚拟机】→【创建/注册虚拟机】，首先是简单的三个步骤。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">步骤 1：选择创建类型</label><label for="__tabbed_2_2">步骤 2：选择名称和操作系统</label><label for="__tabbed_2_3">步骤 3：选择储存</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">步骤 1：选择创建类型</label><label for="__tabbed_2_2">步骤 2：选择名称和操作系统</label><label for="__tabbed_2_3">步骤 3：选择储存</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/108.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/108.png" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/108.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/192.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/192.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/192.png" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/192.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/193.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/193.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/193.png" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/193.png"></a></p>
 </div>
 </div>
 </div>
-<h4 id="2">2. 存储和硬件配置<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<h4 id="2">2. 存储和硬件配置<a class="headerlink" href="#2" title="Permanent link">¶</a></h4>
 <p>由于陈大剩配置的是跳板机需要图形页面，所以硬件分配会稍微高一点，大家可以根据自己的需求分配，自定义步骤比较多，如无需配置直通，后面两个步骤可跳过。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">自定设置 1：CPU</label><label for="__tabbed_3_2">自定设置 2：内存</label><label for="__tabbed_3_3">自定设置 3：硬盘设置</label><label for="__tabbed_3_4">自定设置 4：添加网络适配器</label><label for="__tabbed_3_5">自定设置 5：添加镜像</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><input id="__tabbed_3_5" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">自定设置 1：CPU</label><label for="__tabbed_3_2">自定设置 2：内存</label><label for="__tabbed_3_3">自定设置 3：硬盘设置</label><label for="__tabbed_3_4">自定设置 4：添加网络适配器</label><label for="__tabbed_3_5">自定设置 5：添加镜像</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/194.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="CPU" src="https://img.it927.com/aio/194.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/194.png" data-desc-position="bottom"><img alt="CPU" src="https://img.it927.com/aio/194.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/195.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="内存" src="https://img.it927.com/aio/195.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/195.png" data-desc-position="bottom"><img alt="内存" src="https://img.it927.com/aio/195.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/196.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加硬盘" src="https://img.it927.com/aio/196.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/196.png" data-desc-position="bottom"><img alt="添加硬盘" src="https://img.it927.com/aio/196.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>如果需要代理 ESXi 管理网卡，则需添加 VM NetWork，其他再添加三个网络拓扑的网段。
-<a class="glightbox" href="https://img.it927.com/aio/197.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加网络适配器" src="https://img.it927.com/aio/197.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/197.png" data-desc-position="bottom"><img alt="添加网络适配器" src="https://img.it927.com/aio/197.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/198.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="添加镜像" src="https://img.it927.com/aio/198.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/198.png" data-desc-position="bottom"><img alt="添加镜像" src="https://img.it927.com/aio/198.png"></a></p>
 </div>
 </div>
 </div>
 <p>自定义设置完了，还需要需要将【虚拟机选项设】固件选择为【BIOS】，不直通选 EFI 也没有问题。
-<a class="glightbox" href="https://img.it927.com/aio/121.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="固件选择" src="https://img.it927.com/aio/121.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/121.png" data-desc-position="bottom"><img alt="固件选择" src="https://img.it927.com/aio/121.png"></a>
 最后，所有配置完成后，检查一遍，点完成。</p>
-<h3 id="_5">开始安装<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<h4 id="_6">安装流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h3 id="_5">开始安装<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<h4 id="_6">安装流程<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
 <p>配置配置完后，可以点击打开电源开始安装：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><input id="__tabbed_4_6" name="__tabbed_4" type="radio" /><input id="__tabbed_4_7" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">步骤一 ：引导页面</label><label for="__tabbed_4_2">步骤二 ：安装页面</label><label for="__tabbed_4_3">步骤三 ：选择键盘布局</label><label for="__tabbed_4_4">步骤四 ：安装选项</label><label for="__tabbed_4_5">步骤五 ：安装类型</label><label for="__tabbed_4_6">步骤六 ：选择时区</label><label for="__tabbed_4_7">步骤七 ：设置账号密码</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><input id="__tabbed_4_5" name="__tabbed_4" type="radio"><input id="__tabbed_4_6" name="__tabbed_4" type="radio"><input id="__tabbed_4_7" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">步骤一 ：引导页面</label><label for="__tabbed_4_2">步骤二 ：安装页面</label><label for="__tabbed_4_3">步骤三 ：选择键盘布局</label><label for="__tabbed_4_4">步骤四 ：安装选项</label><label for="__tabbed_4_5">步骤五 ：安装类型</label><label for="__tabbed_4_6">步骤六 ：选择时区</label><label for="__tabbed_4_7">步骤七 ：设置账号密码</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>引导页面选择：*Try or Install Ubuntu（尝试或安装 Ubuntu）
- <a class="glightbox" href="https://img.it927.com/aio/199.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="引导页面" src="https://img.it927.com/aio/199.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/199.png" data-desc-position="bottom"><img alt="引导页面" src="https://img.it927.com/aio/199.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>安装页面选择【中文】后，点击【安装 Ubuntu】
- <a class="glightbox" href="https://img.it927.com/aio/203.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装页面" src="https://img.it927.com/aio/203.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/203.png" data-desc-position="bottom"><img alt="安装页面" src="https://img.it927.com/aio/203.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>安装页面选择【中文】后，点击【安装 Ubuntu】
- <a class="glightbox" href="https://img.it927.com/aio/204.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择键盘布局" src="https://img.it927.com/aio/204.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/204.png" data-desc-position="bottom"><img alt="选择键盘布局" src="https://img.it927.com/aio/204.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>安装选择选择【最小安装】即可
- <a class="glightbox" href="https://img.it927.com/aio/205.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择键盘布局" src="https://img.it927.com/aio/205.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/205.png" data-desc-position="bottom"><img alt="选择键盘布局" src="https://img.it927.com/aio/205.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>安装类型选择【清除整个磁盘并安装 Ubuntu】，后面有个提示确认即可
- <a class="glightbox" href="https://img.it927.com/aio/206.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装类型" src="https://img.it927.com/aio/206.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/206.png" data-desc-position="bottom"><img alt="安装类型" src="https://img.it927.com/aio/206.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>选择时区点击【中国的地区】即可，或手动输入【上海】
- <a class="glightbox" href="https://img.it927.com/aio/208.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="选择时区" src="https://img.it927.com/aio/208.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/208.png" data-desc-position="bottom"><img alt="选择时区" src="https://img.it927.com/aio/208.png"></a></p>
 </div>
 <div class="tabbed-block">
 <p>设置账号密码按照自己的需求设置
- <a class="glightbox" href="https://img.it927.com/aio/207.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="设置账号密码" src="https://img.it927.com/aio/207.png" /></a></p>
+ <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/207.png" data-desc-position="bottom"><img alt="设置账号密码" src="https://img.it927.com/aio/207.png"></a></p>
 </div>
 </div>
 </div>
-<h4 id="_7">完成安装<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<h4 id="_7">完成安装<a class="headerlink" href="#_7" title="Permanent link">¶</a></h4>
 <p>安装完成后，系统还会提示安装完成，需要重启一次
-<a class="glightbox" href="https://img.it927.com/aio/209.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="重启系统" src="https://img.it927.com/aio/209.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/209.png" data-desc-position="bottom"><img alt="重启系统" src="https://img.it927.com/aio/209.png"></a>
 至此，已经安装完成了 Ubuntu，稍后关机后，可以将 <a href="#2">存储和硬件配置-自定设置 5：添加镜像</a> 添加的镜像给删除。
-<a class="glightbox" href="https://img.it927.com/aio/210.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="删除镜像" src="https://img.it927.com/aio/210.png" /></a></p>
-<h4 id="sshd">安装 sshd<a class="headerlink" href="#sshd" title="Permanent link">&para;</a></h4>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/210.png" data-desc-position="bottom"><img alt="删除镜像" src="https://img.it927.com/aio/210.png"></a></p>
+<h4 id="sshd">安装 sshd<a class="headerlink" href="#sshd" title="Permanent link">¶</a></h4>
 <p>因为我们最小化安装，Ubuntu 并未带 <code>sshd</code> 包，所以需安装了，通过点击左下角的菜单图标进入菜单，再点击终端进入终端。
-<a class="glightbox" href="https://img.it927.com/aio/211.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="安装 sshd" src="https://img.it927.com/aio/211.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/211.png" data-desc-position="bottom"><img alt="安装 sshd" src="https://img.it927.com/aio/211.png"></a>
 在终端中输入，并按照要求输入密码，结束安装。
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w">  </span>openssh-server
-</code></pre></div></p>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w">  </span>openssh-server
+</code></pre></div><p></p>
 <details class="info" open="open">
 <summary>镜像源配置</summary>
 <p>如果无法安装，请注意换源，换源教程请参考：<a href="https://midoq.github.io/2022/05/30/Ubuntu20-04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90/">Ubuntu20.04 更换国内镜像源</a></p>
 </details>
-<h4 id="root">开启 root 登入<a class="headerlink" href="#root" title="Permanent link">&para;</a></h4>
+<h4 id="root">开启 root 登入<a class="headerlink" href="#root" title="Permanent link">¶</a></h4>
 <p>在 Ubuntu 中，通常不推荐使用 root 用户来执行日常任务，因为这可能会导致系统安全性降低。由于我们只本地访问所以开启也无所谓。
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 设置 root 密码</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 设置 root 密码</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>passwd<span class="w"> </span>root
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 编辑 SSH 配置文件</span>
@@ -2592,60 +2728,60 @@
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># 重启 SSH 服务</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
-</code></pre></div></p>
-<h2 id="_8">跳板机网络配置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+</code></pre></div><p></p>
+<h2 id="_8">跳板机网络配置<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
 <p>跳板机安装成功后，我们还需要将四个网卡设置固定 IP ，防止每次重启 IP 发生变化。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">网卡一</label><label for="__tabbed_5_2">网卡二</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">网卡一</label><label for="__tabbed_5_2">网卡二</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/212.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网卡一" src="https://img.it927.com/aio/212.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/212.png" data-desc-position="bottom"><img alt="网卡一" src="https://img.it927.com/aio/212.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" href="https://img.it927.com/aio/213.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="网卡二" src="https://img.it927.com/aio/213.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/213.png" data-desc-position="bottom"><img alt="网卡二" src="https://img.it927.com/aio/213.png"></a></p>
 </div>
 </div>
 </div>
 <p>其中 <code>ens34</code> 一直处于正在连接中，为什么呢？因它和 ESXi 管理网卡一个网段，这个网段没有 DHCP 服务器，所以一直在连接中，获取不到 IP 地址。</p>
-<h3 id="esxi">ESXi 管理网段设置<a class="headerlink" href="#esxi" title="Permanent link">&para;</a></h3>
+<h3 id="esxi">ESXi 管理网段设置<a class="headerlink" href="#esxi" title="Permanent link">¶</a></h3>
 <p>编辑 <code>ens34</code> 网卡，选择【IPv4】方式改为【手动】，将地址和 ESXi 管理网卡设置成一个网段。</p>
 <p>因陈大剩 ESXi 管理网口地址为 <code>192.168.188.1</code>，所以这个网段设置为 <code>192.168.188.5</code>（不与 <code>192.168.188.1</code> 冲突就行），子网掩码为 <code>255.255.255.0</code>。
-<a class="glightbox" href="https://img.it927.com/aio/214.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ESXi 管理网段设置" src="https://img.it927.com/aio/214.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/214.png" data-desc-position="bottom"><img alt="ESXi 管理网段设置" src="https://img.it927.com/aio/214.png"></a>
 配置完成后，网卡状态变为"已连接"：
-<a class="glightbox" href="https://img.it927.com/aio/215.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ens34网卡状态" src="https://img.it927.com/aio/215.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/215.png" data-desc-position="bottom"><img alt="ens34网卡状态" src="https://img.it927.com/aio/215.png"></a>
 通过 Ubuntu 自带的浏览器 Firefox 访问 <code>192.168.188.1</code>，可以看到能够成功访问 ESXi Web 管理页面。
-<a class="glightbox" href="https://img.it927.com/aio/216.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问ESXi Web" src="https://img.it927.com/aio/216.png" /></a></p>
-<h3 id="_9">其他网段设置<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/216.png" data-desc-position="bottom"><img alt="访问ESXi Web" src="https://img.it927.com/aio/216.png"></a></p>
+<h3 id="_9">其他网段设置<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <p>其他网段需防止跳板机启动时跳 IP，还需要将获取 IP 方式改为 <strong>静态 IP</strong>，以家庭终端网段为例，首先查看获取的 IP：
-<a class="glightbox" href="https://img.it927.com/aio/217.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="获取的 IP" src="https://img.it927.com/aio/217.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/217.png" data-desc-position="bottom"><img alt="获取的 IP" src="https://img.it927.com/aio/217.png"></a>
 然后将 IP 填入【手动】中，点击【应用】
-<a class="glightbox" href="https://img.it927.com/aio/218.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="访问" src="https://img.it927.com/aio/218.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/218.png" data-desc-position="bottom"><img alt="访问" src="https://img.it927.com/aio/218.png"></a>
 对所有网卡重复此操作，确保网络配置的稳定性。</p>
-<h2 id="_10">安装端口转发工具<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_10">安装端口转发工具<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
 <p><code>socat</code> 是一个多功能的网络工具，可以用于端口转发，比如我们可以将 <strong>ESXi</strong> 管理 Web 端口转发至 跳板机的端口，<strong>ESXi</strong> 管理 Web 页面就不需要再插网线了。</p>
-<h3 id="socat">安装 socat<a class="headerlink" href="#socat" title="Permanent link">&para;</a></h3>
+<h3 id="socat">安装 socat<a class="headerlink" href="#socat" title="Permanent link">¶</a></h3>
 <p>通过 apt 安装
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>socat<span class="w"> </span>
-</code></pre></div></p>
-<h3 id="_11">代理测试<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>socat<span class="w"> </span>
+</code></pre></div><p></p>
+<h3 id="_11">代理测试<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
 <p>安装成功后输入 Ubuntu 如下代理 <strong>ESXi</strong> 管理 Web 端口
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>socat<span class="w"> </span>TCP-LISTEN:443,fork<span class="w"> </span>TCP:192.168.188.1:443
-</code></pre></div></p>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>socat<span class="w"> </span>TCP-LISTEN:443,fork<span class="w"> </span>TCP:192.168.188.1:443
+</code></pre></div><p></p>
 <ul>
 <li><code>TCP-LISTEN:443</code>：监听本地的 <code>443</code> 端口。</li>
 <li><code>fork</code>：允许同时处理多个连接。</li>
 <li><code>TCP:192.168.88.1:443</code>：将流量转发到跳板机的 <code>443</code> 端口。</li>
 </ul>
 <p>其他家庭网段终端可通过浏览器输入跳板机 IP <code>https://192.168.8.130/</code> 进行访问，记住一定要加上前面的  <code>https</code>  协议，不出意外我们能进行访问。
-<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png" /></a></p>
-<h2 id="esxi_1">代理 ESXi 管理网口<a class="headerlink" href="#esxi_1" title="Permanent link">&para;</a></h2>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/220.png" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png"></a></p>
+<h2 id="esxi_1">代理 ESXi 管理网口<a class="headerlink" href="#esxi_1" title="Permanent link">¶</a></h2>
 <p>前面步骤是 <strong>手动将命令输入到终端中</strong>，不可能每次都去手动输入，我们需要设置成随跳板机一起启动，就得将 <code>socat</code> 设置为 <strong>守护进程</strong>，可以通过 <code>systemd</code> 的特性来实现。</p>
-<h3 id="systemd">创建一个 systemd 服务文件<a class="headerlink" href="#systemd" title="Permanent link">&para;</a></h3>
+<h3 id="systemd">创建一个 systemd 服务文件<a class="headerlink" href="#systemd" title="Permanent link">¶</a></h3>
 <p>打开终端，使用文本编辑器创建一个新的服务文件。例如，使用 <code>vim</code> 创建服务文件：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/systemd/system/socat-esxi.service
-</code></pre></div></p>
-<h3 id="_12">添加服务配置<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/systemd/system/socat-esxi.service
+</code></pre></div><p></p>
+<h3 id="_12">添加服务配置<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <p>写入如下内容：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>Unit<span class="o">]</span>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>Unit<span class="o">]</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nv">Description</span><span class="o">=</span>Socat<span class="w"> </span>Port<span class="w"> </span>Forwarding<span class="w"> </span>Service
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">After</span><span class="o">=</span>network.target
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
@@ -2655,43 +2791,42 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="o">[</span>Install<span class="o">]</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
-</code></pre></div></p>
+</code></pre></div><p></p>
 <ul>
 <li><strong>Restart=always</strong>：确保服务在退出时自动重启；</li>
 <li><strong>RestartSec=5</strong>：在重启之前等待 5 秒；</li>
 <li><strong>StandardOutput=syslog</strong> 和 <strong>StandardError=syslog</strong>：将输出和错误记录到系统日志中，方便后续查看；</li>
 </ul>
-<h3 id="systemd_1">重新加载 systemd<a class="headerlink" href="#systemd_1" title="Permanent link">&para;</a></h3>
+<h3 id="systemd_1">重新加载 systemd<a class="headerlink" href="#systemd_1" title="Permanent link">¶</a></h3>
 <p>运行以重新加载 <code>systemd</code>，使其识别新创建的服务：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
-</code></pre></div></p>
-<h3 id="_13">启动服务<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</code></pre></div><p></p>
+<h3 id="_13">启动服务<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <p>使用命令启动服务：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>socat-esxi.service
-</code></pre></div></p>
-<h3 id="_14">检查服务状态<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>socat-esxi.service
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>socat-esxi.service
+</code></pre></div><p></p>
+<h3 id="_14">检查服务状态<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>socat-esxi.service
 </code></pre></div>
-<a class="glightbox" href="https://img.it927.com/aio/221.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="检查服务状态" src="https://img.it927.com/aio/221.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/221.png" data-desc-position="bottom"><img alt="检查服务状态" src="https://img.it927.com/aio/221.png"></a>
 执行后查看是否成功，其他家庭网段终端可通过浏览器输入跳板机 IP <code>https://192.168.8.130/</code> 进行访问：
-<a class="glightbox" href="https://img.it927.com/aio/220.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png" /></a></p>
-<h3 id="_15">开机启动<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/220.png" data-desc-position="bottom"><img alt="浏览器输入跳板机" src="https://img.it927.com/aio/220.png"></a><p></p>
+<h3 id="_15">开机启动<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
 <p>访问之后，还需最后一个步骤，将 <code>socat-esxi.service</code> 服务设为开机启动。
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>socat-esxi.service
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>socat-esxi.service
 </code></pre></div>
 返回结果：
 <div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Created symlink /etc/systemd/system/multi-user.target.wants/socat-esxi.service → /etc/systemd/system/socat-esxi.service.
 </code></pre></div>
-至此大功告成，设置跳板机设置开机启动后，开机启动设置在软路由之后即可，可参考 <a href="../../esxi/self-starting/">ESXi 进阶操作 - 虚拟机自启动</a>，最后可拔掉 <strong>ESXi</strong> 管理端口网线。</p>
-<h2 id="_16">后续规划<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+至此大功告成，设置跳板机设置开机启动后，开机启动设置在软路由之后即可，可参考 <a href="../../esxi/self-starting/">ESXi 进阶操作 - 虚拟机自启动</a>，最后可拔掉 <strong>ESXi</strong> 管理端口网线。<p></p>
+<h2 id="_16">后续规划<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
 <p>前面功能只能说是跳板机的冰山一角，后续还可通过跳板机实现很多跨网段的方案。</p>
 
   
 
-<!-- taken from
-https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
 
-<hr/>
+
+<hr>
 <div class="md-source-file">
   <small>
 
@@ -2725,7 +2860,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   回到页面顶部
 </button>
         
@@ -2735,13 +2870,13 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
           <a href="../fight/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 网络拓扑实战">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
@@ -2766,7 +2901,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
             </div>
           </a>
         
@@ -2778,20 +2913,21 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 aio.it927.com 陈大剩
+      Copyright © 2024 aio.it927.com 陈大剩
     </div>
   
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
     
     
     <a href="https://www.it927.com" target="_blank" rel="noopener" title="陈大剩" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M489.2 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32H128v-32c0-2.6-2-4.6-4.6-4.6H96c-2.6 0-4.6 2-4.6 4.6v178.3H54.8v-32c0-2.6-2-4.6-4.6-4.6H22.8c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96h182.9V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M489.5 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.3v-32c0-2.6-2-4.6-4.6-4.6H96.3c-2.6 0-4.6 2-4.6 4.6v178.3H55.1v-32c0-2.6-2-4.6-4.6-4.6H23.1c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96H494V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"></path></svg>
     </a>
   
 </div>
@@ -2806,10 +2942,12 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../javascripts/analysis.js"></script>
       
@@ -2818,7 +2956,8 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-fil
         <script src="../../javascripts/mermaid-init.js"></script>
       
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- taken from
+https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
