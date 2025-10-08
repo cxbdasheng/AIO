@@ -61,6 +61,35 @@ docs/
 
 #### 开发环境设置
 
+**方式一：Docker 环境（推荐）**
+
+1. **克隆仓库**
+   ```bash
+   git clone https://github.com/cxbdasheng/AIO.git
+   cd AIO
+   ```
+
+2. **启动开发环境**
+   ```bash
+   # 启动开发容器（支持热重载）
+   docker-compose up -d dev
+
+   # 查看日志
+   docker-compose logs -f dev
+   ```
+
+3. **访问预览**
+   ```
+   http://localhost:8000
+   ```
+
+4. **停止服务**
+   ```bash
+   docker-compose down
+   ```
+
+**方式二：本地环境**
+
 1. **克隆仓库**
    ```bash
    git clone https://github.com/cxbdasheng/AIO.git
@@ -81,6 +110,36 @@ docs/
    ```bash
    mkdocs build
    ```
+
+#### Docker 环境说明
+
+项目提供了两个 Docker 环境：
+
+- **开发环境 (dev)**
+  - 端口：8000
+  - 特性：支持热重载，修改文档后自动更新
+  - 用途：日常开发和文档编写
+  - 命令：`docker-compose up -d dev`
+
+- **生产环境 (prod)**
+  - 端口：80
+  - 特性：Nginx 静态文件服务，性能优化
+  - 用途：预览最终部署效果
+  - 命令：`docker-compose up -d prod`
+
+#### 文件结构说明
+
+```
+.
+├── docs/              # 文档源文件
+├── overrides/         # 主题自定义文件
+├── mkdocs.yml         # MkDocs 配置文件
+├── requirements.txt   # Python 依赖
+├── Dockerfile         # 生产环境镜像
+├── Dockerfile.dev     # 开发环境镜像
+├── docker-compose.yml # Docker Compose 配置
+└── .dockerignore      # Docker 忽略文件
+```
 
 #### 代码规范
 

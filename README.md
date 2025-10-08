@@ -1,8 +1,10 @@
 # 🚀 家庭 All-in-One 服务器搭建指南
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-mkdocs-green.svg)](https://aio.it927.com/)
 [![ESXi](https://img.shields.io/badge/platform-ESXi-orange.svg)](https://www.vmware.com/products/esxi-and-esx.html)
+[![Docker](https://img.shields.io/badge/docker-ready-brightgreen.svg)](https://www.docker.com/)
+[![MkDocs](https://img.shields.io/badge/mkdocs-material-blueviolet.svg)](https://squidfunk.github.io/mkdocs-material/)
 
 > 💪 一台电脑顶十台！让每一颗 CPU、每一 GB 内存都发挥极致性能
 
@@ -29,6 +31,11 @@
 - 一台支持虚拟化的电脑（推荐配置：16GB+ 内存，500GB+ 存储）
 - VMware ESXi 安装介质
 - 基本的网络配置知识
+
+### 参与贡献
+- Docker & Docker Compose（推荐）
+- Python 3.11+
+- Git
 
 ##  贡献指南
 由于个人水平有限，加上编写时间仓促，教程中难免存在不准确之处，欢迎大家指正并提交 [PR](https://github.com/cxbdasheng/AIO/pulls) 完善内容，贡献请阅读的 [贡献指南](CONTRIBUTING.md) 了解：
