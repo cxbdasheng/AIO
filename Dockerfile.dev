@@ -1,0 +1,16 @@
+# 开发环境 - 支持热重载
+FROM python:3.11-slim
+
+WORKDIR /docs
+
+# 安装依赖
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 复制项目文件
+COPY . .
+
+EXPOSE 8000
+
+# 使用 0.0.0.0 监听所有接口，支持热重载
+CMD ["mkdocs", "serve", "-a", "0.0.0.0:8000"]
