@@ -126,9 +126,9 @@ nav:
       - 远程访问: "synology/remote.md"
   - 家庭工作区:
       - 家庭 PC: "home/pc.md"
+      - 生产服务器: "home/develop.md"
       - 影视媒体中心: "home/video.md"
       - 全屋网络覆盖: "home/network.md"
-      - 开发系统: "home/develop.md"
       - Kubernetes 集群: "home/k8s.md"
   - 远程穿透:
       - 前言: "remote/overview.md"
