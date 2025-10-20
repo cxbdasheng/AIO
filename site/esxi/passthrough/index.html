@@ -2477,13 +2477,21 @@
 <p>单显卡 AIO 服务器通常无法直接直通显卡，因为被 ESXi 系统占用。可通过 SSH 禁用 ESXi 显卡占用：
 </p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 禁用显卡占用</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>FALSE
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 重新启用</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>TRUE
-</code></pre></div><p></p>
+</code></pre></div>
+禁用成功后，使用命令查看是否是成功的：
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 禁用显卡占用</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>vga
+</code></pre></div>
+结果如图，vga 列为 <code>FALSE</code> 则成功：
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/454.png" data-desc-position="bottom"><img alt="禁用显卡占用" src="https://img.it927.com/aio/454.png"></a><p></p>
 <details class="warning" open="open">
 <summary>注意</summary>
 <p>禁用后将无法通过显示器查看 ESXi 控制台，只能通过 SSH 管理，无法使用 <code>F2</code> 进行系统设置。</p>
 </details>
+<p>如需重新启用显卡占用，请执行：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 重新启用</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>esxcli<span class="w"> </span>system<span class="w"> </span>settings<span class="w"> </span>kernel<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-s<span class="w"> </span>vga<span class="w"> </span>-v<span class="w"> </span>TRUE
+</code></pre></div><p></p>
 <h3 id="_6">查找显卡设备<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <p>在 PCI 设备列表中搜索对应显卡：</p>
 <ul>
@@ -2518,12 +2526,12 @@
 </details>
 <h4 id="xhci">开启 xHCI 直通<a class="headerlink" href="#xhci" title="Permanent link">¶</a></h4>
 <p>修改 passthru.map 文件：
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vi<span class="w"> </span>/etc/vmware/passthru.map
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vi<span class="w"> </span>/etc/vmware/passthru.map
 </code></pre></div>
 在文件末尾添加：
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a># 供应商ID PCLE_ID
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>8086  8d31  d3d0     default
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a># Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a># 供应商ID PCLE_ID
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>8086  8d31  d3d0     default
 </code></pre></div>
 修改后按照 <a href="#_4">硬件直通 - 切换直通</a> 操作，USB 控制器状态显示为"活跃"即表示直通成功，可将此控制器分配给虚拟机。
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/395.png" data-desc-position="bottom"><img alt="直通 USB 控制器" src="https://img.it927.com/aio/395.png"></a><p></p>
@@ -2531,40 +2539,40 @@
 <p>与直通整个 USB 控制器不同，有时我们只需要直通特定的 USB 设备（如键盘鼠标）。ESXi 支持单独设备直通，但配置稍显复杂。</p>
 <h3 id="pid-vid">查询设备 PID 和 VID<a class="headerlink" href="#pid-vid" title="Permanent link">¶</a></h3>
 <p>开启 SSH 功能（参考 <a href="../../preparation/base-settings/#ssh">基础设置 - 开启 SSH</a>），连接后查询设备信息：
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@localhost:~<span class="o">]</span><span class="w"> </span>lsusb
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">001</span>:<span class="w"> </span>ID<span class="w"> </span>0e0f:8003<span class="w"> </span>VMware,<span class="w"> </span>Inc.<span class="w"> </span>Root<span class="w"> </span>Hub
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">001</span>:<span class="w"> </span>ID<span class="w"> </span>0e0f:8002<span class="w"> </span>VMware,<span class="w"> </span>Inc.<span class="w"> </span>Root<span class="w"> </span>Hub
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span>0c45:6510<span class="w"> </span>Microdia
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span><span class="m">8087</span>:8002<span class="w"> </span>Intel<span class="w"> </span>Corp.<span class="w"> </span><span class="m">8</span><span class="w"> </span>channel<span class="w"> </span>internal<span class="w"> </span>hub
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">003</span>:<span class="w"> </span>ID<span class="w"> </span>24ae:1008<span class="w"> </span>Shenzhen<span class="w"> </span>Rapoo<span class="w"> </span>Technology<span class="w"> </span>Co.,<span class="w"> </span>Ltd.
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>root@localhost:~<span class="o">]</span><span class="w"> </span>lsusb
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">001</span>:<span class="w"> </span>ID<span class="w"> </span>0e0f:8003<span class="w"> </span>VMware,<span class="w"> </span>Inc.<span class="w"> </span>Root<span class="w"> </span>Hub
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">001</span>:<span class="w"> </span>ID<span class="w"> </span>0e0f:8002<span class="w"> </span>VMware,<span class="w"> </span>Inc.<span class="w"> </span>Root<span class="w"> </span>Hub
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span>0c45:6510<span class="w"> </span>Microdia
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Bus<span class="w"> </span><span class="m">002</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span><span class="m">8087</span>:8002<span class="w"> </span>Intel<span class="w"> </span>Corp.<span class="w"> </span><span class="m">8</span><span class="w"> </span>channel<span class="w"> </span>internal<span class="w"> </span>hub
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">003</span>:<span class="w"> </span>ID<span class="w"> </span>24ae:1008<span class="w"> </span>Shenzhen<span class="w"> </span>Rapoo<span class="w"> </span>Technology<span class="w"> </span>Co.,<span class="w"> </span>Ltd.
 </code></pre></div>
 如不确定哪个是目标设备，可拔掉鼠标键盘后重新执行 <code>lsusb</code> 对比：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span>0c45:6510<span class="w"> </span>Microdia
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">003</span>:<span class="w"> </span>ID<span class="w"> </span>24ae:1008<span class="w"> </span>Shenzhen<span class="w"> </span>Rapoo<span class="w"> </span>Technology<span class="w"> </span>Co.,<span class="w"> </span>Ltd.
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span>0c45:6510<span class="w"> </span>Microdia
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">003</span>:<span class="w"> </span>ID<span class="w"> </span>24ae:1008<span class="w"> </span>Shenzhen<span class="w"> </span>Rapoo<span class="w"> </span>Technology<span class="w"> </span>Co.,<span class="w"> </span>Ltd.
 </code></pre></div><p></p>
 <h3 id="_8">添加到虚拟机<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <p>在目标虚拟机中添加设备 ID：【编辑虚拟机】→【虚拟机选项】→【高级】→【编辑配置】→【添加参数】：
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 键盘</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>usb.quirks.device0<span class="w"> </span>0x0c45:0x6510<span class="w"> </span>allow
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 鼠标</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>usb.quirks.device1<span class="w"> </span>0x24ae:0x1008<span class="w"> </span>allow
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 键盘</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>usb.quirks.device0<span class="w"> </span>0x0c45:0x6510<span class="w"> </span>allow
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># 鼠标</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>usb.quirks.device1<span class="w"> </span>0x24ae:0x1008<span class="w"> </span>allow
 </code></pre></div>
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/398.png" data-desc-position="bottom"><img alt="添加参数" src="https://img.it927.com/aio/398.png"></a><p></p>
 <h3 id="esxi-config">修改 ESXi Config 配置<a class="headerlink" href="#esxi-config" title="Permanent link">¶</a></h3>
 <p>编辑 ESXi 配置文件：
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>vi<span class="w"> </span>/etc/vmware/config
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>vi<span class="w"> </span>/etc/vmware/config
 </code></pre></div>
 在文件末尾添加：
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>usb.quirks.device0="0x0c45:0x6510 allow"
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>usb.quirks.device1="0x24ae:0x1008 allow"
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>usb.quirks.device0="0x0c45:0x6510 allow"
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>usb.quirks.device1="0x24ae:0x1008 allow"
 </code></pre></div><p></p>
 <h3 id="esxi-boot">修改 ESXi boot 配置<a class="headerlink" href="#esxi-boot" title="Permanent link">¶</a></h3>
 <p>修改启动引导文件 /bootbank/boot.cfg，禁用 ESXi 对键盘鼠标的控制权，编辑 boot 文件:
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>vi<span class="w"> </span>/bootbank/boot.cfg
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>vi<span class="w"> </span>/bootbank/boot.cfg
 </code></pre></div>
 在 kernelopt 行末尾添加：
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 在 kernelopt= 行末尾添加：</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>CONFIG./USB/quirks<span class="o">=</span>0x24ae:0x4025::0xffff:UQ_KBD_IGNORE:0x0101:0x0007::0xffff:UQ_KBD_IGNORE
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 在 kernelopt= 行末尾添加：</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>CONFIG./USB/quirks<span class="o">=</span>0x24ae:0x4025::0xffff:UQ_KBD_IGNORE:0x0101:0x0007::0xffff:UQ_KBD_IGNORE
 </code></pre></div><p></p>
 
   

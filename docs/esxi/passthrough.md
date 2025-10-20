@@ -94,11 +94,22 @@ GPU 直通可让虚拟机获得接近原生的显卡性能，适用于游戏、A
 ```bash
 # 禁用显卡占用
 esxcli system settings kernel set -s vga -v FALSE
+```
+禁用成功后，使用命令查看是否是成功的：
+```bash
+# 禁用显卡占用
+esxcli system settings kernel list | grep vga
+```
+结果如图，vga 列为 `FALSE` 则成功：
+![禁用显卡占用](https://img.it927.com/aio/454.png)
+???+ warning "注意"
+    禁用后将无法通过显示器查看 ESXi 控制台，只能通过 SSH 管理，无法使用 `F2` 进行系统设置。
+
+如需重新启用显卡占用，请执行：
+```bash
 # 重新启用
 esxcli system settings kernel set -s vga -v TRUE
 ```
-???+ warning "注意"
-    禁用后将无法通过显示器查看 ESXi 控制台，只能通过 SSH 管理，无法使用 `F2` 进行系统设置。
 
 ### 查找显卡设备
 在 PCI 设备列表中搜索对应显卡：
