@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="详细介绍如何通过IPv6转IPv4技术解决IPv6兼容性问题，让仅有IPv4网络的设备也能访问IPv6服务器，包含多种解决方案和实操步骤">
       
       
         <meta name="author" content="陈大剩">
@@ -26,6 +26,8 @@
         <title>IPv6 转 IPv4 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="IPv6转IPv4,IPv6,dnet,家庭服务器,ESXi远程访问,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
@@ -1807,9 +1809,186 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      解决方案概览
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="解决方案概览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#d-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 介绍
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-net_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-net_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-net_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D-NET 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备远程访问的 Web 服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accesskey" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建云厂商 AccessKey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      域名已备案（推荐百度智能云）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      域名未备案（使用阿里云全球加速）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="域名未备案（使用阿里云全球加速）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置阿里云 CDN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      等待 CDN 配置完成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-net_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置 D-NET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdn_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      优化 CDN 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩展应用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1973,9 +2152,186 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      解决方案概览
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="解决方案概览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#d-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 介绍
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-net_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-net_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d-net_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      D-NET 配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D-NET 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      准备远程访问的 Web 服务
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accesskey" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建云厂商 AccessKey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      域名已备案（推荐百度智能云）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      域名未备案（使用阿里云全球加速）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="域名未备案（使用阿里云全球加速）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置阿里云 CDN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      等待 CDN 配置完成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-net_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置 D-NET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdn_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      优化 CDN 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      扩展应用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2004,9 +2360,283 @@
 
   <h1>IPv6 转 IPv4</h1>
 
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>已收到各位网友催促，目前已在加急编写此文章，因要设计一个开源项目，可能需要 1-2 周时间才会更新。</p>
-<p>2025年10月20日更新，感谢各位网友关注，前一段时间因一些个人私事和笔记本电脑主板出现了故障，导致未进行更新，目前已经重启此项目编写工作，请大家耐心等待，再次感谢大家的关注。</p>
+<p>在前面 <a href="../../route/ipv6/">软路由 - 开启 IPv6</a> 章节中，已经获取了运营商的 IPv6 地址。很多情况下，虽然拥有运营商动态 IPv6 公网地址，但在实际使用中仍会遇到以下问题：</p>
+<ul>
+<li><strong>运营商地址变化</strong>：运营商的 IPv6 地址会随时变化</li>
+<li><strong>移动网络限制</strong>：部分运营商的 4G/5G 网络不支持 IPv6</li>
+<li><strong>公共网络环境</strong>：咖啡馆、酒店等公共 WiFi 通常只提供 IPv4</li>
+<li><strong>老旧设备</strong>：一些较老的设备和系统不支持 IPv6 协议</li>
+<li><strong>企业网络</strong>：很多企业内网尚未部署 IPv6</li>
+</ul>
+<p>假设家庭服务器已经配置好了 IPv6 <a href="../ipv6/">远程穿透 - IPv6 DDNS</a>，域名是 <code>home.example.com</code>，解析到 IPv6 地址。但在外出时会遇到：</p>
+<ul>
+<li>使用移动数据访问时无法连接（仅支持 IPv4）</li>
+<li>在公司内网中无法访问（企业网络未启用 IPv6）</li>
+<li>分享给朋友时，对方可能无法访问</li>
+</ul>
+<h2 id="_1">解决方案概览<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>IPv6 转 IPv4 的核心思路是：在中间部署一个 <strong>同时支持 IPv4 和 IPv6</strong> 的代理服务器，用户通过 IPv4 访问代理，代理再通过 IPv6 访问你的家庭服务器。</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[IPv4/IPv6 用户] ----IPv4/IPv6----&gt; [代理服务器] ----IPv6----&gt; [家庭服务器]
+</code></pre></div>
+<p>仔细观察这个结构，会发现这正是目前网上流行的 <strong>Cloudflare CDN</strong> 方案。然而在国内使用 <strong>Cloudflare CDN</strong> 访问速度较慢、延迟较高（除非动态更新 Cloudflare 节点）。</p>
+<p>基于这个原理，只需将 <strong>代理服务器</strong> 替换为国内云厂商 CDN 即可解决速度问题，当然需要一定成本。不过仍然存在一个问题：运营商的 IPv6 地址会动态变化，因此需要动态更新 CDN 回源节点。</p>
+<h3 id="d-net">D-NET 介绍<a class="headerlink" href="#d-net" title="Permanent link">¶</a></h3>
+<p>基于上述问题，陈大剩创建一个开源项目 <a href="https://github.com/cxbdasheng/dnet">D-NET</a> 。<a href="https://github.com/cxbdasheng/dnet">D-NET</a> 是一款轻量级动态网络管理工具，可将动态公网 IP 转为 IPv4/IPv6 双栈访问，后续还会集成 DDNS、FRP 等功能。</p>
+<h2 id="d-net_1">D-NET 准备工作<a class="headerlink" href="#d-net_1" title="Permanent link">¶</a></h2>
+<ul>
+<li>域名一个（有无备案均可，有备案更好）</li>
+<li>云厂商账号一个（阿里云、百度智能云）</li>
+</ul>
+<h2 id="d-net_2">D-NET 安装<a class="headerlink" href="#d-net_2" title="Permanent link">¶</a></h2>
+<p>打开 <a href="https://github.com/cxbdasheng/dnet/releases">D-NET Releases</a> 页面，选择合适的架构下载安装包并解压，这里以 macOS ARM 版本为例。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：选择架构</label><label for="__tabbed_1_2">步骤 2：解压缩</label><label for="__tabbed_1_3">步骤 3：安装</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>根据自身操作系统选择对应的架构版本。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/405.png" data-desc-position="bottom"><img alt="选择架构" src="https://img.it927.com/aio/405.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>下载完成后解压安装包。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/406.png" data-desc-position="bottom"><img alt="解压缩" src="https://img.it927.com/aio/406.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在终端中执行 <code>sudo ./dnet -s install</code> 命令完成安装。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/407.png" data-desc-position="bottom"><img alt="安装" src="https://img.it927.com/aio/407.png"></a></p>
+</div>
+</div>
+</div>
+<h2 id="d-net_3">D-NET 配置<a class="headerlink" href="#d-net_3" title="Permanent link">¶</a></h2>
+<p>安装完成后，浏览器访问 <code>http://127.0.0.1:9877</code> 进入 Web 管理页面，首次登录时设置管理员账号密码。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/408.png" data-desc-position="bottom"><img alt="登入 Web 管理页面" src="https://img.it927.com/aio/408.png"></a></p>
+<div class="admonition warning">
+<p class="admonition-title">云厂商选择说明</p>
+<p>由于仅有 <strong>阿里云 CDN 全球区域</strong>可使用未备案域名，因此：</p>
+<ul>
+<li><strong>域名未备案</strong>：必须选择阿里云</li>
+<li><strong>域名已备案</strong>：可自由选择阿里云或百度智能云</li>
+</ul>
+</div>
+<h3 id="web">准备远程访问的 Web 服务<a class="headerlink" href="#web" title="Permanent link">¶</a></h3>
+<p>首先需要确保目标服务能够通过 IPv6 访问。这里以博客为例进行演示：</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/455.png" data-desc-position="bottom"><img alt="博客 IPv6 访问测试" src="https://img.it927.com/aio/455.png"></a></p>
+<div class="admonition tip">
+<p class="admonition-title">适用范围</p>
+<p>本方案不仅限于博客，任何支持 IPv6 访问的 Web 服务均可使用，例如：</p>
+<ul>
+<li>群晖 NAS（DSM）</li>
+<li>宝塔面板</li>
+<li>Nginx 网站</li>
+<li>Home Assistant</li>
+<li>其他 Web 应用</li>
+</ul>
+</div>
+<h3 id="accesskey">创建云厂商 AccessKey<a class="headerlink" href="#accesskey" title="Permanent link">¶</a></h3>
+<p>根据选择的云厂商，在对应控制台创建 AccessKey，用于 D-NET 访问云厂商 API。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">百度智能云</label><label for="__tabbed_2_2">阿里云</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入 <a href="https://console.bce.baidu.com/iam/?_=1651763238057#/iam/accesslist">百度智能云控制台</a> 创建 AccessKey。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/409.png" data-desc-position="bottom"><img alt="百度智能云创建 AccessKey" src="https://img.it927.com/aio/409.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入 <a href="https://ram.console.aliyun.com/manage/ak?spm=5176.12818093.nav-right.dak.488716d0mHaMgg">阿里云控制台</a> 创建 AccessKey。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/410.png" data-desc-position="bottom"><img alt="阿里云创建 AccessKey" src="https://img.it927.com/aio/410.png"></a></p>
+</div>
+</div>
+</div>
+<h3 id="_2">域名已备案（推荐百度智能云）<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>如果域名已备案，建议选择百度智能云 CDN。百度智能云 CDN 按流量计费，18 元人民币可购买 100GB 流量资源包，有效期一年，性价比较高。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:8"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><input id="__tabbed_3_5" name="__tabbed_3" type="radio"><input id="__tabbed_3_6" name="__tabbed_3" type="radio"><input id="__tabbed_3_7" name="__tabbed_3" type="radio"><input id="__tabbed_3_8" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">步骤 1：创建加速域名</label><label for="__tabbed_3_2">步骤 2：填写基本配置</label><label for="__tabbed_3_3">步骤 3：填写源站信息</label><label for="__tabbed_3_4">步骤 4：缓存设置</label><label for="__tabbed_3_5">步骤 5：完成配置</label><label for="__tabbed_3_6">步骤 6：设置 DNS 解析</label><label for="__tabbed_3_7">步骤 7：配置 D-NET</label><label for="__tabbed_3_8">步骤 8：查看同步日志</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>登录百度智能云 CDN 控制台，创建新的加速域名。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/411.png" data-desc-position="bottom"><img alt="创建加速域名" src="https://img.it927.com/aio/411.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>填写加速域名和基本配置信息。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/412.png" data-desc-position="bottom"><img alt="填写基本配置" src="https://img.it927.com/aio/412.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>这一步需填写真实的源站信息：<strong>IPv6 地址、端口</strong>。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/413.png" data-desc-position="bottom"><img alt="填写源站信息" src="https://img.it927.com/aio/413.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>根据网站类型设置缓存时间：</p>
+<ul>
+<li><strong>动态网站</strong>：缓存时间设置为 <code>0</code>（全部回源）</li>
+<li><strong>静态网站</strong>：缓存时间设置为 <code>30</code> 分钟或更长</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/420.png" data-desc-position="bottom"><img alt="缓存设置" src="https://img.it927.com/aio/420.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>配置完成后，复制 CDN 提供的 CNAME 地址。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/415.png" data-desc-position="bottom"><img alt="完成配置" src="https://img.it927.com/aio/415.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在域名 DNS 服务商处添加 CNAME 记录，类型选择 <code>CNAME</code>，名称填写 <code>blog</code>（或其他子域名），记录值填写上一步复制的 CNAME。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/416.png" data-desc-position="bottom"><img alt="设置 DNS" src="https://img.it927.com/aio/416.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在 D-NET Web 管理页面中，打开 DCDN 开关，填写云厂商 AccessKey 信息。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/417.png" data-desc-position="bottom"><img alt="配置 D-NET DCDN 信息" src="https://img.it927.com/aio/417.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>配置完成后，查看 D-NET 日志确认是否成功同步到云厂商。由于同步时间默认为 5 分钟，最长可能需要等待 5 分钟。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/418.png" data-desc-position="bottom"><img alt="查看 D-NET 日志" src="https://img.it927.com/aio/418.png"></a></p>
+</div>
+</div>
+</div>
+<p>完成上述步骤后，通过配置的域名（例如 <code>blog.a22t.com</code>）即可成功访问服务。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/419.png" data-desc-position="bottom"><img alt="成功访问服务" src="https://img.it927.com/aio/419.png"></a></p>
+<h3 id="_3">域名未备案（使用阿里云全球加速）<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>如果域名未备案，只能使用 <strong>阿里云 CDN 全球区域</strong>进行加速。这种方案的缺点是：访问速度可能较慢，费用相对较高。</p>
+<h4 id="cdn">配置阿里云 CDN<a class="headerlink" href="#cdn" title="Permanent link">¶</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:8"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><input id="__tabbed_4_5" name="__tabbed_4" type="radio"><input id="__tabbed_4_6" name="__tabbed_4" type="radio"><input id="__tabbed_4_7" name="__tabbed_4" type="radio"><input id="__tabbed_4_8" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">步骤 1：创建加速域名</label><label for="__tabbed_4_2">步骤 2：填写基本配置</label><label for="__tabbed_4_3">步骤 3：配置备用源站</label><label for="__tabbed_4_4">步骤 4：配置 IPv6 源站</label><label for="__tabbed_4_5">步骤 5：配置缓存规则</label><label for="__tabbed_4_6">步骤 6：跳过其他配置</label><label for="__tabbed_4_7">步骤 7：获取 CNAME</label><label for="__tabbed_4_8">步骤 8：设置 DNS 解析</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>登录阿里云 CDN 控制台，创建新的加速域名。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/456.png" data-desc-position="bottom"><img alt="创建加速域名" src="https://img.it927.com/aio/456.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>填写加速域名和基本配置信息。</p>
+<div class="admonition warning">
+<p class="admonition-title">重要</p>
+<p>未备案的域名加速区域必须选择 <strong>全球（Global）</strong>。</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/457.png" data-desc-position="bottom"><img alt="填写基本配置" src="https://img.it927.com/aio/457.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>由于阿里云 CDN 不允许使用单独的 IPv6 源站，需要先配置一个备用域名源站。</p>
+<ul>
+<li>源站地址：随机填写一个域名（如 <code>www.baidu.com</code>）</li>
+<li>优先级：选择 <strong>备</strong></li>
+<li>权重值：填写 <code>1</code></li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/458.png" data-desc-position="bottom"><img alt="配置备用源站" src="https://img.it927.com/aio/458.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>添加真实的 IPv6 源站信息：</p>
+<ul>
+<li>源站地址：填写实际的 <strong>IPv6 地址</strong></li>
+<li>端口：根据实际服务端口填写</li>
+<li>权重值：填写 <code>100</code></li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/466.png" data-desc-position="bottom"><img alt="配置 IPv6 源站" src="https://img.it927.com/aio/466.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>根据网站类型设置缓存时间：</p>
+<ul>
+<li><strong>动态网站</strong>：缓存时间设置为 <code>0</code>（全部回源）</li>
+<li><strong>静态网站</strong>：缓存时间设置为 <code>30</code> 分钟或更长</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/459.png" data-desc-position="bottom"><img alt="配置缓存规则" src="https://img.it927.com/aio/459.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>其他可选配置暂时跳过，后续可根据需要调整。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/460.png" data-desc-position="bottom"><img alt="跳过配置" src="https://img.it927.com/aio/460.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>配置完成后，复制 CDN 提供的 CNAME 地址。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/461.png" data-desc-position="bottom"><img alt="获取 CNAME" src="https://img.it927.com/aio/461.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在域名 DNS 服务商处添加 CNAME 记录：</p>
+<ul>
+<li>类型：<code>CNAME</code></li>
+<li>名称：子域名（如 <code>blog</code>）</li>
+<li>记录值：上一步复制的 CNAME 地址</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/462.png" data-desc-position="bottom"><img alt="设置 DNS 解析" src="https://img.it927.com/aio/462.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="cdn_1">等待 CDN 配置完成<a class="headerlink" href="#cdn_1" title="Permanent link">¶</a></h4>
+<p>CDN 配置提交后，需要等待阿里云完成配置，直至状态显示为 <strong>已配置</strong>。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/464.png" data-desc-position="bottom"><img alt="等待配置完成" src="https://img.it927.com/aio/464.png"></a></p>
+<h4 id="d-net_4">配置 D-NET<a class="headerlink" href="#d-net_4" title="Permanent link">¶</a></h4>
+<p>配置完成后，在 D-NET Web 管理页面中填写相关信息：</p>
+<ol>
+<li>打开 DCDN 开关</li>
+<li>填写云厂商 AccessKey 信息</li>
+<li>配置源站信息</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/463.png" data-desc-position="bottom"><img alt="配置 D-NET" src="https://img.it927.com/aio/463.png"></a></p>
+<div class="admonition warning">
+<p class="admonition-title">重要提示</p>
+<p>由于阿里云 CDN 不允许使用单独的 IPv6 源站，这里的源站地址需要填写步骤 3 中配置的备用域名源站（如 <code>www.baidu.com</code>）。</p>
+</div>
+<h4 id="cdn_2">优化 CDN 配置<a class="headerlink" href="#cdn_2" title="Permanent link">¶</a></h4>
+<p>基础配置完成后，还需要进行以下优化，确保 IPv6 流量正常回源。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">优化 1：启用 IPv6 回源</label><label for="__tabbed_5_2">优化 2：启用 IPv6 访问</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入阿里云 CDN 控制台，选择对应的加速域名（如 <code>blog.2025u.cyou</code>），进入 <strong>【管理】</strong> → <strong>【回源配置<em>】</em> → </strong>【IPv6 回源】**。</p>
+<div class="admonition danger">
+<p class="admonition-title">必须操作</p>
+<p>如果源站是 IPv6，必须启用 IPv6 回源，否则无法正常访问。</p>
+</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/467.png" data-desc-position="bottom"><img alt="启用 IPv6 回源" src="https://img.it927.com/aio/467.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在同一页面中，进入 <strong>【基本配置】</strong> → <strong>【IPv6 开关】</strong>，【开启 IPv6 访问支持】。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/468.png" data-desc-position="bottom"><img alt="启用 IPv6 访问" src="https://img.it927.com/aio/468.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="_4">验证访问<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<p>完成所有配置后，通过配置的域名（例如 <code>blog.2025u.cyou</code>）访问服务，验证是否能够正常访问。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/465.png" data-desc-position="bottom"><img alt="成功访问服务" src="https://img.it927.com/aio/465.png"></a></p>
+<p>同时可以查看 D-NET 日志，确认是否成功同步到云厂商。由于同步间隔默认为 5 分钟，最长可能需要等待 5 分钟才能看到同步记录。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/469.png" data-desc-position="bottom"><img alt="查看 D-NET 日志" src="https://img.it927.com/aio/469.png"></a></p>
+<h2 id="_5">总结<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>通过本文介绍的 IPv6 转 IPv4 方案，可以有效解决 IPv6 兼容性问题，但会存在一定的费用，建议配合 DDNS 使用，在 IPv6 客户端下访问直接访问 IPv6 的网站，而在客户端仅有 IPv4 协议下使用 DCND 方案访问 IPv6 的网站。</p>
+<h3 id="_6">方案选择<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐方案</th>
+<th>成本</th>
+<th>速度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>域名已备案</td>
+<td>百度智能云 CDN</td>
+<td>低</td>
+<td>快</td>
+</tr>
+<tr>
+<td>域名未备案</td>
+<td>阿里云 CDN 全球加速</td>
+<td>中</td>
+<td>中</td>
+</tr>
+<tr>
+<td>技术能力强</td>
+<td>自建 Nginx 代理 + VPS</td>
+<td>中</td>
+<td>取决于 VPS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">最佳实践<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong>定期检查</strong>：定期查看 D-NET 日志，确保同步正常</li>
+<li><strong>备份配置</strong>：保存 AccessKey 等重要配置信息</li>
+<li><strong>监控告警</strong>：配置服务可用性监控</li>
+<li><strong>合理缓存</strong>：根据业务特点设置缓存策略</li>
+</ol>
+<h3 id="_8">扩展应用<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<p>除了 Web 服务，本方案还可以用于：</p>
+<ul>
+<li>NAS 远程访问</li>
+<li>家庭监控系统</li>
+<li>个人博客/网站</li>
+<li>开发测试环境</li>
+</ul>
+<p>通过合理配置 IPv6 转 IPv4，可以让家庭服务器在各种网络环境下都能稳定访问，充分发挥 IPv6 的优势，同时避免兼容性带来的困扰。</p>
 
   
 

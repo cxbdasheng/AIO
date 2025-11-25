@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="IPv6 DDNS 动态域名解析配置指南（文档编写中）">
       
       
         <meta name="author" content="陈大剩">
@@ -26,6 +26,8 @@
         <title>IPv6 DDNS - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="IPv6,DDNS,动态域名解析,家庭服务器,ESXi远程访问,家庭AIO搭建教程,家庭All-in-One搭建教程">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
@@ -78,6 +80,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#ipv6-ddns" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1714,6 +1721,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    IPv6 DDNS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1726,6 +1748,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      当前解决方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="当前解决方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ddns-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案 1：使用 ddns-go
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-d-net-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案 2：等待 D-NET V2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文档
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      预计更新时间
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1919,6 +2011,67 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      当前解决方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="当前解决方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ddns-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案 1：使用 ddns-go
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-d-net-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案 2：等待 D-NET V2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文档
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      预计更新时间
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1941,9 +2094,50 @@
   
 
 
-  <h1>IPv6 DDNS</h1>
-
-
+<h1 id="ipv6-ddns">IPv6 DDNS<a class="headerlink" href="#ipv6-ddns" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">文档状态</p>
+<p>本文档正在编写中，预计在 <a href="https://github.com/cxbdasheng/dnet">D-NET</a> V2 版本发布时完善。</p>
+</div>
+<h2 id="_1">当前解决方案<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>在本文档完善之前，可以：</p>
+<h3 id="1-ddns-go">方案 1：使用 ddns-go<a class="headerlink" href="#1-ddns-go" title="Permanent link">¶</a></h3>
+<p><a href="https://github.com/jeessy2/ddns-go">ddns-go</a> 是一个简单好用的 DDNS 工具，支持多种服务商。</p>
+<p><strong>快速使用</strong>：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Docker 方式运行</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--name<span class="w"> </span>ddns-go<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">9876</span>:9876<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>jeessy/ddns-go
+</code></pre></div><p></p>
+<p>访问 <code>http://localhost:9876</code> 进行配置。</p>
+<h3 id="2-d-net-v2">方案 2：等待 D-NET V2<a class="headerlink" href="#2-d-net-v2" title="Permanent link">¶</a></h3>
+<p>D-NET V2 将集成 DDNS 功能，提供更完整的动态网络管理方案。项目地址：<a href="https://github.com/cxbdasheng/dnet">D-NET</a>
+<strong>D-NET V2 规划功能</strong>：</p>
+<ul>
+<li>自动检测 IPv6 地址变化</li>
+<li>支持多种 DDNS 服务商</li>
+<li>统一的 Web 管理界面</li>
+<li>与 CDN 自动同步集成</li>
+</ul>
+<h2 id="_2">参考文档<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>在等待本文档完善期间，可以参考：</p>
+<ul>
+<li><a href="https://github.com/jeessy2/ddns-go">ddns-go 官方文档</a></li>
+</ul>
+<h2 id="_3">预计更新时间<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>本文档将在 D-NET V2 正式发布后完善，预计包含：</p>
+<ol>
+<li>详细的配置步骤</li>
+<li>多种服务商配置示例</li>
+<li>常见问题解答</li>
+<li>最佳实践建议</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">关注更新</p>
+<p>关注 <a href="https://github.com/cxbdasheng/dnet">D-NET 项目</a> 获取最新动态。</p>
+</div>
 
   
 
