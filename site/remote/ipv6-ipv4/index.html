@@ -2376,9 +2376,11 @@
 </ul>
 <h2 id="_1">解决方案概览<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <p>IPv6 转 IPv4 的核心思路是：在中间部署一个 <strong>同时支持 IPv4 和 IPv6</strong> 的代理服务器，用户通过 IPv4 访问代理，代理再通过 IPv6 访问你的家庭服务器。</p>
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[IPv4/IPv6 用户] ----IPv4/IPv6----&gt; [代理服务器] ----IPv6----&gt; [家庭服务器]
-</code></pre></div>
-<p>仔细观察这个结构，会发现这正是目前网上流行的 <strong>Cloudflare CDN</strong> 方案。然而在国内使用 <strong>Cloudflare CDN</strong> 访问速度较慢、延迟较高（除非动态更新 Cloudflare 节点）。</p>
+<pre class="mermaid"><code>graph LR
+    A[IPv4/IPv6 用户]--IPv4/IPv6--&gt; B[代理服务器]
+    B--IPv6--&gt; C[家庭服务器]
+        style B fill:#ff9999</code></pre>
+<p>仔细观察这个结构，会发现这正是目前网上流行的 <strong>Cloudflare CDN</strong> 方案（代理服务器为 CDN 边缘节点）。然而在国内使用 <strong>Cloudflare CDN</strong> 访问速度较慢、延迟较高（除非动态更新 Cloudflare 节点）。</p>
 <p>基于这个原理，只需将 <strong>代理服务器</strong> 替换为国内云厂商 CDN 即可解决速度问题，当然需要一定成本。不过仍然存在一个问题：运营商的 IPv6 地址会动态变化，因此需要动态更新 CDN 回源节点。</p>
 <h3 id="d-net">D-NET 介绍<a class="headerlink" href="#d-net" title="Permanent link">¶</a></h3>
 <p>基于上述问题，陈大剩创建一个开源项目 <a href="https://github.com/cxbdasheng/dnet">D-NET</a> 。<a href="https://github.com/cxbdasheng/dnet">D-NET</a> 是一款轻量级动态网络管理工具，可将动态公网 IP 转为 IPv4/IPv6 双栈访问，后续还会集成 DDNS、FRP 等功能。</p>

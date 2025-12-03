@@ -2625,8 +2625,8 @@
 </details>
 <h2 id="pppoe-ipv624">场景一：软路由 PPPoE 拨号获取 IPv6（24 小时不关机方案）<a class="headerlink" href="#pppoe-ipv624" title="Permanent link">¶</a></h2>
 <h3 id="_2">网络拓扑<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>光猫(桥接模式) → OpenWrt(PPPoE拨号) → 客户端设备
-</code></pre></div>
+<pre class="mermaid"><code>graph LR
+    A[光猫&lt;br/&gt;桥接模式] --&gt; B[OpenWrt&lt;br/&gt;PPPoE拨号] --&gt; C[客户端设备]</code></pre>
 <h3 id="_3">配置步骤<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <h4 id="1">1. 验证拨号状态<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
 <p>PPPoE 拨号成功后，系统会自动创建 <code>wan_6</code> 虚拟动态接口。理想状态下，该接口应具备：</p>
@@ -2696,8 +2696,8 @@
 <p>获取到 IPv6 地址，还需要 <a href="#ipv6_1">验证 IPv6</a> 是否可以使用。</p>
 <h2 id="ipv6">场景二：软路由路由模式获取 IPv6（下级路由方案）<a class="headerlink" href="#ipv6" title="Permanent link">¶</a></h2>
 <h3 id="_4">网络拓扑<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>上级路由器/光猫(PPPoE拨号) → OpenWrt(软路由-路由模式) → 客户端设备
-</code></pre></div>
+<pre class="mermaid"><code>graph LR
+    A[上级路由器/光猫&lt;br/&gt;PPPoE拨号] --&gt; B[OpenWrt&lt;br/&gt;软路由-路由模式] --&gt; C[客户端设备]</code></pre>
 <p>在此模式下，OpenWrt 充当下级路由器，且上级路由器需要开启委托 IPv6 前缀，也就上级路由器需 <a href="#2-lan">配置 LAN 接口 - 委托 IPv6 前缀</a> 功能。</p>
 <h3 id="_5">配置步骤<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <h4 id="1-dhcpv6">1. 创建 DHCPv6 接口<a class="headerlink" href="#1-dhcpv6" title="Permanent link">¶</a></h4>
@@ -2727,8 +2727,8 @@
 <h2 id="ipv624">场景三：软路由中继模式获取 IPv6（24 小时随时开机方案）<a class="headerlink" href="#ipv624" title="Permanent link">¶</a></h2>
 <p>建议上级路由也是一台软路由，否则软路由（OpenWrt）只能当傻瓜交换机，无法控制网络。</p>
 <h3 id="_6">网络拓扑<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>上级路由器/光猫(PPPoE拨号) → OpenWrt(软路由-中继模式) → 客户端设备
-</code></pre></div>
+<pre class="mermaid"><code>graph LR
+    A[上级路由器/光猫&lt;br/&gt;PPPoE拨号] --&gt; B[OpenWrt&lt;br/&gt;软路由-中继模式] --&gt; C[客户端设备]</code></pre>
 <h3 id="_7">配置步骤<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
 <h4 id="1-lan-dhcp-ipv6">1. 关闭 LAN 接口 DHCP IPv6 功能<a class="headerlink" href="#1-lan-dhcp-ipv6" title="Permanent link">¶</a></h4>
 <p>导航【网络】-【接口】-【lan 编辑】-【DHCP 服务器】-【IPv6 设置】，将【RA 服务】、【DHCPv6 服务】、【NDP 代理】设置为禁用

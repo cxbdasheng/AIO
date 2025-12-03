@@ -2274,14 +2274,11 @@
 <h2 id="ssd">SSD 缓存工作原理<a class="headerlink" href="#ssd" title="Permanent link">¶</a></h2>
 <h3 id="_1">缓存机制概述<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
 <p>SSD 缓存在高速 SSD 和传统 HDD 之间建立了一个缓存层，将频繁访问的热点数据存储在 SSD 上，从而实现性能加速：</p>
-<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>应用程序
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ↓
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>SSD 缓存层 ←→ 缓存命中/未命中
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ↓
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>传统 HDD 存储池
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ↓
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>物理存储设备
-</code></pre></div>
+<pre class="mermaid"><code>flowchart LR
+    A[应用程序] --&gt; B[SSD 缓存层]
+    B &lt;--&gt; C[缓存命中/未命中]
+    B --&gt; D[传统 HDD 存储池]
+    D --&gt; E[物理存储设备]</code></pre>
 <div class="admonition info">
 <p class="admonition-title">缓存类型对比</p>
 <ul>
@@ -2372,19 +2369,19 @@
 </tbody>
 </table>
 <p><strong>容量规划原则</strong>：</p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 缓存容量计算公式</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>总数据量<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">(</span>经验值<span class="o">)</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>SSD<span class="w"> </span><span class="nv">缓存容量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>热数据量<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">(</span>预留空间<span class="o">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 示例 1：10TB 存储系统</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>10TB<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">=</span><span class="w"> </span>2TB
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nv">建议缓存</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>2TB<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">=</span><span class="w"> </span>3TB
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nv">实际配置</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>500GB-1TB<span class="w"> </span><span class="o">(</span>根据预算调整<span class="o">)</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># 示例 2：4TB 存储系统</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>4TB<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">=</span><span class="w"> </span>800GB
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nv">建议缓存</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>800GB<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>.2TB
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nv">实际配置</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>200GB-500GB<span class="w"> </span><span class="o">(</span>根据需求调整<span class="o">)</span>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 缓存容量计算公式</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>总数据量<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">(</span>经验值<span class="o">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>SSD<span class="w"> </span><span class="nv">缓存容量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>热数据量<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">(</span>预留空间<span class="o">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 示例 1：10TB 存储系统</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>10TB<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">=</span><span class="w"> </span>2TB
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nv">建议缓存</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>2TB<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">=</span><span class="w"> </span>3TB
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nv">实际配置</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>500GB-1TB<span class="w"> </span><span class="o">(</span>根据预算调整<span class="o">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># 示例 2：4TB 存储系统</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nv">热数据量</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>4TB<span class="w"> </span>×<span class="w"> </span><span class="m">20</span>%<span class="w"> </span><span class="o">=</span><span class="w"> </span>800GB
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nv">建议缓存</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>800GB<span class="w"> </span>×<span class="w"> </span><span class="m">1</span>.5<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>.2TB
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nv">实际配置</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>200GB-500GB<span class="w"> </span><span class="o">(</span>根据需求调整<span class="o">)</span>
 </code></pre></div>
 <h2 id="ssd_1">创建 SSD 缓存虚拟磁盘<a class="headerlink" href="#ssd_1" title="Permanent link">¶</a></h2>
 <h3 id="_5">规划缓存磁盘<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
@@ -2436,23 +2433,23 @@
 <p>启动虚拟机后，登录群晖管理界面，打开【存储管理器】即可看到新添加的 SSD 磁盘。
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/347.png" data-desc-position="bottom"><img alt="验证磁盘创建" src="https://img.it927.com/aio/347.png"></a>
 <strong>检查虚拟机配置</strong>：</p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># SSH 登录黑群晖后检查新磁盘</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"(sd[a-z]|nvme)"</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 预期输出示例：</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Disk<span class="w"> </span>/dev/nvme0n1:<span class="w"> </span><span class="m">80</span><span class="w"> </span>GiB,<span class="w"> </span><span class="m">85899345920</span><span class="w"> </span>bytes,<span class="w"> </span><span class="m">167772160</span><span class="w"> </span>sectors
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Disk<span class="w"> </span>/dev/nvme1n1:<span class="w"> </span><span class="m">120</span><span class="w"> </span>GiB,<span class="w"> </span><span class="m">128849018880</span><span class="w"> </span>bytes,<span class="w"> </span><span class="m">251658240</span><span class="w"> </span>sectors
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># 查看磁盘详细信息</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>lsblk<span class="w"> </span>-o<span class="w"> </span>NAME,SIZE,TYPE,MOUNTPOINT
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># SSH 登录黑群晖后检查新磁盘</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"(sd[a-z]|nvme)"</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 预期输出示例：</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Disk<span class="w"> </span>/dev/nvme0n1:<span class="w"> </span><span class="m">80</span><span class="w"> </span>GiB,<span class="w"> </span><span class="m">85899345920</span><span class="w"> </span>bytes,<span class="w"> </span><span class="m">167772160</span><span class="w"> </span>sectors
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Disk<span class="w"> </span>/dev/nvme1n1:<span class="w"> </span><span class="m">120</span><span class="w"> </span>GiB,<span class="w"> </span><span class="m">128849018880</span><span class="w"> </span>bytes,<span class="w"> </span><span class="m">251658240</span><span class="w"> </span>sectors
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 查看磁盘详细信息</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>lsblk<span class="w"> </span>-o<span class="w"> </span>NAME,SIZE,TYPE,MOUNTPOINT
 </code></pre></div>
 <p><strong>验证磁盘性能</strong>：</p>
-<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 测试顺序读取性能</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/nvme0n1<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/null<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1024</span><span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># 测试随机读取性能（需先安装 fio 工具）</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>sudo<span class="w"> </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--direct<span class="o">=</span><span class="m">1</span><span class="w"> </span>--rw<span class="o">=</span>randread<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">         </span>--bs<span class="o">=</span>4k<span class="w"> </span>--runtime<span class="o">=</span><span class="m">30</span><span class="w"> </span>--numjobs<span class="o">=</span><span class="m">1</span><span class="w"> </span>--name<span class="o">=</span><span class="nb">test</span>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 测试顺序读取性能</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/nvme0n1<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/null<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">1024</span><span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 测试随机读取性能（需先安装 fio 工具）</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sudo<span class="w"> </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--direct<span class="o">=</span><span class="m">1</span><span class="w"> </span>--rw<span class="o">=</span>randread<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">         </span>--bs<span class="o">=</span>4k<span class="w"> </span>--runtime<span class="o">=</span><span class="m">30</span><span class="w"> </span>--numjobs<span class="o">=</span><span class="m">1</span><span class="w"> </span>--name<span class="o">=</span><span class="nb">test</span>
 </code></pre></div>
 <h2 id="ssd_2">配置 SSD 缓存<a class="headerlink" href="#ssd_2" title="Permanent link">¶</a></h2>
 <h3 id="_8">访问存储管理器<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
