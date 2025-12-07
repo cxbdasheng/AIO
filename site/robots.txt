@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aio.it927.com/sitemap.xml
