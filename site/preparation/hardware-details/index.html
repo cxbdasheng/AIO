@@ -2245,7 +2245,7 @@
 <td style="text-align: center;"><strong>显卡-2</strong></td>
 <td style="text-align: center;">华硕 1070 8GB 涡轮卡</td>
 <td style="text-align: center;">￥600</td>
-<td style="text-align: center;">VGpu 可以换性价比更高的特斯拉 P4</td>
+<td style="text-align: center;">VGPU 可以换性价比更高的特斯拉 P4</td>
 </tr>
 <tr>
 <td style="text-align: center;"><strong>NVME-SSD-1</strong></td>
@@ -2339,7 +2339,14 @@
 </div>
 </div>
 </div>
-<p>这款主板PCIe 插槽非常多，配备双 RJ45 网卡（2.5G），提供 3 个 NVMe 接口，内存最大支持 64GB x 8 = 512GB。美中不足的是，3 个 NVMe 接口中有一个仅支持 PCIe 2.0 速率。</p>
+<p>这款主板PCIe 插槽非常多，配备双 RJ45 网卡（2.5G），提供 3 个 NVMe 接口，内存最大支持 32GB x 8 = 512GB。美中不足的是，3 个 NVMe 接口中有一个仅支持 PCIe 2.0 速率。</p>
+<details class="tip" open="open">
+<summary>X99 平台科普</summary>
+<p>正品 X99 是 Intel 2014 年推出的高端桌面芯片组，搭配 <strong>LGA 2011-3</strong> 插槽，<strong>支持 i7（i7-5820K、i7-6950X）和部分 Xeon 处理器（仅支持单路），主打四通道 DDR4、多显卡和高速扩展</strong>，<strong>使用的 Intel X99 芯片组</strong>。</p>
+<p>但如今市面上多数标“X99”的主板其实用的是 <strong>C612</strong> 芯片组——这是 X99 的“服务器兄弟”，原用于工作站，<strong>支持 ECC 内存、双路 CPU 和更高稳定性</strong>，具体主板有：<a href="https://www.asus.com.cn/motherboards-components/motherboards/workstation/z10ped8_ws/">华硕 Z10PE-D8 WS</a>、<a href="https://www.asus.com.cn/commercial-servers-workstations/z10pad8/">华硕    Z10PA-D8</a>、<a href="https://www.msi.cn/Motherboard/X99A-WORKSTATION/Specification">微星 X99A WORKSTATION ED8</a>。</p>
+<p><strong>由于 X99 芯片组 和 C612 芯片组物理兼容</strong>，许多厂商（尤其是国产主板品牌）开始用 C612 芯片制作“X99 主板”，并标榜“支持 E5 神U + 8条内存 + 双M.2”。久而久之，<strong>“X99” </strong>在民间成了整个 LGA 2011-3 平台的代名词，无论芯片是 X99 还是 C612。</p>
+<p>再说寨板 X99，也就是手里的这块 <a href="http://www.huananzhi.com/more.php?lm=10&amp;id=311">华南寨板 X99 F8D PLUS</a> ,当然还有其他品牌：科脑、精粤、巨械师、等，这些厂商大部分使用的是 <strong>服务器上拆机 C612 芯片组</strong>，<strong>再通过“魔改”或“移花接木”等程序出的主板</strong>，买这类主板一定要注意是否有厂家三年的质保，当然“这些方案”，改了这么多年也基本处于成熟状态。</p>
+</details>
 <h3 id="_4">显卡<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <p>如果没有特殊需求，亮机卡已经足够。但考虑到需要 vGPU 方案，建议选择 <strong>英伟达显卡</strong>，有生产力需求的用户可根据需要选择。陈大剩我选择了一张 GTX 1070 和 RX 560，其中 RX 560 用于直通给黑苹果（黑苹果支持大部分 A 卡），GTX 1070 既可以用于 vGPU，也可以用于打游戏，性价比非常高。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">显卡图一</label><label for="__tabbed_3_2">显卡图二</label></div>

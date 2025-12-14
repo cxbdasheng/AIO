@@ -21,7 +21,7 @@ description: 本次搭建所用硬件总价约为 ￥8286，以下是我所选�
 |    **机箱**    |            追风者 PK620 EEB 机箱非侧透版本            | ￥450  |        同城二手自提        |
 |    **风扇**    |              利明工包12CM C12C * 8              | ￥122  |                      |
 |   **显卡-1**   |              蓝宝石 白金 RX560 4GB               | ￥360  |                      |
-|   **显卡-2**   |               华硕 1070 8GB 涡轮卡               | ￥600  | VGpu 可以换性价比更高的特斯拉 P4 |
+|   **显卡-2**   |               华硕 1070 8GB 涡轮卡               | ￥600  | VGPU 可以换性价比更高的特斯拉 P4 |
 | **NVME-SSD-1** |          西数 SN570 NVEM 协议 SSD 1TB           | ￥485  |                      |
 | **NVME-SSD-2** |         西数 SN770 NVEM 协议 SSD 500 GB         | ￥400  |      用来直通某个操作系统      |
 | **NVME-SSD-3** |          三星 980 NVEM 协议 SSD 512 GB          | ￥400  |                      |
@@ -68,7 +68,16 @@ description: 本次搭建所用硬件总价约为 ￥8286，以下是我所选�
 
 	![主板实拍图四](https://img.it927.com/aio/7.png)
 
-这款主板PCIe 插槽非常多，配备双 RJ45 网卡（2.5G），提供 3 个 NVMe 接口，内存最大支持 64GB x 8 = 512GB。美中不足的是，3 个 NVMe 接口中有一个仅支持 PCIe 2.0 速率。
+这款主板PCIe 插槽非常多，配备双 RJ45 网卡（2.5G），提供 3 个 NVMe 接口，内存最大支持 32GB x 8 = 512GB。美中不足的是，3 个 NVMe 接口中有一个仅支持 PCIe 2.0 速率。
+???+ tip "X99 平台科普"
+    正品 X99 是 Intel 2014 年推出的高端桌面芯片组，搭配 **LGA 2011-3** 插槽，**支持 i7（i7-5820K、i7-6950X）和部分 Xeon 处理器（仅支持单路），主打四通道 DDR4、多显卡和高速扩展**，**使用的 Intel X99 芯片组**。
+
+    但如今市面上多数标“X99”的主板其实用的是 **C612** 芯片组——这是 X99 的“服务器兄弟”，原用于工作站，**支持 ECC 内存、双路 CPU 和更高稳定性**，具体主板有：[华硕 Z10PE-D8 WS](https://www.asus.com.cn/motherboards-components/motherboards/workstation/z10ped8_ws/)、[华硕	Z10PA-D8](https://www.asus.com.cn/commercial-servers-workstations/z10pad8/)、[微星 X99A WORKSTATION ED8](https://www.msi.cn/Motherboard/X99A-WORKSTATION/Specification)。
+
+    **由于 X99 芯片组 和 C612 芯片组物理兼容**，许多厂商（尤其是国产主板品牌）开始用 C612 芯片制作“X99 主板”，并标榜“支持 E5 神U + 8条内存 + 双M.2”。久而久之，**“X99” **在民间成了整个 LGA 2011-3 平台的代名词，无论芯片是 X99 还是 C612。
+
+    再说寨板 X99，也就是手里的这块 [华南寨板 X99 F8D PLUS](http://www.huananzhi.com/more.php?lm=10&id=311) ,当然还有其他品牌：科脑、精粤、巨械师、等，这些厂商大部分使用的是 **服务器上拆机 C612 芯片组**，**再通过“魔改”或“移花接木”等程序出的主板**，买这类主板一定要注意是否有厂家三年的质保，当然“这些方案”，改了这么多年也基本处于成熟状态。
+
 
 ### 显卡
 
