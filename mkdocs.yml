@@ -133,8 +133,9 @@ nav:
   - 远程穿透:
       - 前言: "remote/overview.md"
       - IPv6 DDNS: "remote/ipv6.md"
-      - 公网 NAT: "remote/nat.md"
       - IPv6 转 IPv4: "remote/ipv6-ipv4.md"
+      - IPv6 转 IPv4/IPv6 (ESA): "remote/esa.md"
+      - 公网 NAT: "remote/nat.md"
       - Frp 内网穿透: "remote/frp.md"
   - 常见 Q&A:
       - ESXi 紫屏: "qa/purple.md"
