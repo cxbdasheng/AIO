@@ -1,0 +1,2888 @@
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="详细介绍在ESXi环境下安装黑群晖(DSM)的远程访问配置教程，包括QuickConnect、DDNS、内网穿透等多种远程访问方案的配置方法和最佳实践。">
+      
+      
+        <meta name="author" content="陈大剩">
+      
+      
+        <link rel="canonical" href="https://aio.it927.com/synology/remote-access/">
+      
+      
+        <link rel="prev" href="../ssl/">
+      
+      
+        <link rel="next" href="../../home/pc/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>远程访问 - 家庭 AIO 服务器搭建教程</title>
+      
+    
+    
+    <meta name="keywords" content="黑群晖远程访问,远程访问,ESXi黑群晖,DNET远程访问,家庭All-in-One,ESXi环境搭建教程,陈大剩的家庭AIO服务器,家庭AIO服务器,QuickConnect,群晖DDNS">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-header__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            家庭 AIO 服务器搭建教程
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              远程访问
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="切换深色模式" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue" aria-label="切换浅色模式" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    cxbdasheng/AIO
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../prefaces/all-in-one-env/" class="md-tabs__link">
+          
+  
+  
+  前言介绍
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../preparation/hardware-details/" class="md-tabs__link">
+          
+  
+  
+  准备工作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../network/overview/" class="md-tabs__link">
+          
+  
+  
+  网络架构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../esxi/self-starting/" class="md-tabs__link">
+          
+  
+  
+  ESXi 进阶操作
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../route/install/" class="md-tabs__link">
+          
+  
+  
+  软路由
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../install/" class="md-tabs__link">
+          
+  
+  
+  黑群晖
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/pc/" class="md-tabs__link">
+          
+  
+  
+  家庭工作区
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../remote/overview/" class="md-tabs__link">
+          
+  
+  
+  远程穿透
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../qa/purple/" class="md-tabs__link">
+          
+  
+  
+  常见 Q&amp;A
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="家庭 AIO 服务器搭建教程" class="md-nav__button md-logo" aria-label="家庭 AIO 服务器搭建教程" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+
+    </a>
+    家庭 AIO 服务器搭建教程
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/cxbdasheng/AIO" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    cxbdasheng/AIO
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    前言介绍
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            前言介绍
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/all-in-one-env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    All-in-One 环境概念
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/what-is-esxi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    什么是 ESXi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/words-written-earlier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    陈大剩写在前面的话
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prefaces/for-the-crowd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    本教程目标与适用对象
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    准备工作
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            准备工作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/hardware-details/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    硬件配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/bios-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BIOS 设置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/disk-partitioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    硬盘划分
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/install-esxi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    安装 ESXi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preparation/base-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ESXi 基础设置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    网络架构
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            网络架构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ESXi 网络概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    网络拓扑设计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/fight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    网络拓扑实战
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/jumper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    跳板机使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/intranet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    突破 1000M 带宽
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network/qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    故障排查与优化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ESXi 进阶操作
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ESXi 进阶操作
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/self-starting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    虚拟机自启动
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/convert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    镜像转换
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/ssl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL 证书配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    硬件直通
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/clone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    虚拟机克隆
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../esxi/energy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    功耗节能
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    软路由
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            软路由
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    系统安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    开启 IPv6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/expansion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    硬盘扩容
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../route/open-clash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OpenClash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    黑群晖
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            黑群晖
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    系统安装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    存储设计
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSD 缓存加速
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    添加证书
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    远程访问
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    远程访问
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程访问方案对比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程访问实施方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="远程访问实施方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案一：IP 直接访问
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方案一：IP 直接访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 IPv6 网络
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      访问测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSM 安全设置（可选）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案二：IPv6 + CDN 中转
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方案二：IPv6 + CDN 中转">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 D-NET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgeone" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置腾讯云 EdgeOne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-net_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置 D-NET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      群晖 DSM 设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-ddns" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案三：IPv6 + DDNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-ddns" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案四：公网 IP + DDNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frp" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案五：FRP 内网穿透
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      群晖远程访问安全设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="群晖远程访问安全设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      启用 HTTPS 访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    家庭工作区
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            家庭工作区
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/pc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    家庭 PC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/develop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    生产服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    影视媒体中心
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    全屋网络覆盖
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/k8s/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes 集群
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    远程穿透
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            远程穿透
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IPv6 DDNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/ipv6-ipv4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IPv6 转 IPv4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/esa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IPv6 转 IPv4/IPv6 (ESA)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/nat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    公网 NAT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote/frp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Frp 内网穿透
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10">
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    常见 Q&amp;A
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            常见 Q&amp;A
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qa/purple/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ESXi 紫屏
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qa/qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    问题列表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程访问方案对比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程访问实施方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="远程访问实施方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案一：IP 直接访问
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方案一：IP 直接访问">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 IPv6 网络
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      访问测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsm" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSM 安全设置（可选）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案二：IPv6 + CDN 中转
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方案二：IPv6 + CDN 中转">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 D-NET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgeone" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置腾讯云 EdgeOne
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-net_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置 D-NET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      群晖 DSM 设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-ddns" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案三：IPv6 + DDNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-ddns" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案四：公网 IP + DDNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frp" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案五：FRP 内网穿透
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      群晖远程访问安全设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="群晖远程访问安全设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      启用 HTTPS 访问
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/synology/remote-access.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+    </a>
+  
+  
+
+
+  <h1>远程访问</h1>
+
+<p>黑群晖安装完成后，远程访问是必不可少的功能，如果仅限于家中局域网使用，那就无法发挥 NAS 随时随地访问数据的优势。因为黑群晖 <strong>无法使用群晖官方的 QuickConnect 服务</strong>，所以需要远程访问方案。</p>
+<h2 id="_1">远程访问方案对比<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>目前主流的远程访问方式包括：公网 IP 访问、内网穿透、CDN 中转、DDNS 动态域名解析等方案。</p>
+<p>在选择远程访问方案前，建议先了解各方案的特点和适用场景：</p>
+<table>
+<thead>
+<tr>
+<th>方案类型</th>
+<th>优势</th>
+<th>劣势</th>
+<th>适用场景</th>
+<th>成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>公网 IPv4 直连</strong></td>
+<td>性能最佳、零延迟、配置简单</td>
+<td>公网 IPv4 资源稀缺、IP 动态变化频繁、运营商获取困难</td>
+<td>已获取公网 IPv4 地址</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><strong>公网 IPv6 直连</strong></td>
+<td>性能优秀、零延迟、地址充足</td>
+<td>IP 动态变化频繁、客户端 IPv6 支持率低、部分网络不可达</td>
+<td>已获取公网 IPv6 地址</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><strong>DDNS 动态域名</strong></td>
+<td>解决动态 IP 问题、访问便捷</td>
+<td>依赖公网 IP、DNS 解析存在传播延迟、域名续费管理</td>
+<td>拥有公网 IP（IPv4/IPv6）</td>
+<td>免费（域名费用另计）</td>
+</tr>
+<tr>
+<td><strong>DCDN 边缘加速</strong></td>
+<td>全球加速、双栈支持、高可用性、SSL 卸载</td>
+<td>国内加速需备案、配置相对复杂、依赖第三方服务</td>
+<td>拥有公网 IP + 需双栈访问</td>
+<td>免费额度/按量计费</td>
+</tr>
+<tr>
+<td><strong>FRP 内网穿透</strong></td>
+<td>无公网 IP 要求、协议支持广泛、配置灵活</td>
+<td>需中转服务器、存在转发延迟、服务器维护成本</td>
+<td>无法获取公网 IP</td>
+<td>云服务器费用</td>
+</tr>
+<tr>
+<td><strong>VPN 隧道</strong></td>
+<td>安全性最高、全流量加密、网络透明</td>
+<td>配置门槛高、移动端体验差、需持续连接</td>
+<td>企业级安全需求</td>
+<td>免费/云服务器费用</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">方案选择建议</p>
+<ol>
+<li><strong>优先级 1</strong>：检查是否可以获取公网 IP（联系运营商）</li>
+<li><strong>优先级 2</strong>：检查运营商是否支持 IPv6（推荐方案）</li>
+<li><strong>优先级 3</strong>：使用 CDN 中转方案（如阿里云 ESA）</li>
+<li><strong>备选方案</strong>：自建 FRP 内网穿透或购买商业穿透服务</li>
+</ol>
+</div>
+<h2 id="_2">远程访问实施方案<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>根据网络环境，选择以下合适的方案进行配置：</p>
+<h3 id="ip">方案一：IP 直接访问<a class="headerlink" href="#ip" title="Permanent link">¶</a></h3>
+<p>通过公网 IP 地址直接访问是最简单直接的远程访问方式。该方案尤其适合 IPv6 环境，因为无需中转服务器，访问速度快且延迟低。</p>
+<div class="admonition info">
+<p class="admonition-title">方案特点</p>
+<ul>
+<li><strong>适用场景</strong>：已获取公网 IPv4 或 IPv6 地址</li>
+<li><strong>核心优势</strong>：零延迟、速度快、配置简单</li>
+<li><strong>主要缺点</strong>：IP 地址动态变化频繁，需记忆或频繁查询</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">建议</p>
+<p>IP 直接访问适合临时使用或配合 DDNS 方案。如果 IP 地址频繁变化，建议使用方案三或方案四。</p>
+</div>
+<h4 id="ipv6">开启 IPv6 网络<a class="headerlink" href="#ipv6" title="Permanent link">¶</a></h4>
+<p>如果已按照 <a href="../../route/ipv6/">软路由 - 开启 IPv6</a> 章节配置好上游网络，还需要在群晖 DSM 中启用 IPv6 功能。</p>
+<p>打开 <strong>【控制面板】→【网络】→【网络界面】</strong>，双击主网络接口进入编辑。</p>
+<p>在 <strong>【IPv6】</strong> 标签页中，选择 <strong>【自动】</strong> 配置方式，系统将自动从上游路由器获取 IPv6 地址
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/508.png" data-desc-position="bottom"><img alt="启用 IPv6" src="https://img.it927.com/aio/508.png"></a>
+配置完成后，确认群晖已成功获取公网 IPv6 地址</p>
+<h4 id="_3">访问测试<a class="headerlink" href="#_3" title="Permanent link">¶</a></h4>
+<p>配置完成后，需要在不同设备（不连接 WiFi 的 IPv6 设备）上进行访问测试，验证远程访问功能是否正常。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：PC 端访问测试</label><label for="__tabbed_1_2">步骤 2：移动端访问测试</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在电脑浏览器中输入 <code>http://[IPv6地址]:5000</code> 访问 DSM</p>
+<p><strong>注意</strong>：IPv6 地址需要用方括号包裹，例如：<code>http://[2001:db8::1]:5000</code>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/509.png" data-desc-position="bottom"><img alt="PC 端访问测试" src="https://img.it927.com/aio/509.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在手机浏览器中同样输入 <code>http://[IPv6地址]:5000</code> 进行测试</p>
+<p><strong>要求</strong>：移动设备必须连接支持 IPv6 的网络（4G/5G 或 IPv6 Wi-Fi）
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/514.PNG" data-desc-position="bottom"><img alt="移动端访问测试" src="https://img.it927.com/aio/514.PNG"></a></p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">常见问题排查</p>
+<p>如果无法访问，请依次检查：</p>
+<ol>
+<li><strong>防火墙设置</strong>：检查路由器和群晖的防火墙是否阻止访问</li>
+<li><strong>IPv6 转发</strong>：确认路由器已启用 IPv6 转发功能</li>
+<li><strong>网络环境</strong>：确认客户端网络支持 IPv6 访问</li>
+<li><strong>端口检查</strong>：使用在线工具测试端口 5000/5001 是否开放</li>
+</ol>
+</div>
+<h4 id="dsm">DSM 安全设置（可选）<a class="headerlink" href="#dsm" title="Permanent link">¶</a></h4>
+<p>为了提升安全性，建议配置以下选项：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">配置 IP 检查策略</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入 <strong>【控制面板】→【登录门户】→【高级】</strong>，根据需求选择：</p>
+<ul>
+<li><strong>默认（推荐）</strong>：启用 IP 地址检查，安全性更高</li>
+<li><strong>忽略检查</strong>：仅在使用 CDN 或反向代理时启用</li>
+</ul>
+<p>对于 IP 直接访问，建议保持默认设置
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/507.png" data-desc-position="bottom"><img alt="IP 检查设置" src="https://img.it927.com/aio/507.png"></a></p>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">关于 IP 地址检查</p>
+<ul>
+<li><strong>启用检查</strong>：DSM 会验证请求来源 IP，防止会话劫持</li>
+<li><strong>忽略检查</strong>：允许来自任意 IP 的访问，适用于 CDN 中转场景</li>
+<li><strong>建议</strong>：IP 直接访问保持启用状态，CDN 方案才需要忽略</li>
+</ul>
+</div>
+<h3 id="ipv6-cdn">方案二：IPv6 + CDN 中转<a class="headerlink" href="#ipv6-cdn" title="Permanent link">¶</a></h3>
+<p>如果需要同时支持 IPv4/IPv6 双协议栈访问，推荐使用 CDN 边缘加速方案。该方案通过 CDN 节点实现双栈协议转换，具有全球加速、高可用性等优势。</p>
+<p>本节以腾讯云 <a href="https://console.cloud.tencent.com/edgeone">EdgeOne</a> 提供的免费加速方案为例，使用 <a href="https://github.com/cxbdasheng/dnet">D-NET</a> 开源工具实现 DCDN 功能的自动化配置。</p>
+<div class="admonition tip">
+<p class="admonition-title">方案优势</p>
+<ul>
+<li>支持 IPv4 和 IPv6 双协议栈访问</li>
+<li>免费额度充足（腾讯云 EdgeOne 免费版）</li>
+<li>全球 CDN 加速节点，访问速度快</li>
+<li>自动同步动态 IP 地址变化</li>
+</ul>
+</div>
+<h4 id="docker">安装 Docker<a class="headerlink" href="#docker" title="Permanent link">¶</a></h4>
+<p>群晖需要先安装 Container Manager（Docker）才能运行 D-NET 容器。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">步骤 1：安装 Container Manager</label><label for="__tabbed_3_2">步骤 2：配置 Docker 网络</label><label for="__tabbed_3_3">步骤 3：确认配置</label><label for="__tabbed_3_4">步骤 4：验证安装</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入群晖 <strong>【套件中心】</strong>，搜索 <code>docker</code>，选择 <strong>Container Manager</strong> 并安装
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/487.png" data-desc-position="bottom"><img alt="安装 Container Manager" src="https://img.it927.com/aio/487.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在 Container Manager 中设置 Docker 网络子网，通常保持默认配置即可
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/488.png" data-desc-position="bottom"><img alt="配置 Docker 网络" src="https://img.it927.com/aio/488.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>检查 Docker 配置信息，确认无误后点击 <strong>【完成】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/489.png" data-desc-position="bottom"><img alt="检查 Docker 配置" src="https://img.it927.com/aio/489.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>安装完成后，可在 <strong>【套件中心】</strong> 查看到 Container Manager
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/490.png" data-desc-position="bottom"><img alt="完成 Docker 安装" src="https://img.it927.com/aio/490.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="d-net">安装 D-NET<a class="headerlink" href="#d-net" title="Permanent link">¶</a></h4>
+<p><a href="https://github.com/cxbdasheng/dnet">D-NET</a> 是一款轻量级动态网络管理工具，支持多平台的 CDN、DNS 和内网穿透自动化管理与监控。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><input id="__tabbed_4_5" name="__tabbed_4" type="radio"><input id="__tabbed_4_6" name="__tabbed_4" type="radio"><input id="__tabbed_4_7" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">步骤 1：搜索 D-NET 镜像</label><label for="__tabbed_4_2">步骤 2：下载镜像</label><label for="__tabbed_4_3">步骤 3：创建容器</label><label for="__tabbed_4_4">步骤 4：常规设置</label><label for="__tabbed_4_5">步骤 5：端口和存储设置</label><label for="__tabbed_4_6">步骤 6：网络设置（重要）</label><label for="__tabbed_4_7">步骤 7：确认创建</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入 <strong>【套件中心】→【Container Manager】→【镜像仓库】</strong>，搜索 <code>dnet</code>，点击选择
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/491.png" data-desc-position="bottom"><img alt="搜索 D-NET 镜像" src="https://img.it927.com/aio/491.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择最新版本（通常默认为 <code>latest</code> 标签），点击 <strong>【下载】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/492.png" data-desc-position="bottom"><img alt="下载 D-NET 镜像" src="https://img.it927.com/aio/492.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入 <strong>【Container Manager】→【容器】</strong>，点击 <strong>【新增】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/493.png" data-desc-position="bottom"><img alt="创建 Docker 容器" src="https://img.it927.com/aio/493.png"></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>映像</strong>：选择 <code>dnet</code></li>
+<li><strong>容器名称</strong>：自定义（如 <code>dnet</code>）</li>
+<li><strong>启用自动重新启动</strong>：勾选此选项，确保容器随系统启动
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/494.png" data-desc-position="bottom"><img alt="Docker 常规设置" src="https://img.it927.com/aio/494.png"></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>端口映射</strong>：保持默认（端口 9877）</li>
+<li><strong>存储空间映射</strong>：挂载到容器内的 <code>/root</code> 目录
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/495.png" data-desc-position="bottom"><img alt="Docker 端口存储设置" src="https://img.it927.com/aio/495.png"></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>网络模式必须设置为 <strong>【host】</strong> 模式，以便 D-NET 能够正确检测宿主机的 IPv6 地址
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/496.png" data-desc-position="bottom"><img alt="Docker 网络设置" src="https://img.it927.com/aio/496.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>检查所有配置参数，确认无误后点击 <strong>【完成】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/497.png" data-desc-position="bottom"><img alt="确认创建容器" src="https://img.it927.com/aio/497.png"></a></p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">网络模式说明</p>
+<p>D-NET 容器必须使用 <code>host</code> 网络模式，否则无法正确获取宿主机的动态 IPv6 地址。</p>
+</div>
+<h4 id="edgeone">配置腾讯云 EdgeOne<a class="headerlink" href="#edgeone" title="Permanent link">¶</a></h4>
+<p>本节以腾讯云 <a href="https://console.cloud.tencent.com/edgeone">EdgeOne</a> 为例，其他 CDN 方案请参考 <a href="../../remote/esa/">阿里云 ESA 免费加速方案</a>。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:5"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><input id="__tabbed_5_3" name="__tabbed_5" type="radio"><input id="__tabbed_5_4" name="__tabbed_5" type="radio"><input id="__tabbed_5_5" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">步骤 1：新增站点</label><label for="__tabbed_5_2">步骤 2：选择套餐</label><label for="__tabbed_5_3">步骤 3：等待配置下发</label><label for="__tabbed_5_4">步骤 4：配置接入模式</label><label for="__tabbed_5_5">步骤 5：域名归属验证</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>登录 <a href="https://console.cloud.tencent.com/edgeone">EdgeOne 控制台</a>，选择 <strong>【服务总览】→【新增站点】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/499.png" data-desc-position="bottom"><img alt="新增站点" src="https://img.it927.com/aio/499.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择免费版套餐。如未领取，请访问 <a href="https://cloud.tencent.com/document/product/1552/118985">免费版套餐使用说明</a> 申请
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/500.png" data-desc-position="bottom"><img alt="选择套餐" src="https://img.it927.com/aio/500.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>套餐配置需要几秒钟时间下发，请耐心等待
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/501.png" data-desc-position="bottom"><img alt="等待配置下发" src="https://img.it927.com/aio/501.png"></a></p>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>服务区域</strong>：已备案域名可选择全球（含中国大陆）</li>
+<li><strong>接入方式</strong>：建议选择 <strong>CNAME</strong> 接入，无需托管 DNS 解析
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/502.png" data-desc-position="bottom"><img alt="配置接入模式" src="https://img.it927.com/aio/502.png"></a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>首次添加域名需要验证域名所有权，按照提示添加 TXT 记录完成验证
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/503.png" data-desc-position="bottom"><img alt="域名归属验证" src="https://img.it927.com/aio/503.png"></a></p>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">接入方式选择</p>
+<ul>
+<li><strong>CNAME 接入</strong>：推荐方式，保持现有 DNS 服务商不变</li>
+<li><strong>NS 接入</strong>：需要修改域名 NS 记录，将 DNS 托管到腾讯云</li>
+</ul>
+</div>
+<h4 id="d-net_1">配置 D-NET<a class="headerlink" href="#d-net_1" title="Permanent link">¶</a></h4>
+<p>D-NET 安装完成后，通过浏览器访问 <code>http://群晖IP:9877</code> 进入 Web 管理界面。</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/498.png" data-desc-position="bottom"><img alt="D-NET 登录界面" src="https://img.it927.com/aio/498.png"></a></p>
+<p>首次访问需要设置管理员账号和密码，完成后按以下步骤配置：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><input id="__tabbed_6_3" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">步骤 1：配置 DCDN 参数</label><label for="__tabbed_6_2">步骤 2：获取 CNAME 记录</label><label for="__tabbed_6_3">步骤 3：添加 DNS 解析</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>启用 <strong>DCDN</strong> 功能开关</li>
+<li>填写腾讯云 <strong>SecretId</strong> 和 <strong>SecretKey</strong>（在腾讯云访问管理中获取）</li>
+<li>配置源站信息（域名、端口等）
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/504.png" data-desc-position="bottom"><img alt="配置 DCDN 参数" src="https://img.it927.com/aio/504.png"></a></li>
+</ol>
+</div>
+<div class="tabbed-block">
+<p>点击保存后，D-NET 将自动监听 IPv6 地址变化并同步到 EdgeOne。系统会生成 CNAME 地址，点击复制按钮
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/505.png" data-desc-position="bottom"><img alt="获取 CNAME 记录" src="https://img.it927.com/aio/505.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在域名 DNS 服务商处添加 CNAME 记录，将子域名指向上一步获取的 CNAME 地址
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/506.png" data-desc-position="bottom"><img alt="添加 DNS 解析" src="https://img.it927.com/aio/506.png"></a></p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">如何获取腾讯云密钥</p>
+<p>访问 <a href="https://console.cloud.tencent.com/cam/capi">腾讯云访问管理</a> 创建 SecretId 和 SecretKey。建议创建子账号并授予 EdgeOne 相关权限，避免使用主账号密钥。</p>
+</div>
+<h4 id="dsm_1">群晖 DSM 设置<a class="headerlink" href="#dsm_1" title="Permanent link">¶</a></h4>
+<p>为确保 CDN 中转正常工作，DSM 系统需要配置以下选项：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">步骤 1：配置反向代理信任</label><label for="__tabbed_7_2">步骤 2：设置主机名称</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入 <strong>【控制面板】→【登录门户】→【高级】</strong>，启用 <strong>【忽略 IP 地址检查】</strong></p>
+<p>此选项允许通过 CDN 代理访问 DSM，否则会因 IP 不匹配而拒绝连接
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/507.png" data-desc-position="bottom"><img alt="忽略 IP 检查" src="https://img.it927.com/aio/507.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入 <strong>【控制面板】→【网络】→【常规】</strong>，配置 <strong>【服务器名称】</strong> 为你的访问域名</p>
+<p>此设置确保 DSM 能正确响应来自 CDN 的请求
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/511.png" data-desc-position="bottom"><img alt="设置主机名称" src="https://img.it927.com/aio/511.png"></a></p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">安全提示</p>
+<p>启用"忽略 IP 地址检查"会降低一定的安全性，建议配合防火墙规则、双因素认证等安全措施使用。</p>
+</div>
+<h4 id="_4">测试验证<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<p>配置完成后，通过浏览器访问配置的域名，验证是否能正常访问服务。
+示例：访问 <code>http://nas.it927.com</code>，页面正常加载即表示配置成功。
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/512.png" data-desc-position="bottom"><img alt="访问测试" src="https://img.it927.com/aio/512.png"></a></p>
+<h4 id="_5">性能测试<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
+<p>通过全球节点延迟测试，验证 EdgeOne 加速效果：
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/513.png" data-desc-position="bottom"><img alt="全球节点延迟测试" src="https://img.it927.com/aio/513.png"></a></p>
+<h3 id="ipv6-ddns">方案三：IPv6 + DDNS<a class="headerlink" href="#ipv6-ddns" title="Permanent link">¶</a></h3>
+<p>如果你的运营商支持 IPv6，这是最佳的免费远程访问方案，缺点是 IPv6 支持率低、部分网络不可达。</p>
+<p><strong>配置指南</strong>：请参考 <a href="../../remote/ipv6/">远程访问 - IPv6 DDNS</a> 章节的详细教程。</p>
+<h3 id="ip-ddns">方案四：公网 IP + DDNS<a class="headerlink" href="#ip-ddns" title="Permanent link">¶</a></h3>
+<p>如果成功获取了公网 IP，这是性能最佳的方案。</p>
+<p><strong>配置指南</strong>：请参考 <a href="../../remote/nat/">远程访问 - 公网 NAT</a> 章节的详细教程。</p>
+<h3 id="frp">方案五：FRP 内网穿透<a class="headerlink" href="#frp" title="Permanent link">¶</a></h3>
+<p>如果无法获取公网 IP 且不想使用 IPv6，可以选择 FRP 内网穿透。</p>
+<p><strong>配置指南</strong>：请参考 <a href="../../remote/frp/">远程访问 - FRP 内网穿透</a> 章节的详细教程。</p>
+<h2 id="_6">群晖远程访问安全设置<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>配置远程访问后，安全设置至关重要，以下是推荐的安全配置：</p>
+<h3 id="https">启用 HTTPS 访问<a class="headerlink" href="#https" title="Permanent link">¶</a></h3>
+<p>使用 HTTPS 可以加密传输数据，防止中间人攻击。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><input id="__tabbed_8_2" name="__tabbed_8" type="radio"><input id="__tabbed_8_3" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">步骤 1：申请 SSL 证书</label><label for="__tabbed_8_2">步骤 2：导入证书</label><label for="__tabbed_8_3">步骤 3：强制 HTTPS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>有以下几种方式获取 SSL 证书：</p>
+<ul>
+<li><strong>Let's Encrypt</strong>：免费，群晖支持自动续期</li>
+<li><strong>阿里云/腾讯云</strong>：免费证书（1年有效期）</li>
+<li><strong>Cloudflare</strong>：15年免费证书</li>
+</ul>
+<p>详细配置请参考：<a href="../ssl/">群晖 SSL 证书配置</a></p>
+</div>
+<div class="tabbed-block">
+<p>在 <strong>【控制面板】-【安全性】-【证书】</strong> 中导入或创建证书</p>
+</div>
+<div class="tabbed-block">
+<p>在 <strong>【控制面板】-【网络】-【DSM 设置】</strong> 中：</p>
+<ul>
+<li>勾选 <strong>【自动将 HTTP 连接重定向到 HTTPS】</strong></li>
+<li>勾选 <strong>【启用 HSTS】</strong>（增强安全性）</li>
+</ul>
+</div>
+</div>
+</div>
+
+  
+
+
+
+<hr>
+<div class="md-source-file">
+  <small>
+
+    <!-- mkdocs-git-revision-date-localized-plugin -->
+    
+    
+        <span class="md-source-file__fact">
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:21 UTC">2026年1月19日</span>
+        </span>
+    
+      <span class="md-source-file__fact">
+        最后更新:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:21 UTC">2026年1月19日</span>
+      </span>
+    <!-- mkdocs-git-revision-date-plugin -->
+    
+  </small>
+</div>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚">
+        
+          
+          <a href="../ssl/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 添加证书">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                添加证书
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../home/pc/" class="md-footer__link md-footer__link--next" aria-label="下一页: 家庭 PC">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                家庭 PC
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2024 aio.it927.com 陈大剩
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.it927.com" target="_blank" rel="noopener" title="陈大剩" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M489.5 287.9h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6V146.2c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.6v-32c0-6-8-4.6-11.7-4.6v-38c8.3-2 17.1-3.4 25.7-3.4 10.9 0 20.9 4.3 31.4 4.3 4.6 0 27.7-1.1 27.7-8v-60c0-2.6-2-4.6-4.6-4.6-5.1 0-15.1 4.3-24 4.3-9.7 0-20.9-4.3-32.6-4.3-8 0-16 1.1-23.7 2.9v-4.9c5.4-2.6 9.1-8.3 9.1-14.3 0-20.7-31.4-20.8-31.4 0 0 6 3.7 11.7 9.1 14.3v111.7c-3.7 0-11.7-1.4-11.7 4.6v32h-36.6v-32c0-2.6-2-4.6-4.6-4.6h-27.4c-2.6 0-4.6 2-4.6 4.6v32h-36.3v-32c0-2.6-2-4.6-4.6-4.6H96.3c-2.6 0-4.6 2-4.6 4.6v178.3H55.1v-32c0-2.6-2-4.6-4.6-4.6H23.1c-2.6 0-4.6 2-4.6 4.6V512h182.9v-96c0-72.6 109.7-72.6 109.7 0v96H494V292.5c.1-2.6-1.9-4.6-4.5-4.6m-288.1-4.5c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6zm146.4 0c0 2.6-2 4.6-4.6 4.6h-27.4c-2.6 0-4.6-2-4.6-4.6v-64c0-2.6 2-4.6 4.6-4.6h27.4c2.6 0 4.6 2 4.6 4.6z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/analysis.js"></script>
+      
+        <script src="../../javascripts/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html><!-- taken from
+https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/source-file.html -->
