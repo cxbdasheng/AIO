@@ -123,6 +123,7 @@ nav:
       - 存储设计: "synology/design.md"
       - SSD 缓存加速: "synology/ssd.md"
       - 添加证书: "synology/ssl.md"
+      - 远程访问: "synology/remote-access.md"
   - 家庭工作区:
       - 家庭 PC: "home/pc.md"
       - 生产服务器: "home/develop.md"

@@ -63,7 +63,7 @@ description: 详细介绍如何通过IPv6转IPv4技术解决IPv6兼容性问题�
 
 ### D-NET 工具介绍
 
-D-NET 能够自动监听 IPv6 地址变化，直接将 IPv6 地址更新到阿里云 ESA，**相比传统 DDNS 方案减少一次 DNS 解析跳转**。
+D-NET 中 DCDN 功能，能够自动监听 IPv6 地址变化，直接将 IPv6 地址更新到阿里云 ESA，**相比传统 DDNS 方案减少一次 DNS 解析跳转**。
 
 ### 下载安装
 
