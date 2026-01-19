@@ -2460,35 +2460,31 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">方案选择建议</p>
+<details class="- tip">
+<summary>方案选择建议</summary>
 <ol>
 <li><strong>优先级 1</strong>：检查是否可以获取公网 IP（联系运营商）</li>
 <li><strong>优先级 2</strong>：检查运营商是否支持 IPv6（推荐方案）</li>
 <li><strong>优先级 3</strong>：使用 CDN 中转方案（如阿里云 ESA）</li>
 <li><strong>备选方案</strong>：自建 FRP 内网穿透或购买商业穿透服务</li>
 </ol>
-</div>
+</details>
 <h2 id="_2">远程访问实施方案<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <p>根据网络环境，选择以下合适的方案进行配置：</p>
 <h3 id="ip">方案一：IP 直接访问<a class="headerlink" href="#ip" title="Permanent link">¶</a></h3>
 <p>通过公网 IP 地址直接访问是最简单直接的远程访问方式。该方案尤其适合 IPv6 环境，因为无需中转服务器，访问速度快且延迟低。</p>
-<div class="admonition info">
-<p class="admonition-title">方案特点</p>
+<details class="- info">
+<summary>方案特点</summary>
 <ul>
 <li><strong>适用场景</strong>：已获取公网 IPv4 或 IPv6 地址</li>
 <li><strong>核心优势</strong>：零延迟、速度快、配置简单</li>
 <li><strong>主要缺点</strong>：IP 地址动态变化频繁，需记忆或频繁查询</li>
 </ul>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">建议</p>
 <p>IP 直接访问适合临时使用或配合 DDNS 方案。如果 IP 地址频繁变化，建议使用方案三或方案四。</p>
-</div>
+</details>
 <h4 id="ipv6">开启 IPv6 网络<a class="headerlink" href="#ipv6" title="Permanent link">¶</a></h4>
 <p>如果已按照 <a href="../../route/ipv6/">软路由 - 开启 IPv6</a> 章节配置好上游网络，还需要在群晖 DSM 中启用 IPv6 功能。</p>
-<p>打开 <strong>【控制面板】→【网络】→【网络界面】</strong>，双击主网络接口进入编辑。</p>
-<p>在 <strong>【IPv6】</strong> 标签页中，选择 <strong>【自动】</strong> 配置方式，系统将自动从上游路由器获取 IPv6 地址
+<p>打开 <strong>【控制面板】→【网络】→【网络界面】</strong>，双击主网络接口进入编辑，在 <strong>【IPv6】</strong> 标签页中，选择 <strong>【自动】</strong> 配置方式，系统将自动从上游路由器获取 IPv6 地址。
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/508.png" data-desc-position="bottom"><img alt="启用 IPv6" src="https://img.it927.com/aio/508.png"></a>
 配置完成后，确认群晖已成功获取公网 IPv6 地址</p>
 <h4 id="_3">访问测试<a class="headerlink" href="#_3" title="Permanent link">¶</a></h4>
@@ -2507,8 +2503,8 @@
 </div>
 </div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">常见问题排查</p>
+<details class="- warning">
+<summary>常见问题排查</summary>
 <p>如果无法访问，请依次检查：</p>
 <ol>
 <li><strong>防火墙设置</strong>：检查路由器和群晖的防火墙是否阻止访问</li>
@@ -2516,7 +2512,7 @@
 <li><strong>网络环境</strong>：确认客户端网络支持 IPv6 访问</li>
 <li><strong>端口检查</strong>：使用在线工具测试端口 5000/5001 是否开放</li>
 </ol>
-</div>
+</details>
 <h4 id="dsm">DSM 安全设置（可选）<a class="headerlink" href="#dsm" title="Permanent link">¶</a></h4>
 <p>为了提升安全性，建议配置以下选项：</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">配置 IP 检查策略</label></div>
@@ -2532,26 +2528,26 @@
 </div>
 </div>
 </div>
-<div class="admonition info">
-<p class="admonition-title">关于 IP 地址检查</p>
+<details class="- info">
+<summary>关于 IP 地址检查</summary>
 <ul>
 <li><strong>启用检查</strong>：DSM 会验证请求来源 IP，防止会话劫持</li>
 <li><strong>忽略检查</strong>：允许来自任意 IP 的访问，适用于 CDN 中转场景</li>
 <li><strong>建议</strong>：IP 直接访问保持启用状态，CDN 方案才需要忽略</li>
 </ul>
-</div>
+</details>
 <h3 id="ipv6-cdn">方案二：IPv6 + CDN 中转<a class="headerlink" href="#ipv6-cdn" title="Permanent link">¶</a></h3>
 <p>如果需要同时支持 IPv4/IPv6 双协议栈访问，推荐使用 CDN 边缘加速方案。该方案通过 CDN 节点实现双栈协议转换，具有全球加速、高可用性等优势。</p>
 <p>本节以腾讯云 <a href="https://console.cloud.tencent.com/edgeone">EdgeOne</a> 提供的免费加速方案为例，使用 <a href="https://github.com/cxbdasheng/dnet">D-NET</a> 开源工具实现 DCDN 功能的自动化配置。</p>
-<div class="admonition tip">
-<p class="admonition-title">方案优势</p>
+<details class="- tip">
+<summary>方案优势</summary>
 <ul>
 <li>支持 IPv4 和 IPv6 双协议栈访问</li>
 <li>免费额度充足（腾讯云 EdgeOne 免费版）</li>
 <li>全球 CDN 加速节点，访问速度快</li>
 <li>自动同步动态 IP 地址变化</li>
 </ul>
-</div>
+</details>
 <h4 id="docker">安装 Docker<a class="headerlink" href="#docker" title="Permanent link">¶</a></h4>
 <p>群晖需要先安装 Container Manager（Docker）才能运行 D-NET 容器。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">步骤 1：安装 Container Manager</label><label for="__tabbed_3_2">步骤 2：配置 Docker 网络</label><label for="__tabbed_3_3">步骤 3：确认配置</label><label for="__tabbed_3_4">步骤 4：验证安装</label></div>
@@ -2648,13 +2644,13 @@
 </div>
 </div>
 </div>
-<div class="admonition info">
-<p class="admonition-title">接入方式选择</p>
+<details class="- info">
+<summary>接入方式选择</summary>
 <ul>
 <li><strong>CNAME 接入</strong>：推荐方式，保持现有 DNS 服务商不变</li>
 <li><strong>NS 接入</strong>：需要修改域名 NS 记录，将 DNS 托管到腾讯云</li>
 </ul>
-</div>
+</details>
 <h4 id="d-net_1">配置 D-NET<a class="headerlink" href="#d-net_1" title="Permanent link">¶</a></h4>
 <p>D-NET 安装完成后，通过浏览器访问 <code>http://群晖IP:9877</code> 进入 Web 管理界面。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/498.png" data-desc-position="bottom"><img alt="D-NET 登录界面" src="https://img.it927.com/aio/498.png"></a></p>
@@ -2760,12 +2756,12 @@
     
         <span class="md-source-file__fact">
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:21 UTC">2026年1月19日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:46 UTC">2026年1月19日</span>
         </span>
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:21 UTC">2026年1月19日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:46 UTC">2026年1月19日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
