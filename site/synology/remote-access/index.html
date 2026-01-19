@@ -1602,6 +1602,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证访问
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#d-net_1" class="md-nav__link">
     <span class="md-ellipsis">
       配置 D-NET
@@ -1620,7 +1629,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       测试验证
     </span>
@@ -1629,7 +1638,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       性能测试
     </span>
@@ -1675,7 +1684,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       群晖远程访问安全设置
     </span>
@@ -2280,6 +2289,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证访问
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#d-net_1" class="md-nav__link">
     <span class="md-ellipsis">
       配置 D-NET
@@ -2298,7 +2316,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       测试验证
     </span>
@@ -2307,7 +2325,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       性能测试
     </span>
@@ -2353,7 +2371,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       群晖远程访问安全设置
     </span>
@@ -2503,7 +2521,7 @@
 </div>
 </div>
 </div>
-<details class="- warning">
+<details class="warning" open="open">
 <summary>常见问题排查</summary>
 <p>如果无法访问，请依次检查：</p>
 <ol>
@@ -2539,14 +2557,14 @@
 <h3 id="ipv6-cdn">方案二：IPv6 + CDN 中转<a class="headerlink" href="#ipv6-cdn" title="Permanent link">¶</a></h3>
 <p>如果需要同时支持 IPv4/IPv6 双协议栈访问，推荐使用 CDN 边缘加速方案。该方案通过 CDN 节点实现双栈协议转换，具有全球加速、高可用性等优势。</p>
 <p>本节以腾讯云 <a href="https://console.cloud.tencent.com/edgeone">EdgeOne</a> 提供的免费加速方案为例，使用 <a href="https://github.com/cxbdasheng/dnet">D-NET</a> 开源工具实现 DCDN 功能的自动化配置。</p>
-<details class="- tip">
-<summary>方案优势</summary>
+<details class="tip" open="open">
+<summary>内外网分流优化建议</summary>
+<p>为了优化访问体验，建议配置智能分流：</p>
 <ul>
-<li>支持 IPv4 和 IPv6 双协议栈访问</li>
-<li>免费额度充足（腾讯云 EdgeOne 免费版）</li>
-<li>全球 CDN 加速节点，访问速度快</li>
-<li>自动同步动态 IP 地址变化</li>
+<li><strong>内网访问</strong>：通过路由器 DNS 劫持或 Hosts 文件，将访问域名解析到群晖内网 IP（如 192.168.1.100），实现内网直连</li>
+<li><strong>外网访问</strong>：使用 CDN 的 CNAME 解析，通过边缘节点加速访问</li>
 </ul>
+<p>这样可以实现：在家时直连 NAS（速度快、无流量限制），在外时通过 CDN 访问（支持双协议栈、全球加速）。</p>
 </details>
 <h4 id="docker">安装 Docker<a class="headerlink" href="#docker" title="Permanent link">¶</a></h4>
 <p>群晖需要先安装 Container Manager（Docker）才能运行 D-NET 容器。</p>
@@ -2651,6 +2669,8 @@
 <li><strong>NS 接入</strong>：需要修改域名 NS 记录，将 DNS 托管到腾讯云</li>
 </ul>
 </details>
+<h4 id="_4">验证访问<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<p>在配置 D-NET 前，需要确保目标服务支持 IPv6 访问，按照 <a href="#_3">访问测试</a> 验证是否可以能访问。</p>
 <h4 id="d-net_1">配置 D-NET<a class="headerlink" href="#d-net_1" title="Permanent link">¶</a></h4>
 <p>D-NET 安装完成后，通过浏览器访问 <code>http://群晖IP:9877</code> 进入 Web 管理界面。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/498.png" data-desc-position="bottom"><img alt="D-NET 登录界面" src="https://img.it927.com/aio/498.png"></a></p>
@@ -2699,11 +2719,11 @@
 <p class="admonition-title">安全提示</p>
 <p>启用"忽略 IP 地址检查"会降低一定的安全性，建议配合防火墙规则、双因素认证等安全措施使用。</p>
 </div>
-<h4 id="_4">测试验证<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<h4 id="_5">测试验证<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
 <p>配置完成后，通过浏览器访问配置的域名，验证是否能正常访问服务。
 示例：访问 <code>http://nas.it927.com</code>，页面正常加载即表示配置成功。
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/512.png" data-desc-position="bottom"><img alt="访问测试" src="https://img.it927.com/aio/512.png"></a></p>
-<h4 id="_5">性能测试<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
+<h4 id="_6">性能测试<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
 <p>通过全球节点延迟测试，验证 EdgeOne 加速效果：
 <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/513.png" data-desc-position="bottom"><img alt="全球节点延迟测试" src="https://img.it927.com/aio/513.png"></a></p>
 <h3 id="ipv6-ddns">方案三：IPv6 + DDNS<a class="headerlink" href="#ipv6-ddns" title="Permanent link">¶</a></h3>
@@ -2715,7 +2735,7 @@
 <h3 id="frp">方案五：FRP 内网穿透<a class="headerlink" href="#frp" title="Permanent link">¶</a></h3>
 <p>如果无法获取公网 IP 且不想使用 IPv6，可以选择 FRP 内网穿透。</p>
 <p><strong>配置指南</strong>：请参考 <a href="../../remote/frp/">远程访问 - FRP 内网穿透</a> 章节的详细教程。</p>
-<h2 id="_6">群晖远程访问安全设置<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h2 id="_7">群晖远程访问安全设置<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
 <p>配置远程访问后，安全设置至关重要，以下是推荐的安全配置：</p>
 <h3 id="https">启用 HTTPS 访问<a class="headerlink" href="#https" title="Permanent link">¶</a></h3>
 <p>使用 HTTPS 可以加密传输数据，防止中间人攻击。</p>
@@ -2761,7 +2781,7 @@
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:12:46 UTC">2026年1月19日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月19日 15:19:55 UTC">2026年1月19日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
