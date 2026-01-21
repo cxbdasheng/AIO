@@ -22,7 +22,7 @@ description: 详细介绍如何使用acme.sh为群晖NAS自动申请和续签Let
 
 ## 什么是 acme.sh
 
-acme.sh 是一个纯 Shell 脚本实现的 ACME 协议客户端，可以自动化申请和续签 Let's Encrypt 等机构的免费 SSL 证书。相比 certbot 等工具，acme.sh 更轻量、依赖更少，特别适合在群晖等 NAS 设备上使用，本节使用 Docker 安装 acme.sh。
+**acme.sh 是一个纯 Shell 脚本实现的 ACME 协议客户端，可以自动化申请和续签 Let's Encrypt 等机构的免费 SSL 证书**。相比 certbot 等工具，acme.sh 更轻量、依赖更少，特别适合在群晖等 NAS 设备上使用，本节使用 Docker 安装 acme.sh。
 
 ## 为什么需要自动续签
 
