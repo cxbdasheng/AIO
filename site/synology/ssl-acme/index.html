@@ -3,19 +3,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="详细介绍如何在ESXi环境中部署Windows家庭PC虚拟机，包括硬件规划、系统安装、性能优化和故障排除，打造高效稳定的家庭办公和娱乐环境">
+        <meta name="description" content="详细介绍如何使用acme.sh为群晖NAS自动申请和续签Let's Encrypt免费SSL证书，包括安装配置、DNS API验证、自动部署到DSM系统以及常见问题解决方案">
       
       
         <meta name="author" content="陈大剩">
       
       
-        <link rel="canonical" href="https://aio.it927.com/home/pc/">
+        <link rel="canonical" href="https://aio.it927.com/synology/ssl-acme/">
       
       
-        <link rel="prev" href="../../synology/remote-access/">
+        <link rel="prev" href="../ssd/">
       
       
-        <link rel="next" href="../develop/">
+        <link rel="next" href="../remote-access/">
       
       
       <link rel="icon" href="../../assets/images/favicon.ico">
@@ -23,11 +23,11 @@
     
     
       
-        <title>家庭 PC - 家庭 AIO 服务器搭建教程</title>
+        <title>添加证书 - 家庭 AIO 服务器搭建教程</title>
       
     
     
-    <meta name="keywords" content="家庭PC虚拟机,ESXi Windows虚拟机,Windows 10虚拟化,Windows 11虚拟化,远程桌面连接,RDP 远程访问,家庭办公系统,虚拟机GPU直通,Windows虚拟机优化,ESXi Windows性能,ESXi环境搭建教程,陈大剩的家庭AIO服务器">
+    <meta name="keywords" content="群晖SSL证书,acme.sh自动续签,Let's Encrypt证书,群晖HTTPS配置,SSL证书自动更新,群晖证书管理,DSM SSL配置,免费SSL证书,群晖域名证书,黑群晖SSL,acme.sh部署,群晖证书续签,陈大剩的家庭AIO服务器,家庭AIO服务器">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#acmesh-ssl" class="md-skip">
           跳转至
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              家庭 PC
+              添加证书
             
           </span>
         </div>
@@ -347,11 +347,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../synology/install/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../install/" class="md-tabs__link">
           
   
   
@@ -367,13 +369,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../home/pc/" class="md-tabs__link">
           
   
   
@@ -1317,24 +1317,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -1347,7 +1352,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             黑群晖
@@ -1361,7 +1366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../synology/install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   
@@ -1384,7 +1389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../synology/design/" class="md-nav__link">
+      <a href="../design/" class="md-nav__link">
         
   
   
@@ -1407,7 +1412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../synology/ssd/" class="md-nav__link">
+      <a href="../ssd/" class="md-nav__link">
         
   
   
@@ -1427,105 +1432,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../synology/ssl-acme/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    添加证书
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../synology/remote-access/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    远程访问
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    家庭工作区
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            家庭工作区
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
     
   
   
@@ -1535,13 +1441,15 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   
   <span class="md-ellipsis">
-    家庭 PC
+    添加证书
     
   </span>
   
@@ -1554,7 +1462,7 @@
   
   
   <span class="md-ellipsis">
-    家庭 PC
+    添加证书
     
   </span>
   
@@ -1567,6 +1475,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1575,103 +1485,130 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#acmesh" class="md-nav__link">
     <span class="md-ellipsis">
-      硬件规划
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="硬件规划">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      推荐配置
+      什么是 acme.sh
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要自动续签
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Docker
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acmesh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 acme.sh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装 acme.sh">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      磁盘分区规划
+      华为云特殊设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="华为云特殊设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建 IAM 子账号
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      准备工作
+      创建并配置用户组
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      创建虚拟机
+      将用户添加到用户组
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="创建虚拟机">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      确认最终设置
+      获取环境变量所需信息
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      Windows 系统安装
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Windows 系统安装">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      配置引导阶段
+      环境变量配置信息
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      系统初始化
+      配置自动续签
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="配置自动续签">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      安装后操作
+      验证证书续签
     </span>
   </a>
   
@@ -1683,28 +1620,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vmware-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装 VMware Tools
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="安装 VMware Tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      安装步骤
+      证书部署配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="证书部署配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 配置 DNS 解析
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      验证安装
+      2. 设置默认证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 配置主机名称
     </span>
   </a>
   
@@ -1716,19 +1662,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      直通键鼠
+      验证证书
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="直通键鼠">
+    <nav class="md-nav" aria-label="验证证书">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usb" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      直通 USB 控制器
+      浏览器访问验证
     </span>
   </a>
   
@@ -1737,73 +1683,7 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      直通单独的鼠标键盘
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      验证键鼠直通
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      直通 GPU
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="直通 GPU">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpu_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      启用 GPU 直通
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      显示优化
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      其他细节优化
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="其他细节优化">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      关闭系统认定虚拟机
+      证书信息检查
     </span>
   </a>
   
@@ -1830,7 +1710,101 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/" class="md-nav__link">
+      <a href="../remote-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    远程访问
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    家庭工作区
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            家庭工作区
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/pc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    家庭 PC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/develop/" class="md-nav__link">
         
   
   
@@ -1853,7 +1827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../video/" class="md-nav__link">
+      <a href="../../home/video/" class="md-nav__link">
         
   
   
@@ -1876,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../network/" class="md-nav__link">
+      <a href="../../home/network/" class="md-nav__link">
         
   
   
@@ -1899,7 +1873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8s/" class="md-nav__link">
+      <a href="../../home/k8s/" class="md-nav__link">
         
   
   
@@ -2219,6 +2193,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2227,103 +2203,130 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#acmesh" class="md-nav__link">
     <span class="md-ellipsis">
-      硬件规划
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="硬件规划">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      推荐配置
+      什么是 acme.sh
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要自动续签
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 Docker
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acmesh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 acme.sh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装 acme.sh">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      磁盘分区规划
+      华为云特殊设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="华为云特殊设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建 IAM 子账号
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      准备工作
+      创建并配置用户组
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      创建虚拟机
+      将用户添加到用户组
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="创建虚拟机">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      确认最终设置
+      获取环境变量所需信息
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      Windows 系统安装
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Windows 系统安装">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      配置引导阶段
+      环境变量配置信息
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      系统初始化
+      配置自动续签
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="配置自动续签">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      安装后操作
+      验证证书续签
     </span>
   </a>
   
@@ -2335,28 +2338,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vmware-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装 VMware Tools
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="安装 VMware Tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      安装步骤
+      证书部署配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="证书部署配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 配置 DNS 解析
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      验证安装
+      2. 设置默认证书
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 配置主机名称
     </span>
   </a>
   
@@ -2368,19 +2380,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      直通键鼠
+      验证证书
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="直通键鼠">
+    <nav class="md-nav" aria-label="验证证书">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usb" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      直通 USB 控制器
+      浏览器访问验证
     </span>
   </a>
   
@@ -2389,73 +2401,7 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      直通单独的鼠标键盘
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      验证键鼠直通
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      直通 GPU
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="直通 GPU">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpu_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      启用 GPU 直通
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      显示优化
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      其他细节优化
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="其他细节优化">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      关闭系统认定虚拟机
+      证书信息检查
     </span>
   </a>
   
@@ -2481,7 +2427,7 @@
                   
 
   
-    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/home/pc.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/synology/ssl-acme.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
@@ -2489,311 +2435,350 @@
   
 
 
-  <h1>家庭 PC</h1>
-
-<p>根据陈大剩家庭工作区的规划，家庭中还需搭建一台高性能的 PC（Windows 虚拟机），满足家庭成员办公、游戏娱乐和开发工作的需求。</p>
-<h2 id="_1">硬件规划<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<h3 id="_2">推荐配置<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<p>根据家庭使用需求，陈大剩建议采用 <strong>直通存储</strong> 和 <strong>直通 GPU</strong> 方案。 直通存储确保即使 ESXi 主机系统出现故障，数据依然安全可靠；而 GPU 直通则便于直接连接显示器，实现独立显卡的独占使用。</p>
-<table>
-<thead>
-<tr>
-<th>组件</th>
-<th>推荐配置</th>
-<th>最低配置</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>CPU</strong></td>
-<td>12 vCPU</td>
-<td>8 vCPU</td>
-<td>建议选择高主频处理器</td>
-</tr>
-<tr>
-<td><strong>内存</strong></td>
-<td>32 GB</td>
-<td>16 GB</td>
-<td>GPU 直通必须预留全部内存</td>
-</tr>
-<tr>
-<td><strong>存储</strong></td>
-<td>500GB NVMe SSD</td>
-<td>256GB SSD</td>
-<td>推荐直通整块物理盘</td>
-</tr>
-<tr>
-<td><strong>显卡</strong></td>
-<td>直通 GPU</td>
-<td>集成显卡</td>
-<td>游戏和图形处理必备</td>
-</tr>
-<tr>
-<td><strong>网络</strong></td>
-<td>10 Gbps</td>
-<td>1 Gbps</td>
-<td>高速内网传输</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_3">磁盘分区规划<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>分区</th>
-<th>容量</th>
-<th>类型</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>C:盘</strong></td>
-<td>120 GB</td>
-<td>系统盘</td>
-<td>Windows 系统及程序文件</td>
-</tr>
-<tr>
-<td><strong>D:盘</strong></td>
-<td>380 GB</td>
-<td>软件盘</td>
-<td>安装软件、游戏及工作文件</td>
-</tr>
-<tr>
-<td><strong>E:盘</strong></td>
-<td>4 TB</td>
-<td>数据盘</td>
-<td>NAS 网络驱动器，存储重要资料</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_4">准备工作<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<p><strong>下载 Windows ISO 镜像</strong></p>
-<p>访问 <a href="https://www.microsoft.com/zh-cn/software-download/">Microsoft 官方下载页面</a>，推荐下载：<strong>Windows 10 Pro</strong>，下载完成后，将 ISO 文件上传到 ESXi 数据存储。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/370.png" data-desc-position="bottom"><img alt="Windows下载" src="https://img.it927.com/aio/370.png"></a></p>
-<h2 id="_5">创建虚拟机<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
-<p><strong>导航路径</strong>：【虚拟机】→【创建/注册虚拟机】</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：选择创建类型</label><label for="__tabbed_1_2">步骤 2：配置基本信息</label><label for="__tabbed_1_3">步骤 3：选择存储位置</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>选择【创建新虚拟机】，使用默认设置</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/359.png" data-desc-position="bottom"><img alt="选择创建类型" src="https://img.it927.com/aio/359.png"></a></p>
-</div>
-<div class="tabbed-block">
+<h1 id="acmesh-ssl">使用 acme.sh 自动续签群晖的 SSL 证书<a class="headerlink" href="#acmesh-ssl" title="Permanent link">¶</a></h1>
+<h2 id="acmesh">什么是 acme.sh<a class="headerlink" href="#acmesh" title="Permanent link">¶</a></h2>
+<p>acme.sh 是一个纯 Shell 脚本实现的 ACME 协议客户端，可以自动化申请和续签 Let's Encrypt 等机构的免费 SSL 证书。相比 certbot 等工具，acme.sh 更轻量、依赖更少，特别适合在群晖等 NAS 设备上使用，本节使用 Docker 安装 acme.sh。</p>
+<h2 id="_1">为什么需要自动续签<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>Let's Encrypt 证书有效期为 90 天，到期前需要手动续签比较麻烦。使用 acme.sh 可以实现：</p>
 <ul>
-<li><strong>名称</strong>：输入有意义的虚拟机名称（如：Windows-PC）</li>
-<li><strong>兼容性</strong>：ESXi 8.0 U2 或更高版本  </li>
-<li><strong>客户机系统</strong>：Windows 10 (64位)</li>
+<li>自动申请证书</li>
+<li>自动续签（默认 60 天后自动续签）</li>
+<li>自动部署到群晖 DSM 系统</li>
+<li>无需手动干预，一次配置永久有效</li>
 </ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/360.png" data-desc-position="bottom"><img alt="选择名称和操作系统" src="https://img.it927.com/aio/360.png"></a></p>
-</div>
-<div class="tabbed-block">
-<ul>
-<li><strong>直通方式</strong>：随意选择一个数据存储（后续会配置直通盘）</li>
-<li><strong>虚拟磁盘方式</strong>：选择性能最好的 SSD 数据存储</li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/361.png" data-desc-position="bottom"><img alt="选择存储位置" src="https://img.it927.com/aio/361.png"></a></p>
-</div>
-</div>
-</div>
-<p>以下配置步骤针对高性能需求，请根据实际情况调整参数。新手可使用默认设置。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:6"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><input id="__tabbed_2_4" name="__tabbed_2" type="radio"><input id="__tabbed_2_5" name="__tabbed_2" type="radio"><input id="__tabbed_2_6" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">步骤 1：CPU 配置</label><label for="__tabbed_2_2">步骤 2：内存配置</label><label for="__tabbed_2_3">步骤 3：清理默认设备</label><label for="__tabbed_2_4">步骤 4：网络配置</label><label for="__tabbed_2_5">步骤 5：添加直通设备</label><label for="__tabbed_2_6">步骤 6：添加 ISO 镜像</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ul>
-<li><strong>处理器数量</strong>：12 个 vCPU</li>
-<li><strong>每插槽内核数</strong>：12</li>
-<li><strong>CPU 热添加</strong>：可选启用（支持在线扩容）</li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/362.png" data-desc-position="bottom"><img alt="CPU配置" src="https://img.it927.com/aio/362.png"></a></p>
-</div>
-<div class="tabbed-block">
-<ul>
-<li><strong>内存大小</strong>：32 GB  </li>
-<li><strong>重要设置</strong>：如果需要直通 PCI 设备，必须勾选【预留客户机内存(全部锁定)】</li>
-<li><strong>内存热添加</strong>：可选启用</li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/363.png" data-desc-position="bottom"><img alt="内存配置" src="https://img.it927.com/aio/363.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>删除不需要的默认设备：</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> 删除默认硬盘</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> 删除 CD/DVD 驱动器  </li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 保留网络适配器</li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/364.png" data-desc-position="bottom"><img alt="清理默认设备" src="https://img.it927.com/aio/364.png"></a></p>
-</div>
-<div class="tabbed-block">
-<ul>
-<li><strong>网络类型</strong>：选择【家庭终端网段】</li>
-<li><strong>网卡类型</strong>：推荐 VMXNET3（高性能）</li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/365.png" data-desc-position="bottom"><img alt="网络配置" src="https://img.it927.com/aio/365.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p><strong>磁盘直通配置：</strong></p>
+<h2 id="_2">前置准备<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ol>
-<li>选择【添加其他设备】 → 【PCI设备】</li>
-<li>选择目标存储设备，陈大剩这里直通一张 SN770</li>
-<li>确保物理盘平时未被使用</li>
+<li><strong>域名</strong>：需要拥有一个域名，并能够修改 DNS 解析记录</li>
+<li><strong>DNS API 支持</strong>：建议使用 DNS API 方式验证域名所有权（支持多种 DNS 服务商）</li>
 </ol>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/367.png" data-desc-position="bottom"><img alt="磁盘直通" src="https://img.it927.com/aio/367.png"></a></p>
+<h2 id="docker">安装 Docker<a class="headerlink" href="#docker" title="Permanent link">¶</a></h2>
+<p>群晖需要先安装 Container Manager（Docker）才能运行 acme.sh 容器。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">步骤 1：安装 Container Manager</label><label for="__tabbed_1_2">步骤 2：配置 Docker 网络</label><label for="__tabbed_1_3">步骤 3：确认配置</label><label for="__tabbed_1_4">步骤 4：验证安装</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入群晖 <strong>【套件中心】</strong>，搜索 <code>docker</code>，选择 <strong>Container Manager</strong> 并安装
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/487.png" data-desc-position="bottom"><img alt="安装 Container Manager" src="https://img.it927.com/aio/487.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在 Container Manager 中设置 Docker 网络子网，通常保持默认配置即可
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/488.png" data-desc-position="bottom"><img alt="配置 Docker 网络" src="https://img.it927.com/aio/488.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>检查 Docker 配置信息，确认无误后点击 <strong>【完成】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/489.png" data-desc-position="bottom"><img alt="检查 Docker 配置" src="https://img.it927.com/aio/489.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>安装完成后，可在 <strong>【套件中心】</strong> 查看到 Container Manager
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/490.png" data-desc-position="bottom"><img alt="完成 Docker 安装" src="https://img.it927.com/aio/490.png"></a></p>
+</div>
+</div>
+</div>
+<h2 id="acmesh_1">安装 acme.sh<a class="headerlink" href="#acmesh_1" title="Permanent link">¶</a></h2>
+<p>安装完 Container Manager（Docker）后，需要下载并运行 acme.sh 容器镜像。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:8"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><input id="__tabbed_2_4" name="__tabbed_2" type="radio"><input id="__tabbed_2_5" name="__tabbed_2" type="radio"><input id="__tabbed_2_6" name="__tabbed_2" type="radio"><input id="__tabbed_2_7" name="__tabbed_2" type="radio"><input id="__tabbed_2_8" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">步骤 1：搜索 acme.sh 镜像</label><label for="__tabbed_2_2">步骤 2：下载镜像</label><label for="__tabbed_2_3">步骤 3：创建容器</label><label for="__tabbed_2_4">步骤 4：常规设置</label><label for="__tabbed_2_5">步骤 5：存储设置</label><label for="__tabbed_2_6">步骤 6：环境变量设置</label><label for="__tabbed_2_7">步骤 7：网络设置</label><label for="__tabbed_2_8">步骤 8：确认创建</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入 <strong>【套件中心】→【Container Manager】→【镜像仓库】</strong>，搜索 <code>acme.sh</code>，点击选择
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/527.png" data-desc-position="bottom"><img alt="搜索 acme.sh 镜像" src="https://img.it927.com/aio/527.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>选择最新版本（通常默认为 <code>latest</code> 标签），点击 <strong>【下载】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/492.png" data-desc-position="bottom"><img alt="下载镜像" src="https://img.it927.com/aio/492.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入 <strong>【Container Manager】→【容器】</strong>，点击 <strong>【新增】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/493.png" data-desc-position="bottom"><img alt="创建 Docker 容器" src="https://img.it927.com/aio/493.png"></a></p>
 </div>
 <div class="tabbed-block">
 <ul>
-<li><strong>CD/DVD 驱动器</strong>：选择“数据存储 ISO 文件”</li>
-<li><strong>镜像文件</strong>：选择上传的 Windows ISO</li>
+<li><strong>映像</strong>：选择 <code>acme.sh:latest</code></li>
+<li><strong>容器名称</strong>：自定义（如 <code>acme-sh</code>），复制容器名称，后续会用到。</li>
+<li><strong>启用自动重新启动</strong>：勾选此选项，确保容器随系统启动
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/528.png" data-desc-position="bottom"><img alt="Docker 常规设置" src="https://img.it927.com/aio/528.png"></a></li>
 </ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/368.png" data-desc-position="bottom"><img alt="ISO镜像配置" src="https://img.it927.com/aio/368.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p><strong>存储空间映射</strong>：挂载到容器内的 <code>/acme.sh</code> 目录，可以新创建一个目录，如 <code>/volume1/docker/acme.sh</code>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/529.png" data-desc-position="bottom"><img alt="Docker 端口存储设置" src="https://img.it927.com/aio/529.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>设置必要的环境变量用于证书申请和部署。以下是不同 DNS 服务商的配置示例：</p>
+<p><strong>群晖 DSM 部署相关（必填）：</strong>
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">SYNO_Username</span><span class="o">=</span>admin<span class="w">              </span><span class="c1"># 群晖管理员账号</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">SYNO_Password</span><span class="o">=</span>your_password<span class="w">      </span><span class="c1"># 群晖管理员登录密码</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">SYNO_Certificate</span><span class="o">=</span>nas.it927.com<span class="w">   </span><span class="c1"># 证书描述名称（建议使用域名）</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">SYNO_Create</span><span class="o">=</span><span class="m">1</span><span class="w">                    </span><span class="c1"># 如果证书不存在则自动创建</span>
+</code></pre></div><p></p>
+<p><strong>DNS 服务商 API 配置（根据实际服务商选择其一）：</strong></p>
+<p>华为云 DNS：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">HUAWEICLOUD_Username</span><span class="o">=</span>your_iam_username<span class="w">      </span><span class="c1"># IAM 用户名</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">HUAWEICLOUD_Password</span><span class="o">=</span>your_iam_password<span class="w">      </span><span class="c1"># IAM 用户密码</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">HUAWEICLOUD_DomainName</span><span class="o">=</span>your_account_name<span class="w">    </span><span class="c1"># 华为云账户名</span>
+</code></pre></div><p></p>
+<p>阿里云 DNS：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">Ali_Key</span><span class="o">=</span>your_access_key<span class="w">          </span><span class="c1"># 阿里云 Access Key</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">Ali_Secret</span><span class="o">=</span>your_access_secret<span class="w">    </span><span class="c1"># 阿里云 Access Secret</span>
+</code></pre></div><p></p>
+<p>腾讯云 DNS：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">Tencent_SecretId</span><span class="o">=</span>your_secret_id<span class="w">      </span><span class="c1"># 腾讯云 SecretId</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">Tencent_SecretKey</span><span class="o">=</span>your_secret_key<span class="w">    </span><span class="c1"># 腾讯云 SecretKey</span>
+</code></pre></div><p></p>
+<p>CloudFlare DNS：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">CF_Token</span><span class="o">=</span>your_api_token<span class="w">          </span><span class="c1"># CloudFlare API Token</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">CF_Account_ID</span><span class="o">=</span>your_account_id<span class="w">    </span><span class="c1"># CloudFlare Account ID</span>
+</code></pre></div><p></p>
+<p>更多 DNS 服务商配置请参考：<a href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi2">acme.sh DNS API 文档</a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/530.png" data-desc-position="bottom"><img alt="环境变量设置" src="https://img.it927.com/aio/530.png"></a></p>
+<details class="warning" open="open">
+<summary>注意</summary>
+<p>如果使用华为云 DNS，必须创建 IAM 子账号并授权相应权限，详见 <a href="#_3">华为云特殊设置</a></p>
+</details>
+</div>
+<div class="tabbed-block">
+<p>网络模式可设置为 <strong>【host】</strong> 模式，<strong>执行命令</strong> 处输入 <code>daemon</code>。
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/531.png" data-desc-position="bottom"><img alt="Docker 网络设置" src="https://img.it927.com/aio/531.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>检查所有配置参数，确认无误后点击 <strong>【完成】</strong></p>
 </div>
 </div>
 </div>
-<h3 id="_6">确认最终设置<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<p><strong>设置启动模式</strong>：在虚拟机选项中，将固件设置为 <strong>EFI</strong>（支持 UEFI 启动）
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/379.png" data-desc-position="bottom"><img alt="EFI设置" src="https://img.it927.com/aio/379.png"></a>
-<strong>检查配置清单</strong> 在点击“完成”前，请确认：</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> CPU 和内存配置正确</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> 直通设备已添加（如需）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> ISO 镜像已挂载</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> 网络配置正确</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked><span class="task-list-indicator"></span></label> EFI 启动已启用</li>
+<h3 id="_3">华为云特殊设置<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<details class="info" open="open">
+<summary>为什么需要特殊设置</summary>
+<p>华为云的 API 访问必须使用 IAM 子账号进行认证，主账号无法直接使用。因此需要创建 IAM 子账号并授予 DNS 管理权限，否则证书申请和续签会失败。</p>
+</details>
+<h4 id="iam">创建 IAM 子账号<a class="headerlink" href="#iam" title="Permanent link">¶</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><input id="__tabbed_3_5" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">步骤 1：进入统一身份认证</label><label for="__tabbed_3_2">步骤 2：创建子账号</label><label for="__tabbed_3_3">步骤 3：创建用户</label><label for="__tabbed_3_4">步骤 4：完成用户创建</label><label for="__tabbed_3_5">步骤 5：下载凭证信息</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>登录华为云控制台，选择 <strong>【统一身份认证】</strong> 服务
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/515.png" data-desc-position="bottom"><img alt="进入统一身份认证" src="https://img.it927.com/aio/515.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>进入【用户】点击【创建用户】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/516.png" data-desc-position="bottom"><img alt="创建子账号" src="https://img.it927.com/aio/516.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>输入用户名，选择：【编程访问】、【管理控制台访问】，关闭【登入保护】，点击【下一步】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/517.png" data-desc-position="bottom"><img alt="创建子账号" src="https://img.it927.com/aio/517.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>点击【创建用户】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/522.png" data-desc-position="bottom"><img alt="完成用户创建" src="https://img.it927.com/aio/522.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>创建完成后会提示下载凭证信息（包含初始密码），务必保存好
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/550.png" data-desc-position="bottom"><img alt="下载凭证信息" src="https://img.it927.com/aio/550.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="_4">创建并配置用户组<a class="headerlink" href="#_4" title="Permanent link">¶</a></h4>
+<p>完成子用户创建后，需要创建用户组并授予 DNS 管理权限。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:6"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><input id="__tabbed_4_5" name="__tabbed_4" type="radio"><input id="__tabbed_4_6" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">步骤 1：创建用户组</label><label for="__tabbed_4_2">步骤 2：完成用户组创建</label><label for="__tabbed_4_3">步骤 3：授权用户组</label><label for="__tabbed_4_4">步骤 4：授权用户组权限</label><label for="__tabbed_4_5">步骤 5：授权用户组最小权限</label><label for="__tabbed_4_6">步骤 6：完成授权</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入【用户组】点击【创建用户组】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/547.png" data-desc-position="bottom"><img alt="创建用户组" src="https://img.it927.com/aio/547.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>输入用户组名称和描述，点击【确定】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/548.png" data-desc-position="bottom"><img alt="完成用户组创建" src="https://img.it927.com/aio/548.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在【用户组】中点击刚刚创建的用户组，点击【授权】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/549.png" data-desc-position="bottom"><img alt="授权用户组" src="https://img.it927.com/aio/549.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>搜索【dns】授权，选择【 DNS Administrator 】和【 DNS FullAccess 】，点击【下一步】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/518.png" data-desc-position="bottom"><img alt="授权用户组权限" src="https://img.it927.com/aio/518.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>授权所有资源，点击【确认】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/519.png" data-desc-position="bottom"><img alt="授权用户组最小权限" src="https://img.it927.com/aio/519.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>确认授权信息，完成用户组权限配置
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/520.png" data-desc-position="bottom"><img alt="完成授权" src="https://img.it927.com/aio/520.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="_5">将用户添加到用户组<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
+<p>创建并配置好用户组后，需要将之前创建的 IAM 用户添加到该用户组中。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><input id="__tabbed_5_3" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">步骤 1：进入用户授权</label><label for="__tabbed_5_2">步骤 2：选择用户组</label><label for="__tabbed_5_3">步骤 3：完成用户授权</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>返回【用户】列表，选择刚创建的用户，点击【授权】
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/523.png" data-desc-position="bottom"><img alt="用户授权" src="https://img.it927.com/aio/523.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在授权界面中，选择刚创建的用户组，将用户加入该组
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/521.png" data-desc-position="bottom"><img alt="选择用户组" src="https://img.it927.com/aio/521.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>确认授权，完成用户添加到用户组的操作
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/551.png" data-desc-position="bottom"><img alt="完成授权" src="https://img.it927.com/aio/551.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="_6">获取环境变量所需信息<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
+<p>完成上述配置后，需要登录子账号获取 acme.sh 所需的环境变量信息。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><input id="__tabbed_6_3" name="__tabbed_6" type="radio"><input id="__tabbed_6_4" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">步骤 1：复制子账号登录链接</label><label for="__tabbed_6_2">步骤 2：登录子账号</label><label for="__tabbed_6_3">步骤 3：修改初始密码</label><label for="__tabbed_6_4">步骤 4：查看账户信息</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>将鼠标悬停在创建的子账号名称上，会显示子账号登录链接，复制该链接
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/552.png" data-desc-position="bottom"><img alt="复制登录链接" src="https://img.it927.com/aio/552.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>在新的浏览器窗口或无痕模式下访问该链接，使用之前下载的初始密码登录
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/553.png" data-desc-position="bottom"><img alt="登录子账号" src="https://img.it927.com/aio/553.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>首次登录后系统会要求修改初始密码，设置新密码并妥善保存
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/554.png" data-desc-position="bottom"><img alt="修改初始密码" src="https://img.it927.com/aio/554.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>登录成功后，进入控制台，在 <strong>【我的凭证】</strong> 中查看账户信息
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/556.png" data-desc-position="bottom"><img alt="查看账户信息" src="https://img.it927.com/aio/556.png"></a></p>
+</div>
+</div>
+</div>
+<h4 id="_7">环境变量配置信息<a class="headerlink" href="#_7" title="Permanent link">¶</a></h4>
+<p>完成以上步骤后，即可获得 acme.sh 所需的华为云环境变量：</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/526.png" data-desc-position="bottom"><img alt="账户凭证信息" src="https://img.it927.com/aio/526.png"></a></p>
+<p>三个环境变量的对应关系：</p>
+<ul>
+<li><strong>HUAWEICLOUD_Username</strong>：IAM 用户名（上图中的"IAM 用户名"）</li>
+<li><strong>HUAWEICLOUD_Password</strong>：IAM 用户密码（修改后的新密码）</li>
+<li><strong>HUAWEICLOUD_DomainName</strong>：账户名（上图中的"账户名"）</li>
 </ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/369.png" data-desc-position="bottom"><img alt="完成虚拟机创建" src="https://img.it927.com/aio/369.png"></a></p>
-<h2 id="windows">Windows 系统安装<a class="headerlink" href="#windows" title="Permanent link">¶</a></h2>
-<p>点击【打开电源】开启 Windows 系统安装，Windows 安装过程相对简单，主要包括以下阶段：</p>
-<h3 id="_7">配置引导阶段<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
-<p>配置引导阶段主要任务是配置引导 Windows 系统安装，顺利将 Windows 安装进磁盘中。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:8"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><input id="__tabbed_3_5" name="__tabbed_3" type="radio"><input id="__tabbed_3_6" name="__tabbed_3" type="radio"><input id="__tabbed_3_7" name="__tabbed_3" type="radio"><input id="__tabbed_3_8" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">步骤 1：等待引导</label><label for="__tabbed_3_2">步骤 2：安装程序启动</label><label for="__tabbed_3_3">步骤 3：现在安装</label><label for="__tabbed_3_4">步骤 4：激活 Windows</label><label for="__tabbed_3_5">步骤 5：选择操作系统</label><label for="__tabbed_3_6">步骤 6：接受许可协议</label><label for="__tabbed_3_7">步骤 7：选择驱动磁盘</label><label for="__tabbed_3_8">步骤 8：安装 Windows</label></div>
+<h2 id="_8">配置自动续签<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>运行 acme.sh 容器后，需要创建自动续签脚本并配置计划任务，实现证书的自动申请和续签。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:7"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><input id="__tabbed_7_3" name="__tabbed_7" type="radio"><input id="__tabbed_7_4" name="__tabbed_7" type="radio"><input id="__tabbed_7_5" name="__tabbed_7" type="radio"><input id="__tabbed_7_6" name="__tabbed_7" type="radio"><input id="__tabbed_7_7" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">步骤 1：编写自动续签脚本</label><label for="__tabbed_7_2">步骤 2：上传脚本</label><label for="__tabbed_7_3">步骤 3：新建定时任务</label><label for="__tabbed_7_4">步骤 4：计划任务设置（常规）</label><label for="__tabbed_7_5">步骤 5：计划任务设置（计划）</label><label for="__tabbed_7_6">步骤 6：计划任务设置（任务设置）</label><label for="__tabbed_7_7">步骤 7：确认创建</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/371.png" data-desc-position="bottom"><img alt="等待引导" src="https://img.it927.com/aio/371.png"></a></p>
+<p>在本地创建名为 <code>cert.sh</code> 的脚本文件，根据实际情况修改以下三个必填参数：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># 域名（必填）</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">DOMAIN</span><span class="o">=</span><span class="s1">'nas.it927.com'</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># 域名 DNS 服务商（必填）</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># 类型：dns_ali dns_dp dns_gd dns_aws dns_linode dns_huaweicloud 根据域名服务商而定</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 可参考：https://github.com/acmesh-official/acme.sh/wiki/dnsapi2</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nv">DNS</span><span class="o">=</span><span class="s1">'dns_huaweicloud'</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Docker 容器名称（必填）</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nv">DOCKER_CONTAINER_NAME</span><span class="o">=</span><span class="s1">'acme-sh'</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># DNS API 生效等待时间 值(单位：秒)，一般120即可</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># 某些域名服务商的API生效时间较大，需要将这个值加大(比如900)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="nv">DNS_SLEEP</span><span class="o">=</span><span class="m">120</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="c1"># 证书服务商，letsencrypt</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="nv">CERT_SERVER</span><span class="o">=</span><span class="s1">'letsencrypt'</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="nv">generateCrtCommand</span><span class="o">=</span><span class="s2">"acme.sh --force --log --issue --server </span><span class="si">${</span><span class="nv">CERT_SERVER</span><span class="si">}</span><span class="s2"> --dns </span><span class="si">${</span><span class="nv">DNS</span><span class="si">}</span><span class="s2"> --dnssleep </span><span class="si">${</span><span class="nv">DNS_SLEEP</span><span class="si">}</span><span class="s2"> -d "</span><span class="si">${</span><span class="nv">DOMAIN</span><span class="si">}</span><span class="s2">" -d "</span>*.<span class="si">${</span><span class="nv">DOMAIN</span><span class="si">}</span><span class="s2">""</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="nv">installCrtCommand</span><span class="o">=</span><span class="s2">"acme.sh --deploy -d "</span><span class="si">${</span><span class="nv">DOMAIN</span><span class="si">}</span><span class="s2">" -d "</span>*.<span class="si">${</span><span class="nv">DOMAIN</span><span class="si">}</span><span class="s2">" --deploy-hook synology_dsm"</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$DOCKER_CONTAINER_NAME</span><span class="w">  </span><span class="nv">$generateCrtCommand</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$DOCKER_CONTAINER_NAME</span><span class="w"> </span><span class="nv">$installCrtCommand</span>
+</code></pre></div><p></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/372.png" data-desc-position="bottom"><img alt="安装程序启动" src="https://img.it927.com/aio/372.png"></a></p>
+<p>将上一步生成的脚本上传到群晖，并保存在 <code>/volume1/docker/acme.sh</code> 目录（共享目录）下：
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/533.png" data-desc-position="bottom"><img alt="Docker 上传脚本" src="https://img.it927.com/aio/533.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/373.png" data-desc-position="bottom"><img alt="现在安装" src="https://img.it927.com/aio/373.png"></a></p>
+<p>进入 <strong>【控制面板】→【计划任务】</strong>，点击 <strong>【新增】</strong>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/534.png" data-desc-position="bottom"><img alt="Docker 新建定时任务" src="https://img.it927.com/aio/534.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/374.png" data-desc-position="bottom"><img alt="激活 Windows" src="https://img.it927.com/aio/374.png"></a></p>
+<ul>
+<li><strong>任务名称</strong>：<code>update_ssl</code>（可自定义）</li>
+<li><strong>用户账号</strong>：输入 <code>root</code>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/535.png" data-desc-position="bottom"><img alt="计划任务设置" src="https://img.it927.com/aio/535.png"></a></li>
+</ul>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/375.png" data-desc-position="bottom"><img alt="选择操作系统" src="https://img.it927.com/aio/375.png"></a></p>
+<p>设置定时执行计划。由于 Let's Encrypt 证书有效期为 90 天，建议设置为每月执行一次或每周执行一次，确保证书及时续签。</p>
+<p>推荐设置：每月 1 号凌晨 2 点执行
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/536.png" data-desc-position="bottom"><img alt="计划任务设置" src="https://img.it927.com/aio/536.png"></a></p>
 </div>
 <div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/376.png" data-desc-position="bottom"><img alt="接受许可协议" src="https://img.it927.com/aio/376.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>这步就不多介绍，无脑操作就行
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/378.png" data-desc-position="bottom"><img alt="选择驱动磁盘" src="https://img.it927.com/aio/378.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/381.png" data-desc-position="bottom"><img alt="安装 Windows" src="https://img.it927.com/aio/381.png"></a></p>
-</div>
-</div>
-</div>
-<h3 id="_8">系统初始化<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
-<p>系统初始化阶段主要是为 Windows 系统准备操作数据，以保证安装完成后能快速正确的使用。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">步骤 1：准备设备</label><label for="__tabbed_4_2">步骤 2：系统初始化</label><label for="__tabbed_4_3">步骤 3：配置选择</label><label for="__tabbed_4_4">步骤 4：准备系统</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/382.png" data-desc-position="bottom"><img alt="准备设备" src="https://img.it927.com/aio/382.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/383.png" data-desc-position="bottom"><img alt="系统初始化" src="https://img.it927.com/aio/383.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>选择区域记得选择【中国】，后续过程中有一些初始化选项，按需选择即可，这里不做过多的赘述
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/384.png" data-desc-position="bottom"><img alt="系统初始化" src="https://img.it927.com/aio/384.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>前步骤【配置选择】全部完成后，会进入到准备系统阶段，此阶段会多次重启系统
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/385.png" data-desc-position="bottom"><img alt="系统初始化" src="https://img.it927.com/aio/385.png"></a></p>
-</div>
-</div>
-</div>
-<h3 id="_9">安装后操作<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
-<p>安装过程中请耐心等待，避免强制关机，不出意外，系统能顺利安装。系统安装完成后，建议立即执行以下操作：</p>
-<ol>
-<li><strong>系统更新</strong>：进入 Windows Update，安装所有可用更新</li>
-<li><strong>驱动安装</strong>：系统会自动安装大部分驱动程序，没有更新的手动下载驱动更新</li>
-</ol>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/386.png" data-desc-position="bottom"><img alt="安装完成" src="https://img.it927.com/aio/386.png"></a></p>
-<h2 id="vmware-tools">安装 VMware Tools<a class="headerlink" href="#vmware-tools" title="Permanent link">¶</a></h2>
-<p>VMware Tools 是 ESXi 虚拟机的核心组件，提供驱动程序和性能优化功能，安装后可显著提升虚拟机性能和用户体验。</p>
-<h3 id="_10">安装步骤<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><input id="__tabbed_5_3" name="__tabbed_5" type="radio"><input id="__tabbed_5_4" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">步骤 1：新增 CD/DVD 驱动器</label><label for="__tabbed_5_2">步骤 2：挂载 VMware Tools</label><label for="__tabbed_5_3">步骤 3：启动安装程序</label><label for="__tabbed_5_4">步骤 4：安装向导</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>在虚拟机界面中，右键点击虚拟机 → 【编辑】→ 【添加其他设备】→ 【CD/DVD 驱动器】</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/388.png" data-desc-position="bottom"><img alt="新增 CD/DVD 驱动器" src="https://img.it927.com/aio/388.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>打开电源后，在虚拟机界面中，右键点击虚拟机 → 【客户机操作系统】→ 【安装 VMware Tools】</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/387.png" data-desc-position="bottom"><img alt="挂载 VMware Tools" src="https://img.it927.com/aio/387.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>进入 Windows 系统，打开【此电脑】，找到 VMware Tools 光驱，双击运行安装程序</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/389.png" data-desc-position="bottom"><img alt="启动安装程序" src="https://img.it927.com/aio/389.png"></a></p>
-</div>
-<div class="tabbed-block">
-<p>按照安装向导提示进行安装：选择【典型安装】，保持默认安装路径，等待安装完成。安装完成后，系统会提示重启，点击【是】重启虚拟机以完成安装。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/390.png" data-desc-position="bottom"><img alt="安装向导" src="https://img.it927.com/aio/390.png"></a></p>
-</div>
-</div>
-</div>
-<h3 id="_11">验证安装<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
-<p>重启后，VMware Tools 安装成功的标志：<strong>鼠标可在宿主机和虚拟机间无缝切换，支持复制粘贴功能，屏幕分辨率可自动调整，网络性能得到优化</strong>。</p>
-<h2 id="_12">直通键鼠<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
-<p>键鼠直通有两种方式：<a href="#usb">直通 USB 控制器</a> 和 <a href="#_13">直通单独的鼠标键盘</a>。如果作为主力机使用，需要连接多个 USB 设备（U盘、键盘、鼠标等），建议选择 <a href="#usb">直通 USB 控制器</a>。</p>
-<h3 id="usb">直通 USB 控制器<a class="headerlink" href="#usb" title="Permanent link">¶</a></h3>
-<p>主板通常使用一个 USB 控制器管理所有 USB 接口，直通该控制器即可实现所有 USB 接口的直通。</p>
-<p>详细步骤请参见 <a href="../../esxi/passthrough/#usb">硬件直通 - 直通 USB 控制器</a> 章节。注意：<strong>直通完成后还需将设备添加到虚拟机硬件中</strong>。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/396.png" data-desc-position="bottom"><img alt="直通 USB 控制器" src="https://img.it927.com/aio/396.png"></a></p>
-<h3 id="_13">直通单独的鼠标键盘<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
-<p>如只需直通特定的鼠标或键盘，可选择单独设备直通。详细步骤请参见 <a href="../../esxi/passthrough/#usb">硬件直通 - 直通单独的 USB 设备</a> 章节。</p>
-<h3 id="_14">验证键鼠直通<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
-<p>直通完成后，启动虚拟机并测试键鼠操作。注意：<strong>如果鼠标移动时光标不动，这是正常现象</strong>，因为此时 ESXi 控制台占用了鼠标控制权。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/397.png" data-desc-position="bottom"><img alt="验证键鼠直通" src="https://img.it927.com/aio/397.png"></a></p>
-<h2 id="gpu">直通 GPU<a class="headerlink" href="#gpu" title="Permanent link">¶</a></h2>
-<h3 id="gpu_1">启用 GPU 直通<a class="headerlink" href="#gpu_1" title="Permanent link">¶</a></h3>
-<p>限于篇幅的原因，这部分在前面 <a href="../../esxi/passthrough/#gpu">硬件直通 - GPU 直通</a> 章节中有详细介绍，陈大剩我不在赘述，大家自己看前面的章节即可。</p>
-<p>显卡切换直通后，需要将其分配给指定虚拟机：【编辑】→【添加其他设备】→【PCI 设备】，选择已直通的显卡设备（包括视频和音频控制器），保存配置并启动虚拟机。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/392.png" data-desc-position="bottom"><img alt="添加直通到虚拟机" src="https://img.it927.com/aio/392.png"></a></p>
-<h3 id="_15">显示优化<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
-<p>GPU 直通后可能出现双屏显示的情况：一个是虚拟机的默认显示适配器，另一个是直通的 GPU 输出，且无法将主屏幕设为直通的 GPU 输出的屏幕。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/393.png" data-desc-position="bottom"><img alt="两个屏幕" src="https://img.it927.com/aio/393.png"></a>
-我们需要关掉默认显示适配器，只保留直通的 GPU 输出，可按照如下步骤进行：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">步骤 1：关闭虚拟机多显示器输出</label><label for="__tabbed_6_2">步骤 2：关闭 ESXi 控制台鼠标控制权</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>【编辑虚拟机】→【虚拟机选项】→【高级】→【编辑配置】→【编辑参数】：
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 将 svga.present true 改为 svga.present FALSE</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>svga.present<span class="w"> </span>FALSE
+<p>任务设置模块，通知按需选择，用户定义的脚本输入上一步生成的脚本路径，并输入日志路径：
+</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/volume1/docker/acme.sh/cert.sh<span class="w"> </span>&gt;&gt;<span class="w"> </span>/volume1/docker/acme.sh/log.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/402.png" data-desc-position="bottom"><img alt="关闭虚拟机多显示器输出" src="https://img.it927.com/aio/402.png"></a><p></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/537.png" data-desc-position="bottom"><img alt="计划任务设置" src="https://img.it927.com/aio/537.png"></a><p></p>
 </div>
 <div class="tabbed-block">
-<p>【编辑虚拟机】】移除 USB 控制器
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/403.png" data-desc-position="bottom"><img alt="移除 USB 控制器" src="https://img.it927.com/aio/403.png"></a></p>
+<p>检查所有配置参数，确认无误后点击 <strong>【确认】</strong>，输入密码完成创建。
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/538.png" data-desc-position="bottom"><img alt="计划任务设置" src="https://img.it927.com/aio/538.png"></a></p>
 </div>
 </div>
 </div>
-<p>执行上述步骤后，点击【打开电源】，ESXi 控制台已无法观察此虚拟机的页面，仅能通过直通显卡观看，且不会有第二块屏幕占用。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/404.png" data-desc-position="bottom"><img alt="控制台" src="https://img.it927.com/aio/404.png"></a></p>
-<h2 id="_16">其他细节优化<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
-<h3 id="_17">关闭系统认定虚拟机<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
-<p>打开任务管理器页面，发现被 Windows 系统识别为了 <strong>虚拟机</strong>，这怎么能忍？
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/399.png" data-desc-position="bottom"><img alt="更改主力机为物理机" src="https://img.it927.com/aio/399.png"></a>
-点击【关闭电源】后，【编辑虚拟机】→【虚拟机选项】→【高级】→【编辑配置】→【添加参数】：
-</p><div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>hypervisor.cpuid.v0<span class="w"> </span>FALSE
-</code></pre></div>
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/400.png" data-desc-position="bottom"><img alt="添加参数" src="https://img.it927.com/aio/400.png"></a>
-点击【打开电源】后，可看到已无虚拟机文字，证明系统已不认定为 <strong>虚拟机</strong>。
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/401.png" data-desc-position="bottom"><img alt="结果" src="https://img.it927.com/aio/401.png"></a><p></p>
+<h3 id="_9">验证证书续签<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<p>配置完成后，可以手动执行一次计划任务来验证证书是否能够成功申请。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><input id="__tabbed_8_2" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">步骤 1：手动执行任务</label><label for="__tabbed_8_2">步骤 2：查看执行日志</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在计划任务列表中，选择刚创建的任务，点击 <strong>【运行】</strong> 手动执行一次
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/541.png" data-desc-position="bottom"><img alt="查看续签结果" src="https://img.it927.com/aio/541.png"></a></p>
+</div>
+<div class="tabbed-block">
+<p>等待 3-5 分钟后，检查 <code>/volume1/docker/acme.sh/log.txt</code> 日志文件，确认证书申请和部署是否成功</p>
+</div>
+</div>
+</div>
+<details class="tip" open="open">
+<summary>故障排查</summary>
+<p>如果证书申请失败，请检查以下几点：</p>
+<ul>
+<li>脚本参数是否正确（域名、DNS 服务商、容器名称）</li>
+<li>环境变量是否正确配置</li>
+<li>DNS API 密钥是否有效且具备相应权限</li>
+<li>查看 <code>/volume1/docker/acme.sh/log.txt</code> 日志文件获取详细错误信息</li>
+</ul>
+</details>
+<h2 id="_10">证书部署配置<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<p>证书申请成功后，需要在群晖 DSM 中进行一些配置，才能正常使用 HTTPS 访问。</p>
+<h3 id="1-dns">1. 配置 DNS 解析<a class="headerlink" href="#1-dns" title="Permanent link">¶</a></h3>
+<p>首先需要在域名服务商处添加 DNS 解析记录，将域名指向群晖的 IP 地址。</p>
+<p><strong>内网访问配置：</strong></p>
+<p>如果仅在内网使用，将域名解析到群晖的内网 IP 地址（如 <code>192.168.88.191</code>）</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/543.png" data-desc-position="bottom"><img alt="内网 DNS 解析" src="https://img.it927.com/aio/543.png"></a></p>
+<p><strong>公网访问配置：</strong></p>
+<p>如果需要从公网访问，将域名解析到公网 IP，并在路由器中配置端口转发（HTTPS 使用 443 端口）</p>
+<h3 id="2">2. 设置默认证书<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<p>证书部署成功后，需要在 DSM 中将其设置为默认证书。</p>
+<p>进入 <strong>【控制面板】→【安全性】→【证书】→【设置】</strong>，将所有服务的证书都设置为刚申请的证书：</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/542.png" data-desc-position="bottom"><img alt="设置默认证书" src="https://img.it927.com/aio/542.png"></a></p>
+<details class="info" open="open">
+<summary>证书应用说明</summary>
+<p>建议将所有服务都设置为使用新证书，包括：</p>
+<ul>
+<li>DSM 桌面</li>
+<li>所有套件和应用程序</li>
+<li>反向代理服务（如有）</li>
+</ul>
+</details>
+<h3 id="3">3. 配置主机名称<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
+<p>设置主机名称可以确保 DSM 正确响应来自域名的 HTTPS 请求。</p>
+<p>进入 <strong>【控制面板】→【外部访问】→【高级设置】</strong>，在"主机名称"中填入您的域名：</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/511.png" data-desc-position="bottom"><img alt="设置主机名称" src="https://img.it927.com/aio/511.png"></a></p>
+<h2 id="_11">验证证书<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
+<p>完成所有配置后，可以通过以下方式验证证书是否正常工作：</p>
+<h3 id="_12">浏览器访问验证<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<p>在浏览器中访问 <code>https://your-domain.com</code>（替换为您的实际域名），如果看到如下页面且浏览器地址栏显示安全锁图标，说明证书配置成功：</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/544.png" data-desc-position="bottom"><img alt="证书验证成功" src="https://img.it927.com/aio/544.png"></a></p>
+<h3 id="_13">证书信息检查<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
+<p>点击浏览器地址栏的安全锁图标，查看证书详情，确认：</p>
+<ul>
+<li>证书颁发机构为 Let's Encrypt</li>
+<li>证书有效期为 90 天</li>
+<li>证书包含主域名和通配符域名（如配置了 <code>*.your-domain.com</code>）</li>
+</ul>
 
   
 
@@ -2808,12 +2793,12 @@
     
         <span class="md-source-file__fact">
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月25日 14:59:06 UTC">2025年2月25日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月21日 06:27:54 UTC">2026年1月21日</span>
         </span>
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月9日 14:10:55 UTC">2025年9月9日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月21日 06:27:54 UTC">2026年1月21日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     
@@ -2846,7 +2831,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
-          <a href="../../synology/remote-access/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 远程访问">
+          <a href="../ssd/" class="md-footer__link md-footer__link--prev" aria-label="上一页: SSD 缓存加速">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -2856,20 +2841,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                远程访问
+                SSD 缓存加速
               </div>
             </div>
           </a>
         
         
           
-          <a href="../develop/" class="md-footer__link md-footer__link--next" aria-label="下一页: 生产服务器">
+          <a href="../remote-access/" class="md-footer__link md-footer__link--next" aria-label="下一页: 远程访问">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                生产服务器
+                远程访问
               </div>
             </div>
             <div class="md-footer__button md-icon">
