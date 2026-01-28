@@ -1846,6 +1846,57 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程穿透
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="远程穿透">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要远程穿透
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐配置路径
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      更多信息
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2484,6 +2535,57 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程穿透
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="远程穿透">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要远程穿透
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      方案选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐配置路径
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      更多信息
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2509,7 +2611,7 @@
 
   <h1>生产服务器</h1>
 
-<p>作为一名程序员，家中肯定是需要一台生产服务器，装上第三方运维面板，后续配合远程穿透，可以轻松实现云服务器的效果。 </p>
+<p>作为一名程序员，家中肯定是需要一台生产服务器，装上第三方运维面板，后续配合免费 <a href="../../remote/esa/">CDN 中转</a>，可以轻松实现云服务器 HTTP 管理的效果。 </p>
 <p>通过 ESXi 虚拟化环境搭建的生产服务器，可以用于代码开发、项目测试、容器编排、CI/CD 流程等多种场景，既能满足日常技术学习需求，又能作为个人项目的稳定生产环境。</p>
 <h2 id="_1">系统选型<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <h3 id="linux">推荐的 Linux 发行版<a class="headerlink" href="#linux" title="Permanent link">¶</a></h3>
@@ -2962,6 +3064,77 @@
 <li>启用两步验证(如支持)</li>
 </ol>
 </details>
+<h2 id="_14">远程穿透<a class="headerlink" href="#_14" title="Permanent link">¶</a></h2>
+<p>完成宝塔面板的安装后，你可能会面临一个新的问题：<strong>如何在外网访问家中的服务器？</strong></p>
+<p>默认情况下，宝塔面板只能在局域网内访问。如果需要随时随地管理服务器、访问部署的应用，就需要配置远程穿透方案。</p>
+<h3 id="_15">为什么需要远程穿透<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
+<p>家庭生产服务器的核心价值之一就是<strong>远程可访问性</strong>。通过远程穿透，你可以：</p>
+<ul>
+<li><strong>随时管理</strong>：外出时通过手机/电脑访问宝塔面板</li>
+<li><strong>服务部署</strong>：让部署的 Web 应用能被外网访问</li>
+<li><strong>团队协作</strong>：与他人分享开发环境或演示项目</li>
+<li><strong>远程开发</strong>：在任何地方都能连接家中的开发环境</li>
+</ul>
+<h3 id="_16">方案选择<a class="headerlink" href="#_16" title="Permanent link">¶</a></h3>
+<p>根据你的网络环境和需求，可以选择不同的远程访问方案：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>适用场景</th>
+<th>优势</th>
+<th>成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="../../remote/ipv6/">IPv6 DDNS</a></strong></td>
+<td>运营商支持 IPv6</td>
+<td>免费、直连、速度快</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><strong><a href="../../remote/esa/">阿里云 ESA</a></strong></td>
+<td>需要 IPv4/IPv6 双栈访问</td>
+<td>免费、稳定、全球加速</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><strong><a href="../../remote/ipv6-ipv4/">IPv6 转 IPv4</a></strong></td>
+<td>仅 IPv6 环境</td>
+<td>解决兼容性问题</td>
+<td>部分收费</td>
+</tr>
+<tr>
+<td><strong><a href="../../remote/frp/">FRP 内网穿透</a></strong></td>
+<td>纯内网环境</td>
+<td>通用性强、配置灵活</td>
+<td>需购买服务器</td>
+</tr>
+<tr>
+<td><strong><a href="../../remote/nat/">公网 NAT</a></strong></td>
+<td>运营商支持公网 IP</td>
+<td>性能最佳、配置简单</td>
+<td>取决于运营商</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_17">推荐配置路径<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
+<p>根据陈大剩的实践经验，推荐按以下优先级尝试：</p>
+<pre class="mermaid"><code>graph TD
+    A[开始配置远程访问] --&gt; B{运营商是否支持 IPv6?}
+    B --&gt;|是| C[配置 IPv6 DDNS]
+    B --&gt;|否| D{能否获取公网 IP?}
+    C --&gt; E{需要 IPv4 访问?}
+    E --&gt;|是| F[配置阿里云 ESA]
+    E --&gt;|否| G[完成 - 使用 IPv6]
+    F --&gt; G
+    D --&gt;|是| H[配置公网 NAT]
+    D --&gt;|否| I[配置 FRP 穿透]
+    H --&gt; G
+    I --&gt; G</code></pre>
+<h3 id="_18">更多信息<a class="headerlink" href="#_18" title="Permanent link">¶</a></h3>
+<p>如需了解远程穿透的技术原理和方案对比，请参考 <a href="../../remote/overview/">远程穿透概述</a>。</p>
 
   
 

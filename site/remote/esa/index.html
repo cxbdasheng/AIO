@@ -2418,8 +2418,13 @@
 <p>安装完成后，使用浏览器访问 <code>http://127.0.0.1:9877</code> 进入 Web 管理页面。首次登录需要设置管理员账号和密码。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/408.png" data-desc-position="bottom"><img alt="登入 Web 管理页面" src="https://img.it927.com/aio/408.png"></a></p>
 <h3 id="ipv6">验证 IPv6 连通性<a class="headerlink" href="#ipv6" title="Permanent link">¶</a></h3>
-<p>在配置 D-NET 前，需要确保目标服务支持 IPv6 访问。以下以博客服务为例进行验证：</p>
+<p>在配置 D-NET 前，需要确保目标服务支持 IPv6 访问。<strong>测试时务必使用不同网段的 IPv6 设备进行验证</strong>，以下以博客服务为例：</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/455.png" data-desc-position="bottom"><img alt="博客 IPv6 访问测试" src="https://img.it927.com/aio/455.png"></a></p>
+<details class="warning" open="open">
+<summary>重要提示</summary>
+<p>许多用户在测试时使用同网段的 IPv6 地址，发现可以正常访问，误以为配置已完成。但实际部署 ESA 后，外网却无法访问。</p>
+<p><strong>原因说明</strong>：同网段设备访问时，<strong>路由器会直接转发流量</strong>；而外网访问时，路由器防火墙可能会阻止连接，导致访问失败。因此测试阶段必须模拟真实的外网访问场景。</p>
+</details>
 <h3 id="accesskey">创建阿里云 AccessKey<a class="headerlink" href="#accesskey" title="Permanent link">¶</a></h3>
 <p>访问 <a href="https://ram.console.aliyun.com/manage/ak?spm=5176.12818093.nav-right.dak.488716d0mHaMgg">阿里云 RAM 控制台</a> 创建 AccessKey，用于 D-NET 调用阿里云 API。</p>
 <p><strong>安全提示</strong>：请妥善保管 AccessKey，避免泄露。</p>
