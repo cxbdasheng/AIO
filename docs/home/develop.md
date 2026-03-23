@@ -473,7 +473,7 @@ sudo systemctl restart sshd
 
 | 方案 | 适用场景 | 优势 | 成本 |
 |------|---------|------|------|
-| **[IPv6 DDNS](../remote/ipv6.md)** | 运营商支持 IPv6 | 免费、直连、速度快 | 免费 |
+| **[IPv6 DDNS](../remote/ddns.md)** | 运营商支持 IPv6 | 免费、直连、速度快 | 免费 |
 | **[阿里云 ESA](../remote/esa.md)** | 需要 IPv4/IPv6 双栈访问 | 免费、稳定、全球加速 | 免费 |
 | **[IPv6 转 IPv4](../remote/ipv6-ipv4.md)** | 仅 IPv6 环境 | 解决兼容性问题 | 部分收费 |
 | **[FRP 内网穿透](../remote/frp.md)** | 纯内网环境 | 通用性强、配置灵活 | 需购买服务器 |

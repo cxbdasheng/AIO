@@ -115,7 +115,7 @@ nav:
       - 功耗节能: "esxi/energy.md"
   - 软路由:
       - 系统安装: "route/install.md"
-      - 开启 IPv6: "route/ipv6.md"
+      - 开启 IPv6: "route/ddns.md"
       - 硬盘扩容: "route/expansion.md"
       - OpenClash: "route/open-clash.md"
   - 黑群晖:
@@ -132,7 +132,7 @@ nav:
       - Kubernetes 集群: "home/k8s.md"
   - 远程穿透:
       - 前言: "remote/overview.md"
-      - IPv6 DDNS: "remote/ipv6.md"
+      - IPv6 DDNS: "remote/ddns.md"
       - IPv6 转 IPv4: "remote/ipv6-ipv4.md"
       - IPv6 转 IPv4/IPv6 (ESA): "remote/esa.md"
       - 公网 NAT: "remote/nat.md"
