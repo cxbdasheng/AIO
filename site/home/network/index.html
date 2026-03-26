@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="用 OpenWrt 实现两个 AP 之间的 WiFi 无缝漫游，告别手机" 死抱"信号差的 ap 不放手的问题。">
       
       
         <meta name="author" content="陈大剩">
@@ -26,6 +26,8 @@
         <title>全屋网络覆盖 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="全屋网络覆盖,OpenWrt 无缝漫游,802.11r,802.11k,802.11v,dumb AP">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
@@ -1242,7 +1244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../route/ddns.md" class="md-nav__link">
+      <a href="../../route/ipv6/" class="md-nav__link">
         
   
   
@@ -1602,6 +1604,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -1634,6 +1638,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1642,9 +1648,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      为什么同名 WiFi 不叫无缝漫游
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      组网方案
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ap-dumb-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      副 AP 配置（Dumb AP 模式）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#80211rkv" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 802.11r/k/v
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      调整 AP 发射功率
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证漫游效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      踩坑记录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -1986,6 +2055,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1994,9 +2065,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      为什么同名 WiFi 不叫无缝漫游
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      组网方案
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ap-dumb-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      副 AP 配置（Dumb AP 模式）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#80211rkv" class="md-nav__link">
+    <span class="md-ellipsis">
+      开启 802.11r/k/v
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      调整 AP 发射功率
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证漫游效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      踩坑记录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -2025,9 +2159,144 @@
   
 
 
-  <h1>全屋网络覆盖</h1>
-
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<h1 id="_1">全屋网络覆盖<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<p>都 2026 年了，不会还有人不知道"数据漫游"这东西吧？如果想简单组网，两个 WiFi 名称设置一样，那没有看这篇文章的必要了，陈大剩所说的全屋网络覆盖是指通过 OpenWrt 实现"数据漫游"，两个 AP 无缝衔接。</p>
+<h2 id="wifi">为什么同名 WiFi 不叫无缝漫游<a class="headerlink" href="#wifi" title="Permanent link">¶</a></h2>
+<p>很多人的解决方案是把两个路由器的 SSID 和密码设置一样，确实能连上，但问题在于<strong>设备侧决定切换时机</strong>。手机靠近副 AP 了，但信号还没差到让它主动切换，它就会死抱着主 AP 不放，直到信号差到掉线才切，这个过程网络会中断 1-3 秒，打游戏、视频通话直接感受到卡顿。</p>
+<p>真正的无缝漫游需要三个协议配合：</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>802.11r</strong>（Fast BSS Transition）</td>
+<td>切换 AP 时跳过重新认证，切换时间从几百毫秒压到 50ms 以内</td>
+</tr>
+<tr>
+<td><strong>802.11k</strong>（Radio Resource Management）</td>
+<td>AP 主动告知设备周边有哪些 AP 可用，帮设备找到更好的候选</td>
+</tr>
+<tr>
+<td><strong>802.11v</strong>（BSS Transition Management）</td>
+<td>AP 可以主动"劝说"设备切换到信号更好的 AP</td>
+</tr>
+</tbody>
+</table>
+<p>三个协议同时开，效果最好。</p>
+<h2 id="_2">组网方案<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>我的方案是<strong>主路由 + 副 AP</strong>，通过网线做有线回程（Wired Backhaul），稳定性远强于无线回程。</p>
+<div class="highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>光猫 ──── 主路由（OpenWrt，运行 DHCP） ──── 交换机 ──── 副 AP（OpenWrt，dumb AP 模式）
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                                    └──── 其他有线设备
+</code></pre></div>
+<ul>
+<li><strong>主路由</strong>：负责拨号、DHCP、防火墙，同时也是一个 AP</li>
+<li><strong>副 AP</strong>：只做无线接入点，关掉 DHCP，桥接到主路由的网络，IP 固定用于管理</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">副 AP 用什么设备</p>
+<p>刷了 OpenWrt 的旧路由器完全够用，不需要买专门的 AP。我用的是一台吃灰的小米路由器刷机，省钱又够用。</p>
+</div>
+<h2 id="ap-dumb-ap">副 AP 配置（Dumb AP 模式）<a class="headerlink" href="#ap-dumb-ap" title="Permanent link">¶</a></h2>
+<p>先把副 AP 改成哑路由模式，这步一定要先做，否则两个 DHCP 服务器会打架。</p>
+<div class="admonition warning">
+<p class="admonition-title">网线插 LAN 口，不是 WAN 口</p>
+<p>从交换机/主路由拉过来的网线，必须插副 AP 的任意一个 <strong>LAN 口</strong>。OpenWrt 默认 WAN 口是独立的 <code>wan</code> 接口，不在 LAN 桥里，插错口设备根本上不了网。</p>
+</div>
+<p>SSH 进副 AP，执行：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 关闭 DHCP</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>dhcp.lan.ignore<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>uci<span class="w"> </span>commit<span class="w"> </span>dhcp
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 关闭防火墙（dumb AP 不需要）</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/etc/init.d/firewall<span class="w"> </span>stop
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>/etc/init.d/firewall<span class="w"> </span>disable
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># 给副 AP 一个固定 IP，方便后续管理（根据你的网段修改）</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>network.lan.ipaddr<span class="o">=</span><span class="s1">'192.168.1.2'</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>network.lan.gateway<span class="o">=</span><span class="s1">'192.168.1.1'</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>network.lan.dns<span class="o">=</span><span class="s1">'192.168.1.1'</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>uci<span class="w"> </span>commit<span class="w"> </span>network
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>/etc/init.d/network<span class="w"> </span>restart
+</code></pre></div>
+<p>之后用 <code>192.168.1.2</code> 访问副 AP 的管理界面。</p>
+<h2 id="80211rkv">开启 802.11r/k/v<a class="headerlink" href="#80211rkv" title="Permanent link">¶</a></h2>
+<p>主路由和副 AP 都要配置，且配置必须<strong>完全一致</strong>，否则漫游会出问题。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">LuCI 图形界面</label><label for="__tabbed_1_2">UCI 命令行</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>进入 <strong>Network → Wireless</strong>，点击对应无线接口的 <strong>Edit</strong>，找到 <strong>WLAN Roaming</strong> 选项卡：</p>
+<ul>
+<li><strong>802.11r Fast Transition</strong>：勾选启用</li>
+<li><strong>Mobility Domain</strong>：填一个 4 位十六进制数，例如 <code>abcd</code>，主副 AP <strong>必须相同</strong></li>
+<li><strong>FT protocol</strong>：选 <code>FT over the Air</code>（无需预配置密钥，更简单）</li>
+<li><strong>802.11k Neighbor Report</strong>：勾选启用</li>
+<li><strong>802.11v BSS Transition</strong>：勾选启用</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 以 2.4G 接口为例，接口名根据实际情况修改（通常是 radio0 或 radio1）</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.ieee80211r<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.mobility_domain<span class="o">=</span><span class="s1">'abcd'</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.ft_over_ds<span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.ft_psk_generate_local<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.ieee80211k<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.ieee80211v<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.bss_transition<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>uci<span class="w"> </span>commit<span class="w"> </span>wireless
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>wifi<span class="w"> </span>reload
+</code></pre></div>
+<p>5G 接口同样操作，把 <code>wifi-iface[0]</code> 换成对应的接口索引。</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Mobility Domain 必须两边一致</p>
+<p>这个值如果主副 AP 不一样，802.11r 形同虚设，设备切换时还是要走完整认证流程。</p>
+</div>
+<h2 id="ap">调整 AP 发射功率<a class="headerlink" href="#ap" title="Permanent link">¶</a></h2>
+<p>光配协议还不够，还要让设备"愿意"切换。两个 AP 覆盖范围如果重叠太多，设备没有切换动力；重叠太少，中间会有信号死角。</p>
+<p>一般经验：</p>
+<ul>
+<li>两个 AP 之间的<strong>信号重叠区域</strong>约占各自覆盖半径的 15%–20%</li>
+<li>如果房子不大，主动降低发射功率（比如从 20dBm 降到 17dBm），让设备更早触发漫游</li>
+<li>可以在 LuCI 的 <strong>Wireless → Advanced Settings</strong> 里调整 <code>Transmit Power</code></li>
+</ul>
+<h2 id="_3">验证漫游效果<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>手机连上 WiFi 后，从主 AP 走向副 AP，用以下方式验证：</p>
+<p><strong>方法一：ping 测延迟</strong></p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 手机上用 Network Analyzer 之类的 App，或电脑上 ping 网关</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ping<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>-t
+</code></pre></div>
+<p>漫游时如果丢包不超过 1 个、延迟没有明显跳升，说明 802.11r 生效了。</p>
+<p><strong>方法二：看关联 AP</strong></p>
+<p>在主路由 LuCI 的 <strong>Status → Overview</strong> 或 <strong>Network → Wireless</strong> 页面，观察设备是否从主路由的关联列表消失，同时出现在副 AP 的关联列表里。</p>
+<p><strong>方法三：抓包</strong>（进阶）</p>
+<p>用 Wireshark 抓 802.11 帧，看切换时是否有 <code>FT Action</code> 帧，有的话说明 Fast Transition 正常工作。</p>
+<h2 id="_4">踩坑记录<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p><strong>坑一：部分安卓设备不触发漫游</strong></p>
+<p>某些安卓手机对 802.11v 的 BSS Transition Request 支持很差，AP 发劝离帧它直接忽略。这种情况只能靠降低发射功率，让信号差到触发设备自己切换，或者开启 <code>disassoc_low_ack</code>（超时未响应的客户端强制踢掉），这个选项在 UCI 里：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>wireless.@wifi-iface<span class="o">[</span><span class="m">0</span><span class="o">]</span>.disassoc_low_ack<span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>uci<span class="w"> </span>commit<span class="w"> </span>wireless
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>wifi<span class="w"> </span>reload
+</code></pre></div>
+<p><strong>坑二：802.11r 与部分老设备不兼容</strong></p>
+<p>开了 802.11r 之后，极少数老设备（主要是 IoT 设备，比如老款智能插座）会连不上。解法是单独为这些设备开一个不启用 802.11r 的 SSID，或者换一个频段（IoT 设备通常只支持 2.4G，5G 单独开漫游不影响它们）。</p>
+<p><strong>坑三：有线回程和无线回程混用</strong></p>
+<p>如果副 AP 是无线回程接入的（Mesh 模式），OpenWrt 的配置会更复杂，需要用 <code>relayd</code> 或 <code>batman-adv</code>，这篇就不展开了。有条件一定拉网线，省心。</p>
+<h2 id="_5">总结<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>配完之后，手机从客厅走到卧室，WiFi 全程不断，连视频通话都感受不到切换，体验接近商用 AP 的 Mesh 方案，但成本低得多——两台刷了 OpenWrt 的旧路由器就够了。</p>
+<p>核心要点：</p>
+<ul>
+<li>副 AP 必须设为 dumb AP 模式，关掉 DHCP 和防火墙</li>
+<li>802.11r 的 Mobility Domain 两边必须一致</li>
+<li>802.11k + 802.11v 配合 802.11r 才能发挥最好效果</li>
+<li>有线回程比无线回程稳定得多，能拉网线就拉网线</li>
+</ul>
 
   
 

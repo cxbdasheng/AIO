@@ -222,7 +222,7 @@ D-NET 安装完成后，通过浏览器访问 `http://群晖IP:9877` 进入 Web 
     ![获取 CNAME 记录](https://img.it927.com/aio/505.png)
 
 === "步骤 3：添加 DNS 解析"
-    无需手动在 DNS 服务商处添加记录——参考 [DDNS - CNAME 解析](ddns.md#cname) 完成配置。
+    无需手动在 DNS 服务商处添加记录——参考 [DDNS - CNAME 解析](../remote/ddns.md#cname) 完成配置。
     ![CNAME 解析](https://img.it927.com/aio/559.png "CNAME 解析")
 
 !!! tip "如何获取腾讯云密钥"
