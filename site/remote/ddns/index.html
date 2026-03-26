@@ -2309,10 +2309,8 @@
 <h3 id="_3">第四步：保存并验证<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>点击保存，等待保存成功后，可在日志中看到解析结果。第一次配置成功后，D-NET 会定期检测 IP 是否变化，有变化时自动更新 DNS 记录。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/560.png" data-desc-position="bottom"><img alt="保存成功并查看日志" src="https://img.it927.com/aio/560.png" title="保存成功并查看日志"></a></p>
-<div class="admonition tip">
-<p class="admonition-title">验证是否生效</p>
 <p>保存后可以用 <code>nslookup 你的域名</code> 或 <code>dig AAAA 你的域名</code> 查询解析结果，确认是否已指向当前 IP。</p>
-</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/562.png" data-desc-position="bottom"><img alt="nslookup" src="https://img.it927.com/aio/562.png" title="TXT 解析"></a></p>
 <h2 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <p>配置完成后，无论运营商何时刷新 IPv6 地址，D-NET 都会自动同步更新 DNS 记录，家庭服务器的域名访问不再因 IP 变动而中断。</p>
 <h2 id="_5">参考文档<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
