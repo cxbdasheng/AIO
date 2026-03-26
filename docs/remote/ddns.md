@@ -1,5 +1,5 @@
 ---
-slug: ipv6
+slug: ddns
 keywords:
   - IPv6
   - DDNS
@@ -10,107 +10,90 @@ keywords:
   - 家庭All-in-One搭建教程
 description: IPv6 DDNS 动态域名解析配置指南，使用 D-NET 实现自动更新 DNS 解析记录
 ---
-
 # IPv6 DDNS
 
-D-NET DDNS（Dynamic DNS）是一个自动化 DNS 解析管理模块，专为动态 IP 环境设计。
+在前面 [软路由 - 开启 IPv6](../route/ipv6.md) 章节中，已经拿到了运营商分配的 IPv6 地址。但这个地址不是静态的——重拨、断电、路由器重启，都可能换一个新地址，域名解析随之失效。
 
-DDNS **通过实时监听本地 IP 地址变化，自动更新 DNS 解析记录**，确保域名始终指向最新的 IP 地址。
+DDNS（动态域名解析）就是解决这个问题的：**实时监听本地 IP 变化，自动更新 DNS 记录**，让域名始终指向最新的地址，不需要人工干预。
 
-支持 A、AAAA、CNAME、TXT 多种记录类型，IPv4/IPv6 双栈，适合**家庭宽带等动态 IP 环境下对外提供服务**，也可配合 DCDN 功能，通过 CNAME 记录指向 CDN 域名实现加速接入。
+## D-NET 介绍
 
-## 支持的 DNS 服务商
+D-NET 内置了 DDNS 模块，支持 A、AAAA、CNAME、TXT 多种记录类型，IPv4/IPv6 双栈均可使用。配合 DCDN 模块还能通过 CNAME 记录实现 CDN 加速接入，适合家庭宽带等动态 IP 场景。
 
-| 服务商 | service 值 | AccessKey | AccessSecret |
-|--------|-----------|-----------|--------------|
-| 阿里云 DNS | `alidns` | AccessKey ID | AccessKey Secret |
-| 腾讯云 DNSPod | `tencent` | SecretId | SecretKey |
-| 华为云 DNS | `huawei` | AccessKey ID | Secret Access Key |
-| 百度智能云 DNS | `baiducloud` | AccessKey ID | Secret Access Key |
-| Cloudflare | `cloudflare` | API Token | 不需要 |
+## 安装 D-NET
 
-!!! tip "Cloudflare 获取 API Token"
-    登录 Cloudflare → 右上角头像 → My Profile → API Tokens → Create Token，选择 **Edit zone DNS** 模板，范围选择对应域名即可。
+参考前面章节的 [二进制安装 D-NET](ipv6-ipv4.md#__tabbed_2_1) 或 [Docker 安装 D-NET](../synology/remote-access.md#d-net)，任选一种方式安装即可。
 
-## D-NET DDNS 配置
+## 配置 DDNS
 
-### 基本配置
+安装完成后，浏览器访问 `http://127.0.0.1:9877` 进入 Web 管理页面，首次登录时设置管理员账号密码。
 
-1. 访问 D-NET 管理界面，进入 **DDNS 配置** 页面；
-2. 填写以下信息：
+![登入 Web 管理页面](https://img.it927.com/aio/408.png "登入 Web 管理页面")
 
-| 字段 | 说明 | 示例 |
-|------|------|------|
-| 域名 | 需要动态解析的完整域名（含子域名） | `ddns.example.com` |
-| 服务商 | 选择 DNS 服务商 | 阿里云 |
-| AccessKey | 云厂商访问密钥 ID | — |
-| AccessSecret | 云厂商访问密钥（Cloudflare 不填） | — |
-| TTL | 解析记录的缓存时间 | `600`（秒）、`10m`、`1h` |
+### 第一步：创建云厂商 AccessKey
 
-### 添加 DNS 记录
+根据使用的 DNS 服务商，在对应控制台创建 AccessKey，供 D-NET 调用 API 更新解析记录。
 
-每个域名下可添加多条记录，每条记录配置如下：
+=== "百度智能云"
+    进入 [百度智能云控制台](https://console.bce.baidu.com/iam/?_=1651763238057#/iam/accesslist) 创建 AccessKey。
 
-| 字段 | 说明 |
-|------|------|
-| 记录类型 | A、AAAA、CNAME、TXT |
-| IP 来源 | 见下方 [IP 来源类型](#ip-来源类型) |
-| 值 | 根据 IP 来源填写对应内容 |
-| 正则（可选） | 仅网卡获取 IPv6 时使用，用于筛选特定地址 |
+    ![百度智能云创建 AccessKey](https://img.it927.com/aio/409.png "百度智能云创建 AccessKey")
 
-!!! warning "CNAME 互斥限制"
-    CNAME 记录不能与同一子域名下的其他记录类型（A、AAAA、TXT 等）共存。当某个子域名被配置为 CNAME 时，D-NET 会自动删除该子域名下已存在的其他类型记录；反之，若该子域名已有 CNAME 记录，切换为其他类型时也会先删除 CNAME。请确认后再操作，**被删除的记录无法恢复**。
+=== "阿里云"
+    进入 [阿里云控制台](https://ram.console.aliyun.com/manage/ak?spm=5176.12818093.nav-right.dak.488716d0mHaMgg) 创建 AccessKey。
 
-## IP 来源类型
+    ![阿里云创建 AccessKey](https://img.it927.com/aio/410.png "阿里云创建 AccessKey")
 
-### IPv4
+### 第二步：填写云厂商配置
 
-| 来源类型 | 说明 | 值填写示例 |
-|---------|------|-----------|
-| 静态 IPv4 | 固定 IP 地址，不自动更新 | `1.2.3.4` |
-| URL 获取 | 通过外部接口获取公网 IP | `https://api4.ipify.org` |
-| 网卡获取 | 读取本机指定网卡的 IP | `eth0`、`en0` |
-| 命令获取 | 执行自定义命令并解析输出 | `curl -s https://api4.ipify.org` |
+在 D-NET Web 管理页面中完成以下配置：
 
-### IPv6
+1. 打开 DDNS 开关
+2. 填写云厂商 AccessKey 信息
+3. 填写 TTL（推荐设置为 60 秒，IP 变化后解析能快速生效）
 
-| 来源类型 | 说明 | 值填写示例 |
-|---------|------|-----------|
-| 静态 IPv6 | 固定 IPv6 地址 | `2001:db8::1` |
-| URL 获取 | 通过外部接口获取公网 IPv6 | `https://api6.ipify.org` |
-| 网卡获取 | 读取本机指定网卡的 IPv6（支持正则筛选） | `eth0` |
-| 命令获取 | 执行自定义命令并解析输出 | — |
+![填写相应的 AccessKey](https://img.it927.com/aio/557.png "填写相应的 AccessKey")
 
-!!! tip "网卡获取 IPv6 的正则筛选"
-    一块网卡通常会有多个 IPv6 地址（临时地址、链路本地地址等），可以通过正则表达式精确匹配所需地址。例如 `^2409` 匹配电信分配的 IPv6 前缀。
+### 第三步：选择解析协议
 
-## CNAME 配合 DCDN 使用
+根据实际情况选择需要的解析类型。
 
-如果已配置 DCDN，可以在 DDNS 中添加一条 CNAME 记录，将域名指向 CDN 的 CNAME 地址，实现通过简单域名接入 CDN 加速：
+#### IPv6 / IPv4 解析
 
-1. **记录类型**：CNAME
-2. **IP 来源**：静态
-3. **值**：填写 CDN 分配的 CNAME 地址（如 `xxx.example.com.w.kunluncan.com`）
+根据自己的公网 IP 类型选择对应协议。同时有 IPv4 和 IPv6 的话，可以两个都勾上——D-NET 会分别维护 A 记录（IPv4）和 AAAA 记录（IPv6）。
 
-## TTL 说明
+!!! tip "不确定选哪个？"
+    家庭宽带通常只有 IPv6 公网地址，选 AAAA 就够了。如果运营商同时给了 IPv4 公网地址（非 NAT），可以同时勾选。
 
-TTL 支持多种格式：
+![选择解析协议](https://img.it927.com/aio/558.png "选择解析协议")
 
-| 格式 | 含义 | 示例 |
-|------|------|------|
-| 纯数字 | 秒数 | `600` |
-| 带 `m` 后缀 | 分钟 | `10m` |
-| 带 `h` 后缀 | 小时 | `1h` |
+#### CNAME 解析
 
-各服务商 TTL 限制：
+配合 DCDN 模块使用，将域名 CNAME 指向 CDN 域名，实现 IPv6 加速接入，无需手动维护记录。
 
-| 服务商 | 最小 TTL | 默认值 | 备注 |
-|--------|---------|--------|------|
-| 阿里云 | — | 600 秒 | — |
-| 腾讯云 | — | 600 秒 | — |
-| 华为云 | 300 秒 | — | 低于 300 秒将自动调整 |
-| 百度智能云 | 60 秒 | — | 最大 86400 秒 |
-| Cloudflare | 60 秒 | — | 填 `1` 表示 Auto TTL |
+!!! warning "注意"
+    CNAME 记录不能与 A、AAAA 等其他记录类型同时存在于同一个域名下。
+
+![CNAME 解析](https://img.it927.com/aio/559.png "CNAME 解析")
+
+#### TXT 解析
+
+配合 DCDN 模块的 [域名归属权验证](https://github.com/cxbdasheng/dnet/wiki/%E5%9F%9F%E5%90%8D%E5%BD%92%E5%B1%9E%E9%AA%8C%E8%AF%81) 功能使用，D-NET 会自动更新验证所需的 TXT 记录。
+
+![TXT 解析](https://img.it927.com/aio/561.png "TXT 解析")
+
+### 第四步：保存并验证
+
+点击保存，等待保存成功后，可在日志中看到解析结果。第一次配置成功后，D-NET 会定期检测 IP 是否变化，有变化时自动更新 DNS 记录。
+
+![保存成功并查看日志](https://img.it927.com/aio/560.png "保存成功并查看日志")
+
+!!! tip "验证是否生效"
+    保存后可以用 `nslookup 你的域名` 或 `dig AAAA 你的域名` 查询解析结果，确认是否已指向当前 IP。
+
+## 总结
+
+配置完成后，无论运营商何时刷新 IPv6 地址，D-NET 都会自动同步更新 DNS 记录，家庭服务器的域名访问不再因 IP 变动而中断。
 
 ## 参考文档
 

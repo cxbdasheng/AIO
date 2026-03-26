@@ -2448,13 +2448,8 @@
 </div>
 </div>
 <h2 id="dns">添加 DNS 解析记录<a class="headerlink" href="#dns" title="Permanent link">¶</a></h2>
-<p>将上一步获取的 CNAME 地址添加到域名的 DNS 解析记录中。</p>
-<p><strong>注意事项</strong>：</p>
-<ul>
-<li>如果使用 Cloudflare，需要关闭 CDN 代理功能（设置为 DNS only）</li>
-<li>建议使用子域名进行配置，避免影响主域名</li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/481.png" data-desc-position="bottom"><img alt="配置 DNS" src="https://img.it927.com/aio/481.png"></a></p>
+<p>无需手动在 DNS 服务商处添加记录——参考 <a href="../ddns/#cname">DDNS - CNAME 解析</a> 完成配置。
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/559.png" data-desc-position="bottom"><img alt="CNAME 解析" src="https://img.it927.com/aio/559.png" title="CNAME 解析"></a></p>
 <h2 id="_6">自定义回源端口（可选）<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <p>如果服务使用非标准端口（非 80/443），需要通过回源规则进行端口映射。ESA 不支持直接在回源地址中指定端口，必须通过规则配置实现。</p>
 <p>以下以 8000 端口为例说明配置方法：</p>

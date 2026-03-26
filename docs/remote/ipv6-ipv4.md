@@ -140,9 +140,8 @@ graph LR
     ![完成配置](https://img.it927.com/aio/415.png)
 
 === "步骤 6：设置 DNS 解析"
-    在域名 DNS 服务商处添加 CNAME 记录，类型选择 `CNAME`，名称填写 `blog`（或其他子域名），记录值填写上一步复制的 CNAME。
-
-    ![设置 DNS](https://img.it927.com/aio/416.png)
+    无需手动在 DNS 服务商处添加记录——D-NET DDNS 的 CNAME 模式会自动将域名指向上一步复制的 CDN CNAME 地址，参考 [DDNS - CNAME 解析](ddns.md#cname) 完成配置。
+    ![CNAME 解析](https://img.it927.com/aio/559.png "CNAME 解析")
 
 === "步骤 7：配置 D-NET"
     在 D-NET Web 管理页面中，打开 DCDN 开关，填写云厂商 AccessKey 信息。
@@ -213,13 +212,8 @@ graph LR
     ![获取 CNAME](https://img.it927.com/aio/461.png)
 
 === "步骤 8：设置 DNS 解析"
-    在域名 DNS 服务商处添加 CNAME 记录：
-
-    - 类型：`CNAME`
-    - 名称：子域名（如 `blog`）
-    - 记录值：上一步复制的 CNAME 地址
-
-    ![设置 DNS 解析](https://img.it927.com/aio/462.png)
+    无需手动在 DNS 服务商处添加记录——D-NET DDNS 的 CNAME 模式会自动将域名指向上一步复制的 CDN CNAME 地址，参考 [DDNS - CNAME 解析](ddns.md#cname) 完成配置。
+    ![CNAME 解析](https://img.it927.com/aio/559.png "CNAME 解析")
 
 #### 等待 CDN 配置完成
 

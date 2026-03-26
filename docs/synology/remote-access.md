@@ -222,8 +222,8 @@ D-NET 安装完成后，通过浏览器访问 `http://群晖IP:9877` 进入 Web 
     ![获取 CNAME 记录](https://img.it927.com/aio/505.png)
 
 === "步骤 3：添加 DNS 解析"
-    在域名 DNS 服务商处添加 CNAME 记录，将子域名指向上一步获取的 CNAME 地址
-    ![添加 DNS 解析](https://img.it927.com/aio/506.png)
+    无需手动在 DNS 服务商处添加记录——参考 [DDNS - CNAME 解析](ddns.md#cname) 完成配置。
+    ![CNAME 解析](https://img.it927.com/aio/559.png "CNAME 解析")
 
 !!! tip "如何获取腾讯云密钥"
     访问 [腾讯云访问管理](https://console.cloud.tencent.com/cam/capi) 创建 SecretId 和 SecretKey。建议创建子账号并授予 EdgeOne 相关权限，避免使用主账号密钥。
