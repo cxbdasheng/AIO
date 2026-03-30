@@ -3,13 +3,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="家庭 AIO 服务器 ESXi 环境搭建教程">
+        <meta name="description" content="介绍家庭 AIO 服务器 ESXi 环境下的功耗优化方案，涵盖电源策略、CPU 休眠、硬盘节能等多个层面，实测降低待机功耗 20W 以上。">
       
       
         <meta name="author" content="陈大剩">
       
       
-        <link rel="canonical" href="https://aio.it927.com/esxi/energy/">
+        <link rel="canonical" href="https://aio.it927.com/esxi/esxi-power-saving/">
       
       
         <link rel="prev" href="../clone/">
@@ -26,6 +26,8 @@
         <title>功耗节能 - 家庭 AIO 服务器搭建教程</title>
       
     
+    
+    <meta name="keywords" content="ESXi 节能,ESXi 功耗优化,VMware 电源管理,ESXi CPU 省电,家庭服务器节能,ESXi 低功耗,虚拟化节能设置">
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
@@ -1159,6 +1161,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -1191,6 +1195,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1199,9 +1205,168 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 电源管理策略
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 电源管理策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改方式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bios" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIOS 层面节能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BIOS 层面节能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c-statescpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      C-States（CPU 深度休眠）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-speed-step-amd-coolnquiet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel Speed Step / AMD Cool'n'Quiet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬盘节能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="硬盘节能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apmadvanced-power-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      APM（Advanced Power Management）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSD 不需要特别处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机配置优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟机配置优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      关闭 CPU/内存热添加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      关闭不用的虚拟硬件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      合理设置 CPU 预留
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      关闭不必要的 ESXi 服务
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      实测效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -1986,6 +2151,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1994,9 +2161,168 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      在写的路上
+      准备工作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESXi 电源管理策略
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESXi 电源管理策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改方式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bios" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIOS 层面节能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BIOS 层面节能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c-statescpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      C-States（CPU 深度休眠）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-speed-step-amd-coolnquiet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel Speed Step / AMD Cool'n'Quiet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬盘节能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="硬盘节能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apmadvanced-power-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      APM（Advanced Power Management）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSD 不需要特别处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      虚拟机配置优化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟机配置优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      关闭 CPU/内存热添加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      关闭不用的虚拟硬件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      合理设置 CPU 预留
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esxi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      关闭不必要的 ESXi 服务
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      实测效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
     </span>
   </a>
   
@@ -2017,7 +2343,7 @@
                   
 
   
-    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/esxi/energy.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/cxbdasheng/AIO/edit/main/docs/esxi/esxi-power-saving.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
@@ -2025,9 +2351,237 @@
   
 
 
-  <h1>功耗节能</h1>
-
-<h2 id="_1">在写的路上<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<h1 id="_1">功耗节能<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<p>家庭服务器 7×24 小时不间断运行，功耗直接影响电费账单。陈大剩的机器用小米智能插座实测，近一个月（2025/07/06–08/04）用电 <strong>120.2 度</strong>，日均约 4 度，折算平均功耗 <strong>167W</strong>，一年电费接近 <strong>880 元</strong>。折腾一番之后，待机功耗压到了 115W 以内，一年能省下 270 多块。</p>
+<p>本文从 ESXi 电源策略、CPU 休眠、硬盘节能、虚拟机配置几个维度系统梳理，按需取用即可。</p>
+<h2 id="_2">准备工作<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>ESXi 管理界面（Host Client）可以正常访问</li>
+<li>推荐准备一个智能插座或功率计（如小米智能插座），方便实测功耗变化</li>
+<li>部分设置需要开启 SSH</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">修改前建议记录基准功耗</p>
+<p>调整前用功率计记录一个 10 分钟的待机平均值，每调一项再测一次，这样才知道每步的实际效果，别一把全改了反而不知道哪里有用。</p>
+</div>
+<hr>
+<h2 id="esxi">ESXi 电源管理策略<a class="headerlink" href="#esxi" title="Permanent link">¶</a></h2>
+<p>这是最直接、最有效的一步，也是最容易被忽视的。</p>
+<p>ESXi 默认使用<strong>"主机默认"</strong>电源策略，本质上是高性能模式，CPU 不会主动降频。</p>
+<h3 id="_3">修改方式<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<ol>
+<li>登录 ESXi Host Client（<code>https://&lt;ESXi IP&gt;</code>）</li>
+<li>导航：<strong>管理</strong> → <strong>硬件</strong> → <strong>电源管理</strong></li>
+<li>将策略从「主机默认」改为「低能耗」</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://img.it927.com/aio/esxi-power-policy.png" data-desc-position="bottom"><img alt="ESXi 电源管理策略" src="https://img.it927.com/aio/esxi-power-policy.png" title="将电源策略改为低能耗"></a></p>
+<p>ESXi 提供四种策略：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高性能</td>
+<td>CPU 始终全速，功耗最高</td>
+</tr>
+<tr>
+<td>主机默认</td>
+<td>跟随 BIOS 设置，通常等同高性能</td>
+</tr>
+<tr>
+<td>平衡</td>
+<td>根据负载动态调整，折中方案</td>
+</tr>
+<tr>
+<td>低能耗</td>
+<td>尽量降频休眠，功耗最低</td>
+</tr>
+</tbody>
+</table>
+<p>家庭场景绝大多数时间负载很低，改成「低能耗」基本无感，但功耗可以下降 5~15W。</p>
+<div class="admonition tip">
+<p class="admonition-title">对性能的影响</p>
+<p>低能耗模式下，CPU 在有突发负载时依然会快速升频，只是空闲时会更积极地进入低频/休眠状态。日常使用（NAS 读写、软路由转发）完全没有影响。</p>
+</div>
+<hr>
+<h2 id="bios">BIOS 层面节能<a class="headerlink" href="#bios" title="Permanent link">¶</a></h2>
+<p>ESXi 的电源策略依赖 BIOS 开放对应的 CPU 电源特性，所以 BIOS 里有几个配置要对上。</p>
+<h3 id="c-statescpu">C-States（CPU 深度休眠）<a class="headerlink" href="#c-statescpu" title="Permanent link">¶</a></h3>
+<p>C-States 是 CPU 的休眠等级，等级越高越省电，响应延迟也越高。</p>
+<p>进入 BIOS → CPU 配置，确认以下项目<strong>已启用</strong>：</p>
+<ul>
+<li><code>C1E Support</code>（C1E 增强休眠）</li>
+<li><code>CPU C3 Report</code></li>
+<li><code>CPU C6 Report</code>（C6 是比较深的休眠，省电效果明显）</li>
+</ul>
+<p>不同主板 BIOS 的菜单名称略有差异，关键词是 <code>C-State</code> / <code>Power State</code>。</p>
+<h3 id="intel-speed-step-amd-coolnquiet">Intel Speed Step / AMD Cool'n'Quiet<a class="headerlink" href="#intel-speed-step-amd-coolnquiet" title="Permanent link">¶</a></h3>
+<p>这个功能允许 CPU 根据负载动态调整频率，务必<strong>开启</strong>。Intel 平台叫 <code>Intel SpeedStep</code>，AMD 平台叫 <code>Cool'n'Quiet</code> 或 <code>CPB (Core Performance Boost)</code>。</p>
+<div class="admonition note">
+<p class="admonition-title">N 系列低功耗 CPU 的情况</p>
+<p>如果用的是 N100/N305 之类的低功耗 CPU，这些选项可能本就默认开启，或者 BIOS 里压根不显示（厂商已经锁定为最优配置），不用纠结。</p>
+</div>
+<hr>
+<h2 id="_4">硬盘节能<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h3 id="apmadvanced-power-management">APM（Advanced Power Management）<a class="headerlink" href="#apmadvanced-power-management" title="Permanent link">¶</a></h3>
+<p>机械硬盘支持 APM，可以让硬盘在空闲时自动降速甚至停转。</p>
+<div class="admonition warning">
+<p class="admonition-title">直通硬盘才有效</p>
+<p>如果硬盘是通过 RDM 或直通方式挂给黑群晖/虚拟机，硬盘的 APM 由群晖系统管理，不需要在 ESXi 层面操作。下面的命令适用于直接挂在 ESXi 下的磁盘。</p>
+</div>
+<p>SSH 登录 ESXi 后，用以下命令查看和设置 APM：</p>
+<div class="highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 查看所有磁盘的 APM 状态</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>esxcli<span class="w"> </span>storage<span class="w"> </span>core<span class="w"> </span>device<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"Display Name|APM Level"</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 设置指定磁盘的 APM 级别（数值越低越省电，1 为最省电，254 为关闭）</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>esxcli<span class="w"> </span>storage<span class="w"> </span>core<span class="w"> </span>device<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--device<span class="w"> </span>&lt;device-id&gt;<span class="w"> </span>--apm-level<span class="w"> </span><span class="m">128</span>
+</code></pre></div>
+<p>APM 值参考：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1~127</td>
+<td>允许停转，越小越激进</td>
+</tr>
+<tr>
+<td>128~254</td>
+<td>仅降速，不停转</td>
+</tr>
+<tr>
+<td>255</td>
+<td>关闭 APM</td>
+</tr>
+</tbody>
+</table>
+<p>对于家庭 NAS 场景，设成 <code>128</code> 是个稳健选择——硬盘会在空闲时降速但不会频繁停转（频繁停转反而伤硬盘）。</p>
+<h3 id="ssd">SSD 不需要特别处理<a class="headerlink" href="#ssd" title="Permanent link">¶</a></h3>
+<p>SSD 没有机械部件，空闲时本身功耗极低，APM 意义不大，按默认就好。</p>
+<hr>
+<h2 id="_5">虚拟机配置优化<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h3 id="cpu">关闭 CPU/内存热添加<a class="headerlink" href="#cpu" title="Permanent link">¶</a></h3>
+<p>CPU 和内存的热添加功能（Hot Add）会让 ESXi 保持额外的资源监控开销，而且大多数家庭场景根本用不到，关了能小幅降低功耗。</p>
+<p>每台虚拟机都要单独设置：</p>
+<ol>
+<li>关闭虚拟机电源</li>
+<li><strong>编辑设置</strong> → <strong>CPU</strong> → 取消勾选「启用 CPU 热添加」</li>
+<li><strong>编辑设置</strong> → <strong>内存</strong> → 取消勾选「启用内存热插拔」</li>
+</ol>
+<h3 id="_6">关闭不用的虚拟硬件<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<p>虚拟机里用不到的设备（USB 控制器、软驱、光驱）如果存在，即使没连设备也会有少量开销：</p>
+<ul>
+<li><strong>编辑设置</strong> → 找到「软盘驱动器」→ 删除</li>
+<li>没有 USB 直通需求的虚拟机，可以删除 USB 控制器</li>
+</ul>
+<h3 id="cpu_1">合理设置 CPU 预留<a class="headerlink" href="#cpu_1" title="Permanent link">¶</a></h3>
+<p>不要给虚拟机设置过高的 CPU 预留（Reservation）。预留意味着 ESXi 必须始终为这台虚拟机保留这些 CPU 资源，无法在空闲时休眠对应核心。</p>
+<p>导航：<strong>虚拟机</strong> → <strong>编辑设置</strong> → <strong>CPU</strong> → <strong>预留</strong> 设为 <code>0</code>（默认值，按需使用）。</p>
+<hr>
+<h2 id="esxi_1">关闭不必要的 ESXi 服务<a class="headerlink" href="#esxi_1" title="Permanent link">¶</a></h2>
+<p>一些默认开启的服务在家庭环境下用不到，关了能减少后台开销。</p>
+<p>导航：<strong>管理</strong> → <strong>服务</strong></p>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>说明</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CIM Server</code></td>
+<td>硬件监控服务，第三方管理工具用</td>
+<td>可关闭</td>
+</tr>
+<tr>
+<td><code>Direct Console UI</code></td>
+<td>本地物理控制台 UI</td>
+<td>可关闭（SSH 够用）</td>
+</tr>
+<tr>
+<td><code>vMotion</code></td>
+<td>跨主机迁移，家庭单机用不到</td>
+<td>可关闭</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">不要随便关 SSH</p>
+<p>SSH 服务默认关闭，需要时手动开，用完再关——这是 VMware 的安全建议，也是好习惯。但如果你像陈大剩一样经常用 SSH 操作，常开也无妨。</p>
+</div>
+<hr>
+<h2 id="_7">实测效果<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<p>陈大剩的机器是一台<strong>双路 X99 平台</strong>，跑了 4 台虚拟机（OpenWrt、黑群晖、Ubuntu、Windows），实测基准功耗 167W（智能插座监控数据）。</p>
+<p>要想让马儿跑，哪有不吃草——双路 Xeon 的算力摆在这里，167W 的待机功耗其实已经相当克制了。但能省一点是一点，毕竟电费是真实的。</p>
+<table>
+<thead>
+<tr>
+<th>优化项目</th>
+<th>操作前</th>
+<th>操作后</th>
+<th>节省</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基准功耗（待机）</td>
+<td>167W</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>改电源策略为低能耗</td>
+<td>—</td>
+<td>145W</td>
+<td>-22W</td>
+</tr>
+<tr>
+<td>BIOS 开启 C-States</td>
+<td>—</td>
+<td>130W</td>
+<td>-15W</td>
+</tr>
+<tr>
+<td>关闭虚拟机热添加 + 冗余设备</td>
+<td>—</td>
+<td>123W</td>
+<td>-7W</td>
+</tr>
+<tr>
+<td>硬盘 APM 设置</td>
+<td>—</td>
+<td>115W</td>
+<td>-8W</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>167W</strong></td>
+<td><strong>115W</strong></td>
+<td><strong>-52W</strong></td>
+</tr>
+</tbody>
+</table>
+<p>一年下来少用电约 455 度，按 0.6 元/度算节省约 <strong>273 元</strong>。</p>
+<hr>
+<h2 id="_8">总结<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>节能优化没有银弹，效果因硬件不同差异较大，但基本上按以下优先级操作收益最明显：</p>
+<ol>
+<li><strong>ESXi 电源策略改为低能耗</strong>（必做，立竿见影）</li>
+<li><strong>BIOS 确认 C-States 和 SpeedStep 开启</strong>（必做，配合上面才真正有效）</li>
+<li><strong>机械硬盘设置 APM</strong>（有机械盘就做）</li>
+<li><strong>关闭虚拟机热添加</strong>（操作简单，有一点效果）</li>
+</ol>
+<p>如果折腾完还想继续压功耗，可以考虑关掉其中一路 CPU（部分 X99 主板支持单路模式），或者把非必要的虚拟机迁移到低功耗小主机上单独跑——当然，那就不叫 AIO 了。</p>
 
   
 
@@ -2042,12 +2596,12 @@
     
         <span class="md-source-file__fact">
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月22日 07:42:20 UTC">2025年7月22日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月30日 01:25:00 UTC">2026年3月30日</span>
         </span>
     
       <span class="md-source-file__fact">
         最后更新:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 14:03:19 UTC">2025年7月27日</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月30日 01:25:00 UTC">2026年3月30日</span>
       </span>
     <!-- mkdocs-git-revision-date-plugin -->
     

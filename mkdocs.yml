@@ -112,7 +112,7 @@ nav:
       - SSL 证书配置: "esxi/ssl.md"
       - 硬件直通: "esxi/passthrough.md"
       - 虚拟机克隆: "esxi/clone.md"
-      - 功耗节能: "esxi/energy.md"
+      - 功耗节能: "esxi/esxi-power-saving.md"
   - 软路由:
       - 系统安装: "route/install.md"
       - 开启 IPv6: "route/ipv6.md"
